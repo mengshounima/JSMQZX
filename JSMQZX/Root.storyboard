@@ -22,7 +22,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rwf-74-rGq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="311"/>
+            <point key="canvasLocation" x="-120" y="310.99999999999994"/>
         </scene>
         <!--民情在线(干部版)-->
         <scene sceneID="gPt-Ul-rVQ">
@@ -108,16 +108,112 @@
                     <view key="view" contentMode="scaleToFill" id="8Of-Cq-Jiv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t4u-cY-l6L" userLabel="grid View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="815-zh-95I" id="H5i-j2-hJc"/>
+                                    <outlet property="delegate" destination="815-zh-95I" id="rfx-59-RwA"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="t4u-cY-l6L" secondAttribute="trailing" id="1BK-h1-lQH"/>
+                            <constraint firstItem="t4u-cY-l6L" firstAttribute="leading" secondItem="8Of-Cq-Jiv" secondAttribute="leading" id="2ZE-4f-P3y"/>
+                            <constraint firstItem="t4u-cY-l6L" firstAttribute="top" secondItem="8Of-Cq-Jiv" secondAttribute="top" id="2oN-NT-9zD"/>
+                            <constraint firstItem="tjJ-jl-esZ" firstAttribute="top" secondItem="t4u-cY-l6L" secondAttribute="bottom" id="6IJ-7A-VAh"/>
+                            <constraint firstItem="tjJ-jl-esZ" firstAttribute="top" secondItem="t4u-cY-l6L" secondAttribute="bottom" id="IL3-2h-aPy"/>
+                            <constraint firstAttribute="trailing" secondItem="t4u-cY-l6L" secondAttribute="trailing" id="bRT-R7-CQf"/>
+                            <constraint firstItem="t4u-cY-l6L" firstAttribute="leading" secondItem="8Of-Cq-Jiv" secondAttribute="leading" id="ssP-gj-60f"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="选择网格" id="obJ-5t-XNZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="GridTable" destination="t4u-cY-l6L" id="4EF-U6-cX2"/>
+                        <segue destination="OAi-0n-zep" kind="push" identifier="GridToSelectFarmer" id="FAg-9X-8fj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gek-vv-NxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1560" y="-163"/>
+            <point key="canvasLocation" x="1558" y="-321"/>
         </scene>
-        <!--Min Qin Ri Zhi TableVC-->
+        <!--选择农户-->
+        <scene sceneID="fVI-l1-Q6p">
+            <objects>
+                <viewController id="OAi-0n-zep" customClass="SelectFarmerVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FgL-Wa-N3K"/>
+                        <viewControllerLayoutGuide type="bottom" id="zvb-X7-7bd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FLD-0N-S57">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fow-MG-zSv">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="OAi-0n-zep" id="B5O-ev-SdM"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aht-mY-v5L">
+                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="OAi-0n-zep" id="wHn-23-mkx"/>
+                                    <outlet property="delegate" destination="OAi-0n-zep" id="Dhy-oj-hzc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fow-MG-zSv" firstAttribute="leading" secondItem="FLD-0N-S57" secondAttribute="leading" id="MJI-Cl-iFi"/>
+                            <constraint firstAttribute="bottom" secondItem="Aht-mY-v5L" secondAttribute="bottom" id="Rlc-xZ-og7"/>
+                            <constraint firstItem="Aht-mY-v5L" firstAttribute="leading" secondItem="FLD-0N-S57" secondAttribute="leading" id="UuY-5h-b7H"/>
+                            <constraint firstItem="fow-MG-zSv" firstAttribute="top" secondItem="FgL-Wa-N3K" secondAttribute="bottom" id="a5S-Xi-AQo"/>
+                            <constraint firstItem="Aht-mY-v5L" firstAttribute="top" secondItem="fow-MG-zSv" secondAttribute="bottom" id="kdE-gp-jWa"/>
+                            <constraint firstAttribute="trailing" secondItem="Aht-mY-v5L" secondAttribute="trailing" id="lG8-fO-Err"/>
+                            <constraint firstAttribute="trailing" secondItem="Aht-mY-v5L" secondAttribute="trailing" id="mvw-Qi-uky"/>
+                            <constraint firstAttribute="trailing" secondItem="fow-MG-zSv" secondAttribute="trailing" id="yD2-3Q-xAz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="选择农户" id="8lE-xC-fCh"/>
+                    <connections>
+                        <outlet property="FarmerTable" destination="Aht-mY-v5L" id="F5u-jD-4z7"/>
+                        <outlet property="SearchBar" destination="fow-MG-zSv" id="q4u-PA-YUT"/>
+                        <segue destination="ojl-JA-Svu" kind="push" identifier="SelectFarmerToFarmerInfo" id="6eu-OK-lT5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfF-gU-451" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1984" y="-307"/>
+        </scene>
+        <!--农户信息-->
+        <scene sceneID="AQo-wN-ohc">
+            <objects>
+                <tableViewController id="ojl-JA-Svu" customClass="FarmerInfoTableVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2p5-DW-ciP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="ojl-JA-Svu" id="p1v-dH-ute"/>
+                            <outlet property="delegate" destination="ojl-JA-Svu" id="7CW-Ao-fj6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="农户信息" id="6ov-YM-PIs"/>
+                    <connections>
+                        <outlet property="InfoTableVIew" destination="2p5-DW-ciP" id="9Of-lJ-TzI"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMA-fm-ZhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2336" y="-596"/>
+        </scene>
+        <!--添加走访日志-->
         <scene sceneID="9if-ob-03N">
             <objects>
                 <tableViewController id="dxK-2f-pTE" customClass="MinQinRiZhiTableVC" sceneMemberID="viewController">
@@ -131,14 +227,14 @@
                             <outlet property="delegate" destination="dxK-2f-pTE" id="L4V-Bn-lrR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="IWI-is-nYp"/>
+                    <navigationItem key="navigationItem" title="添加走访日志" id="IWI-is-nYp"/>
                     <connections>
                         <segue destination="ziT-ct-WAa" kind="push" identifier="MinQinRiZhiToAddVisitLog" id="zdR-aI-UmH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxn-q6-8JW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="690" y="-207"/>
+            <point key="canvasLocation" x="690" y="-206.99999999999997"/>
         </scene>
         <!--添加走访日志-->
         <scene sceneID="ZdE-zW-mVD">
@@ -514,6 +610,9 @@
                     <navigationItem key="navigationItem" title="添加走访日志" id="m8H-lX-MU9"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="CommonView" destination="oA6-E2-SFZ" id="3Y5-ir-D7a"/>
+                        <outlet property="FarmerView" destination="KXy-bl-Pya" id="pkn-Sd-Nhk"/>
+                        <outlet property="TypeView" destination="YTj-Fc-3gJ" id="CfJ-kH-jeJ"/>
                         <outlet property="boxView" destination="7oj-87-DLT" id="MT8-U4-Bol"/>
                         <outlet property="commonF" destination="hFT-cM-Zov" id="bgY-Qv-cip"/>
                         <outlet property="dateF" destination="Rad-3u-VlI" id="DIp-Np-1Y1"/>
@@ -528,7 +627,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbE-6d-BTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1091" y="-163"/>
+            <point key="canvasLocation" x="1095" y="-349.99999999999994"/>
         </scene>
     </scenes>
     <resources>

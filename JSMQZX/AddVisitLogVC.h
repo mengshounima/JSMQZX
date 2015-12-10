@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FarmersVC.h"
+#import "JKAlertDialog.h"
 @interface AddVisitLogVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (weak, nonatomic) IBOutlet UIView *boxView;
@@ -20,5 +21,8 @@
 - (IBAction)clickSendBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *picBtn;
 - (IBAction)clickPicBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *FarmerView;
+@property (weak, nonatomic) IBOutlet UIView *CommonView;
+@property (weak, nonatomic) IBOutlet UIView *TypeView;
 
 @end

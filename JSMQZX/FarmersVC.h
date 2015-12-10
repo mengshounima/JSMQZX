@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
+#import "SelectFarmerVC.h"
 @interface FarmersVC : UIViewController
+{
+    UISearchDisplayController *searchDisplayController;
+    UISearchBar *_mySearchBar;
+}
+@property (weak, nonatomic) IBOutlet UITableView *GridTable;
+//@property (strong, nonatomic) IBOutlet UISearchBar *mySearchBar;
 
 @end

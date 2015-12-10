@@ -32,6 +32,11 @@
 		F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07D72A31C10756200C695CB /* LaunchScreen.xib */; };
 		F07D72B11C10756200C695CB /* JSMQZXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F07D72B01C10756200C695CB /* JSMQZXTests.m */; };
 		F084677C1C107E4300BE1020 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F084677B1C107E4300BE1020 /* LoginVC.m */; };
+		F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */; };
+		F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1EE1C19DA1100EAAC10 /* SelectFarmerCell.m */; };
+		F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */; };
+		F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */; };
+		F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */; };
 		F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */; };
 		F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */; };
 		F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E78DAB1C148A8800DDE8D8 /* GDataXMLNode.m */; };
@@ -99,6 +104,15 @@
 		F07D72B01C10756200C695CB /* JSMQZXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMQZXTests.m; sourceTree = "<group>"; };
 		F084677A1C107E4300BE1020 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		F084677B1C107E4300BE1020 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		F0B4E1E71C19C1E600EAAC10 /* SelectFarmerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFarmerVC.h; sourceTree = "<group>"; };
+		F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFarmerVC.m; sourceTree = "<group>"; };
+		F0B4E1ED1C19DA1100EAAC10 /* SelectFarmerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFarmerCell.h; sourceTree = "<group>"; };
+		F0B4E1EE1C19DA1100EAAC10 /* SelectFarmerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFarmerCell.m; sourceTree = "<group>"; };
+		F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectFarmerCell.xib; sourceTree = "<group>"; };
+		F0B4E1F21C19E48B00EAAC10 /* FarmerInfoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarmerInfoTableVC.h; sourceTree = "<group>"; };
+		F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarmerInfoTableVC.m; sourceTree = "<group>"; };
+		F0B4E1F51C19FBD500EAAC10 /* JKAlertDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlertDialog.h; sourceTree = "<group>"; };
+		F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
 		F0D255A11C170D17005BD1F4 /* MinQinRiZhiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinQinRiZhiTableVC.h; sourceTree = "<group>"; };
 		F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinQinRiZhiTableVC.m; sourceTree = "<group>"; };
 		F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddVisitLogVC.h; sourceTree = "<group>"; };
@@ -247,6 +261,7 @@
 		F074E7011C15C2130098792E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F074E7031C15C2630098792E /* Root.storyboard */,
 				F074E7051C15D9090098792E /* View */,
 				F074E7021C15C22E0098792E /* Controller */,
 			);
@@ -256,7 +271,6 @@
 		F074E7021C15C22E0098792E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F074E7031C15C2630098792E /* Root.storyboard */,
 				F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */,
 				F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */,
 				F060B3991C14557C007F472F /* RootVC.h */,
@@ -269,8 +283,13 @@
 		F074E7051C15D9090098792E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F0B4E1F51C19FBD500EAAC10 /* JKAlertDialog.h */,
+				F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */,
 				F074E7061C15D9180098792E /* HMTitleButton.h */,
 				F074E7071C15D9180098792E /* HMTitleButton.m */,
+				F0B4E1ED1C19DA1100EAAC10 /* SelectFarmerCell.h */,
+				F0B4E1EE1C19DA1100EAAC10 /* SelectFarmerCell.m */,
+				F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -364,6 +383,10 @@
 				F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */,
 				F020D96F1C186FB5001B78E4 /* FarmersVC.h */,
 				F020D9701C186FB5001B78E4 /* FarmersVC.m */,
+				F0B4E1E71C19C1E600EAAC10 /* SelectFarmerVC.h */,
+				F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */,
+				F0B4E1F21C19E48B00EAAC10 /* FarmerInfoTableVC.h */,
+				F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */,
 			);
 			name = MinQinRiZhi;
 			sourceTree = "<group>";
@@ -472,6 +495,7 @@
 				F07D72A01C10756200C695CB /* Main.storyboard in Resources */,
 				F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */,
 				F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */,
+				F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */,
 				F07D72A21C10756200C695CB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,13 +554,16 @@
 				F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */,
 				F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
+				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
 				F03009FC1C132F3300389829 /* HttpClient.m in Sources */,
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
+				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,
 				F0300A0F1C133D8600389829 /* UIBarButtonItem+Extension.m in Sources */,
 				F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */,
 				F03009F21C12FAB600389829 /* UserTypeView.m in Sources */,
 				F0300A111C133D8600389829 /* UIView+Extension.m in Sources */,
+				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,
 				F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
@@ -545,6 +572,7 @@
 				F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */,
 				F0300A041C13376C00389829 /* HMNavigationController.m in Sources */,
 				F060B3A51C145D5D007F472F /* MBProgressHUD.m in Sources */,
+				F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
