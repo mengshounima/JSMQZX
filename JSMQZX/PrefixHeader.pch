@@ -1,0 +1,47 @@
+//
+//  PrefixHeader.pch
+//  JSMQZX
+//
+//  Created by 李 燕琴 on 15/12/5.
+//  Copyright © 2015年 liyanqin. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import "HttpClient.h"
+#import "UIView+Extension.h"
+#import "HMNavigationController.h"
+#import "UIImage+Extension.h"
+#import "UIBarButtonItem+Extension.h"
+#import "UIImageView+WebCache.h"
+#import "MBProgressHUD+MJ.h"
+#import "JSONKit.h"
+#import "UserInfo.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef DEBUG // 调试状态, 打开LOG功能
+#define MyLog(...) NSLog(__VA_ARGS__)
+#else // 发布状态, 关闭LOG功能
+#define MyLog(...)
+#endif
+//服务器地址
+#define BaseURL @"http://122.225.44.14:802/webapi.asmx"
+#define choiceColor(x,y,z)  ([UIColor colorWithRed:x/255.0 green:y/255.0  blue:z/255.0  alpha:1])
+#define ISNULL(obj) (obj == nil || (NSObject *)obj == [NSNull null])
+#define ISNULLSTR(str) (str == nil || (NSObject *)str == [NSNull null] || str.length == 0 )
+#define ISNULLARR(arr)  (arr == nil || (NSObject *)arr == [NSNull null] || [arr count] == 0)
+
+#define SHOWALERT(title,meg) {UIAlertView *alert=[[UIAlertView alloc]initWithTitle:title message:meg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil,nil];[alert show];}
+#define kAppDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+// 偏好设置
+#define USERDEFAULTS [NSUserDefaults standardUserDefaults]
+
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+
+// 是否为iOS7
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+
+#endif /* PrefixHeader_pch */
