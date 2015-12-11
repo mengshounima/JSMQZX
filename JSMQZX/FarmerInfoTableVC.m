@@ -28,8 +28,7 @@
 -(void)getFarmerDetail{
     [MBProgressHUD showMessage:@"加载中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    UserInfo *user = [[UserInfo shareUserInfo] ReadData];
-    NSString *idStr = [NSString stringWithFormat:@"%@",user.useID];
+    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
     [param setObject:idStr forKey:@"userId"];
     [param setObject:[_farmerInfo objectForKey:@"user_id"] forKey:@"PeopleID"];
     [[HttpClient httpClient] requestWithPath:@"/GetPeopleInfo" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -166,16 +165,19 @@
     
     return cell;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 28;
+}
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UILabel *label = [[UILabel alloc] init];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28)];
     label.text = [NSString stringWithFormat:@"详细信息[编号:%@]",[farmerDic objectForKey:@"user_id"]];
+    //label.backgroundColor = [UIColor redColor];
     label.textAlignment = NSTextAlignmentCenter;
     return  label;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28)];
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH-60, 28)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, SCREEN_WIDTH-200, 28)];
     [btn setBackgroundColor:[UIColor orangeColor]];
     btn.layer.cornerRadius = 6;
     [btn setTitle:@"选择该农户" forState:UIControlStateNormal];

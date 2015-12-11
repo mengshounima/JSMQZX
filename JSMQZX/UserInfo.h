@@ -18,7 +18,8 @@
 @property (weak,nonatomic) NSString *phone;
 @property (weak,nonatomic) NSString *administerName;
 @property (weak,nonatomic) NSString *sex;
-+(instancetype)shareUserInfo;
+//单例模式
++(UserInfo *)sharedInstance;
 -(void)writeData:(NSDictionary *)resultdic;
 -(instancetype)ReadData;
 @end

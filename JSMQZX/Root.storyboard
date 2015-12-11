@@ -189,16 +189,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfF-gU-451" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1984" y="-307"/>
+            <point key="canvasLocation" x="1098" y="283"/>
         </scene>
         <!--农户信息-->
         <scene sceneID="AQo-wN-ohc">
             <objects>
                 <tableViewController id="ojl-JA-Svu" customClass="FarmerInfoTableVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2p5-DW-ciP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2p5-DW-ciP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <connections>
                             <outlet property="dataSource" destination="ojl-JA-Svu" id="p1v-dH-ute"/>
                             <outlet property="delegate" destination="ojl-JA-Svu" id="7CW-Ao-fj6"/>
@@ -211,7 +211,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qMA-fm-ZhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2336" y="-596"/>
+            <point key="canvasLocation" x="2516" y="-360"/>
         </scene>
         <!--添加走访日志-->
         <scene sceneID="9if-ob-03N">
@@ -230,11 +230,12 @@
                     <navigationItem key="navigationItem" title="添加走访日志" id="IWI-is-nYp"/>
                     <connections>
                         <segue destination="ziT-ct-WAa" kind="push" identifier="MinQinRiZhiToAddVisitLog" id="zdR-aI-UmH"/>
+                        <segue destination="OAi-0n-zep" kind="push" identifier="MinQinRiZhiToSelectFarmer" id="cJM-qf-foT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxn-q6-8JW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="690" y="-206.99999999999997"/>
+            <point key="canvasLocation" x="720" y="-158"/>
         </scene>
         <!--添加走访日志-->
         <scene sceneID="ZdE-zW-mVD">
@@ -358,8 +359,8 @@
                                                                         <state key="normal" title="晴天">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <state key="selected" title="晴天">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="clickbtn1:" destination="ziT-ct-WAa" eventType="touchUpInside" id="xEa-OS-1df"/>
@@ -370,8 +371,8 @@
                                                                         <state key="normal" title="多云">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <state key="selected" title="多云">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="clickbtn2:" destination="ziT-ct-WAa" eventType="touchUpInside" id="hce-63-SFk"/>
@@ -382,8 +383,8 @@
                                                                         <state key="normal" title="下雨">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <state key="selected" title="下雨">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="clickbtn4:" destination="ziT-ct-WAa" eventType="touchUpInside" id="F7m-Tc-VqS"/>
@@ -394,15 +395,14 @@
                                                                         <state key="normal" title="阴天">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <state key="selected" title="阴天">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="clickbtn3:" destination="ziT-ct-WAa" eventType="touchUpInside" id="36Z-aN-WCJ"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
-                                                                <color key="backgroundColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstItem="5jM-NY-YwP" firstAttribute="width" secondItem="y7d-Se-KFp" secondAttribute="width" id="0Le-zX-aQX"/>
                                                                     <constraint firstItem="y7d-Se-KFp" firstAttribute="top" secondItem="kgQ-LX-UHE" secondAttribute="top" id="4nq-bC-G6E"/>
@@ -570,28 +570,52 @@
                                                                         <state key="normal" title="无诉求">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-lK-liA" userLabel="Button2">
-                                                                        <rect key="frame" x="8" y="25" width="280" height="25"/>
-                                                                        <state key="normal" title="当场办结(答复)">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <state key="selected" title="无诉求">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
+                                                                        <connections>
+                                                                            <action selector="clickbutton1:" destination="ziT-ct-WAa" eventType="touchUpInside" id="KVD-bb-GDd"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-Ca-ME6" userLabel="Button3">
                                                                         <rect key="frame" x="8" y="47" width="280" height="30"/>
                                                                         <state key="normal" title="正在办理">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
+                                                                        <state key="selected" title="正在办理">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="clickbutton3:" destination="ziT-ct-WAa" eventType="touchUpInside" id="cHH-Ia-ReM"/>
+                                                                        </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nd-ZP-phu" userLabel="Button4">
-                                                                        <rect key="frame" x="8" y="75" width="280" height="25"/>
-                                                                        <state key="normal" title="提交上一级党委政府研究">
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-lK-liA" userLabel="Button2">
+                                                                        <rect key="frame" x="8" y="25" width="280" height="25"/>
+                                                                        <state key="normal" title="当场办结(答复)">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
+                                                                        <state key="selected" title="当场办结(答复)">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="clickbutton2:" destination="ziT-ct-WAa" eventType="touchUpInside" id="Tto-7P-kgL"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nd-ZP-phu" userLabel="Button4">
+                                                                <rect key="frame" x="88" y="75" width="280" height="25"/>
+                                                                <state key="normal" title="提交上一级党委政府研究">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <state key="selected" title="提交上一级党委政府研究">
+                                                                    <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="clickbutton4:" destination="ziT-ct-WAa" eventType="touchUpInside" id="bug-20-r2Q"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -735,6 +759,10 @@
                         <outlet property="btn2" destination="bLn-WH-twv" id="iNO-pj-blF"/>
                         <outlet property="btn3" destination="5jM-NY-YwP" id="Z1S-Nf-XJe"/>
                         <outlet property="btn4" destination="lD7-aT-KNY" id="mic-nF-3JK"/>
+                        <outlet property="button1" destination="QM6-Jr-Fhd" id="Vko-nM-eaC"/>
+                        <outlet property="button2" destination="X1F-lK-liA" id="hGE-YQ-ANy"/>
+                        <outlet property="button3" destination="S6c-Ca-ME6" id="mp6-aD-svi"/>
+                        <outlet property="button4" destination="6nd-ZP-phu" id="u4r-dg-TJl"/>
                         <outlet property="commonF" destination="hFT-cM-Zov" id="bgY-Qv-cip"/>
                         <outlet property="dateF" destination="Rad-3u-VlI" id="DIp-Np-1Y1"/>
                         <outlet property="farmerF" destination="pPP-gr-x8K" id="MkG-wG-ONj"/>
@@ -748,11 +776,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbE-6d-BTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="-350"/>
+            <point key="canvasLocation" x="1137" y="-434"/>
         </scene>
     </scenes>
     <resources>
         <image name="日志办理" width="100" height="100"/>
         <image name="民情日志" width="100" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cJM-qf-foT"/>
+    </inferredMetricsTieBreakers>
 </document>

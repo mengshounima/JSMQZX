@@ -63,7 +63,8 @@
         [self performSegueWithIdentifier:@"MinQinRiZhiToAddVisitLog" sender:nil];
     }
     else if (indexPath.row == 1){
-        
+        //联系结对农户
+        [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:nil];
     }
     else if (indexPath.row == 2){
         

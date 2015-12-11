@@ -137,7 +137,7 @@
         NSData* jsonData = [self XMLString:responseObject];
         NSDictionary *resultDic = [jsonData objectFromJSONData];
         MyLog(@"------------------%@",resultDic);
-       [[UserInfo shareUserInfo] writeData:resultDic];//初始化
+       [[UserInfo sharedInstance] writeData:resultDic];//初始化
         
         //创建导航栏
         HMNavigationController *rootNav;

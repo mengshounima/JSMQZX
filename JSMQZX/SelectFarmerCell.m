@@ -20,8 +20,7 @@
     NSString *zjd = [dic objectForKey:@"zjd_name"];
     NSString *cun = [dic objectForKey:@"cun_name"];
     NSString *wg = [dic objectForKey:@"wg_name"];
-    UserInfo *user = [[UserInfo shareUserInfo] ReadData];
-    NSString *lxgbName = [NSString stringWithFormat:@"%@",user.name];//联系干部。即自己
+    NSString *lxgbName = [[UserInfo sharedInstance] ReadData].name;//联系干部。即自己
     _UpL.text = [NSString stringWithFormat:@"户主:%@   电话:%@   成员:%@",name,phone,jtcy];
     _downL.text = [NSString stringWithFormat:@"%@ %@ %@      联系干部:%@",zjd,cun,wg,lxgbName];
 }

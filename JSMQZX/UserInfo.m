@@ -9,8 +9,14 @@
 #import "UserInfo.h"
 
 @implementation UserInfo
-+(instancetype)shareUserInfo{
-    return [[UserInfo alloc] init];
++(UserInfo *)sharedInstance{
+        static UserInfo *sharedUserInfoInstance = nil;
+        static dispatch_once_t predicate;
+        dispatch_once(&predicate, ^{
+            sharedUserInfoInstance = [[self alloc] init];
+        });
+        return sharedUserInfoInstance;
+
 }
 -(void)writeData:(NSDictionary *)resultdic
 {
@@ -22,6 +28,7 @@
     [USERDEFAULTS setObject:tempDic forKey:USER];
     [USERDEFAULTS synchronize];
 }
+
 -(instancetype)ReadData
 {
     id valueData = [USERDEFAULTS objectForKey:USER];

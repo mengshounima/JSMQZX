@@ -32,6 +32,8 @@
 		F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07D72A31C10756200C695CB /* LaunchScreen.xib */; };
 		F07D72B11C10756200C695CB /* JSMQZXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F07D72B01C10756200C695CB /* JSMQZXTests.m */; };
 		F084677C1C107E4300BE1020 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F084677B1C107E4300BE1020 /* LoginVC.m */; };
+		F0A4BF401C1B2D5600455597 /* modifyPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A4BF3E1C1B2D5600455597 /* modifyPasswordView.m */; };
+		F0A4BF411C1B2D5600455597 /* modifyPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A4BF3F1C1B2D5600455597 /* modifyPasswordView.xib */; };
 		F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */; };
 		F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1EE1C19DA1100EAAC10 /* SelectFarmerCell.m */; };
 		F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */; };
@@ -104,6 +106,9 @@
 		F07D72B01C10756200C695CB /* JSMQZXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMQZXTests.m; sourceTree = "<group>"; };
 		F084677A1C107E4300BE1020 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		F084677B1C107E4300BE1020 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		F0A4BF3D1C1B2D5600455597 /* modifyPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modifyPasswordView.h; sourceTree = "<group>"; };
+		F0A4BF3E1C1B2D5600455597 /* modifyPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = modifyPasswordView.m; sourceTree = "<group>"; };
+		F0A4BF3F1C1B2D5600455597 /* modifyPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = modifyPasswordView.xib; sourceTree = "<group>"; };
 		F0B4E1E71C19C1E600EAAC10 /* SelectFarmerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFarmerVC.h; sourceTree = "<group>"; };
 		F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFarmerVC.m; sourceTree = "<group>"; };
 		F0B4E1ED1C19DA1100EAAC10 /* SelectFarmerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFarmerCell.h; sourceTree = "<group>"; };
@@ -207,8 +212,8 @@
 		F0300A011C13374600389829 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				F0300A021C13376C00389829 /* HMNavigationController.h */,
-				F0300A031C13376C00389829 /* HMNavigationController.m */,
+				F0A4BF3C1C1B2D4600455597 /* View */,
+				F0A4BF3B1C1B2D3700455597 /* Controller */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -376,6 +381,25 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		F0A4BF3B1C1B2D3700455597 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F0300A021C13376C00389829 /* HMNavigationController.h */,
+				F0300A031C13376C00389829 /* HMNavigationController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F0A4BF3C1C1B2D4600455597 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F0A4BF3D1C1B2D5600455597 /* modifyPasswordView.h */,
+				F0A4BF3E1C1B2D5600455597 /* modifyPasswordView.m */,
+				F0A4BF3F1C1B2D5600455597 /* modifyPasswordView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
+				F0A4BF411C1B2D5600455597 /* modifyPasswordView.xib in Resources */,
 				F07D72A01C10756200C695CB /* Main.storyboard in Resources */,
 				F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */,
 				F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */,
@@ -568,6 +593,7 @@
 				F07D729A1C10756200C695CB /* AppDelegate.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,
+				F0A4BF401C1B2D5600455597 /* modifyPasswordView.m in Sources */,
 				F07D72971C10756200C695CB /* main.m in Sources */,
 				F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */,
 				F0300A041C13376C00389829 /* HMNavigationController.m in Sources */,

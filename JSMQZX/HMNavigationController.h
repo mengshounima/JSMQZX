@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HMNavigationController : UINavigationController
-
+#import "modifyPasswordView.h"
+@interface HMNavigationController : UINavigationController<modifyPasswordViewDelegate>
+// 蒙版
+@property (strong, nonatomic) UIView *backView;
+@property (strong, nonatomic) modifyPasswordView *modifyView;
 @end
