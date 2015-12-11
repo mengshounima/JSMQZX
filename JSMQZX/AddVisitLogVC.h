@@ -24,5 +24,14 @@
 @property (weak, nonatomic) IBOutlet UIView *FarmerView;
 @property (weak, nonatomic) IBOutlet UIView *CommonView;
 @property (weak, nonatomic) IBOutlet UIView *TypeView;
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn3;
+@property (weak, nonatomic) IBOutlet UIButton *btn4;
+- (IBAction)clickbtn1:(id)sender;
+- (IBAction)clickbtn3:(id)sender;
+
+- (IBAction)clickbtn2:(id)sender;
+- (IBAction)clickbtn4:(id)sender;
 
 @end

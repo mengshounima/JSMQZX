@@ -191,8 +191,37 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectOneFarmer" object:nil];
 }
-//提交
+//提交日志
 - (IBAction)clickSendBtn:(id)sender {
+    /*[MBProgressHUD showMessage:@"提交中"];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    UserInfo *user = [[UserInfo shareUserInfo] ReadData];
+    NSString *idStr = [NSString stringWithFormat:@"%@",user.useID];
+    [param setObject:idStr forKey:@"userId"];
+    [param setObject:_dateF.text forKey:@"rz_zfrq"];
+    [param setObject:_farmerF.text forKey:@"rz_zfnh"];
+    [param setObject:idStr forKey:@"rz_mqgk"];
+    [param setObject:idStr forKey:@"rz_mqlb"];
+    [param setObject:idStr forKey:@"rz_msxq"];
+    [param setObject:idStr forKey:@"rz_ztxx"];
+    [param setObject:idStr forKey:@"rz_xxlb"];
+    [param setObject:idStr forKey:@"rz_sfgx"];
+    [param setObject:idStr forKey:@"rz_zjblsj"];
+    [param setObject:@"30" forKey:@"placeLongitude"];
+    [param setObject:@"120" forKey:@"placeLatitude"];
+    [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        NSArray *arr = (NSArray *)[jsonData objectFromJSONData];
+
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:error];
+    }];
+    */
+
+    
 }
 - (IBAction)clickPicBtn:(id)sender {
     UIActionSheet * sheet;
@@ -263,4 +292,15 @@
     }];
 }
 
+- (IBAction)clickbtn1:(id)sender {
+}
+
+- (IBAction)clickbtn3:(id)sender {
+}
+
+- (IBAction)clickbtn2:(id)sender {
+}
+
+- (IBAction)clickbtn4:(id)sender {
+}
 @end
