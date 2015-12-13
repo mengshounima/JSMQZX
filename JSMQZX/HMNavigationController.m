@@ -119,24 +119,34 @@
     //弹出设置框
     if (_backView == nil) {
         _backView = [[UIView alloc] init];
-        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0];
         _backView.frame = [UIScreen mainScreen].bounds;
     }
     
-    if (_modifyView == nil) {
-        _modifyView = [modifyPasswordView modifyPasswordViewMethod];
-        _modifyView.delegate = self;
-        _modifyView.frame = CGRectMake(0, SCREEN_HEIGHT, 0, 0);
+    if (_setView == nil) {
+        _setView = [SetView sharedSetView];
+        _setView.delegate = self;
+        _setView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH*0.4, SCREEN_HEIGHT*0.1);
     }
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:_backView];//加上第一个蒙版
-    [window addSubview:_modifyView];
+    [window addSubview:_setView];
     [UIView animateWithDuration:0.3 animations:^{
-        _modifyView.frame = CGRectMake(0, 0, 0, 0);
+        _setView.frame = CGRectMake(SCREEN_WIDTH*0.6, 0, SCREEN_WIDTH*0.4, SCREEN_HEIGHT*0.1);
         _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
     } completion:^(BOOL finished) {
     }];
-
+}
+-(void)SetViewClose{
     
+}
+-(void)SetViewHelp{
+    
+}                                                                                                                                                                                                                                                                                                                                                                      
+-(void)SetViewSignUp{
+    
+    
+}
+-(void)SetViewUser{
+    [self performSegueWithIdentifier:@"NavToUserInfo" sender:nil];
 }
 @end

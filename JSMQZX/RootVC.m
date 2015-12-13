@@ -64,5 +64,6 @@
 }
 //日志办理
 - (IBAction)clickrizhibanli:(id)sender {
+    [self performSegueWithIdentifier:@"RootNormalToRiZhiBanLi" sender:nil];
 }
 @end
