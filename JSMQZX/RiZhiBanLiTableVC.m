@@ -1,21 +1,22 @@
 //
-//  MinQinRiZhiTableVC.m
+//  RiZhiBanLiTableVC.m
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/8.
+//  Created by 李 燕琴 on 15/12/13.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 
-#import "MinQinRiZhiTableVC.h"
+#import "RiZhiBanLiTableVC.h"
 
-@interface MinQinRiZhiTableVC ()
+@interface RiZhiBanLiTableVC ()
 
 @end
 
-@implementation MinQinRiZhiTableVC
+@implementation RiZhiBanLiTableVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -33,47 +34,43 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 4;
+    return 6;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"MinQinCell";
+    static NSString *ID = @"RiZhiCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"随机走访";
+        cell.textLabel.text = @"未办理日志";
     }
     else if (indexPath.row == 1){
-        cell.textLabel.text = @"联系结对农户";
+        cell.textLabel.text = @"提交上级日志";
     }
     else if (indexPath.row == 2){
-        cell.textLabel.text = @"未走访农户";
+        cell.textLabel.text = @"无诉求日志";
+    }
+    else if (indexPath.row == 2){
+        cell.textLabel.text = @"已办理日志";
+    }
+    else if (indexPath.row == 2){
+        cell.textLabel.text = @"未评价日志";
     }
     else{
-        cell.textLabel.text = @"已走访农户";
+        cell.textLabel.text = @"已经评价日志";
     }
     return cell;
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        //添加走访日志
-        [self performSegueWithIdentifier:@"MinQinRiZhiToAddVisitLog" sender:nil];
+        [self performSegueWithIdentifier:@"RiZhiBanLiRootToModifyLogVC" sender:nil];
     }
-    else if (indexPath.row == 1){
-        //联系结对农户
-        [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:nil];
-    }
-    else if (indexPath.row == 2){
-        
-    }
-    else{
-        
-    }
+    
 }
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -109,15 +106,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"MinQinRiZhiToAddVisitLog"]) {
-        AddVisitLogVC *addVisit = segue.destinationViewController;
-    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

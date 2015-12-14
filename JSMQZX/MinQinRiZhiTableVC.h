@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddVisitLogVC.h"
+#import "SelectFarmerVC.h"
 @interface MinQinRiZhiTableVC : UITableViewController
 
 @end

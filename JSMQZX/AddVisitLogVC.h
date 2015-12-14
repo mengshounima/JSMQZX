@@ -33,5 +33,13 @@
 
 - (IBAction)clickbtn2:(id)sender;
 - (IBAction)clickbtn4:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UIButton *button1;
+@property (weak, nonatomic) IBOutlet UIButton *button2;
+@property (weak, nonatomic) IBOutlet UIButton *button3;
+@property (weak, nonatomic) IBOutlet UIButton *button4;
+- (IBAction)clickbutton1:(id)sender;
+- (IBAction)clickbutton2:(id)sender;
+- (IBAction)clickbutton4:(id)sender;
+- (IBAction)clickbutton3:(id)sender;
+@property (nonatomic ,weak) NSString *XinxiLeibie;//1为固定走访的，2为非固定走访的
 @end

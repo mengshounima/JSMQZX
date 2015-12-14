@@ -31,6 +31,12 @@
 		F07D72A21C10756200C695CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F07D72A11C10756200C695CB /* Images.xcassets */; };
 		F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07D72A31C10756200C695CB /* LaunchScreen.xib */; };
 		F07D72B11C10756200C695CB /* JSMQZXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F07D72B01C10756200C695CB /* JSMQZXTests.m */; };
+		F0800E851C1D918D004C2B6A /* LogInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E841C1D918D004C2B6A /* LogInfoTableVC.m */; };
+		F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E871C1D9729004C2B6A /* UserInfoTableVC.m */; };
+		F0800E8B1C1DA231004C2B6A /* SetView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E8A1C1DA231004C2B6A /* SetView.m */; };
+		F0800E8D1C1DA248004C2B6A /* SetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0800E8C1C1DA248004C2B6A /* SetView.xib */; };
+		F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */; };
+		F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */; };
 		F084677C1C107E4300BE1020 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F084677B1C107E4300BE1020 /* LoginVC.m */; };
 		F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */; };
 		F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1EE1C19DA1100EAAC10 /* SelectFarmerCell.m */; };
@@ -102,6 +108,17 @@
 		F07D72AA1C10756200C695CB /* JSMQZXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSMQZXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07D72AF1C10756200C695CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F07D72B01C10756200C695CB /* JSMQZXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMQZXTests.m; sourceTree = "<group>"; };
+		F0800E831C1D918D004C2B6A /* LogInfoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInfoTableVC.h; sourceTree = "<group>"; };
+		F0800E841C1D918D004C2B6A /* LogInfoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInfoTableVC.m; sourceTree = "<group>"; };
+		F0800E861C1D9729004C2B6A /* UserInfoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableVC.h; sourceTree = "<group>"; };
+		F0800E871C1D9729004C2B6A /* UserInfoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableVC.m; sourceTree = "<group>"; };
+		F0800E891C1DA231004C2B6A /* SetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetView.h; sourceTree = "<group>"; };
+		F0800E8A1C1DA231004C2B6A /* SetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetView.m; sourceTree = "<group>"; };
+		F0800E8C1C1DA248004C2B6A /* SetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetView.xib; sourceTree = "<group>"; };
+		F0800E8F1C1DBD3B004C2B6A /* RiZhiBanLiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiZhiBanLiTableVC.h; sourceTree = "<group>"; };
+		F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiZhiBanLiTableVC.m; sourceTree = "<group>"; };
+		F0800E921C1DBF2E004C2B6A /* ModifyLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyLogVC.h; sourceTree = "<group>"; };
+		F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyLogVC.m; sourceTree = "<group>"; };
 		F084677A1C107E4300BE1020 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		F084677B1C107E4300BE1020 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		F0B4E1E71C19C1E600EAAC10 /* SelectFarmerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFarmerVC.h; sourceTree = "<group>"; };
@@ -207,8 +224,8 @@
 		F0300A011C13374600389829 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				F0300A021C13376C00389829 /* HMNavigationController.h */,
-				F0300A031C13376C00389829 /* HMNavigationController.m */,
+				F0A4BF3C1C1B2D4600455597 /* View */,
+				F0A4BF3B1C1B2D3700455597 /* Controller */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -271,10 +288,13 @@
 		F074E7021C15C22E0098792E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */,
 				F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */,
 				F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */,
 				F060B3991C14557C007F472F /* RootVC.h */,
 				F060B39A1C14557C007F472F /* RootVC.m */,
+				F0800E831C1D918D004C2B6A /* LogInfoTableVC.h */,
+				F0800E841C1D918D004C2B6A /* LogInfoTableVC.m */,
 				F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */,
 			);
 			name = Controller;
@@ -356,6 +376,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */ = {
+			isa = PBXGroup;
+			children = (
+				F0800E8F1C1DBD3B004C2B6A /* RiZhiBanLiTableVC.h */,
+				F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */,
+				F0800E921C1DBF2E004C2B6A /* ModifyLogVC.h */,
+				F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */,
+			);
+			name = RiZhiBanLi;
+			sourceTree = "<group>";
+		};
 		F08467781C107E1400BE1020 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +405,27 @@
 				F084677B1C107E4300BE1020 /* LoginVC.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		F0A4BF3B1C1B2D3700455597 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F0300A021C13376C00389829 /* HMNavigationController.h */,
+				F0300A031C13376C00389829 /* HMNavigationController.m */,
+				F0800E861C1D9729004C2B6A /* UserInfoTableVC.h */,
+				F0800E871C1D9729004C2B6A /* UserInfoTableVC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F0A4BF3C1C1B2D4600455597 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F0800E891C1DA231004C2B6A /* SetView.h */,
+				F0800E8A1C1DA231004C2B6A /* SetView.m */,
+				F0800E8C1C1DA248004C2B6A /* SetView.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */ = {
@@ -494,6 +546,7 @@
 			files = (
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
 				F07D72A01C10756200C695CB /* Main.storyboard in Resources */,
+				F0800E8D1C1DA248004C2B6A /* SetView.xib in Resources */,
 				F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */,
 				F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */,
 				F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */,
@@ -549,13 +602,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
+				F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */,
 				F074E7081C15D9180098792E /* HMTitleButton.m in Sources */,
 				F0300A001C13362F00389829 /* UserInfo.m in Sources */,
 				F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */,
 				F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */,
 				F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */,
+				F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
 				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
+				F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */,
 				F03009FC1C132F3300389829 /* HttpClient.m in Sources */,
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
@@ -569,11 +625,13 @@
 				F07D729A1C10756200C695CB /* AppDelegate.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,
+				F0800E851C1D918D004C2B6A /* LogInfoTableVC.m in Sources */,
 				F07D72971C10756200C695CB /* main.m in Sources */,
 				F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */,
 				F0300A041C13376C00389829 /* HMNavigationController.m in Sources */,
 				F060B3A51C145D5D007F472F /* MBProgressHUD.m in Sources */,
 				F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */,
+				F0800E8B1C1DA231004C2B6A /* SetView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

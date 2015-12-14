@@ -26,8 +26,7 @@
 -(void)getFarmerOfGrid{
     [MBProgressHUD showMessage:@"加载中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    UserInfo *user = [[UserInfo shareUserInfo] ReadData];
-    NSString *idStr = [NSString stringWithFormat:@"%@",user.useID];
+    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
     [param setObject:idStr forKey:@"userId"];
     [param setObject:[_gridInfo objectForKey:@"cun_id"] forKey:@"cun_id"];
     [param setObject:[_gridInfo objectForKey:@"wg_id"] forKey:@"wg_id"];

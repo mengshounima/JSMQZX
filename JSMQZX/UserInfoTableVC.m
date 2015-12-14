@@ -1,21 +1,22 @@
 //
-//  MinQinRiZhiTableVC.m
+//  UserInfoTableVC.m
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/8.
+//  Created by 李 燕琴 on 15/12/13.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 
-#import "MinQinRiZhiTableVC.h"
+#import "UserInfoTableVC.h"
 
-@interface MinQinRiZhiTableVC ()
+@interface UserInfoTableVC ()
 
 @end
 
-@implementation MinQinRiZhiTableVC
+@implementation UserInfoTableVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -30,48 +31,57 @@
 
 #pragma mark - Table view data source
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 4;
+    return 7;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"MinQinCell";
+    static NSString *ID = @"UaerInfoCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
+    if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"随机走访";
+    if (indexPath.row ==0) {
+        cell.textLabel.text = [NSString stringWithFormat:@"登录编号:%@",[[UserInfo sharedInstance] ReadData].loginName];
     }
-    else if (indexPath.row == 1){
-        cell.textLabel.text = @"联系结对农户";
+    else if (indexPath.row ==1)
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"真实姓名:%@",[[UserInfo sharedInstance] ReadData].name];
+        
+        
     }
-    else if (indexPath.row == 2){
-        cell.textLabel.text = @"未走访农户";
+    else if (indexPath.row ==2)
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"镇、社区:%@",[[UserInfo sharedInstance] ReadData].departmentName];
+        ;
+        
     }
-    else{
-        cell.textLabel.text = @"已走访农户";
+    else if (indexPath.row ==3)
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"职务:%@",[[UserInfo sharedInstance] ReadData].administerName];
+        ;
+        
     }
+    else if (indexPath.row ==4)
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"是否党员:%@",[[UserInfo sharedInstance] ReadData].ismember];
+        
+    }
+    else if (indexPath.row ==5)
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"联系方式:%@",[[UserInfo sharedInstance] ReadData].phone];
+        
+    }
+
+    else
+    {
+        cell.textLabel.text = [NSString stringWithFormat:@"登录时间:%@",[[UserInfo sharedInstance] ReadData].lastLoginTime];
+        
+    }
+    
     return cell;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        //添加走访日志
-        [self performSegueWithIdentifier:@"MinQinRiZhiToAddVisitLog" sender:nil];
-    }
-    else if (indexPath.row == 1){
-        //联系结对农户
-        [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:nil];
-    }
-    else if (indexPath.row == 2){
-        
-    }
-    else{
-        
-    }
 }
 
 
@@ -109,15 +119,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"MinQinRiZhiToAddVisitLog"]) {
-        AddVisitLogVC *addVisit = segue.destinationViewController;
-    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

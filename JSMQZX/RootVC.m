@@ -19,9 +19,8 @@
     [self initView];
 }
 -(void)initView{
-    UserInfo *user = [[UserInfo shareUserInfo] ReadData];
-    NSString *powerStr = [NSString stringWithFormat:@"%@",user.power];
-    NSString *administerNameStr = user.administerName;
+    NSString *powerStr = [NSString stringWithFormat:@"%@",[[UserInfo sharedInstance] ReadData].power];
+   // NSString *administerNameStr = [UserInfo sharedInstance].administerName;
     /*if ([administerNameStr isEqualToString:@"管理员"]) {
         //两个按钮
         MyLog(@"管理员");
@@ -65,5 +64,6 @@
 }
 //日志办理
 - (IBAction)clickrizhibanli:(id)sender {
+    [self performSegueWithIdentifier:@"RootNormalToRiZhiBanLi" sender:nil];
 }
 @end

@@ -18,6 +18,12 @@
     NSArray *typeArr;
     JKAlertDialog *alert;
     UIImage *_myImage;
+    NSString *flagGaiKuang;
+    NSString *flagGongXin;
+    NSString *flagLeiBie;
+    NSString *flagChuli;
+    int f1;
+    int f2;
 }
 @end
 
@@ -26,13 +32,63 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
+    [self getViewNetData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectFarmerFinished:) name:@"selectOneFarmer" object:nil];
     [self initView];
 }
 -(void)initData{
-    commomArr = @[@"不是共性问题",@"水治理环境,推动“五水共治”",@"违章建筑拆除",@"道路沿线环境整治",@"新农村建设"];
-    typeArr = @[@"未选择",@"医疗卫生",@"文化教育",@"征地拆迁",@"创业帮扶",@"投诉举报",@"意见建议",@"民生琐事",@"其他"];
+    flagGaiKuang = 0;
+    flagLeiBie = 0;
+    flagGongXin = 0;
+    flagChuli = 0;
+    f1 = 0;
+    f2 = 0;
 }
+-(void)getViewNetData{
+    //获取共性问题list
+    [MBProgressHUD showMessage:@"构建页面"];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    [param setObject:idStr forKey:@"userId"];
+    [[HttpClient httpClient] requestWithPath:@"/GetGXWTType" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        f1 = 1;
+        if (f1==1&&f2==1) {
+            [MBProgressHUD hideHUD];
+        }
+        NSData* jsonData = [self XMLString:responseObject];
+        commomArr = (NSArray *)[jsonData objectFromJSONData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:error];
+    }];
+    //获取民生类型
+    NSMutableDictionary *paramtype = [[NSMutableDictionary alloc] init];
+    [paramtype setObject:idStr forKey:@"userId"];
+    [[HttpClient httpClient] requestWithPath:@"/GetMQType" method:TBHttpRequestPost parameters:paramtype prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        f2 = 1;
+        if (f1==1&&f2==1) {
+            [MBProgressHUD hideHUD];
+        }
+
+        NSData* jsonData = [self XMLString:responseObject];
+        typeArr = (NSArray *)[jsonData objectFromJSONData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:error];
+    }];
+}
+-(NSData *)XMLString:(NSData *)data
+{
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
+    //获取根节点（Users）
+    GDataXMLElement *rootElement = [doc rootElement];
+    NSArray *users = [rootElement children];
+    GDataXMLNode  *contentNode = users[0];
+    NSString *str =  contentNode.XMLString;
+    NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    return  jsonData;
+}
+
 -(void)selectFarmerFinished:(NSNotification *)notific{
     _farmerF.text = notific.object;
 }
@@ -115,23 +171,29 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView ==_CommonTable) {
-        return 5;
+        return commomArr.count+1;
     }
     else{
-        return 9;
+        return typeArr.count+1;
     }
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == _CommonTable) {
+    if (tableView == _CommonTable) {//是否共性
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CommomCell"];
         static NSString *CellIdentifier = @"addCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        cell.textLabel.text = commomArr[indexPath.row];
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"不是共性问题";
+        }
+        else{
+            MyLog(@"**********%d",indexPath.row);
+            cell.textLabel.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
+        }
         return cell;
 
     }
@@ -142,7 +204,13 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        cell.textLabel.text = typeArr[indexPath.row];
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"未选择";
+        }
+        else
+        {
+            cell.textLabel.text = [typeArr[indexPath.row-1] objectForKey:@"mqlb_name"];
+        }
         return cell;
 
     }
@@ -150,10 +218,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [alert dismiss];
     if (tableView == _CommonTable) {
-        _commonF.text = commomArr[indexPath.row];
-    }
+        if (indexPath.row==0) {
+            //flagGongXin = 2008;
+        }
+        else{
+            flagGongXin = [NSString stringWithFormat:@"%@",[commomArr[indexPath.row] objectForKey:@"rdwt_id"]];//用于提交接口参数
+            _commonF.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
+
+        }
+           }
     else{
-        _typeF.text = typeArr[indexPath.row];
+        flagLeiBie = [NSString stringWithFormat:@"%@",[typeArr[indexPath.row] objectForKey:@"mqlb_id"]];//用于提交接口参数
+        _typeF.text = [typeArr[indexPath.row] objectForKey:@"mqlb_name"];
     }
     
 }
@@ -193,21 +269,22 @@
 }
 //提交日志
 - (IBAction)clickSendBtn:(id)sender {
-    /*[MBProgressHUD showMessage:@"提交中"];
+    [MBProgressHUD showMessage:@"提交中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    UserInfo *user = [[UserInfo shareUserInfo] ReadData];
-    NSString *idStr = [NSString stringWithFormat:@"%@",user.useID];
+    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
     [param setObject:idStr forKey:@"userId"];
-    [param setObject:_dateF.text forKey:@"rz_zfrq"];
-    [param setObject:_farmerF.text forKey:@"rz_zfnh"];
-    [param setObject:idStr forKey:@"rz_mqgk"];
-    [param setObject:idStr forKey:@"rz_mqlb"];
-    [param setObject:idStr forKey:@"rz_msxq"];
-    [param setObject:idStr forKey:@"rz_ztxx"];
-    [param setObject:idStr forKey:@"rz_xxlb"];
-    [param setObject:idStr forKey:@"rz_sfgx"];
-    [param setObject:idStr forKey:@"rz_zjblsj"];
-    [param setObject:@"30" forKey:@"placeLongitude"];
+    [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期
+    [param setObject:_farmerF.text forKey:@"rz_zfnh"];//农户
+    
+    [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234
+    
+    [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id
+    [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本
+    [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）
+    [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
+    [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id
+    [param setObject:@"20151201" forKey:@"rz_zjblsj"];//日志最终办理结果的时间
+    [param setObject:@"30" forKey:@"placeLongitude"];//经纬度
     [param setObject:@"120" forKey:@"placeLatitude"];
     [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
@@ -219,7 +296,7 @@
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:error];
     }];
-    */
+    
 
     
 }
@@ -274,7 +351,6 @@
     imagePicker.delegate = self; // 设置代理
     imagePicker.allowsEditing = YES; // 允许编辑
     imagePicker.sourceType = sourceType; // 设置图片源
-    //[self presentViewController:imagePicker animated:YES completion:nil];
     [self presentViewController:imagePicker animated:YES completion:^{
     }];
 }
@@ -293,14 +369,65 @@
 }
 
 - (IBAction)clickbtn1:(id)sender {
+    flagGaiKuang = @"1";
+    _btn1.selected = YES;
+    _btn2.selected = NO;
+    _btn3.selected = NO;
+    _btn4.selected = NO;
 }
 
 - (IBAction)clickbtn3:(id)sender {
+    flagGaiKuang = @"3";
+    _btn1.selected = NO;
+    _btn2.selected = NO;
+    _btn3.selected = YES;
+    _btn4.selected = NO;
 }
 
 - (IBAction)clickbtn2:(id)sender {
+    flagGaiKuang = @"2";
+    _btn1.selected = NO;
+    _btn2.selected = YES;
+    _btn3.selected = NO;
+    _btn4.selected = NO;
+
 }
 
 - (IBAction)clickbtn4:(id)sender {
+    flagGaiKuang = @"4";
+    _btn1.selected = NO;
+    _btn2.selected = NO;
+    _btn3.selected = NO;
+    _btn4.selected = YES;
+}
+- (IBAction)clickbutton1:(id)sender {
+    flagChuli = @"1";
+    _button1.selected = YES;
+    _button2.selected = NO;
+    _button3.selected = NO;
+    _button4.selected = NO;
+}
+
+- (IBAction)clickbutton2:(id)sender {
+    flagChuli = @"2";
+    _button1.selected = NO;
+    _button2.selected = YES;
+    _button3.selected = NO;
+    _button4.selected = NO;
+}
+- (IBAction)clickbutton4:(id)sender {
+    flagChuli = @"4";
+    _button1.selected = NO;
+    _button2.selected = NO;
+    _button3.selected = NO;
+    _button4.selected = YES;
+}
+
+- (IBAction)clickbutton3:(id)sender {
+    flagChuli = @"3";
+    _button1.selected = NO;
+    _button2.selected = NO;
+    _button3.selected = YES;
+    _button4.selected = NO;
 }
 @end

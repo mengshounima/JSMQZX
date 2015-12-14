@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HMNavigationController : UINavigationController
-
+#import "SetView.h"
+#import "UserInfoTableVC.h"
+@interface HMNavigationController : UINavigationController<SetViewDelegate>
+// 蒙版
+@property (strong, nonatomic) UIView *backView;
+@property (strong, nonatomic) SetView *setView;
 @end

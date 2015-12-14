@@ -101,7 +101,9 @@
         
         // 设置导航栏按钮
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"返回" highImageName:@"返回-选中" target:self action:@selector(back)];
-        /*viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"navigationbar_more" highImageName:@"navigationbar_more_highlighted" target:self action:@selector(more)];*/
+        //右上角设置按钮
+        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(more)];
+        //[UIBarButtonItem itemWithImageName:@"返回" highImageName:@"返回-选中" target:self action:@selector(more)];
     }
     [super pushViewController:viewController animated:animated];
 }
@@ -114,6 +116,37 @@
 
 - (void)more
 {
-   // [self popToRootViewControllerAnimated:YES];
+    //弹出设置框
+    if (_backView == nil) {
+        _backView = [[UIView alloc] init];
+        _backView.frame = [UIScreen mainScreen].bounds;
+    }
+    
+    if (_setView == nil) {
+        _setView = [SetView sharedSetView];
+        _setView.delegate = self;
+        _setView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH*0.4, SCREEN_HEIGHT*0.1);
+    }
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:_backView];//加上第一个蒙版
+    [window addSubview:_setView];
+    [UIView animateWithDuration:0.3 animations:^{
+        _setView.frame = CGRectMake(SCREEN_WIDTH*0.6, 0, SCREEN_WIDTH*0.4, SCREEN_HEIGHT*0.1);
+        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
+    } completion:^(BOOL finished) {
+    }];
+}
+-(void)SetViewClose{
+    
+}
+-(void)SetViewHelp{
+    
+}                                                                                                                                                                                                                                                                                                                                                                      
+-(void)SetViewSignUp{
+    
+    
+}
+-(void)SetViewUser{
+    [self performSegueWithIdentifier:@"NavToUserInfo" sender:nil];
 }
 @end
