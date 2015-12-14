@@ -33,6 +33,7 @@
     
     [USERDEFAULTS setObject:tempDic forKey:USER];
     [USERDEFAULTS synchronize];
+    
 }
 
 -(instancetype)ReadData
