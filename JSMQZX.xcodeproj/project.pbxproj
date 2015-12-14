@@ -22,6 +22,10 @@
 		F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = F060B39F1C145D5D007F472F /* MBProgressHUD+MJ.m */; };
 		F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F060B3A01C145D5D007F472F /* MBProgressHUD.bundle */; };
 		F060B3A51C145D5D007F472F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F060B3A21C145D5D007F472F /* MBProgressHUD.m */; };
+		F06D953B1C1EDF5900FDE859 /* BanliViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F06D953A1C1EDF5900FDE859 /* BanliViewController.m */; };
+		F06D953E1C1EE2C100FDE859 /* WeiBanLiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F06D953D1C1EE2C100FDE859 /* WeiBanLiVC.m */; };
+		F06D95421C1EF05D00FDE859 /* LogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F06D95401C1EF05D00FDE859 /* LogCell.m */; };
+		F06D95431C1EF05D00FDE859 /* LogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F06D95411C1EF05D00FDE859 /* LogCell.xib */; };
 		F074E7041C15C2630098792E /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F074E7031C15C2630098792E /* Root.storyboard */; };
 		F074E7081C15D9180098792E /* HMTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F074E7071C15D9180098792E /* HMTitleButton.m */; };
 		F07D72971C10756200C695CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F07D72961C10756200C695CB /* main.m */; };
@@ -92,6 +96,13 @@
 		F060B3A01C145D5D007F472F /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		F060B3A11C145D5D007F472F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		F060B3A21C145D5D007F472F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		F06D95391C1EDF5900FDE859 /* BanliViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BanliViewController.h; sourceTree = "<group>"; };
+		F06D953A1C1EDF5900FDE859 /* BanliViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BanliViewController.m; sourceTree = "<group>"; };
+		F06D953C1C1EE2C100FDE859 /* WeiBanLiVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiBanLiVC.h; sourceTree = "<group>"; };
+		F06D953D1C1EE2C100FDE859 /* WeiBanLiVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiBanLiVC.m; sourceTree = "<group>"; };
+		F06D953F1C1EF05D00FDE859 /* LogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogCell.h; sourceTree = "<group>"; };
+		F06D95401C1EF05D00FDE859 /* LogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogCell.m; sourceTree = "<group>"; };
+		F06D95411C1EF05D00FDE859 /* LogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogCell.xib; sourceTree = "<group>"; };
 		F074E7031C15C2630098792E /* Root.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Root.storyboard; sourceTree = "<group>"; };
 		F074E7061C15D9180098792E /* HMTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTitleButton.h; sourceTree = "<group>"; };
 		F074E7071C15D9180098792E /* HMTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTitleButton.m; sourceTree = "<group>"; };
@@ -310,6 +321,9 @@
 				F0B4E1ED1C19DA1100EAAC10 /* SelectFarmerCell.h */,
 				F0B4E1EE1C19DA1100EAAC10 /* SelectFarmerCell.m */,
 				F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */,
+				F06D953F1C1EF05D00FDE859 /* LogCell.h */,
+				F06D95401C1EF05D00FDE859 /* LogCell.m */,
+				F06D95411C1EF05D00FDE859 /* LogCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -383,6 +397,10 @@
 				F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */,
 				F0800E921C1DBF2E004C2B6A /* ModifyLogVC.h */,
 				F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */,
+				F06D95391C1EDF5900FDE859 /* BanliViewController.h */,
+				F06D953A1C1EDF5900FDE859 /* BanliViewController.m */,
+				F06D953C1C1EE2C100FDE859 /* WeiBanLiVC.h */,
+				F06D953D1C1EE2C100FDE859 /* WeiBanLiVC.m */,
 			);
 			name = RiZhiBanLi;
 			sourceTree = "<group>";
@@ -549,6 +567,7 @@
 				F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */,
 				F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */,
 				F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */,
+				F06D95431C1EF05D00FDE859 /* LogCell.xib in Resources */,
 				F07D72A21C10756200C695CB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,6 +631,7 @@
 				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
 				F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */,
 				F03009FC1C132F3300389829 /* HttpClient.m in Sources */,
+				F06D95421C1EF05D00FDE859 /* LogCell.m in Sources */,
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
 				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,
@@ -621,6 +641,8 @@
 				F0300A111C133D8600389829 /* UIView+Extension.m in Sources */,
 				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,
 				F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */,
+				F06D953E1C1EE2C100FDE859 /* WeiBanLiVC.m in Sources */,
+				F06D953B1C1EDF5900FDE859 /* BanliViewController.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,

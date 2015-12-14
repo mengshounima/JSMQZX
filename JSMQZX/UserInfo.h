@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface UserInfo : NSObject
-@property (weak,nonatomic) NSString *useType;
+@property (weak,nonatomic) NSString *useType;//所属镇id   SSZ_id
 @property (weak,nonatomic) NSString *useID;
 @property (weak,nonatomic) NSString *usePassword;
 @property (weak,nonatomic) NSString *power;//权限

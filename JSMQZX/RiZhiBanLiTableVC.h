@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ModifyLogVC.h"
+#import "WeiBanLiVC.h"
 @interface RiZhiBanLiTableVC : UITableViewController
 
 @end

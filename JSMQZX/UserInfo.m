@@ -21,6 +21,7 @@
 -(void)writeData:(NSDictionary *)resultdic
 {
     NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    [tempDic setObject:[resultdic objectForKey:@"Type"] forKey:@"Type"];
     [tempDic setObject:[resultdic objectForKey:@"administerName"] forKey:@"administerName"];
     [tempDic setObject:[resultdic objectForKey:@"power"] forKey:@"power"];
     [tempDic setObject:[resultdic objectForKey:@"id"] forKey:@"id"];
@@ -29,6 +30,7 @@
     [tempDic setObject:[resultdic objectForKey:@"departmentName"] forKey:@"departmentName"];
     [tempDic setObject:[resultdic objectForKey:@"phone"] forKey:@"phone"];
     [tempDic setObject:[resultdic objectForKey:@"lastLoginTime"] forKey:@"lastLoginTime"];
+    
     [USERDEFAULTS setObject:tempDic forKey:USER];
     [USERDEFAULTS synchronize];
 }
@@ -41,10 +43,11 @@
     info.power = [valueData objectForKey:@"power"];
     info.useID = [valueData objectForKey:@"id"];
     info.name = [valueData objectForKey:@"name"];
-    info.name = [valueData objectForKey:@"loginName"];
-    info.name = [valueData objectForKey:@"departmentName"];
-    info.name = [valueData objectForKey:@"phone"];
-    info.name = [valueData objectForKey:@"lastLoginTime"];
+    info.loginName = [valueData objectForKey:@"loginName"];
+    info.departmentName = [valueData objectForKey:@"departmentName"];
+    info.phone = [valueData objectForKey:@"phone"];
+    info.lastLoginTime = [valueData objectForKey:@"lastLoginTime"];
+    info.useType = [valueData objectForKey:@"Type"];
     return info;
 }
 @end

@@ -40,7 +40,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="日志办理" id="EUw-hF-6fS"/>
                     <connections>
-                        <segue destination="u8d-Vf-43i" kind="push" identifier="RiZhiBanLiRootToModifyLogVC" id="N0p-lV-E3c"/>
+                        <segue destination="GBs-mH-XXx" kind="push" identifier="RiZhiBanLiRootToWeiBanli" id="RX1-qX-nr7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhN-6j-oJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,13 +163,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="t4u-cY-l6L" secondAttribute="trailing" id="1BK-h1-lQH"/>
                             <constraint firstItem="t4u-cY-l6L" firstAttribute="leading" secondItem="8Of-Cq-Jiv" secondAttribute="leading" id="2ZE-4f-P3y"/>
                             <constraint firstItem="t4u-cY-l6L" firstAttribute="top" secondItem="8Of-Cq-Jiv" secondAttribute="top" id="2oN-NT-9zD"/>
                             <constraint firstItem="tjJ-jl-esZ" firstAttribute="top" secondItem="t4u-cY-l6L" secondAttribute="bottom" id="6IJ-7A-VAh"/>
-                            <constraint firstItem="tjJ-jl-esZ" firstAttribute="top" secondItem="t4u-cY-l6L" secondAttribute="bottom" id="IL3-2h-aPy"/>
                             <constraint firstAttribute="trailing" secondItem="t4u-cY-l6L" secondAttribute="trailing" id="bRT-R7-CQf"/>
-                            <constraint firstItem="t4u-cY-l6L" firstAttribute="leading" secondItem="8Of-Cq-Jiv" secondAttribute="leading" id="ssP-gj-60f"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="选择网格" id="obJ-5t-XNZ"/>
@@ -251,6 +248,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hV4-2A-vZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1552" y="505"/>
+        </scene>
+        <!--未办理日志-->
+        <scene sceneID="QYj-0P-J86">
+            <objects>
+                <viewController id="GBs-mH-XXx" customClass="WeiBanLiVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jw0-rq-uDM"/>
+                        <viewControllerLayoutGuide type="bottom" id="ODz-ee-dz2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RgD-4m-20a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Gl-nh-BnX" userLabel="WeiBanliTable">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="GBs-mH-XXx" id="2yE-fK-9SW"/>
+                                    <outlet property="delegate" destination="GBs-mH-XXx" id="peJ-EX-HnL"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8Gl-nh-BnX" secondAttribute="trailing" id="Fvl-UF-Zca"/>
+                            <constraint firstItem="ODz-ee-dz2" firstAttribute="top" secondItem="8Gl-nh-BnX" secondAttribute="bottom" id="Rev-EA-raN"/>
+                            <constraint firstItem="8Gl-nh-BnX" firstAttribute="top" secondItem="RgD-4m-20a" secondAttribute="top" id="T3q-Ze-1pm"/>
+                            <constraint firstItem="8Gl-nh-BnX" firstAttribute="leading" secondItem="RgD-4m-20a" secondAttribute="leading" id="xrJ-Zs-cOo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="未办理日志" id="40B-dy-3Up"/>
+                    <connections>
+                        <outlet property="rizhiTableView" destination="8Gl-nh-BnX" id="LhP-Hd-x2n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UZ8-Vq-Ixn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="641" y="-1180"/>
         </scene>
         <!--修改走访日志-->
         <scene sceneID="KI2-8Q-VEi">
@@ -768,7 +803,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4p-9P-FbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="-894"/>
+            <point key="canvasLocation" x="1115" y="-952"/>
         </scene>
         <!--农户信息-->
         <scene sceneID="AQo-wN-ohc">
@@ -1363,6 +1398,6 @@
         <image name="民情日志" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cJM-qf-foT"/>
+        <segue reference="FAg-9X-8fj"/>
     </inferredMetricsTieBreakers>
 </document>
