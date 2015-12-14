@@ -460,6 +460,7 @@
 				TargetAttributes = {
 					F07D72901C10756200C695CB = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = E9N858U5AD;
 					};
 					F07D72A91C10756200C695CB = {
 						CreatedOnToolsVersion = 6.4;
@@ -699,6 +700,7 @@
 			baseConfigurationReference = 4AB0B69A50406DD9FB2DD692 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JSMQZX/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -710,6 +712,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = JSMQZX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -729,7 +732,10 @@
 					"\"SystemConfiguration\"",
 					"-lxml2",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JiaShan.MQZX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -738,7 +744,9 @@
 			baseConfigurationReference = D05FCD92B64E18EA08B9F805 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JSMQZX/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -748,6 +756,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = JSMQZX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -767,7 +776,10 @@
 					"\"SystemConfiguration\"",
 					"-lxml2",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JiaShan.MQZX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

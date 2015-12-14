@@ -21,6 +21,7 @@
     [tempDic setObject:[resultdic objectForKey:@"name"] forKey:@"name"];
     [USERDEFAULTS setObject:tempDic forKey:USER];
     [USERDEFAULTS synchronize];
+    
 }
 -(instancetype)ReadData
 {
