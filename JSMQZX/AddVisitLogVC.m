@@ -59,7 +59,7 @@
         commomArr = (NSArray *)[jsonData objectFromJSONData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:error];
+        [MBProgressHUD showError:@"请求失败"];
     }];
     //获取民生类型
     NSMutableDictionary *paramtype = [[NSMutableDictionary alloc] init];
@@ -74,7 +74,7 @@
         typeArr = (NSArray *)[jsonData objectFromJSONData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:error];
+        [MBProgressHUD showError:@"请求失败"];
     }];
 }
 -(NSData *)XMLString:(NSData *)data
@@ -182,7 +182,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _CommonTable) {//是否共性
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CommomCell"];
-        static NSString *CellIdentifier = @"addCell";
+        static NSString *CellIdentifier = @"CommomCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -191,7 +191,6 @@
             cell.textLabel.text = @"不是共性问题";
         }
         else{
-            MyLog(@"**********%d",indexPath.row);
             cell.textLabel.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
         }
         return cell;
@@ -222,14 +221,18 @@
             //flagGongXin = 2008;
         }
         else{
-            flagGongXin = [NSString stringWithFormat:@"%@",[commomArr[indexPath.row] objectForKey:@"rdwt_id"]];//用于提交接口参数
+            flagGongXin = [NSString stringWithFormat:@"%@",[commomArr[indexPath.row-1] objectForKey:@"rdwt_id"]];//用于提交接口参数
             _commonF.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
 
         }
            }
     else{
-        flagLeiBie = [NSString stringWithFormat:@"%@",[typeArr[indexPath.row] objectForKey:@"mqlb_id"]];//用于提交接口参数
-        _typeF.text = [typeArr[indexPath.row] objectForKey:@"mqlb_name"];
+        if (!indexPath.row==0) {
+            flagLeiBie = [NSString stringWithFormat:@"%@",[typeArr[indexPath.row-1] objectForKey:@"mqlb_id"]];//用于提交接口参数
+            _typeF.text = [typeArr[indexPath.row-1] objectForKey:@"mqlb_name"];
+        }
+
+        
     }
     
 }
@@ -275,9 +278,8 @@
     [param setObject:idStr forKey:@"userId"];
     [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期
     [param setObject:_farmerF.text forKey:@"rz_zfnh"];//农户
-    
+
     [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234
-    
     [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id
     [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本
     [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）
@@ -294,7 +296,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:error];
+        [MBProgressHUD showError:@"请求失败"];
     }];
     
 

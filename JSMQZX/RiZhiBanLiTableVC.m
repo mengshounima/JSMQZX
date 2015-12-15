@@ -68,9 +68,28 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         //未办理日志列表
-        [self performSegueWithIdentifier:@"RiZhiBanLiRootToWeiBanli" sender:nil];
+        [self performSegueWithIdentifier:@"RiZhiBanLiRootToWeiBanli" sender:[NSNumber numberWithInteger:2]];
     }
-    
+    else if (indexPath.row == 1 ){
+        //提交上级
+        [self performSegueWithIdentifier:@"RiZhiBanLiRootToWeiBanli" sender:[NSNumber numberWithInteger:3]];
+    }
+    else if (indexPath.row == 2 ){
+        //无诉求
+        [self performSegueWithIdentifier:@"RiZhiBanLiRootToWeiBanli" sender:[NSNumber numberWithInteger:4]];
+    }
+    else if (indexPath.row == 3 ){
+        //已办理
+        [self performSegueWithIdentifier:@"RiZhiBanLiRootToWeiBanli" sender:[NSNumber numberWithInteger:1]];
+    }
+    else if (indexPath.row == 4 ){
+        //未评价
+        [self performSegueWithIdentifier:@"RiZhiBanLiRootToWeiBanli" sender:[NSNumber numberWithInteger:5]];
+    }
+    else{
+        //已经评价
+        [self performSegueWithIdentifier:@"RiZhiBanLiRootToWeiBanli" sender:[NSNumber numberWithInteger:6]];
+        }
 }
 
 
@@ -80,7 +99,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"RiZhiBanLiRootToWeiBanli"]) {
         WeiBanLiVC *weibanli = segue.destinationViewController;
-        weibanli.flagLogZT = 2;//未办理日志
+        weibanli.flagLogZT = sender;//未办理日志
     }
 }
 

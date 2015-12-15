@@ -15,5 +15,5 @@
     UISearchBar *_mySearchBar;
 }
 @property (weak, nonatomic) IBOutlet UITableView *rizhiTableView;
-@property (assign,nonatomic) NSInteger flagLogZT;
+@property (assign,nonatomic) NSNumber *flagLogZT;
 @end

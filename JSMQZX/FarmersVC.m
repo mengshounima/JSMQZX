@@ -39,7 +39,7 @@
         [self.GridTable reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:error];
+       [MBProgressHUD showError:@"请求失败"];
     }];
 
     
@@ -135,6 +135,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     SelectFarmerVC *selectFarmer = segue.destinationViewController;
     selectFarmer.gridInfo = sender;
+    selectFarmer.flagPeopleSelect = [NSNumber numberWithInteger:4];//网格农户
 }
 
 

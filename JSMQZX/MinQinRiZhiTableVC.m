@@ -63,51 +63,19 @@
         [self performSegueWithIdentifier:@"MinQinRiZhiToAddVisitLog" sender:nil];
     }
     else if (indexPath.row == 1){
-        //联系结对农户
-        [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:nil];
+        //联系结对农户 1
+        [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:[NSNumber numberWithInteger:1]];
     }
     else if (indexPath.row == 2){
-        
+        //未走访 3
+        [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:[NSNumber numberWithInteger:3]];
     }
     else{
-        
+        //已走访 2
+        [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:[NSNumber numberWithInteger:2]];
     }
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation
@@ -116,6 +84,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MinQinRiZhiToAddVisitLog"]) {
         AddVisitLogVC *addVisit = segue.destinationViewController;
+    }
+    else if ([segue.identifier isEqualToString:@"MinQinRiZhiToSelectFarmer"]){
+        SelectFarmerVC *farmers = segue.destinationViewController;
+        farmers.flagPeopleSelect = sender;//结对,未走访，已走访
     }
 }
 

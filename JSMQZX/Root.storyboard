@@ -192,15 +192,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fow-MG-zSv">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="OAi-0n-zep" id="B5O-ev-SdM"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aht-mY-v5L">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="OAi-0n-zep" id="wHn-23-mkx"/>
@@ -210,20 +203,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fow-MG-zSv" firstAttribute="leading" secondItem="FLD-0N-S57" secondAttribute="leading" id="MJI-Cl-iFi"/>
                             <constraint firstAttribute="bottom" secondItem="Aht-mY-v5L" secondAttribute="bottom" id="Rlc-xZ-og7"/>
                             <constraint firstItem="Aht-mY-v5L" firstAttribute="leading" secondItem="FLD-0N-S57" secondAttribute="leading" id="UuY-5h-b7H"/>
-                            <constraint firstItem="fow-MG-zSv" firstAttribute="top" secondItem="FgL-Wa-N3K" secondAttribute="bottom" id="a5S-Xi-AQo"/>
-                            <constraint firstItem="Aht-mY-v5L" firstAttribute="top" secondItem="fow-MG-zSv" secondAttribute="bottom" id="kdE-gp-jWa"/>
+                            <constraint firstItem="Aht-mY-v5L" firstAttribute="top" secondItem="FLD-0N-S57" secondAttribute="top" id="ZZk-hD-jfm"/>
                             <constraint firstAttribute="trailing" secondItem="Aht-mY-v5L" secondAttribute="trailing" id="lG8-fO-Err"/>
                             <constraint firstAttribute="trailing" secondItem="Aht-mY-v5L" secondAttribute="trailing" id="mvw-Qi-uky"/>
-                            <constraint firstAttribute="trailing" secondItem="fow-MG-zSv" secondAttribute="trailing" id="yD2-3Q-xAz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="选择农户" id="8lE-xC-fCh"/>
                     <connections>
                         <outlet property="FarmerTable" destination="Aht-mY-v5L" id="F5u-jD-4z7"/>
-                        <outlet property="SearchBar" destination="fow-MG-zSv" id="q4u-PA-YUT"/>
                         <segue destination="ojl-JA-Svu" kind="push" identifier="SelectFarmerToFarmerInfo" id="6eu-OK-lT5"/>
                     </connections>
                 </viewController>
@@ -249,7 +238,7 @@
             </objects>
             <point key="canvasLocation" x="1552" y="505"/>
         </scene>
-        <!--未办理日志-->
+        <!--Wei Ban LiVC-->
         <scene sceneID="QYj-0P-J86">
             <objects>
                 <viewController id="GBs-mH-XXx" customClass="WeiBanLiVC" sceneMemberID="viewController">
@@ -278,7 +267,7 @@
                             <constraint firstItem="8Gl-nh-BnX" firstAttribute="leading" secondItem="RgD-4m-20a" secondAttribute="leading" id="xrJ-Zs-cOo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="未办理日志" id="40B-dy-3Up"/>
+                    <navigationItem key="navigationItem" id="40B-dy-3Up"/>
                     <connections>
                         <outlet property="rizhiTableView" destination="8Gl-nh-BnX" id="LhP-Hd-x2n"/>
                     </connections>
@@ -299,14 +288,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLG-nl-PzL" userLabel="orangeV">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLG-nl-PzL" userLabel="orangeV">
                                 <rect key="frame" x="0.0" y="64" width="414" height="4"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.16862745100000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="fdZ-M7-xq9"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyk-LH-qyF">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyk-LH-qyF">
                                 <rect key="frame" x="0.0" y="68" width="414" height="668"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfl-iD-gn9" userLabel="Back">
@@ -809,7 +798,7 @@
         <scene sceneID="AQo-wN-ohc">
             <objects>
                 <tableViewController id="ojl-JA-Svu" customClass="FarmerInfoTableVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2p5-DW-ciP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="2p5-DW-ciP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>

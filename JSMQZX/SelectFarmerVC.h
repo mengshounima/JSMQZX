@@ -11,9 +11,12 @@
 #import "SelectFarmerCell.h"
 #import "FarmerInfoTableVC.h"
 @interface SelectFarmerVC : UIViewController
-@property (nonatomic, strong) UISearchController *searchController;
+{
+    UISearchDisplayController *searchDisplayController;
+    UISearchBar *_mySearchBar;
+}
 
 @property (nonatomic,weak) NSDictionary *gridInfo;
 @property (weak, nonatomic) IBOutlet UITableView *FarmerTable;
-@property (strong, nonatomic) IBOutlet UISearchBar *SearchBar;
+@property (assign,nonatomic) NSNumber *flagPeopleSelect;
 @end

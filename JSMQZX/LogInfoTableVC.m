@@ -38,7 +38,7 @@
         [self.InfoTableVIew reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:error];
+        [MBProgressHUD showError:@"请求失败"];
     }];*/
     
 }

@@ -7,10 +7,13 @@
 //
 
 #import "SelectFarmerVC.h"
-
-@interface SelectFarmerVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchResultsUpdating>{
-    NSArray *farmerArr;//所以数据结果
+#import "MJRefresh.h"
+@interface SelectFarmerVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
+{
+    NSMutableArray *farmerArr;//所以数据结果
     NSMutableArray *SearchShowArr;//搜索结果
+    NSInteger rowscount;
+    NSInteger page;
 }
 @end
 
@@ -18,54 +21,100 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getFarmerOfGrid];
+    [self initData];
+    [self initView];
+    [self reloadMoreList];
 }
 -(void)initData{
+    rowscount = 20;
+    page = 1;
+    farmerArr = [[NSMutableArray alloc] init];
+}
+
+-(void)initView{
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    _mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    _mySearchBar.delegate = self;
+    [_mySearchBar setPlaceholder:@"被访农户姓名搜索"];
+    
+    searchDisplayController = [[UISearchDisplayController alloc]initWithSearchBar:_mySearchBar contentsController:self];
+    searchDisplayController.active = NO;
+    searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
+    
+    self.FarmerTable.tableHeaderView = _mySearchBar;
+    [self setupRefreshView];//初始化刷新
     
 }
--(void)getFarmerOfGrid{
-    [MBProgressHUD showMessage:@"加载中"];
+
+-(void)reloadMoreList{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
     [param setObject:idStr forKey:@"userId"];
-    [param setObject:[_gridInfo objectForKey:@"cun_id"] forKey:@"cun_id"];
-    [param setObject:[_gridInfo objectForKey:@"wg_id"] forKey:@"wg_id"];
-    [[HttpClient httpClient] requestWithPath:@"/GetGridPeopleIndex" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+    //地址
+    NSString *urlStr;
+    if (_flagPeopleSelect.integerValue == 1) {
+        //联结
+        [param setObject:_flagPeopleSelect forKey:@"LogType"];
+        [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+        [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+         [param setObject:@""forKey:@"KeyWord"];
+        urlStr = @"/GetPeopleIndexPage";
+        page++;
+    }
+    else if (_flagPeopleSelect.integerValue == 2){
+        //已走访
+        [param setObject:_flagPeopleSelect forKey:@"LogType"];
+        [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+        [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+        [param setObject:@""forKey:@"KeyWord"];
+         urlStr = @"/GetPeopleIndexPage";
+        page++;
+    }
+    else if (_flagPeopleSelect.integerValue == 3){
+        //未走访
+        [param setObject:_flagPeopleSelect forKey:@"LogType"];
+        [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+        [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+        [param setObject:@""forKey:@"KeyWord"];
+        urlStr = @"/GetPeopleIndexPage";
+        page++;
+    }
+    else {
+        //随机走访_flagPeopleSelect == 4
+        [param setObject:[_gridInfo objectForKey:@"cun_id"] forKey:@"cun_id"];
+        [param setObject:[_gridInfo objectForKey:@"wg_id"] forKey:@"wg_id"];
+        urlStr = @"/GetGridPeopleIndex";
+    }
+    [[HttpClient httpClient] requestWithPath:urlStr method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+         [_FarmerTable.footer endRefreshing];
         NSData* jsonData = [self XMLString:responseObject];
-        farmerArr = (NSArray *)[jsonData objectFromJSONData];
-        SearchShowArr = [NSMutableArray arrayWithArray:farmerArr];
-        [self.FarmerTable reloadData];
+        NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
+        if (middleArr.count<rowscount) {
+            [MBProgressHUD showError:@"已经加载了全部数据"];
+        }
+        else{
+            [farmerArr addObjectsFromArray:middleArr];
+            SearchShowArr = [NSMutableArray arrayWithArray:farmerArr];
+            [self.FarmerTable reloadData];
+
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:error];
+         [_FarmerTable.footer endRefreshing];
+        [MBProgressHUD showError:@"请求失败"];
     }];
 
 }
--(void)initView{
-    self.view.backgroundColor = [UIColor whiteColor];
-    /*_SearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    _SearchBar.delegate = self;
-    [_SearchBar setPlaceholder:@"农户搜索"];*/
-    
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    
-    _searchController.searchResultsUpdater = self;
-    
-    _searchController.dimsBackgroundDuringPresentation = NO;
-    
-    _searchController.hidesNavigationBarDuringPresentation = NO;
-    
-    _searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
-    
-    self.FarmerTable.tableHeaderView = self.searchController.searchBar;
-    　//之前是通过判断搜索时候的TableView，不过现在直接使用self.searchController.active进行判断即可，也就是UISearchController的active属性:
+#pragma mark - 集成刷新控件
+- (void)setupRefreshView
+{
+    self.FarmerTable.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self reloadMoreList];//加载下一页
+    }];
     
 }
--(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSString *searchText = [self.searchController.searchBar text];
-    [self queryWithCondition:searchText];
-}
+
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self queryWithCondition:searchText];

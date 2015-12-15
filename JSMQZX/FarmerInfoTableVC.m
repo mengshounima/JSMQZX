@@ -40,7 +40,7 @@
         [self.InfoTableVIew reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:error];
+        [MBProgressHUD showError:@"请求失败"];
     }];
 
 }
@@ -67,7 +67,9 @@
     return 17;
 }
 
-
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"farmerInfoCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID ];
