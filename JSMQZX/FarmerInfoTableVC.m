@@ -173,7 +173,6 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28)];
     label.text = [NSString stringWithFormat:@"详细信息[编号:%@]",[farmerDic objectForKey:@"user_id"]];
-    //label.backgroundColor = [UIColor redColor];
     label.textAlignment = NSTextAlignmentCenter;
     return  label;
 }

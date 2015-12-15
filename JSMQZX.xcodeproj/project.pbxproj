@@ -46,6 +46,8 @@
 		F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */; };
 		F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */; };
 		F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */; };
+		F0B733E51C207FA9000DA6F3 /* LogBanliGanbuTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */; };
+		F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */; };
 		F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */; };
 		F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */; };
 		F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E78DAB1C148A8800DDE8D8 /* GDataXMLNode.m */; };
@@ -138,6 +140,10 @@
 		F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarmerInfoTableVC.m; sourceTree = "<group>"; };
 		F0B4E1F51C19FBD500EAAC10 /* JKAlertDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlertDialog.h; sourceTree = "<group>"; };
 		F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
+		F0B733E31C207FA9000DA6F3 /* LogBanliGanbuTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogBanliGanbuTable.h; sourceTree = "<group>"; };
+		F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogBanliGanbuTable.m; sourceTree = "<group>"; };
+		F0B733E61C208215000DA6F3 /* LogListGanbuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogListGanbuVC.h; sourceTree = "<group>"; };
+		F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogListGanbuVC.m; sourceTree = "<group>"; };
 		F0D255A11C170D17005BD1F4 /* MinQinRiZhiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinQinRiZhiTableVC.h; sourceTree = "<group>"; };
 		F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinQinRiZhiTableVC.m; sourceTree = "<group>"; };
 		F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddVisitLogVC.h; sourceTree = "<group>"; };
@@ -296,6 +302,7 @@
 		F074E7021C15C22E0098792E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F0B733E21C207F66000DA6F3 /* LogBanliGanbu */,
 				F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */,
 				F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */,
 				F060B3991C14557C007F472F /* RootVC.h */,
@@ -439,6 +446,17 @@
 				F0800E8C1C1DA248004C2B6A /* SetView.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		F0B733E21C207F66000DA6F3 /* LogBanliGanbu */ = {
+			isa = PBXGroup;
+			children = (
+				F0B733E31C207FA9000DA6F3 /* LogBanliGanbuTable.h */,
+				F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */,
+				F0B733E61C208215000DA6F3 /* LogListGanbuVC.h */,
+				F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */,
+			);
+			name = LogBanliGanbu;
 			sourceTree = "<group>";
 		};
 		F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */ = {
@@ -621,6 +639,7 @@
 				F0300A001C13362F00389829 /* UserInfo.m in Sources */,
 				F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */,
 				F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */,
+				F0B733E51C207FA9000DA6F3 /* LogBanliGanbuTable.m in Sources */,
 				F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */,
 				F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
@@ -628,6 +647,7 @@
 				F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */,
 				F03009FC1C132F3300389829 /* HttpClient.m in Sources */,
 				F06D95421C1EF05D00FDE859 /* LogCell.m in Sources */,
+				F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */,
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
 				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,

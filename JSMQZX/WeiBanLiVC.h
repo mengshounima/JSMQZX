@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LogCell.h"
 #import "GDataXMLNode.h"
+#import "ModifyLogVC.h"
 @interface WeiBanLiVC : UIViewController
 {
     UISearchDisplayController *searchDisplayController;
@@ -16,4 +17,5 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *rizhiTableView;
 @property (assign,nonatomic) NSNumber *flagLogZT;
+
 @end

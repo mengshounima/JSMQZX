@@ -29,10 +29,14 @@
     if ([powerStr isEqualToString:@"6"]) {
         //两个按钮
         MyLog(@"一般用户");
+        _yonghuView.hidden = NO;
+        _ganbuView.hidden = YES;
         
     }
     else if([powerStr isEqualToString:@"3"]){
          MyLog(@"镇干部");
+        _yonghuView.hidden = YES;
+        _ganbuView.hidden = NO;
     }
     else if([powerStr isEqualToString:@"1"])
     {

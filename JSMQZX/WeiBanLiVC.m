@@ -191,7 +191,7 @@
 }
 //点击某一网格
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"GridToSelectFarmer" sender:SearchShowArr[indexPath.row]];
+    [self performSegueWithIdentifier:@"RiZhiLIstToLogInfo" sender:SearchShowArr[indexPath.row]];//log详情
     
     
 }
@@ -202,14 +202,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    ModifyLogVC *modifyLogVC = segue.destinationViewController;
+    modifyLogVC.myLogInfo = sender;
 }
-*/
+
 
 @end

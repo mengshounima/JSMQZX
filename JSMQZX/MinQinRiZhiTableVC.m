@@ -55,6 +55,7 @@
     else{
         cell.textLabel.text = @"已走访农户";
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//箭头
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

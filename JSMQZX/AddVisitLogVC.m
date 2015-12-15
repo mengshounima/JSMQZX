@@ -8,9 +8,8 @@
 
 #import "AddVisitLogVC.h"
 
-@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextViewDelegate>
 {
-    NSDate *_date;
     UIDatePicker *datePicker;
     UITableView *_CommonTable;
     UITableView *_TypeTable;
@@ -128,6 +127,19 @@
     TypeBtn.backgroundColor = [UIColor clearColor];
     [TypeBtn addTarget:self action:@selector(clickType) forControlEvents:UIControlEventTouchUpInside];
     [_TypeView addSubview:TypeBtn];
+    _needTextView.delegate = self;
+    _needTextView.returnKeyType = UIReturnKeyDone;
+    //添加键盘监听
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeContentViewPosition:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeContentViewPosition:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
     
     _CommonTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 230) style:UITableViewStylePlain];
     _CommonTable.delegate = self;
@@ -138,6 +150,36 @@
     _TypeTable.dataSource = self;
     
 
+}
+-(void)changeContentViewPosition:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGFloat keyBoardEndY = value.CGRectValue.origin.y;
+    
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.view.center = CGPointMake(self.view.center.x, keyBoardEndY - self.view.bounds.size.height/2.0);
+    }];
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+        [_needTextView resignFirstResponder];
+        
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    return YES;
+}
+//移除
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectOneFarmer" object:nil];
 }
 //点击农户
 -(void)clickFarmers{
@@ -267,9 +309,7 @@
     // Get the new view controller using [segue destinationViewController].
     FarmersVC *farmers = segue.destinationViewController;
 }
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectOneFarmer" object:nil];
-}
+
 //提交日志
 - (IBAction)clickSendBtn:(id)sender {
     [MBProgressHUD showMessage:@"提交中"];
@@ -292,7 +332,7 @@
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *arr = (NSArray *)[jsonData objectFromJSONData];
-
+        MyLog(@"%@",arr);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];

@@ -23,22 +23,17 @@
     [self initView];
 }
 -(void)getUserData{
+    [MBProgressHUD showMessage:@"更新镇、街道列表"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:@"1" forKey:@"Type"];
     [param setObject:@"" forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetZJDIndex" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        /*GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:responseObject  options:0 error:nil];
-        //获取根节点（Users）
-        GDataXMLElement *rootElement = [doc rootElement];
-        NSArray *users = [rootElement children];
-        GDataXMLNode  *contentNode = users[0];
-        NSString *str =  contentNode.XMLString;
-        //MyLog(@"***%@",str);
-        NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];*/
+        [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         _typeArr = [jsonData objectFromJSONData];
         MyLog(@"---**--%@",_typeArr);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
     }];
 
@@ -125,13 +120,15 @@
 - (IBAction)clickLoginBtn:(id)sender {
     [MBProgressHUD showMessage:@"登录中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    //[param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
-    /*[param setObject:_userIDF.text forKey:@"LoginName"];
-    [param setObject:_passwordF.text forKey:@"Password"];*/
-    [param setObject:@"6" forKey:@"UserType"];
+    [param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
+    [param setObject:_passwordF.text forKey:@"Password"];
+    NSString *firstName = [_typeDic objectForKey:@"zjd_jx"];//前缀
+    
+    [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];
+    /*[param setObject:@"6" forKey:@"UserType"];
     NSString *name = [NSString stringWithFormat:@"%@%@",@"xt",@"1008"];
     [param setObject:name forKey:@"LoginName"];
-    [param setObject:@"888888" forKey:@"Password"];
+    [param setObject:@"888888" forKey:@"Password"];*/
     [[HttpClient httpClient] requestWithPath:@"/CheckLogin" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];

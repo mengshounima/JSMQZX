@@ -62,6 +62,7 @@
     else{
         cell.textLabel.text = @"已经评价日志";
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 
 }

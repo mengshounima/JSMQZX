@@ -29,7 +29,7 @@
         [_GKImageView setImage:[UIImage imageNamed:@"15"]];
     }
     _nameL.text = [infoDic objectForKey:@"rz_zfnh_name"];
-    _ZFGBLabel.text = [infoDic objectForKey:@"rz_zfrxm"];//干部
+    _ZFGBLabel.text = [NSString stringWithFormat:@"走访干部:%@",[infoDic objectForKey:@"rz_zfrxm"]];//干部
    
     NSNumber *ZFXX = [infoDic objectForKey:@"rz_ztxx"];
     if (ZFXX.integerValue == 1) {

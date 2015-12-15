@@ -11,5 +11,7 @@
 @interface RootVC : UIViewController
 - (IBAction)clickminqingrizhi:(id)sender;
 - (IBAction)clickrizhibanli:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *ganbuView;
+@property (weak, nonatomic) IBOutlet UIView *yonghuView;
 
 @end

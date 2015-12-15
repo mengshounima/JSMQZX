@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -66,6 +67,25 @@
             </objects>
             <point key="canvasLocation" x="-106" y="170"/>
         </scene>
+        <!--日志办理-->
+        <scene sceneID="1i1-2d-1Ph">
+            <objects>
+                <tableViewController id="ccr-3w-J48" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2zL-fR-ztM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="ccr-3w-J48" id="W7R-fk-WZ7"/>
+                            <outlet property="delegate" destination="ccr-3w-J48" id="FgD-pz-9T5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="日志办理" id="iDH-so-ew4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AbA-Gb-BHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="223" y="823"/>
+        </scene>
         <!--民情在线(干部版)-->
         <scene sceneID="gPt-Ul-rVQ">
             <objects>
@@ -78,6 +98,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3p-Nr-Da4" userLabel="GanBuV">
+                                <rect key="frame" x="0.0" y="181" width="320" height="387"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qup-a7-I0x" userLabel="View2">
+                                        <rect key="frame" x="0.0" y="129" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqV-0a-jST" userLabel="民生动态">
+                                                <rect key="frame" x="120" y="24" width="80" height="80"/>
+                                                <color key="backgroundColor" red="0.1441696459" green="0.94949494950000002" blue="0.13581738970000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCU-mq-ofY" userLabel="View3">
+                                        <rect key="frame" x="0.0" y="258" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-GW-bDZ" userLabel="分析研判">
+                                                <rect key="frame" x="120" y="24" width="80" height="80"/>
+                                                <color key="backgroundColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5co-CW-99G" userLabel="View1">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxt-Oi-wpf" userLabel="日志办理">
+                                                <rect key="frame" x="50" y="24" width="80" height="80"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-UI-DdQ" userLabel="在职党员">
+                                                <rect key="frame" x="190" y="24" width="80" height="80"/>
+                                                <color key="backgroundColor" red="0.90658538509999997" green="0.74963731879999995" blue="0.25170852869999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5co-CW-99G" secondAttribute="trailing" id="3Uf-ne-868"/>
+                                    <constraint firstItem="5co-CW-99G" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="7Pe-Xc-YgI"/>
+                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="height" secondItem="5co-CW-99G" secondAttribute="height" id="7hd-y2-1cS"/>
+                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="D9i-37-hcA"/>
+                                    <constraint firstAttribute="bottom" secondItem="lCU-mq-ofY" secondAttribute="bottom" id="Fik-2r-ZUv"/>
+                                    <constraint firstItem="5co-CW-99G" firstAttribute="top" secondItem="L3p-Nr-Da4" secondAttribute="top" id="FkH-AT-XFe"/>
+                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="SzJ-sX-A9Z"/>
+                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="height" secondItem="5co-CW-99G" secondAttribute="height" id="TOo-9w-GLn"/>
+                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="top" secondItem="5co-CW-99G" secondAttribute="bottom" id="dqj-6w-WkK"/>
+                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="top" secondItem="Qup-a7-I0x" secondAttribute="bottom" id="lfw-8R-qZD"/>
+                                    <constraint firstAttribute="trailing" secondItem="lCU-mq-ofY" secondAttribute="trailing" id="omW-Zo-SYh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qup-a7-I0x" secondAttribute="trailing" id="qWT-vJ-MwX"/>
+                                </constraints>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BlF-Ga-wvI">
                                 <rect key="frame" x="0.0" y="68" width="320" height="113"/>
                             </imageView>
@@ -116,24 +194,31 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="L3p-Nr-Da4" firstAttribute="top" secondItem="BlF-Ga-wvI" secondAttribute="bottom" id="18l-yr-8ZE"/>
                             <constraint firstItem="BlF-Ga-wvI" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="2jn-nC-lt8"/>
                             <constraint firstItem="BlF-Ga-wvI" firstAttribute="top" secondItem="v0u-56-GhT" secondAttribute="bottom" id="3Ie-8Q-rPq"/>
                             <constraint firstItem="v0u-56-GhT" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="3xx-zt-Ha5"/>
                             <constraint firstItem="xjn-Tg-b61" firstAttribute="top" secondItem="QLU-AQ-I80" secondAttribute="bottom" id="8fD-Dp-6p8"/>
                             <constraint firstItem="v0u-56-GhT" firstAttribute="top" secondItem="0Gc-Tj-VgN" secondAttribute="bottom" id="ESL-FS-Ef5"/>
                             <constraint firstItem="QLU-AQ-I80" firstAttribute="top" secondItem="BlF-Ga-wvI" secondAttribute="bottom" id="Jyg-43-pqo"/>
+                            <constraint firstAttribute="trailing" secondItem="L3p-Nr-Da4" secondAttribute="trailing" id="KS8-Rz-0TY"/>
                             <constraint firstAttribute="trailing" secondItem="v0u-56-GhT" secondAttribute="trailing" id="MBj-Ti-GVm"/>
                             <constraint firstAttribute="trailing" secondItem="QLU-AQ-I80" secondAttribute="trailing" id="ODw-Dt-VYB"/>
+                            <constraint firstItem="xjn-Tg-b61" firstAttribute="top" secondItem="L3p-Nr-Da4" secondAttribute="bottom" id="THL-0m-5ib"/>
                             <constraint firstItem="BlF-Ga-wvI" firstAttribute="height" secondItem="9Bm-Mp-hrf" secondAttribute="height" multiplier="0.2" id="ew6-d2-bmq"/>
                             <constraint firstItem="QLU-AQ-I80" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="f1d-hQ-hVa"/>
                             <constraint firstAttribute="trailing" secondItem="BlF-Ga-wvI" secondAttribute="trailing" id="hbW-rh-SzA"/>
                             <constraint firstItem="BlF-Ga-wvI" firstAttribute="top" secondItem="v0u-56-GhT" secondAttribute="bottom" id="hpP-sK-pgT"/>
+                            <constraint firstItem="L3p-Nr-Da4" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="jKN-zq-emG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="民情在线(干部版)" id="8O0-iI-A3R"/>
                     <connections>
+                        <outlet property="ganbuView" destination="L3p-Nr-Da4" id="3y9-1N-bap"/>
+                        <outlet property="yonghuView" destination="QLU-AQ-I80" id="kpW-e3-zD4"/>
                         <segue destination="dxK-2f-pTE" kind="push" identifier="RootNormalToMinQinRiZhi" id="Wmn-xT-wOv"/>
                         <segue destination="YUC-de-Ps3" kind="push" identifier="RootNormalToRiZhiBanLi" id="SnW-qf-Yfy"/>
+                        <segue destination="ccr-3w-J48" kind="push" identifier="RootToLogBanliFGanbu" id="26h-BJ-jA0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA2-WS-ewd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,6 +355,7 @@
                     <navigationItem key="navigationItem" id="40B-dy-3Up"/>
                     <connections>
                         <outlet property="rizhiTableView" destination="8Gl-nh-BnX" id="LhP-Hd-x2n"/>
+                        <segue destination="u8d-Vf-43i" kind="push" identifier="RiZhiLIstToLogInfo" id="9aC-hC-fW0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZ8-Vq-Ixn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -288,14 +374,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLG-nl-PzL" userLabel="orangeV">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLG-nl-PzL" userLabel="orangeV">
                                 <rect key="frame" x="0.0" y="64" width="414" height="4"/>
                                 <color key="backgroundColor" red="0.8980392157" green="0.16862745100000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="fdZ-M7-xq9"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyk-LH-qyF">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyk-LH-qyF">
                                 <rect key="frame" x="0.0" y="68" width="414" height="668"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfl-iD-gn9" userLabel="Back">
@@ -402,7 +488,7 @@
                                                                             <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="clickbtn1:" destination="ziT-ct-WAa" eventType="touchUpInside" id="Jzm-kQ-gJf"/>
+                                                                            <action selector="clickbtn1:" destination="u8d-Vf-43i" eventType="touchUpInside" id="ZJi-jo-wPA"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mv6-Be-DX3">
@@ -414,7 +500,7 @@
                                                                             <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="clickbtn2:" destination="ziT-ct-WAa" eventType="touchUpInside" id="vUN-cT-igb"/>
+                                                                            <action selector="clickbtn2:" destination="u8d-Vf-43i" eventType="touchUpInside" id="F3u-jE-emB"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4b2-zh-JMd">
@@ -426,7 +512,7 @@
                                                                             <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="clickbtn4:" destination="ziT-ct-WAa" eventType="touchUpInside" id="XkE-2w-el3"/>
+                                                                            <action selector="clickbtn4:" destination="u8d-Vf-43i" eventType="touchUpInside" id="F2D-g0-VhP"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mN3-vA-a7S">
@@ -438,7 +524,7 @@
                                                                             <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="clickbtn3:" destination="ziT-ct-WAa" eventType="touchUpInside" id="mMC-SJ-GAK"/>
+                                                                            <action selector="clickbtn3:" destination="u8d-Vf-43i" eventType="touchUpInside" id="shS-9w-vPc"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -604,8 +690,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJE-jR-lhA" userLabel="btn2View">
                                                                 <rect key="frame" x="80" y="0.0" width="288" height="100"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8B-DR-qCw" userLabel="Button1">
-                                                                        <rect key="frame" x="-88" y="-467" width="45" height="30"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8B-DR-qCw" userLabel="Button1">
+                                                                        <rect key="frame" x="8" y="0.0" width="272" height="25"/>
                                                                         <state key="normal" title="无诉求">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
@@ -613,23 +699,11 @@
                                                                             <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="clickbutton1:" destination="ziT-ct-WAa" eventType="touchUpInside" id="zmG-6V-gnf"/>
+                                                                            <action selector="clickbutton1:" destination="u8d-Vf-43i" eventType="touchUpInside" id="gnf-tY-ypa"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZD-bd-SaI" userLabel="Button3">
-                                                                        <rect key="frame" x="-88" y="-467" width="60" height="30"/>
-                                                                        <state key="normal" title="正在办理">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        </state>
-                                                                        <state key="selected" title="正在办理">
-                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="clickbutton3:" destination="ziT-ct-WAa" eventType="touchUpInside" id="Z3J-d5-DEN"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlQ-m6-YDL" userLabel="Button2">
-                                                                        <rect key="frame" x="-88" y="-467" width="101" height="30"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlQ-m6-YDL" userLabel="Button2">
+                                                                        <rect key="frame" x="8" y="25" width="272" height="25"/>
                                                                         <state key="normal" title="当场办结(答复)">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
@@ -637,24 +711,54 @@
                                                                             <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="clickbutton2:" destination="ziT-ct-WAa" eventType="touchUpInside" id="dMW-hL-1uU"/>
+                                                                            <action selector="clickbutton2:" destination="u8d-Vf-43i" eventType="touchUpInside" id="mBz-uN-q7b"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZD-bd-SaI" userLabel="Button3">
+                                                                        <rect key="frame" x="8" y="50" width="272" height="25"/>
+                                                                        <state key="normal" title="正在办理">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <state key="selected" title="正在办理">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="clickbutton3:" destination="u8d-Vf-43i" eventType="touchUpInside" id="SDA-hP-3JF"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-5A-f0W" userLabel="Button4">
+                                                                        <rect key="frame" x="8" y="75" width="272" height="25"/>
+                                                                        <state key="normal" title="提交上一级党委政府研究">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <state key="selected" title="提交上一级党委政府研究">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="clickbutton4:" destination="u8d-Vf-43i" eventType="touchUpInside" id="8eX-Ck-KZK"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="iZD-bd-SaI" firstAttribute="top" secondItem="KlQ-m6-YDL" secondAttribute="bottom" id="4Z4-1e-rrk"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="KlQ-m6-YDL" secondAttribute="trailing" constant="8" id="9zG-WU-VyX"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="xTA-5A-f0W" secondAttribute="trailing" constant="8" id="AP6-sh-uQW"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="P8B-DR-qCw" secondAttribute="trailing" constant="8" id="BDb-WS-7sn"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="iZD-bd-SaI" secondAttribute="trailing" constant="8" id="D6D-do-EGq"/>
+                                                                    <constraint firstItem="xTA-5A-f0W" firstAttribute="top" secondItem="iZD-bd-SaI" secondAttribute="bottom" id="HDy-HR-0qa"/>
+                                                                    <constraint firstItem="KlQ-m6-YDL" firstAttribute="height" secondItem="P8B-DR-qCw" secondAttribute="height" id="Jcw-hB-z3l"/>
+                                                                    <constraint firstItem="P8B-DR-qCw" firstAttribute="top" secondItem="TJE-jR-lhA" secondAttribute="top" id="Sw2-kh-eZy"/>
+                                                                    <constraint firstItem="iZD-bd-SaI" firstAttribute="height" secondItem="P8B-DR-qCw" secondAttribute="height" id="YyA-Na-hbN"/>
+                                                                    <constraint firstItem="P8B-DR-qCw" firstAttribute="leading" secondItem="TJE-jR-lhA" secondAttribute="leading" constant="8" id="Z39-GP-OMC"/>
+                                                                    <constraint firstItem="KlQ-m6-YDL" firstAttribute="top" secondItem="P8B-DR-qCw" secondAttribute="bottom" id="ZMx-ll-LRS"/>
+                                                                    <constraint firstItem="iZD-bd-SaI" firstAttribute="leading" secondItem="TJE-jR-lhA" secondAttribute="leading" constant="8" id="hcU-Ck-O4e"/>
+                                                                    <constraint firstItem="xTA-5A-f0W" firstAttribute="leading" secondItem="TJE-jR-lhA" secondAttribute="leading" constant="8" id="jDH-cS-zpf"/>
+                                                                    <constraint firstItem="KlQ-m6-YDL" firstAttribute="leading" secondItem="TJE-jR-lhA" secondAttribute="leading" constant="8" id="k2R-1g-q5X"/>
+                                                                    <constraint firstItem="xTA-5A-f0W" firstAttribute="height" secondItem="P8B-DR-qCw" secondAttribute="height" id="mgP-Ls-nUj"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="xTA-5A-f0W" secondAttribute="bottom" id="oaT-my-HCm"/>
+                                                                </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-5A-f0W" userLabel="Button4">
-                                                                <rect key="frame" x="-8" y="-467" width="165" height="30"/>
-                                                                <state key="normal" title="提交上一级党委政府研究">
-                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                </state>
-                                                                <state key="selected" title="提交上一级党委政府研究">
-                                                                    <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="clickbutton4:" destination="ziT-ct-WAa" eventType="touchUpInside" id="dcZ-ZM-lNy"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -672,23 +776,34 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8F-0b-1sh" userLabel="附加照片V">
                                                         <rect key="frame" x="0.0" y="492" width="398" height="88"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="附加照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvV-38-F2A">
-                                                                <rect key="frame" x="-8" y="-568" width="60" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="附加照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvV-38-F2A">
+                                                                <rect key="frame" x="8" y="24" width="70" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="70" id="eJd-sk-0RV"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP6-y0-0gm">
-                                                                <rect key="frame" x="-8" y="-568" width="30" height="30"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP6-y0-0gm">
+                                                                <rect key="frame" x="80" y="4" width="80" height="80"/>
+                                                                <color key="backgroundColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="按钮"/>
                                                                 <connections>
-                                                                    <action selector="clickPicBtn:" destination="ziT-ct-WAa" eventType="touchUpInside" id="cGf-r7-ysp"/>
+                                                                    <action selector="clickPicBtn:" destination="u8d-Vf-43i" eventType="touchUpInside" id="u5v-os-zXD"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="mvV-38-F2A" secondAttribute="bottom" constant="24" id="5p0-rh-rk3"/>
+                                                            <constraint firstItem="mvV-38-F2A" firstAttribute="top" secondItem="n8F-0b-1sh" secondAttribute="top" constant="24" id="DIn-eb-W2k"/>
+                                                            <constraint firstItem="xP6-y0-0gm" firstAttribute="top" secondItem="n8F-0b-1sh" secondAttribute="top" constant="4" id="GGb-HP-tke"/>
+                                                            <constraint firstAttribute="bottom" secondItem="xP6-y0-0gm" secondAttribute="bottom" constant="4" id="Iuy-wF-3oq"/>
+                                                            <constraint firstItem="mvV-38-F2A" firstAttribute="leading" secondItem="n8F-0b-1sh" secondAttribute="leading" constant="8" id="UDk-jV-Sf1"/>
                                                             <constraint firstAttribute="height" constant="88" id="WjB-kd-G8R"/>
+                                                            <constraint firstItem="xP6-y0-0gm" firstAttribute="leading" secondItem="mvV-38-F2A" secondAttribute="trailing" constant="2" id="Zpa-pd-5fP"/>
+                                                            <constraint firstItem="xP6-y0-0gm" firstAttribute="width" secondItem="n8F-0b-1sh" secondAttribute="height" constant="-8" id="cqd-FB-b6R"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -751,7 +866,7 @@
                                                 </constraints>
                                                 <state key="normal" title="提交"/>
                                                 <connections>
-                                                    <action selector="clickSendBtn:" destination="ziT-ct-WAa" eventType="touchUpInside" id="OO1-dU-j9L"/>
+                                                    <action selector="clickSendBtn:" destination="u8d-Vf-43i" eventType="touchUpInside" id="Say-AY-OlV"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -789,10 +904,32 @@
                     </view>
                     <navigationItem key="navigationItem" title="修改走访日志" id="Ixy-hp-sNe"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="CommonView" destination="tV2-EL-9p6" id="StS-yz-E7c"/>
+                        <outlet property="FarmerView" destination="hug-sg-F6h" id="JiK-gN-Bka"/>
+                        <outlet property="TypeView" destination="wYw-a8-Js6" id="MDn-tQ-3X8"/>
+                        <outlet property="boxView" destination="91U-KC-lQ3" id="pFA-DO-zua"/>
+                        <outlet property="btn1" destination="a1y-6d-zBS" id="Nym-6G-2Ow"/>
+                        <outlet property="btn2" destination="mv6-Be-DX3" id="8Pd-75-kwb"/>
+                        <outlet property="btn3" destination="mN3-vA-a7S" id="alK-bL-8m4"/>
+                        <outlet property="btn4" destination="4b2-zh-JMd" id="bNe-OA-jJl"/>
+                        <outlet property="button1" destination="P8B-DR-qCw" id="yq2-sf-f5E"/>
+                        <outlet property="button2" destination="KlQ-m6-YDL" id="uba-jE-x2H"/>
+                        <outlet property="button3" destination="iZD-bd-SaI" id="XG4-zD-a1C"/>
+                        <outlet property="button4" destination="xTA-5A-f0W" id="ORe-WX-8Q0"/>
+                        <outlet property="commonF" destination="rkP-nt-uje" id="yb1-mu-I9b"/>
+                        <outlet property="dateF" destination="ixL-Fp-8oi" id="0v8-vn-GSI"/>
+                        <outlet property="farmerF" destination="tOT-KV-jhm" id="MiL-dA-L3P"/>
+                        <outlet property="myScrollView" destination="fyk-LH-qyF" id="jQE-qP-vYc"/>
+                        <outlet property="needTextView" destination="Wb1-1m-1ZH" id="soB-7b-DJX"/>
+                        <outlet property="picBtn" destination="xP6-y0-0gm" id="tFE-Zn-5BN"/>
+                        <outlet property="sendBtn" destination="4YE-u6-IRw" id="mPW-Nr-eMu"/>
+                        <outlet property="typeF" destination="Sxn-mo-OA6" id="BfN-J5-Dcf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4p-9P-FbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1115" y="-952"/>
+            <point key="canvasLocation" x="1069" y="-1078"/>
         </scene>
         <!--农户信息-->
         <scene sceneID="AQo-wN-ohc">
@@ -1168,20 +1305,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IO2-h2-z1M" userLabel="btn2View">
                                                                 <rect key="frame" x="80" y="0.0" width="288" height="100"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QM6-Jr-Fhd" userLabel="Button1">
-                                                                        <rect key="frame" x="8" y="0.0" width="280" height="25"/>
-                                                                        <state key="normal" title="无诉求">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        </state>
-                                                                        <state key="selected" title="无诉求">
-                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="clickbutton1:" destination="ziT-ct-WAa" eventType="touchUpInside" id="KVD-bb-GDd"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-Ca-ME6" userLabel="Button3">
-                                                                        <rect key="frame" x="8" y="47" width="280" height="30"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-Ca-ME6" userLabel="Button3">
+                                                                        <rect key="frame" x="8" y="50" width="280" height="25"/>
                                                                         <state key="normal" title="正在办理">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
@@ -1192,7 +1317,7 @@
                                                                             <action selector="clickbutton3:" destination="ziT-ct-WAa" eventType="touchUpInside" id="cHH-Ia-ReM"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-lK-liA" userLabel="Button2">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-lK-liA" userLabel="Button2">
                                                                         <rect key="frame" x="8" y="25" width="280" height="25"/>
                                                                         <state key="normal" title="当场办结(答复)">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1204,21 +1329,51 @@
                                                                             <action selector="clickbutton2:" destination="ziT-ct-WAa" eventType="touchUpInside" id="Tto-7P-kgL"/>
                                                                         </connections>
                                                                     </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nd-ZP-phu" userLabel="Button4">
+                                                                        <rect key="frame" x="8" y="75" width="280" height="25"/>
+                                                                        <state key="normal" title="提交上一级党委政府研究">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <state key="selected" title="提交上一级党委政府研究">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="clickbutton4:" destination="ziT-ct-WAa" eventType="touchUpInside" id="bug-20-r2Q"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QM6-Jr-Fhd" userLabel="Button1">
+                                                                        <rect key="frame" x="8" y="0.0" width="280" height="25"/>
+                                                                        <state key="normal" title="无诉求">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <state key="selected" title="无诉求">
+                                                                            <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="clickbutton1:" destination="ziT-ct-WAa" eventType="touchUpInside" id="KVD-bb-GDd"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="S6c-Ca-ME6" firstAttribute="leading" secondItem="IO2-h2-z1M" secondAttribute="leading" constant="8" id="6dz-Ld-E3v"/>
+                                                                    <constraint firstItem="6nd-ZP-phu" firstAttribute="top" secondItem="S6c-Ca-ME6" secondAttribute="bottom" id="9NY-5v-9jj"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="QM6-Jr-Fhd" secondAttribute="trailing" id="9wg-8l-bnF"/>
+                                                                    <constraint firstItem="QM6-Jr-Fhd" firstAttribute="leading" secondItem="IO2-h2-z1M" secondAttribute="leading" constant="8" id="Bh7-TJ-lNP"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="X1F-lK-liA" secondAttribute="trailing" id="Dur-ep-BXQ"/>
+                                                                    <constraint firstItem="X1F-lK-liA" firstAttribute="leading" secondItem="IO2-h2-z1M" secondAttribute="leading" constant="8" id="GGg-hi-QfS"/>
+                                                                    <constraint firstItem="S6c-Ca-ME6" firstAttribute="top" secondItem="X1F-lK-liA" secondAttribute="bottom" id="ILR-Qq-rsD"/>
+                                                                    <constraint firstItem="S6c-Ca-ME6" firstAttribute="height" secondItem="QM6-Jr-Fhd" secondAttribute="height" id="KAH-eV-fGw"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="6nd-ZP-phu" secondAttribute="trailing" id="LmN-Zw-8lr"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="6nd-ZP-phu" secondAttribute="bottom" id="MSO-dC-ovu"/>
+                                                                    <constraint firstItem="X1F-lK-liA" firstAttribute="height" secondItem="QM6-Jr-Fhd" secondAttribute="height" id="QHl-H3-qGy"/>
+                                                                    <constraint firstItem="X1F-lK-liA" firstAttribute="top" secondItem="QM6-Jr-Fhd" secondAttribute="bottom" id="aqT-Qw-PCn"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="S6c-Ca-ME6" secondAttribute="trailing" id="lAC-Yl-2wC"/>
+                                                                    <constraint firstItem="6nd-ZP-phu" firstAttribute="leading" secondItem="IO2-h2-z1M" secondAttribute="leading" constant="8" id="lg8-Lg-QeU"/>
+                                                                    <constraint firstItem="6nd-ZP-phu" firstAttribute="height" secondItem="QM6-Jr-Fhd" secondAttribute="height" id="uSh-ve-PlW"/>
+                                                                    <constraint firstItem="QM6-Jr-Fhd" firstAttribute="top" secondItem="IO2-h2-z1M" secondAttribute="top" id="ziF-hp-bSM"/>
+                                                                </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nd-ZP-phu" userLabel="Button4">
-                                                                <rect key="frame" x="88" y="75" width="280" height="25"/>
-                                                                <state key="normal" title="提交上一级党委政府研究">
-                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                </state>
-                                                                <state key="selected" title="提交上一级党委政府研究">
-                                                                    <color key="titleColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="clickbutton4:" destination="ziT-ct-WAa" eventType="touchUpInside" id="bug-20-r2Q"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1236,14 +1391,18 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fjl-cg-L4Q" userLabel="附加照片V">
                                                         <rect key="frame" x="0.0" y="492" width="398" height="88"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="附加照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPk-FS-SCH">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="附加照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPk-FS-SCH">
                                                                 <rect key="frame" x="8" y="24" width="70" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="70" id="09Z-xH-Lmt"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdM-Hf-1Kf">
-                                                                <rect key="frame" x="80" y="4" width="84" height="80"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdM-Hf-1Kf">
+                                                                <rect key="frame" x="80" y="4" width="80" height="80"/>
+                                                                <color key="backgroundColor" red="0.2274509804" green="0.69803921570000005" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="按钮"/>
                                                                 <connections>
                                                                     <action selector="clickPicBtn:" destination="ziT-ct-WAa" eventType="touchUpInside" id="K5T-JY-7xv"/>
@@ -1252,7 +1411,14 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="MPk-FS-SCH" firstAttribute="top" secondItem="fjl-cg-L4Q" secondAttribute="top" constant="24" id="D3e-S7-jB5"/>
+                                                            <constraint firstItem="UdM-Hf-1Kf" firstAttribute="width" secondItem="fjl-cg-L4Q" secondAttribute="height" constant="-8" id="DkZ-aD-s1v"/>
                                                             <constraint firstAttribute="height" constant="88" id="Duc-q9-k65"/>
+                                                            <constraint firstItem="UdM-Hf-1Kf" firstAttribute="leading" secondItem="MPk-FS-SCH" secondAttribute="trailing" constant="2" id="V3O-zS-UZ0"/>
+                                                            <constraint firstAttribute="bottom" secondItem="UdM-Hf-1Kf" secondAttribute="bottom" constant="4" id="XyD-3Y-l9B"/>
+                                                            <constraint firstAttribute="bottom" secondItem="MPk-FS-SCH" secondAttribute="bottom" constant="24" id="YRa-k9-8uZ"/>
+                                                            <constraint firstItem="MPk-FS-SCH" firstAttribute="leading" secondItem="fjl-cg-L4Q" secondAttribute="leading" constant="8" id="hfw-KR-c9p"/>
+                                                            <constraint firstItem="UdM-Hf-1Kf" firstAttribute="top" secondItem="fjl-cg-L4Q" secondAttribute="top" constant="4" id="o3Y-Yp-rUk"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -1379,7 +1545,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbE-6d-BTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1185" y="-629"/>
+            <point key="canvasLocation" x="1139" y="-167"/>
         </scene>
     </scenes>
     <resources>
