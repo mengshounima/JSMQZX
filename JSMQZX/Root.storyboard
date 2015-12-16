@@ -199,6 +199,73 @@
             </objects>
             <point key="canvasLocation" x="696" y="1283"/>
         </scene>
+        <!--图片浏览-->
+        <scene sceneID="yeJ-PS-i4E">
+            <objects>
+                <viewController id="Eny-qC-Pld" customClass="PicViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yi0-Ne-Jhn"/>
+                        <viewControllerLayoutGuide type="bottom" id="scu-Sr-g2d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J1v-BP-VPm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhW-uJ-lF4" customClass="PhotoStackView">
+                                <rect key="frame" x="0.0" y="64" width="414" height="527"/>
+                                <color key="backgroundColor" red="1" green="0.73612705479999996" blue="0.15411201599999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="yNf-Ap-EvG">
+                                <rect key="frame" x="0.0" y="591" width="414" height="37"/>
+                                <color key="backgroundColor" red="0.1441696459" green="0.94949494950000002" blue="0.13581738970000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BN3-Po-uEm">
+                                <rect key="frame" x="145" y="661" width="124" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="s94-n0-jXf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="拍照">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickAddPic:" destination="Eny-qC-Pld" eventType="touchUpInside" id="J7C-Ue-Nat"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PhW-uJ-lF4" secondAttribute="trailing" id="7SD-NP-IYb"/>
+                            <constraint firstItem="BN3-Po-uEm" firstAttribute="top" secondItem="yNf-Ap-EvG" secondAttribute="bottom" constant="33" id="7ur-kX-Q5e"/>
+                            <constraint firstItem="BN3-Po-uEm" firstAttribute="centerX" secondItem="J1v-BP-VPm" secondAttribute="centerX" id="Amj-uf-ygl"/>
+                            <constraint firstAttribute="trailing" secondItem="yNf-Ap-EvG" secondAttribute="trailing" id="DXb-tr-5US"/>
+                            <constraint firstItem="yNf-Ap-EvG" firstAttribute="leading" secondItem="J1v-BP-VPm" secondAttribute="leading" id="NB3-d3-MfD"/>
+                            <constraint firstItem="BN3-Po-uEm" firstAttribute="width" secondItem="J1v-BP-VPm" secondAttribute="width" multiplier="0.3" id="XBq-Hp-Iuy"/>
+                            <constraint firstItem="PhW-uJ-lF4" firstAttribute="top" secondItem="Yi0-Ne-Jhn" secondAttribute="bottom" id="ZKw-hY-W3n"/>
+                            <constraint firstItem="scu-Sr-g2d" firstAttribute="top" secondItem="BN3-Po-uEm" secondAttribute="bottom" constant="45" id="pY4-bH-Yqm"/>
+                            <constraint firstItem="yNf-Ap-EvG" firstAttribute="top" secondItem="PhW-uJ-lF4" secondAttribute="bottom" id="xKx-cX-Dlh"/>
+                            <constraint firstItem="PhW-uJ-lF4" firstAttribute="leading" secondItem="J1v-BP-VPm" secondAttribute="leading" id="y5f-f1-hwY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="图片浏览" id="lbx-9O-n9L">
+                        <barButtonItem key="rightBarButtonItem" title="删除" id="OTO-C7-0cB">
+                            <connections>
+                                <action selector="clickDelete:" destination="Eny-qC-Pld" id="mbi-8d-s0v"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="AddPicBtn" destination="BN3-Po-uEm" id="xHT-9t-o5I"/>
+                        <outlet property="deleteBtn" destination="OTO-C7-0cB" id="enS-6q-XkL"/>
+                        <outlet property="pageControl" destination="yNf-Ap-EvG" id="2CO-3t-llw"/>
+                        <outlet property="photoStack" destination="PhW-uJ-lF4" id="HAm-U2-YDq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FfA-wY-3kI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1605" y="-1117"/>
+        </scene>
         <!--民情在线(干部版)-->
         <scene sceneID="gPt-Ul-rVQ">
             <objects>
@@ -1149,6 +1216,7 @@
                         <outlet property="picBtn" destination="xP6-y0-0gm" id="tFE-Zn-5BN"/>
                         <outlet property="sendBtn" destination="4YE-u6-IRw" id="mPW-Nr-eMu"/>
                         <outlet property="typeF" destination="Sxn-mo-OA6" id="BfN-J5-Dcf"/>
+                        <segue destination="Eny-qC-Pld" kind="push" identifier="ModiFyLogToPicVC" id="LLz-j9-6aK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4p-9P-FbC" userLabel="First Responder" sceneMemberID="firstResponder"/>

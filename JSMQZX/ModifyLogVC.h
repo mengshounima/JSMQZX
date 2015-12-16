@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
 #import "JKAlertDialog.h"
+#import "PicViewController.h"
 @interface ModifyLogVC : UIViewController
 @property (nonatomic,weak) NSDictionary *myLogInfo;//传递参数
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
@@ -42,6 +43,7 @@
 - (IBAction)clickbutton2:(id)sender;
 - (IBAction)clickbutton4:(id)sender;
 - (IBAction)clickbutton3:(id)sender;
+
 
 
 @end

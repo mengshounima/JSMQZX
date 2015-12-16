@@ -22,6 +22,7 @@
 @property (weak,nonatomic) NSString *lastLoginTime;
 @property (weak,nonatomic) NSString *departmentName;//镇，社区
 
+
 //单例模式
 +(UserInfo *)sharedInstance;
 -(void)writeData:(NSDictionary *)resultdic;

@@ -19,8 +19,49 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    BOOL isLogin = [[USERDEFAULTS objectForKey:@"IsLogin"] boolValue];
+    if (isLogin) {
+        [self autoLogin];
+    }
+
     [self getUserData];
     [self initView];
+}
+//自动登录
+-(void)autoLogin{
+    [MBProgressHUD showMessage:@"登录中"];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    //真实
+    /*[param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
+     [param setObject:_passwordF.text forKey:@"Password"];
+     NSString *firstName = [_typeDic objectForKey:@"zjd_jx"];//前缀
+     [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];*/
+    _typeF.text = [[UserInfo sharedInstance] ReadData].administerName;
+    _userIDF.text = [[UserInfo sharedInstance] ReadData].loginName;
+    _passwordF.text = [[UserInfo sharedInstance] ReadData].usePassword;
+    //调试
+    [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"UserType"];
+    [param setObject:[[UserInfo sharedInstance] ReadData].loginName forKey:@"LoginName"];
+    [param setObject:[[UserInfo sharedInstance] ReadData].usePassword forKey:@"Password"];
+    [[HttpClient httpClient] requestWithPath:@"/CheckLogin" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+       /* NSData* jsonData = [self XMLString:responseObject];
+        NSDictionary *resultDic = [jsonData objectFromJSONData];
+        MyLog(@"------------------%@",resultDic);
+        [[UserInfo sharedInstance] writeData:resultDic];//初始化个人数据
+        //保存是否记住密码
+        if (_rememberBtn.selected) {
+            [USERDEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:@"IsLogin"];
+        }*/
+        
+        //创建导航栏
+        HMNavigationController *rootNav;
+        UIStoryboard *schoolStoryBoard=[UIStoryboard storyboardWithName:@"Root" bundle:nil];
+        rootNav = [schoolStoryBoard instantiateInitialViewController];
+        [self presentViewController:rootNav animated:YES completion:nil];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }];
+
 }
 -(void)getUserData{
     [MBProgressHUD showMessage:@"更新镇、街道列表"];
@@ -52,6 +93,8 @@
 }
 -(void)initView{
     _loginBtn.layer.cornerRadius = 6;
+    _rememberBtn.selected = YES;//默认选中记住密码
+    _passwordF.secureTextEntry = YES;
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self tapResignFirstResponder];
@@ -76,8 +119,10 @@
 }
 */
 
-
+//记住密码
 - (IBAction)clickRememberBtn:(id)sender {
+    _rememberBtn.selected = !_rememberBtn.selected;
+    
 }
 //用户类型选择
 - (IBAction)clickSelectBtn:(id)sender {
@@ -118,25 +163,33 @@
 }
 //登录
 - (IBAction)clickLoginBtn:(id)sender {
+    if (ISNULLSTR(_userIDF.text)||ISNULLSTR(_typeF.text)||ISNULLSTR(_passwordF.text)) {
+        [MBProgressHUD showError:@"登录信息不完整"];
+        return;
+    }
     [MBProgressHUD showMessage:@"登录中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     //真实
-    /*[param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
+    [param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
     [param setObject:_passwordF.text forKey:@"Password"];
     NSString *firstName = [_typeDic objectForKey:@"zjd_jx"];//前缀
-    [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];*/
+    [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];
     //调试
-    [param setObject:@"6" forKey:@"UserType"];
+    /*[param setObject:@"6" forKey:@"UserType"];
     NSString *name = [NSString stringWithFormat:@"%@%@",@"xt",@"1008"];
     [param setObject:name forKey:@"LoginName"];
-    [param setObject:@"888888" forKey:@"Password"];
+    [param setObject:@"888888" forKey:@"Password"];*/
     [[HttpClient httpClient] requestWithPath:@"/CheckLogin" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         NSDictionary *resultDic = [jsonData objectFromJSONData];
         MyLog(@"------------------%@",resultDic);
-       [[UserInfo sharedInstance] writeData:resultDic];//初始化个人shuj
-        
+       [[UserInfo sharedInstance] writeData:resultDic];//初始化个人数据
+        //保存是否记住密码
+        if (_rememberBtn.selected) {
+            [USERDEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:@"IsLogin"];
+        }
+       
         //创建导航栏
         HMNavigationController *rootNav;
         UIStoryboard *schoolStoryBoard=[UIStoryboard storyboardWithName:@"Root" bundle:nil];

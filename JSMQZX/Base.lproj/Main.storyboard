@@ -199,6 +199,7 @@
                     <connections>
                         <outlet property="loginBtn" destination="wg9-u9-nRT" id="pRJ-HY-mNR"/>
                         <outlet property="passwordF" destination="wXh-QE-QF7" id="muS-OB-ieB"/>
+                        <outlet property="rememberBtn" destination="isp-JT-4Po" id="4JD-26-x3F"/>
                         <outlet property="typeF" destination="85P-Ju-FVK" id="YCK-qe-p2b"/>
                         <outlet property="userIDF" destination="fW0-6G-4cm" id="0wY-MH-y5u"/>
                     </connections>

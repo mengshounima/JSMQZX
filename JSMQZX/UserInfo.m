@@ -30,6 +30,7 @@
     [tempDic setObject:[resultdic objectForKey:@"departmentName"] forKey:@"departmentName"];
     [tempDic setObject:[resultdic objectForKey:@"phone"] forKey:@"phone"];
     [tempDic setObject:[resultdic objectForKey:@"lastLoginTime"] forKey:@"lastLoginTime"];
+    [tempDic setObject:[resultdic objectForKey:@"password"] forKey:@"password"];
     
     [USERDEFAULTS setObject:tempDic forKey:USER];
     [USERDEFAULTS synchronize];
@@ -49,6 +50,7 @@
     info.phone = [valueData objectForKey:@"phone"];
     info.lastLoginTime = [valueData objectForKey:@"lastLoginTime"];
     info.useType = [valueData objectForKey:@"Type"];
+    info.usePassword = [valueData objectForKey:@"password"];
     return info;
 }
 @end

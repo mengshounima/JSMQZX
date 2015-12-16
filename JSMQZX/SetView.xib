@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ucy-4S-byV">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ucy-4S-byV">
                     <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="用户信息">
@@ -21,17 +21,17 @@
                         <action selector="clickUserBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="udS-4p-Mda"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeY-A8-kN9">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeY-A8-kN9">
                     <rect key="frame" x="0.0" y="50" width="100" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="注册用户">
+                    <state key="normal" title="注销用户">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="clickSignUpBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="f4e-wn-ewI"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aR-hX-YfK">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aR-hX-YfK">
                     <rect key="frame" x="0.0" y="100" width="100" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="使用帮助">
@@ -41,7 +41,7 @@
                         <action selector="clickHelpBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="lBI-Ek-XKZ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvY-L0-w0Q">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvY-L0-w0Q">
                     <rect key="frame" x="0.0" y="150" width="100" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="关闭">
@@ -53,6 +53,24 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6aR-hX-YfK" firstAttribute="height" secondItem="Ucy-4S-byV" secondAttribute="height" id="5BE-ao-Bya"/>
+                <constraint firstAttribute="trailing" secondItem="JvY-L0-w0Q" secondAttribute="trailing" id="7JQ-LH-Usm"/>
+                <constraint firstItem="Ucy-4S-byV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LoX-dn-Vno"/>
+                <constraint firstAttribute="trailing" secondItem="Ucy-4S-byV" secondAttribute="trailing" id="LxG-fg-RFU"/>
+                <constraint firstAttribute="trailing" secondItem="LeY-A8-kN9" secondAttribute="trailing" id="VrT-jd-42c"/>
+                <constraint firstItem="Ucy-4S-byV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xnb-Gk-rfD"/>
+                <constraint firstAttribute="trailing" secondItem="6aR-hX-YfK" secondAttribute="trailing" id="Z4Z-4E-6Ne"/>
+                <constraint firstItem="JvY-L0-w0Q" firstAttribute="top" secondItem="6aR-hX-YfK" secondAttribute="bottom" id="ZKD-ba-dBc"/>
+                <constraint firstItem="LeY-A8-kN9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZZ1-Ka-4zE"/>
+                <constraint firstItem="LeY-A8-kN9" firstAttribute="top" secondItem="Ucy-4S-byV" secondAttribute="bottom" id="ZsZ-Xw-Frf"/>
+                <constraint firstItem="LeY-A8-kN9" firstAttribute="height" secondItem="Ucy-4S-byV" secondAttribute="height" id="b0o-5u-o8I"/>
+                <constraint firstItem="JvY-L0-w0Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="b6Z-vv-Z5X"/>
+                <constraint firstItem="JvY-L0-w0Q" firstAttribute="height" secondItem="Ucy-4S-byV" secondAttribute="height" id="lU0-xe-BUb"/>
+                <constraint firstAttribute="bottom" secondItem="JvY-L0-w0Q" secondAttribute="bottom" id="oLU-bF-s6y"/>
+                <constraint firstItem="6aR-hX-YfK" firstAttribute="top" secondItem="LeY-A8-kN9" secondAttribute="bottom" id="ped-u4-ju4"/>
+                <constraint firstItem="6aR-hX-YfK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zaq-bn-7za"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="266" y="212"/>
         </view>

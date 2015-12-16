@@ -18,5 +18,6 @@
 - (IBAction)clickRememberBtn:(id)sender;
 - (IBAction)clickSelectBtn:(id)sender;
 - (IBAction)clickLoginBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *rememberBtn;
 
 @end

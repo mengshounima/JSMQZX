@@ -138,6 +138,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectOneFarmer" object:nil];
 }
+//点击图片按钮
+- (IBAction)clickPicBtn:(id)sender{
+    [self performSegueWithIdentifier:@"ModiFyLogToPicVC" sender:imageArr];
+}
 //点击农户
 -(void)clickFarmers{
     [self performSegueWithIdentifier:@"AddVisitToFarmerRoot" sender:nil];
@@ -288,6 +292,7 @@
     }];
     //获取日志详情
     NSMutableDictionary *paramDetail = [[NSMutableDictionary alloc] init];
+    [paramDetail setObject:idStr forKey:@"userId"];
     [paramDetail setObject:[_myLogInfo objectForKey:@"rz_id"] forKey:@"rz_id"];
     [[HttpClient httpClient] requestWithPath:@"/GetMQLogInfoByID" method:TBHttpRequestPost parameters:paramDetail prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f3=1;
@@ -306,19 +311,17 @@
     }];
     //获取图片集合
     NSMutableDictionary *paramImage = [[NSMutableDictionary alloc] init];
+    [paramImage setObject:idStr forKey:@"userId"];
     [paramImage setObject:[_myLogInfo objectForKey:@"rz_id"] forKey:@"rz_id"];
-    [paramImage setObject:@"" forKey:@"photoCode"];
-    [paramImage setObject:@"" forKey:@"takeDate"];
-    [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramDetail prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    [[HttpClient httpClient] requestWithPath:@"/GetMQPhotosRzID" method:TBHttpRequestPost parameters:paramDetail prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f4=1;
         if (f1==1&&f2==1&&f3==1&f4==1) {
             [MBProgressHUD hideHUD];
         }
         NSData* jsonData = [self XMLString:responseObject];
         imageArr = (NSArray *)[jsonData objectFromJSONData];
-        MyLog(@"%@",imageArr);
- 
-        
+        MyLog(@"%@",imageArr);//图片集合
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求失败"];
@@ -389,14 +392,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ModiFyLogToPicVC"]) {
+        //照片浏览
+        PicViewController *picVC = segue.destinationViewController;
+        picVC.RZ_imageArr = sender;
+    }
 }
-*/
+
 
 @end

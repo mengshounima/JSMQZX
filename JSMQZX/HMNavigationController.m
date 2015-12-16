@@ -8,7 +8,7 @@
 
 #import "HMNavigationController.h"
 
-@interface HMNavigationController ()
+@interface HMNavigationController ()<UIActionSheetDelegate>
 
 @end
 
@@ -125,13 +125,13 @@
     if (_setView == nil) {
         _setView = [SetView sharedSetView];
         _setView.delegate = self;
-        _setView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH*0.4, SCREEN_HEIGHT*0.1);
+        _setView.frame = CGRectMake(SCREEN_WIDTH, 0, 100, 200);
     }
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:_backView];//加上第一个蒙版
     [window addSubview:_setView];
     [UIView animateWithDuration:0.3 animations:^{
-        _setView.frame = CGRectMake(SCREEN_WIDTH*0.6, 0, SCREEN_WIDTH*0.4, SCREEN_HEIGHT*0.1);
+        _setView.frame = CGRectMake(SCREEN_WIDTH-100, 0, 100, 200);
         _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
     } completion:^(BOOL finished) {
     }];
@@ -143,9 +143,21 @@
     
 }                                                                                                                                                                                                                                                                                                                                                                      
 -(void)SetViewSignUp{
-    
-    
+    //注销
+   UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"注销用户提示" message:@"是否确认注销当前登录用户，注销后下次登录必须重新输入用户名和密码" delegate:self cancelButtonTitle:@"取消" otherButtonTitles: @"注销",nil];
+    [alert show];
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 0) {
+        
+    }
+    else{
+        [USERDEFAULTS setObject:[NSNumber numberWithBool:NO] forKey:@"IsLogin"];//将记住的账号清除
+    }
+}
+
+
 -(void)SetViewUser{
     [self performSegueWithIdentifier:@"NavToUserInfo" sender:nil];
 }
