@@ -120,15 +120,16 @@
 - (IBAction)clickLoginBtn:(id)sender {
     [MBProgressHUD showMessage:@"登录中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
+    //真实
+    /*[param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
     [param setObject:_passwordF.text forKey:@"Password"];
     NSString *firstName = [_typeDic objectForKey:@"zjd_jx"];//前缀
-    
-    [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];
-    /*[param setObject:@"6" forKey:@"UserType"];
+    [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];*/
+    //调试
+    [param setObject:@"6" forKey:@"UserType"];
     NSString *name = [NSString stringWithFormat:@"%@%@",@"xt",@"1008"];
     [param setObject:name forKey:@"LoginName"];
-    [param setObject:@"888888" forKey:@"Password"];*/
+    [param setObject:@"888888" forKey:@"Password"];
     [[HttpClient httpClient] requestWithPath:@"/CheckLogin" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];

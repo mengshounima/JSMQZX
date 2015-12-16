@@ -81,10 +81,123 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="日志办理" id="iDH-so-ew4"/>
+                    <connections>
+                        <segue destination="8cx-md-Lyb" kind="push" identifier="GanbuRizhiToLogList" id="Hs2-Lv-1TH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbA-Gb-BHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="223" y="823"/>
+            <point key="canvasLocation" x="211" y="1279"/>
+        </scene>
+        <!--Log List GanbuVC-->
+        <scene sceneID="4np-fe-dx5">
+            <objects>
+                <viewController id="8cx-md-Lyb" customClass="LogListGanbuVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eUI-C6-rSN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mqy-QZ-mBc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fSP-PJ-jDS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="农户姓名搜索" translatesAutoresizingMaskIntoConstraints="NO" id="7r9-rj-J5p">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="DbG-gj-0yJ"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrO-pm-v0p" userLabel="SearchView">
+                                <rect key="frame" x="0.0" y="108" width="320" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf6-k7-yg7">
+                                        <rect key="frame" x="8" y="5" width="42" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="BtN-oa-FTC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKN-ID-CwU">
+                                        <rect key="frame" x="58" y="5" width="89" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="选择镇(街道)"/>
+                                        <connections>
+                                            <action selector="clickZJDBtn:" destination="8cx-md-Lyb" eventType="touchUpInside" id="tqk-Ls-cEO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7re-si-x0h">
+                                        <rect key="frame" x="155" y="5" width="89" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="选择村(社区)"/>
+                                        <connections>
+                                            <action selector="clickCUNBtn:" destination="8cx-md-Lyb" eventType="touchUpInside" id="d42-Eq-LuB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoT-fB-ipJ">
+                                        <rect key="frame" x="252" y="11" width="60" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="tyD-3i-W2H"/>
+                                        </constraints>
+                                        <state key="normal" title="搜索"/>
+                                        <connections>
+                                            <action selector="clickSearchBtn:" destination="8cx-md-Lyb" eventType="touchUpInside" id="1gL-zC-Sdb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.094117647060000004" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="7re-si-x0h" secondAttribute="bottom" constant="5" id="45f-mA-OYH"/>
+                                    <constraint firstAttribute="trailing" secondItem="EoT-fB-ipJ" secondAttribute="trailing" constant="8" id="6yr-EG-ktA"/>
+                                    <constraint firstItem="gKN-ID-CwU" firstAttribute="leading" secondItem="kf6-k7-yg7" secondAttribute="trailing" constant="8" id="BVi-nm-6Qt"/>
+                                    <constraint firstItem="7re-si-x0h" firstAttribute="top" secondItem="IrO-pm-v0p" secondAttribute="top" constant="5" id="KVw-kr-sje"/>
+                                    <constraint firstItem="EoT-fB-ipJ" firstAttribute="leading" secondItem="7re-si-x0h" secondAttribute="trailing" constant="8" id="QHG-Op-Dnl"/>
+                                    <constraint firstItem="EoT-fB-ipJ" firstAttribute="top" secondItem="IrO-pm-v0p" secondAttribute="top" constant="11" id="Xoo-HP-ecT"/>
+                                    <constraint firstAttribute="bottom" secondItem="kf6-k7-yg7" secondAttribute="bottom" constant="5" id="Ylc-7G-OQ6"/>
+                                    <constraint firstItem="kf6-k7-yg7" firstAttribute="leading" secondItem="IrO-pm-v0p" secondAttribute="leading" constant="8" id="aNK-le-wB0"/>
+                                    <constraint firstItem="kf6-k7-yg7" firstAttribute="top" secondItem="IrO-pm-v0p" secondAttribute="top" constant="5" id="ar9-Vm-hAq"/>
+                                    <constraint firstAttribute="bottom" secondItem="gKN-ID-CwU" secondAttribute="bottom" constant="5" id="bJL-Rq-nW0"/>
+                                    <constraint firstItem="7re-si-x0h" firstAttribute="leading" secondItem="gKN-ID-CwU" secondAttribute="trailing" constant="8" id="fFX-c4-iid"/>
+                                    <constraint firstItem="gKN-ID-CwU" firstAttribute="top" secondItem="IrO-pm-v0p" secondAttribute="top" constant="5" id="g1F-fA-54V"/>
+                                    <constraint firstItem="7re-si-x0h" firstAttribute="width" secondItem="gKN-ID-CwU" secondAttribute="width" id="hry-86-dJc"/>
+                                    <constraint firstAttribute="bottom" secondItem="EoT-fB-ipJ" secondAttribute="bottom" constant="5" id="xtx-Yh-y68"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Z7-U6-JDV">
+                                <rect key="frame" x="0.0" y="153" width="320" height="415"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Z7-U6-JDV" firstAttribute="top" secondItem="IrO-pm-v0p" secondAttribute="bottom" id="10v-NL-16f"/>
+                            <constraint firstAttribute="trailing" secondItem="2Z7-U6-JDV" secondAttribute="trailing" id="4CC-pE-Lq8"/>
+                            <constraint firstAttribute="trailing" secondItem="7r9-rj-J5p" secondAttribute="trailing" id="6ib-uC-ebH"/>
+                            <constraint firstItem="Mqy-QZ-mBc" firstAttribute="top" secondItem="2Z7-U6-JDV" secondAttribute="bottom" id="7ja-pd-kWS"/>
+                            <constraint firstItem="7r9-rj-J5p" firstAttribute="top" secondItem="eUI-C6-rSN" secondAttribute="bottom" id="KFN-dh-HDe"/>
+                            <constraint firstItem="IrO-pm-v0p" firstAttribute="height" secondItem="fSP-PJ-jDS" secondAttribute="height" multiplier="0.08" id="MVS-nH-VfT"/>
+                            <constraint firstItem="IrO-pm-v0p" firstAttribute="leading" secondItem="fSP-PJ-jDS" secondAttribute="leading" id="fAn-QJ-avY"/>
+                            <constraint firstAttribute="trailing" secondItem="IrO-pm-v0p" secondAttribute="trailing" id="fBA-iz-Elq"/>
+                            <constraint firstItem="2Z7-U6-JDV" firstAttribute="leading" secondItem="fSP-PJ-jDS" secondAttribute="leading" id="mUn-JQ-1NW"/>
+                            <constraint firstItem="7r9-rj-J5p" firstAttribute="leading" secondItem="fSP-PJ-jDS" secondAttribute="leading" id="o9D-Of-2rH"/>
+                            <constraint firstItem="IrO-pm-v0p" firstAttribute="top" secondItem="7r9-rj-J5p" secondAttribute="bottom" id="xRA-hp-AZL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gOw-qT-dwD"/>
+                    <connections>
+                        <outlet property="CUNBtn" destination="7re-si-x0h" id="L5f-pZ-vTO"/>
+                        <outlet property="LogTableView" destination="2Z7-U6-JDV" id="Ee9-IX-tIm"/>
+                        <outlet property="ZJDBtn" destination="gKN-ID-CwU" id="fnz-X1-WyD"/>
+                        <outlet property="mySearchBar" destination="7r9-rj-J5p" id="gle-0p-WHf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vw2-Mx-HEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="696" y="1283"/>
         </scene>
         <!--民情在线(干部版)-->
         <scene sceneID="gPt-Ul-rVQ">
@@ -98,6 +211,100 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A84-SN-aD5" userLabel="GuanliyuanV">
+                                <rect key="frame" x="0.0" y="181" width="320" height="387"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWA-ba-qvy" userLabel="View11">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kcz-Au-XU4">
+                                                <rect key="frame" x="30" y="30" width="80" height="80"/>
+                                                <state key="normal" title="日志办理"/>
+                                                <connections>
+                                                    <action selector="clickGanliyuanRizhibanli:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="NGd-36-KFw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiW-sD-AOY">
+                                                <rect key="frame" x="180" y="30" width="80" height="80"/>
+                                                <state key="normal" title="在职党员"/>
+                                                <connections>
+                                                    <action selector="clickGuanliyuanZaizhidangyuan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="6Cv-Z5-Ffx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePs-Tm-1w0" userLabel="View22">
+                                        <rect key="frame" x="0.0" y="129" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAh-sy-sNv">
+                                                <rect key="frame" x="20" y="30" width="80" height="80"/>
+                                                <state key="normal" title="民生动态"/>
+                                                <connections>
+                                                    <action selector="clickGaunliyuanMinshendongtai:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="qSA-6k-j0j"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAA-5O-KU2">
+                                                <rect key="frame" x="120" y="30" width="80" height="80"/>
+                                                <state key="normal" title="志愿服务"/>
+                                                <connections>
+                                                    <action selector="clickGuanliyuanFuwu:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="dut-wY-YEJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyI-gV-3Qa">
+                                                <rect key="frame" x="200" y="30" width="80" height="80"/>
+                                                <state key="normal" title="微心愿认领"/>
+                                                <connections>
+                                                    <action selector="clickGaunliyuanWeixinyuan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="Rkt-Np-BbS"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39F-A9-psd" userLabel="View33">
+                                        <rect key="frame" x="0.0" y="258" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-Ax-QdG">
+                                                <rect key="frame" x="20" y="30" width="80" height="80"/>
+                                                <state key="normal" title="党代表接待日"/>
+                                                <connections>
+                                                    <action selector="clickGaunliyuanDangdaibiao:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="Bvt-DX-Onz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-Os-ARL">
+                                                <rect key="frame" x="100" y="30" width="80" height="80"/>
+                                                <state key="normal" title="分析研判"/>
+                                                <connections>
+                                                    <action selector="clickGaunliyuanFenxi:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="Ch2-rj-VJo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP5-to-QvU">
+                                                <rect key="frame" x="190" y="30" width="80" height="80"/>
+                                                <state key="normal" title="党建红云"/>
+                                                <connections>
+                                                    <action selector="clickGaunliyuanHongyun:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="UMp-xl-QbO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ePs-Tm-1w0" firstAttribute="top" secondItem="FWA-ba-qvy" secondAttribute="bottom" id="4MR-U9-gd4"/>
+                                    <constraint firstItem="ePs-Tm-1w0" firstAttribute="leading" secondItem="A84-SN-aD5" secondAttribute="leading" id="604-0N-hNC"/>
+                                    <constraint firstItem="FWA-ba-qvy" firstAttribute="leading" secondItem="A84-SN-aD5" secondAttribute="leading" id="8xP-aP-4XQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="39F-A9-psd" secondAttribute="trailing" id="DPZ-a6-pil"/>
+                                    <constraint firstItem="39F-A9-psd" firstAttribute="top" secondItem="ePs-Tm-1w0" secondAttribute="bottom" id="EQJ-uJ-nhM"/>
+                                    <constraint firstItem="39F-A9-psd" firstAttribute="leading" secondItem="A84-SN-aD5" secondAttribute="leading" id="Fu8-k1-D8p"/>
+                                    <constraint firstAttribute="trailing" secondItem="ePs-Tm-1w0" secondAttribute="trailing" id="TQX-3N-1iy"/>
+                                    <constraint firstAttribute="bottom" secondItem="39F-A9-psd" secondAttribute="bottom" id="Y5F-cF-gbp"/>
+                                    <constraint firstItem="ePs-Tm-1w0" firstAttribute="height" secondItem="FWA-ba-qvy" secondAttribute="height" id="ZMx-QB-fUj"/>
+                                    <constraint firstAttribute="trailing" secondItem="FWA-ba-qvy" secondAttribute="trailing" id="bYp-cx-Nbf"/>
+                                    <constraint firstItem="FWA-ba-qvy" firstAttribute="top" secondItem="A84-SN-aD5" secondAttribute="top" id="uKJ-mk-Omo"/>
+                                    <constraint firstItem="39F-A9-psd" firstAttribute="height" secondItem="FWA-ba-qvy" secondAttribute="height" id="xJn-sO-aeE"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3p-Nr-Da4" userLabel="GanBuV">
                                 <rect key="frame" x="0.0" y="181" width="320" height="387"/>
                                 <subviews>
@@ -108,6 +315,9 @@
                                                 <rect key="frame" x="120" y="24" width="80" height="80"/>
                                                 <color key="backgroundColor" red="0.1441696459" green="0.94949494950000002" blue="0.13581738970000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="clickGanbuMinshendongtai:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="sxF-0y-NxH"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,6 +329,9 @@
                                                 <rect key="frame" x="120" y="24" width="80" height="80"/>
                                                 <color key="backgroundColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="clickGanbuFenxiyanpan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="rra-Gv-93x"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,11 +343,17 @@
                                                 <rect key="frame" x="50" y="24" width="80" height="80"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="clickGanbuRizhibanli:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="1vG-69-CkG"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-UI-DdQ" userLabel="在职党员">
                                                 <rect key="frame" x="190" y="24" width="80" height="80"/>
                                                 <color key="backgroundColor" red="0.90658538509999997" green="0.74963731879999995" blue="0.25170852869999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="clickGanbuZaizhidangyuan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="t2S-Bf-iUS"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -199,22 +418,27 @@
                             <constraint firstItem="BlF-Ga-wvI" firstAttribute="top" secondItem="v0u-56-GhT" secondAttribute="bottom" id="3Ie-8Q-rPq"/>
                             <constraint firstItem="v0u-56-GhT" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="3xx-zt-Ha5"/>
                             <constraint firstItem="xjn-Tg-b61" firstAttribute="top" secondItem="QLU-AQ-I80" secondAttribute="bottom" id="8fD-Dp-6p8"/>
+                            <constraint firstItem="A84-SN-aD5" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="DhG-P0-lVH"/>
                             <constraint firstItem="v0u-56-GhT" firstAttribute="top" secondItem="0Gc-Tj-VgN" secondAttribute="bottom" id="ESL-FS-Ef5"/>
                             <constraint firstItem="QLU-AQ-I80" firstAttribute="top" secondItem="BlF-Ga-wvI" secondAttribute="bottom" id="Jyg-43-pqo"/>
                             <constraint firstAttribute="trailing" secondItem="L3p-Nr-Da4" secondAttribute="trailing" id="KS8-Rz-0TY"/>
                             <constraint firstAttribute="trailing" secondItem="v0u-56-GhT" secondAttribute="trailing" id="MBj-Ti-GVm"/>
                             <constraint firstAttribute="trailing" secondItem="QLU-AQ-I80" secondAttribute="trailing" id="ODw-Dt-VYB"/>
+                            <constraint firstItem="A84-SN-aD5" firstAttribute="top" secondItem="BlF-Ga-wvI" secondAttribute="bottom" id="SHf-LE-wzb"/>
                             <constraint firstItem="xjn-Tg-b61" firstAttribute="top" secondItem="L3p-Nr-Da4" secondAttribute="bottom" id="THL-0m-5ib"/>
                             <constraint firstItem="BlF-Ga-wvI" firstAttribute="height" secondItem="9Bm-Mp-hrf" secondAttribute="height" multiplier="0.2" id="ew6-d2-bmq"/>
                             <constraint firstItem="QLU-AQ-I80" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="f1d-hQ-hVa"/>
                             <constraint firstAttribute="trailing" secondItem="BlF-Ga-wvI" secondAttribute="trailing" id="hbW-rh-SzA"/>
                             <constraint firstItem="BlF-Ga-wvI" firstAttribute="top" secondItem="v0u-56-GhT" secondAttribute="bottom" id="hpP-sK-pgT"/>
+                            <constraint firstItem="xjn-Tg-b61" firstAttribute="top" secondItem="A84-SN-aD5" secondAttribute="bottom" id="iKv-ed-Sun"/>
                             <constraint firstItem="L3p-Nr-Da4" firstAttribute="leading" secondItem="9Bm-Mp-hrf" secondAttribute="leading" id="jKN-zq-emG"/>
+                            <constraint firstAttribute="trailing" secondItem="A84-SN-aD5" secondAttribute="trailing" id="mXY-gE-CLL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="民情在线(干部版)" id="8O0-iI-A3R"/>
                     <connections>
                         <outlet property="ganbuView" destination="L3p-Nr-Da4" id="3y9-1N-bap"/>
+                        <outlet property="guanliyuanView" destination="A84-SN-aD5" id="uks-bd-CKT"/>
                         <outlet property="yonghuView" destination="QLU-AQ-I80" id="kpW-e3-zD4"/>
                         <segue destination="dxK-2f-pTE" kind="push" identifier="RootNormalToMinQinRiZhi" id="Wmn-xT-wOv"/>
                         <segue destination="YUC-de-Ps3" kind="push" identifier="RootNormalToRiZhiBanLi" id="SnW-qf-Yfy"/>

@@ -331,8 +331,8 @@
     [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
-        NSArray *arr = (NSArray *)[jsonData objectFromJSONData];
-        MyLog(@"%@",arr);
+        NSDictionary *resultDic = (NSArray *)[jsonData objectFromJSONData];
+        MyLog(@"%@",resultDic);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];

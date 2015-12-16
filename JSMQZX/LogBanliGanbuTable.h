@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LogListGanbuVC.h"
 @interface LogBanliGanbuTable : UITableViewController
 
 @end

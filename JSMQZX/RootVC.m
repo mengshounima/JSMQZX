@@ -31,16 +31,21 @@
         MyLog(@"一般用户");
         _yonghuView.hidden = NO;
         _ganbuView.hidden = YES;
+        _guanliyuanView.hidden = YES;
         
     }
     else if([powerStr isEqualToString:@"3"]){
          MyLog(@"镇干部");
         _yonghuView.hidden = YES;
         _ganbuView.hidden = NO;
+        _guanliyuanView.hidden = YES;
     }
     else if([powerStr isEqualToString:@"1"])
     {
         MyLog(@"管理员");
+        _yonghuView.hidden = YES;
+        _ganbuView.hidden = YES;
+        _guanliyuanView.hidden = NO;
     }
 
     
@@ -57,9 +62,10 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"RootNormalToMinQinRiZhi"]) {
+    /*if ([segue.identifier isEqualToString:@"RootNormalToMinQinRiZhi"]) {
         MinQinRiZhiTableVC *minqin = segue.destinationViewController;
     }
+    */
 }
 
 //民情日志
@@ -69,5 +75,51 @@
 //日志办理
 - (IBAction)clickrizhibanli:(id)sender {
     [self performSegueWithIdentifier:@"RootNormalToRiZhiBanLi" sender:nil];
+}
+- (IBAction)clickGanbuZaizhidangyuan:(id)sender {
+    
+    
+}
+//干部日志办理
+- (IBAction)clickGanbuRizhibanli:(id)sender {
+    [self performSegueWithIdentifier:@"RootToLogBanliFGanbu" sender:nil];
+    
+}
+
+- (IBAction)clickGanbuMinshendongtai:(id)sender {
+}
+
+- (IBAction)clickGanbuFenxiyanpan:(id)sender {
+}
+
+- (IBAction)clickGanliyuanRizhibanli:(id)sender {
+    
+    
+    
+}
+
+
+
+
+
+- (IBAction)clickGuanliyuanZaizhidangyuan:(id)sender {
+}
+
+- (IBAction)clickGaunliyuanMinshendongtai:(id)sender {
+}
+
+- (IBAction)clickGuanliyuanFuwu:(id)sender {
+}
+
+- (IBAction)clickGaunliyuanWeixinyuan:(id)sender {
+}
+
+- (IBAction)clickGaunliyuanDangdaibiao:(id)sender {
+}
+
+- (IBAction)clickGaunliyuanFenxi:(id)sender {
+}
+
+- (IBAction)clickGaunliyuanHongyun:(id)sender {
 }
 @end

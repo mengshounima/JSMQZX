@@ -193,6 +193,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8E8FAE921C20F5C3006B02E9 /* GeneralUser */ = {
+			isa = PBXGroup;
+			children = (
+				F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */,
+				F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */,
+			);
+			name = GeneralUser;
+			sourceTree = "<group>";
+		};
+		8E8FAE931C20F61C006B02E9 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				F060B3991C14557C007F472F /* RootVC.h */,
+				F060B39A1C14557C007F472F /* RootVC.m */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		8E8FAE941C20F718006B02E9 /* LogBanli */ = {
+			isa = PBXGroup;
+			children = (
+				F0B733E31C207FA9000DA6F3 /* LogBanliGanbuTable.h */,
+				F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */,
+				F0B733E61C208215000DA6F3 /* LogListGanbuVC.h */,
+				F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */,
+			);
+			name = LogBanli;
+			sourceTree = "<group>";
+		};
 		F03009EE1C12FA8500389829 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,13 +331,9 @@
 		F074E7021C15C22E0098792E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8E8FAE931C20F61C006B02E9 /* Root */,
+				8E8FAE921C20F5C3006B02E9 /* GeneralUser */,
 				F0B733E21C207F66000DA6F3 /* LogBanliGanbu */,
-				F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */,
-				F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */,
-				F060B3991C14557C007F472F /* RootVC.h */,
-				F060B39A1C14557C007F472F /* RootVC.m */,
-				F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */,
-				F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -451,10 +476,7 @@
 		F0B733E21C207F66000DA6F3 /* LogBanliGanbu */ = {
 			isa = PBXGroup;
 			children = (
-				F0B733E31C207FA9000DA6F3 /* LogBanliGanbuTable.h */,
-				F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */,
-				F0B733E61C208215000DA6F3 /* LogListGanbuVC.h */,
-				F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */,
+				8E8FAE941C20F718006B02E9 /* LogBanli */,
 			);
 			name = LogBanliGanbu;
 			sourceTree = "<group>";
@@ -464,6 +486,8 @@
 			children = (
 				F0D255A11C170D17005BD1F4 /* MinQinRiZhiTableVC.h */,
 				F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */,
+				F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */,
+				F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */,
 				F020D96F1C186FB5001B78E4 /* FarmersVC.h */,
 				F020D9701C186FB5001B78E4 /* FarmersVC.m */,
 				F0B4E1E71C19C1E600EAAC10 /* SelectFarmerVC.h */,

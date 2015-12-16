@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GDataXMLNode.h"
+#import "JKAlertDialog.h"
 @interface LogListGanbuVC : UIViewController
+- (IBAction)clickZJDBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;
+@property (weak, nonatomic) IBOutlet UIButton *CUNBtn;
+- (IBAction)clickCUNBtn:(id)sender;
+- (IBAction)clickSearchBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
+@property (weak, nonatomic) IBOutlet UITableView *LogTableView;
 
 @end
