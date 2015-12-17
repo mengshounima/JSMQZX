@@ -13,6 +13,11 @@
     JKAlertDialog *alert;
     UITableView *_ZJDTable;
     UITableView *_CUNTable;
+    
+    NSMutableArray *LogArr;//所有数据结果
+    NSMutableArray *SearchShowArr;//搜索结果
+    NSInteger rowscount;
+    NSInteger page;
 }
 @property (nonatomic,strong) NSArray *ZJDArr;
 @property (nonatomic,strong) NSArray *CUNArr;
@@ -27,6 +32,8 @@
 }
 -(void)initView{
     _CUNBtn.enabled = NO;
+    _ZJDBtn.layer.cornerRadius = 4;
+    _CUNBtn.layer.cornerRadius = 4;
     _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 230) style:UITableViewStylePlain];
     _ZJDTable.delegate = self;
     _ZJDTable.dataSource = self;
@@ -52,7 +59,7 @@
         MyLog(@"***%@",error);
     }];
     //获取村社区
-    NSMutableDictionary *paramCUN = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *paramCUN = [[NSMutableDictionary alloc] init];
     [paramCUN setObject:@"" forKey:@"zjd_id"];
     [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:paramCUN prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
@@ -62,8 +69,68 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
-    }];
+    }];*/
+    //获取日志
+    /*NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    [param setObject:idStr forKey:@"userId"];
+    if (_flagLogZT.integerValue == 5) {
+        //未评价
+        [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"ssz_id"];
+        [param setObject:@"" forKey:@"cun_id"];
+        [param setObject:@"" forKey:@"wg_id"];
+        [param setObject:@"" forKey:@"ztxx"];
+        [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+        [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+        [param setObject:@""forKey:@"myd"];
+        page++;
+    }
+    else if (_flagLogZT.integerValue == 6){
+        //已评价
+        [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"ssz_id"];
+        [param setObject:@"" forKey:@"cun_id"];
+        [param setObject:@"" forKey:@"wg_id"];
+        [param setObject:@"" forKey:@"ztxx"];
+        [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+        [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+        [param setObject:@""forKey:@"myd"];
+        page++;
+    }
+    else {
+        //1，2，3，4
+        [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"ssz_id"];
+        [param setObject:@"" forKey:@"cun_id"];
+        [param setObject:@"" forKey:@"wg_id"];
+        [param setObject:_flagLogZT forKey:@"ztxx"];
+        [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+        [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+        [param setObject:@""forKey:@"myd"];
+        page++;
+    }
+    //获取日志列表
+    [[HttpClient httpClient] requestWithPath:@"/GetMQLogInfoPage" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [_rizhiTableView.footer endRefreshing];
+        NSData* jsonData = [self XMLString:responseObject];
+        NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
+        if (middleArr.count<rowscount&&flagFirst==1) {
+            [MBProgressHUD showError:@"已经加载了全部数据"];
+        }
+        else{
+            [LogArr addObjectsFromArray:middleArr];
+            SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
+            [self.rizhiTableView reloadData];
+            
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [_rizhiTableView.footer endRefreshing];
+        [MBProgressHUD showError:@"请求失败"];
+    }];*/
+    
+    
+    
+    
 
+    
     
 }
 -(NSData *)XMLString:(NSData *)data

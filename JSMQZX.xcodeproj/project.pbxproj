@@ -51,6 +51,7 @@
 		F0B5593D1C2189D600E9103C /* PicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B5593C1C2189D600E9103C /* PicViewController.m */; };
 		F0B733E51C207FA9000DA6F3 /* LogBanliGanbuTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */; };
 		F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */; };
+		F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C5B5F41C230A1F00092FDB /* ZaizhiDangyuanVC.m */; };
 		F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */; };
 		F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */; };
 		F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E78DAB1C148A8800DDE8D8 /* GDataXMLNode.m */; };
@@ -153,6 +154,8 @@
 		F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogBanliGanbuTable.m; sourceTree = "<group>"; };
 		F0B733E61C208215000DA6F3 /* LogListGanbuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogListGanbuVC.h; sourceTree = "<group>"; };
 		F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogListGanbuVC.m; sourceTree = "<group>"; };
+		F0C5B5F31C230A1F00092FDB /* ZaizhiDangyuanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZaizhiDangyuanVC.h; sourceTree = "<group>"; };
+		F0C5B5F41C230A1F00092FDB /* ZaizhiDangyuanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZaizhiDangyuanVC.m; sourceTree = "<group>"; };
 		F0D255A11C170D17005BD1F4 /* MinQinRiZhiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinQinRiZhiTableVC.h; sourceTree = "<group>"; };
 		F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinQinRiZhiTableVC.m; sourceTree = "<group>"; };
 		F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddVisitLogVC.h; sourceTree = "<group>"; };
@@ -499,9 +502,19 @@
 		F0B733E21C207F66000DA6F3 /* LogBanliGanbu */ = {
 			isa = PBXGroup;
 			children = (
+				F0C5B5F11C2309DF00092FDB /* ZaizhiDangyuan */,
 				8E8FAE941C20F718006B02E9 /* LogBanli */,
 			);
 			name = LogBanliGanbu;
+			sourceTree = "<group>";
+		};
+		F0C5B5F11C2309DF00092FDB /* ZaizhiDangyuan */ = {
+			isa = PBXGroup;
+			children = (
+				F0C5B5F31C230A1F00092FDB /* ZaizhiDangyuanVC.h */,
+				F0C5B5F41C230A1F00092FDB /* ZaizhiDangyuanVC.m */,
+			);
+			name = ZaizhiDangyuan;
 			sourceTree = "<group>";
 		};
 		F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */ = {
@@ -708,6 +721,7 @@
 				F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */,
 				F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */,
 				F06D953E1C1EE2C100FDE859 /* WeiBanLiVC.m in Sources */,
+				F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,

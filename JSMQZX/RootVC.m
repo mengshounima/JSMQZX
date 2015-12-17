@@ -77,7 +77,7 @@
     [self performSegueWithIdentifier:@"RootNormalToRiZhiBanLi" sender:nil];
 }
 - (IBAction)clickGanbuZaizhidangyuan:(id)sender {
-    
+     [self performSegueWithIdentifier:@"GanbuRootToZaizhiDangyuan" sender:nil];
     
 }
 //干部日志办理
@@ -101,8 +101,10 @@
 
 
 
-
+//干部 在职党员
 - (IBAction)clickGuanliyuanZaizhidangyuan:(id)sender {
+   
+    
 }
 
 - (IBAction)clickGaunliyuanMinshendongtai:(id)sender {

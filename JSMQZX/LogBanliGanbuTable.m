@@ -61,6 +61,8 @@
     if (indexPath.row ==0) {
         [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:nil];
     }
+    else if (indexPath.row ==1){
+           }
 }
 
 /*

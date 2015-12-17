@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LogListGanbuVC.h"
+#import "GDataXMLNode.h"
 @interface LogBanliGanbuTable : UITableViewController
 
 @end
