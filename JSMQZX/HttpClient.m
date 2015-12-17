@@ -32,7 +32,7 @@ static id _instace;
         // 初始化请求管理对象
         self.opManager = [AFHTTPRequestOperationManager manager];
         self.opManager.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.opManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        self.opManager.responseSerializer = [AFXMLParserResponseSerializer serializer];
         
             // 初始化 请求对象
             [self initRequest];
@@ -42,11 +42,12 @@ static id _instace;
             self.manager.requestSerializer = [AFHTTPRequestSerializer serializer];
             
             //响应结果序列化类型
-            self.manager.responseSerializer = [RTJSONResponseSerializerWithData serializer];
+            self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            //self.manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
             
             //设置相应内容类型
             self.manager.responseSerializer.acceptableContentTypes =
-            [NSSet setWithObjects:@"application/json",@"charset=utf-8",@"image/jpeg",@"text/html",nil];
+            [NSSet setWithObjects:@"application/json",@"charset=utf-8",@"image/jpeg",@"text/html",@"text/xml",nil];
              /*self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];//如果报接受类型不一致请替换一致text/html或别的*/
             
             // 1.获得网络监控的管理者
@@ -114,8 +115,6 @@ static id _instace;
         prepareExecute();
     }
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", BaseURL, url];
-    self.manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     switch (method) {
         case TBHttpRequestGet:
         {

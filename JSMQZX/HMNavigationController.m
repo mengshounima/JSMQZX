@@ -137,7 +137,11 @@
     }];
 }
 -(void)SetViewClose{
-    
+    //关闭
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"注销用户提示" message:@"是否确认关闭嘉善县民生在线客户端?如需注销账号请选择注销用户" delegate:self cancelButtonTitle:@"取消" otherButtonTitles: @"关闭",nil];
+    alert.tag = 100;
+    [alert show];
+
 }
 -(void)SetViewHelp{
     
@@ -145,18 +149,56 @@
 -(void)SetViewSignUp{
     //注销
    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"注销用户提示" message:@"是否确认注销当前登录用户，注销后下次登录必须重新输入用户名和密码" delegate:self cancelButtonTitle:@"取消" otherButtonTitles: @"注销",nil];
+    alert.tag = 101;
     [alert show];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 0) {
-        
+    if (alertView.tag==100) {
+        //关闭
+        if (buttonIndex == 1) {
+        [self exitApplication];
+        }
     }
     else{
-        [USERDEFAULTS setObject:[NSNumber numberWithBool:NO] forKey:@"IsLogin"];//将记住的账号清除
+        if (buttonIndex == 1) {
+            [USERDEFAULTS setObject:[NSNumber numberWithBool:NO] forKey:@"IsLogin"];//将记住的账号清除
+            [self exitApplication];
+        }
+
     }
 }
+- (void)exitApplication {
+    
+    [UIView beginAnimations:@"exitApplication" context:nil];
+    
+    [UIView setAnimationDuration:0.5];
+    
+    [UIView setAnimationDelegate:self];
+    
+    // [UIView setAnimationTransition:UIViewAnimationCurveEaseOut forView:self.view.window cache:NO];
+    
+    [UIView setAnimationTransition:UIViewAnimationCurveEaseOut forView:self.view.window cache:NO];
+    
+    [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
+    
+    //self.view.window.bounds = CGRectMake(0, 0, 0, 0);
+    
+    self.view.window.bounds = CGRectMake(0, 0, 0, 0);
+    
+    [UIView commitAnimations];
+    
+}
 
+
+- (void)animationFinished:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    
+    if ([animationID compare:@"exitApplication"] == 0) {
+        
+        exit(0);
+        
+    }
+    
+}
 
 -(void)SetViewUser{
     [self performSegueWithIdentifier:@"NavToUserInfo" sender:nil];

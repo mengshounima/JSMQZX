@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2104C122E74782FB5C3F127A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBED7DC9802B13D42CCD37A /* libPods.a */; };
+		8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E414FCF1C227CA20001AA13 /* XMLDictionary.m */; };
 		F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F020D9701C186FB5001B78E4 /* FarmersVC.m */; };
 		F03009F21C12FAB600389829 /* UserTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F11C12FAB600389829 /* UserTypeView.m */; };
 		F03009FC1C132F3300389829 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F91C132F3300389829 /* HttpClient.m */; };
@@ -70,6 +71,8 @@
 /* Begin PBXFileReference section */
 		3BBED7DC9802B13D42CCD37A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB0B69A50406DD9FB2DD692 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8E414FCE1C227CA20001AA13 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		8E414FCF1C227CA20001AA13 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		D05FCD92B64E18EA08B9F805 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F020D96F1C186FB5001B78E4 /* FarmersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarmersVC.h; sourceTree = "<group>"; };
 		F020D9701C186FB5001B78E4 /* FarmersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarmersVC.m; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 		F03009F71C132F1300389829 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				8E414FCE1C227CA20001AA13 /* XMLDictionary.h */,
+				8E414FCF1C227CA20001AA13 /* XMLDictionary.m */,
 				F0E78DB01C14944100DDE8D8 /* JSONKit */,
 				F03009F81C132F3300389829 /* HttpClient.h */,
 				F03009F91C132F3300389829 /* HttpClient.m */,
@@ -680,6 +685,7 @@
 				F074E7081C15D9180098792E /* HMTitleButton.m in Sources */,
 				F0300A001C13362F00389829 /* UserInfo.m in Sources */,
 				F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */,
+				8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */,
 				F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */,
 				F0B733E51C207FA9000DA6F3 /* LogBanliGanbuTable.m in Sources */,
 				F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */,

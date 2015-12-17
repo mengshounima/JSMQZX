@@ -8,6 +8,7 @@
 //
 
 #import "LoginVC.h"
+
 @interface LoginVC ()<UserTypeSelectDelegate,UIGestureRecognizerDelegate,NSXMLParserDelegate>
 @property (strong,nonatomic) UIView *backView;
 @property (nonatomic,strong)UserTypeView *TypeView;
@@ -19,12 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getUserData];
     BOOL isLogin = [[USERDEFAULTS objectForKey:@"IsLogin"] boolValue];
     if (isLogin) {
         [self autoLogin];
     }
-
-    [self getUserData];
+    
     [self initView];
 }
 //自动登录
@@ -63,22 +64,114 @@
     }];
 
 }
+/*
 -(void)getUserData{
-    [MBProgressHUD showMessage:@"更新镇、街道列表"];
+    NSString *BaseURLString = @"http://122.225.44.14:802/webapi.asmx/GetZJDIndex";
+    NSURL *baseURL = [NSURL URLWithString:BaseURLString];
+    NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"json" forKey:@"format"];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
+    
+    [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    [client setDefaultHeader:@"Accept" value:@"text/html"];
+    [client postPath:@"weather.php" parameters:parameters success:^(AFHTTPRequestOperation*operation, id responseObject) {
+        NSString* newStr = [[NSString alloc] initWithData:responseObjectencoding:NSUTF8StringEncoding];
+        NSLog(@"POST请求:%@",newStr);
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    [client getPath:@"weather.php" parameters:parameters success:^(AFHTTPRequestOperation*operation, id responseObject) {
+        NSString* newStr = [[NSString alloc] initWithData:responseObjectencoding:NSUTF8StringEncoding];
+        NSLog(@"GET请求：%@",newStr);
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}*/
+
+-(void)getUserData{
+    //[MBProgressHUD showMessage:@"更新镇、街道列表"];
+    [MBProgressHUD showMessage:@"更新镇、街道列表" toView:self.view];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:@"1" forKey:@"Type"];
     [param setObject:@"" forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetZJDIndex" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+         MyLog(@"---**--%@",responseObject);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //NSXMLParser *parser = (NSXMLParser *)responseObject;
+         //这里使用了第三方框架 XMLDictionary，他本身继承并实现 NSXMLParserDelegate 委托代理协议，对数据进行遍历处理
+        //[self convertXMLParserToDictionary:parser];
+        
         NSData* jsonData = [self XMLString:responseObject];
         _typeArr = [jsonData objectFromJSONData];
-        MyLog(@"---**--%@",_typeArr);
+       
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
         MyLog(@"***%@",error);
     }];
 
 }
+- (void)convertXMLParserToDictionary:(NSXMLParser *)parser {
+         //dictionaryWithXMLParser: 是第三方框架 XMLDictionary 的方法
+        NSDictionary *dic = [NSDictionary dictionaryWithXMLParser:parser];
+         NSMutableString *mStrWeatherInfo = [[NSMutableString alloc] initWithString:@"广州近三天天气情况：\n"];
+         NSArray *arrWeatherInfo = [dic objectForKey:@"string"];
+         if (arrWeatherInfo != nil && arrWeatherInfo.count > 22) {
+                 NSMutableArray *mArrRange = [[NSMutableArray alloc] init];
+        
+                 NSUInteger loc = mStrWeatherInfo.length;
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[6]];
+                 NSUInteger len = mStrWeatherInfo.length - loc;
+                 NSValue *valObj = [NSValue valueWithRange:NSMakeRange(loc, len)];
+                 [mArrRange addObject:valObj];
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[5]];
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[7]];
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[10]];
+        
+                 loc = mStrWeatherInfo.length;
+                 [mStrWeatherInfo appendFormat:@"\n\n %@", arrWeatherInfo[13]];
+                 len = mStrWeatherInfo.length - loc;
+                 valObj = [NSValue valueWithRange:NSMakeRange(loc, len)];
+                 [mArrRange addObject:valObj];
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[12]];
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[14]];
+        
+                 loc = mStrWeatherInfo.length;
+                 [mStrWeatherInfo appendFormat:@"\n\n %@", arrWeatherInfo[18]];
+                 len = mStrWeatherInfo.length - loc;
+                 valObj = [NSValue valueWithRange:NSMakeRange(loc, len)];
+                 [mArrRange addObject:valObj];
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[17]];
+                 [mStrWeatherInfo appendFormat:@"\n %@", arrWeatherInfo[19]];
+        
+                 [mStrWeatherInfo appendFormat:@"\n\n %@", arrWeatherInfo[22]];
+        
+                 //数据的前10个字符以16.0像素加粗显示；这里使用 UITextView 的 attributedText，而他的 text 无法实现这种需求
+                 NSMutableAttributedString *mAttrStr = [[NSMutableAttributedString alloc] initWithString:mStrWeatherInfo];
+                 [mAttrStr addAttribute:NSFontAttributeName
+                                              value:[UIFont boldSystemFontOfSize:16.0]
+                                              range:NSMakeRange(0, 10)];
+        
+                 //数据的日期部分以紫色显示
+                 for (NSValue *valObj in mArrRange) {
+                         NSRange currentRange;
+                         [valObj getValue:&currentRange];
+                         [mAttrStr addAttribute:NSForegroundColorAttributeName
+                                                          value:[UIColor purpleColor]
+                                                          range:currentRange];
+                     }
+        
+                 //数据的前10个字符之后的内容全部以15.0像素显示
+                 [mAttrStr addAttribute:NSFontAttributeName
+                                              value:[UIFont systemFontOfSize:15.0]
+                                              range:NSMakeRange(10, mStrWeatherInfo.length - 10)];
+             
+                 //_txtVResult.attributedText = mAttrStr;
+             } else {
+                     //_txtVResult.text = @"请求数据无效";
+                 }
+    
+     }
+
 -(NSData *)XMLString:(NSData *)data
 {
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
@@ -196,6 +289,7 @@
         rootNav = [schoolStoryBoard instantiateInitialViewController];
         [self presentViewController:rootNav animated:YES completion:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
     }];
     
 }
