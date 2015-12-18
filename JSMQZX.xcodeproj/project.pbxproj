@@ -20,6 +20,9 @@
 		F0300A111C133D8600389829 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A0C1C133D8600389829 /* UIView+Extension.m */; };
 		F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A0E1C133D8600389829 /* UIImage+SJ.m */; };
 		F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = F047615E1C21A5BF002A9EF6 /* PhotoStackView.m */; };
+		F04F68BC1C2446F0000F1D58 /* DangyuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F04F68BA1C2446F0000F1D58 /* DangyuanCell.m */; };
+		F04F68BD1C2446F0000F1D58 /* DangyuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04F68BB1C2446F0000F1D58 /* DangyuanCell.xib */; };
+		F04F68C01C246108000F1D58 /* DangyuanBaodaoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F04F68BF1C246108000F1D58 /* DangyuanBaodaoTableVC.m */; };
 		F060B39B1C14557C007F472F /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F060B39A1C14557C007F472F /* RootVC.m */; };
 		F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = F060B39F1C145D5D007F472F /* MBProgressHUD+MJ.m */; };
 		F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F060B3A01C145D5D007F472F /* MBProgressHUD.bundle */; };
@@ -98,6 +101,11 @@
 		F0300A0E1C133D8600389829 /* UIImage+SJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SJ.m"; sourceTree = "<group>"; };
 		F047615D1C21A5BF002A9EF6 /* PhotoStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoStackView.h; sourceTree = "<group>"; };
 		F047615E1C21A5BF002A9EF6 /* PhotoStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoStackView.m; sourceTree = "<group>"; };
+		F04F68B91C2446F0000F1D58 /* DangyuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DangyuanCell.h; sourceTree = "<group>"; };
+		F04F68BA1C2446F0000F1D58 /* DangyuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DangyuanCell.m; sourceTree = "<group>"; };
+		F04F68BB1C2446F0000F1D58 /* DangyuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DangyuanCell.xib; sourceTree = "<group>"; };
+		F04F68BE1C246108000F1D58 /* DangyuanBaodaoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DangyuanBaodaoTableVC.h; sourceTree = "<group>"; };
+		F04F68BF1C246108000F1D58 /* DangyuanBaodaoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DangyuanBaodaoTableVC.m; sourceTree = "<group>"; };
 		F060B3991C14557C007F472F /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		F060B39A1C14557C007F472F /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		F060B39E1C145D5D007F472F /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
@@ -311,6 +319,16 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
+		F04F68B81C2446B0000F1D58 /* GanBuUser */ = {
+			isa = PBXGroup;
+			children = (
+				F04F68B91C2446F0000F1D58 /* DangyuanCell.h */,
+				F04F68BA1C2446F0000F1D58 /* DangyuanCell.m */,
+				F04F68BB1C2446F0000F1D58 /* DangyuanCell.xib */,
+			);
+			name = GanBuUser;
+			sourceTree = "<group>";
+		};
 		F060B39C1C145D38007F472F /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +373,7 @@
 		F074E7051C15D9090098792E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F04F68B81C2446B0000F1D58 /* GanBuUser */,
 				F0B5593A1C21893400E9103C /* GeneralUser */,
 				F0B4E1F51C19FBD500EAAC10 /* JKAlertDialog.h */,
 				F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */,
@@ -513,6 +532,8 @@
 			children = (
 				F0C5B5F31C230A1F00092FDB /* ZaizhiDangyuanVC.h */,
 				F0C5B5F41C230A1F00092FDB /* ZaizhiDangyuanVC.m */,
+				F04F68BE1C246108000F1D58 /* DangyuanBaodaoTableVC.h */,
+				F04F68BF1C246108000F1D58 /* DangyuanBaodaoTableVC.m */,
 			);
 			name = ZaizhiDangyuan;
 			sourceTree = "<group>";
@@ -643,6 +664,7 @@
 				F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */,
 				F06D95431C1EF05D00FDE859 /* LogCell.xib in Resources */,
 				F07D72A21C10756200C695CB /* Images.xcassets in Resources */,
+				F04F68BD1C2446F0000F1D58 /* DangyuanCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +723,7 @@
 				8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */,
 				F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */,
 				F0B733E51C207FA9000DA6F3 /* LogBanliGanbuTable.m in Sources */,
+				F04F68BC1C2446F0000F1D58 /* DangyuanCell.m in Sources */,
 				F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */,
 				F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
@@ -732,6 +755,7 @@
 				F060B3A51C145D5D007F472F /* MBProgressHUD.m in Sources */,
 				F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */,
 				F0800E8B1C1DA231004C2B6A /* SetView.m in Sources */,
+				F04F68C01C246108000F1D58 /* DangyuanBaodaoTableVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

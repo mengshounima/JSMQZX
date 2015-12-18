@@ -76,6 +76,8 @@
 - (IBAction)clickrizhibanli:(id)sender {
     [self performSegueWithIdentifier:@"RootNormalToRiZhiBanLi" sender:nil];
 }
+
+
 - (IBAction)clickGanbuZaizhidangyuan:(id)sender {
      [self performSegueWithIdentifier:@"GanbuRootToZaizhiDangyuan" sender:nil];
     

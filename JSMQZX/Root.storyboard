@@ -82,17 +82,17 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="日志办理" id="iDH-so-ew4"/>
                     <connections>
-                        <segue destination="NxH-ey-yyZ" kind="push" identifier="GanbuRizhiToZaizhiDangyuan" id="0GH-EK-hAw"/>
+                        <segue destination="8cx-md-Lyb" kind="push" identifier="GanbuRizhiToLogList" id="WbH-Ox-TTL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbA-Gb-BHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="211" y="1279"/>
+            <point key="canvasLocation" x="-283" y="889"/>
         </scene>
-        <!--Log List GanbuVC-->
+        <!--Log Banli Ganbu Table-->
         <scene sceneID="4np-fe-dx5">
             <objects>
-                <viewController id="8cx-md-Lyb" customClass="LogListGanbuVC" sceneMemberID="viewController">
+                <viewController id="8cx-md-Lyb" customClass="LogBanliGanbuTable" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eUI-C6-rSN"/>
                         <viewControllerLayoutGuide type="bottom" id="Mqy-QZ-mBc"/>
@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vw2-Mx-HEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="484" y="667"/>
+            <point key="canvasLocation" x="218" y="922"/>
         </scene>
         <!--图片浏览-->
         <scene sceneID="yeJ-PS-i4E">
@@ -514,7 +514,7 @@
                         <segue destination="dxK-2f-pTE" kind="push" identifier="RootNormalToMinQinRiZhi" id="Wmn-xT-wOv"/>
                         <segue destination="YUC-de-Ps3" kind="push" identifier="RootNormalToRiZhiBanLi" id="SnW-qf-Yfy"/>
                         <segue destination="ccr-3w-J48" kind="push" identifier="RootToLogBanliFGanbu" id="26h-BJ-jA0"/>
-                        <segue destination="8cx-md-Lyb" kind="push" identifier="GanbuRootToZaizhiDangyuan" id="mp2-OZ-Bdh"/>
+                        <segue destination="NxH-ey-yyZ" kind="push" identifier="GanbuRootToZaizhiDangyuan" id="d1W-Em-ot0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA2-WS-ewd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -599,7 +599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfF-gU-451" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="653"/>
+            <point key="canvasLocation" x="1030" y="653"/>
         </scene>
         <!--Log Info TableVC-->
         <scene sceneID="wBk-Ex-EYR">
@@ -1956,11 +1956,41 @@
                         <outlet property="DWXiaShuBtn" destination="mxd-hT-lsx" id="Aq1-8z-iFr"/>
                         <outlet property="LogTableView" destination="lmW-1E-P3t" id="c2R-yE-AGb"/>
                         <outlet property="mySearchBar" destination="vNe-PR-fLc" id="j2l-O2-YpJ"/>
+                        <segue destination="IwQ-1V-Hb4" kind="push" identifier="DangyuanVCToDangyuanInfo" id="7v8-0O-Qbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4S-QZ-Y86" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364" y="1729"/>
+            <point key="canvasLocation" x="-64" y="1594"/>
+        </scene>
+        <!--Dangyuan Baodao TableVC-->
+        <scene sceneID="eDG-4U-2X4">
+            <objects>
+                <tableViewController id="IwQ-1V-Hb4" customClass="DangyuanBaodaoTableVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0yn-7h-XsE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UKg-ZM-fjc">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKg-ZM-fjc" id="8r3-79-QEB">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IwQ-1V-Hb4" id="wBJ-Ee-7oL"/>
+                            <outlet property="delegate" destination="IwQ-1V-Hb4" id="bGd-sZ-6R6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1cT-od-PTx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kkf-dd-G6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="326" y="1584"/>
         </scene>
     </scenes>
     <resources>

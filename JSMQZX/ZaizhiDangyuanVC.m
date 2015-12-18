@@ -18,6 +18,11 @@
     NSMutableArray *SearchShowArr;//搜索结果
     NSInteger rowscount;
     NSInteger page;
+    NSNumber *selectDWID;
+    int f1 ;
+    int f2;
+    int f3;
+    BOOL IsFirst;
 
 }
 @property (nonatomic,strong) NSArray *DWXiaShuArr;
@@ -28,16 +33,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initData];
+    [self initView];
     [self getViewData];
 }
+-(void)initData{
+    f1 = 0;
+    f2 = 0;
+    f3 = 0;
+    IsFirst = YES;
+    rowscount = 20;
+    page = 1;
+}
+-(void)initView{
+    
+}
+//其他党委GetDWIndex
+//下属type=1
+//机关下属党委
+//党员报到GetDYBDIndexPage
+
 -(void)getViewData{
     [MBProgressHUD showMessage:@"构建页面"];
     //获取下属单位
-    NSMutableDictionary *paramZJD = [[NSMutableDictionary alloc] init];
-    [paramZJD setObject:@"1" forKey:@"Type"];
-    [paramZJD setObject:[UserInfo sharedInstance].useID forKey:@"userId"];
-    [[HttpClient httpClient] requestWithPath:@"/GetDWIndex" method:TBHttpRequestPost parameters:paramZJD prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+    NSMutableDictionary *paramXS = [[NSMutableDictionary alloc] init];
+    [paramXS setObject:@"1" forKey:@"Type"];
+    [paramXS setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [[HttpClient httpClient] requestWithPath:@"/GetDWIndex" method:TBHttpRequestPost parameters:paramXS prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        f1 = 1;
+        if (f1 == 1&& f2 ==1 && f3 == 1) {
+            [MBProgressHUD hideHUD];
+        }
         NSData* jsonData = [self XMLString:responseObject];
         _DWXiaShuArr = [jsonData objectFromJSONData];
         MyLog(@"---**--%@",_DWXiaShuArr);
@@ -45,6 +71,53 @@
         [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
     }];
+    //获取其他党委
+    NSMutableDictionary *paramQT = [[NSMutableDictionary alloc] init];
+    [paramQT setObject:@"2" forKey:@"Type"];
+    [paramQT setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [[HttpClient httpClient] requestWithPath:@"/GetDWIndex" method:TBHttpRequestPost parameters:paramQT prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        f2 = 1;
+        if (f1 == 1&& f2 ==1 &&f3 == 1) {
+            [MBProgressHUD hideHUD];
+        }
+
+        NSData* jsonData = [self XMLString:responseObject];
+        _DWQiTaArr = [jsonData objectFromJSONData];
+        MyLog(@"---**--%@",_DWQiTaArr);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        MyLog(@"***%@",error);
+    }];
+    //在职党员列表
+    NSMutableDictionary *paramList = [[NSMutableDictionary alloc] init];
+    if (IsFirst) {
+        [paramList setObject:@"" forKey:@"dw_id"];
+        IsFirst = !IsFirst;
+    }
+    else{
+        [paramList setObject:selectDWID forKey:@"dw_id"];
+    }
+    
+    [paramList setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+    [paramList setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [paramList setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [[HttpClient httpClient] requestWithPath:@"/GetDYBDIndexPage" method:TBHttpRequestPost parameters:paramList prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        f3 = 1;
+        if (f1 == 1&& f2 ==1 &&f3 == 1) {
+            [MBProgressHUD hideHUD];
+        }
+        NSData* jsonData = [self XMLString:responseObject];
+        LogArr = [jsonData objectFromJSONData];
+        MyLog(@"---**--%@",LogArr);
+        [_LogTableView reloadData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        MyLog(@"***%@",error);
+    }];
+
+    
+    
+    
 }
     -(NSData *)XMLString:(NSData *)data
     {
@@ -63,17 +136,122 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//其他党委GetDWIndex  下属type=1
-//机关下属党委
-//党员报到GetDYBDIndexPage
-/*
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (tableView == _DWXiaShuTable) {
+        return _DWXiaShuArr.count+1;
+    }
+    else if (tableView == _DWQiTaTable){
+        return _DWQiTaArr.count+1;
+    }
+    else{
+        return LogArr.count;
+    }
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _DWXiaShuTable) {//是否共性
+        static NSString *CellIdentifier = @"DWXiaShuCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"机关党委下属单位";
+        }
+        else{
+            cell.textLabel.text = [_DWXiaShuArr[indexPath.row-1] objectForKey:@"dw_name"];
+        }
+        return cell;
+        
+    }
+    else if(tableView == _DWQiTaTable){
+        static NSString *CellIdentifier = @"DWQiTaCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"其他党委";
+        }
+        else
+        {
+            cell.textLabel.text = [_DWQiTaArr[indexPath.row-1] objectForKey:@"dw_name"];
+        }
+        return cell;
+    }
+    else{
+        //党员列表
+        static NSString *CellIdentifier = @"DangyuanCell";
+        DangyuanCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"DangyuanCell" owner:nil options:nil] lastObject];
+        }
+        [cell updateCell:LogArr[indexPath.row]];
+        return cell;
+
+    }
+
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView==_DWXiaShuTable) {
+        if (indexPath.row == 0) {
+            [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
+            [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
+            
+            selectDWID =[NSNumber numberWithInteger:0];//查询所以党员报到
+        }
+        else{
+            [_DWXiaShuBtn setTitle:[_DWXiaShuArr[indexPath.row-1] objectForKey:@"dw_name"] forState:UIControlStateNormal];
+            selectDWID =[_DWXiaShuArr[indexPath.row] objectForKey:@"dw_id"];
+        }
+    }
+    else if (tableView==_DWQiTaTable){
+        if (indexPath.row == 0) {
+            [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
+            [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
+            selectDWID =[NSNumber numberWithInteger:0];//查询所以党员报到
+            
+            
+        }
+        else{
+            [_DWQitaBtn setTitle:[_DWQiTaArr[indexPath.row-1] objectForKey:@"dw_name"] forState:UIControlStateNormal];
+            selectDWID =[_DWQiTaArr[indexPath.row] objectForKey:@"dw_id"];
+        }
+
+    }
+    else{
+        //报到详情
+        [self performSegueWithIdentifier:@"DangyuanVCToDangyuanInfo" sender:LogArr[indexPath.row]];
+    }
+    
+  
+}
+- (IBAction)clickDWQiTaBtn:(id)sender{
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择所属党委" message:@""];
+    alert.contentView = _DWQiTaTable;
+    
+    [alert addButtonWithTitle:@"取消"];
+    
+    [alert show];
+}
+- (IBAction)clickDWXiaShuBtn:(id)sender{
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择村/社区" message:@""];
+    alert.contentView = _DWXiaShuTable;
+    
+    [alert addButtonWithTitle:@"取消"];
+    
+    [alert show];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"DangyuanVCToDangyuanInfo"]) {
+        DangyuanBaodaoTableVC *baodaoInfoVC = segue.destinationViewController;
+        baodaoInfoVC.infoDic = sender;
+    }
 }
-*/
+
 
 @end

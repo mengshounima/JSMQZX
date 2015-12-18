@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JKAlertDialog.h"
 #import "GDataXMLNode.h"
+#import "DangyuanCell.h"
+#import "DangyuanBaodaoTableVC.h"
 @interface ZaizhiDangyuanVC : UIViewController
 - (IBAction)clickDWXiaShuBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *DWXiaShuBtn;
