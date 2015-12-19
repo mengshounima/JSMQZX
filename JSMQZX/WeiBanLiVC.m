@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
-    [self reloadMoreList:0];
+    [self reloadMoreList];
     [self initView];
 }
 -(void)initData{
@@ -70,11 +70,11 @@
 - (void)setupRefreshView
 {
     self.rizhiTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self reloadMoreList:1];//加载下一页
+        [self reloadMoreList];//加载下一页
     }];
     
 }
--(void)reloadMoreList:(NSInteger )flagFirst{
+-(void)reloadMoreList{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
     [param setObject:idStr forKey:@"userId"];
@@ -87,7 +87,7 @@
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"myd"];
-        page++;
+   
     }
     else if (_flagLogZT.integerValue == 6){
         //已评价
@@ -98,7 +98,7 @@
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"myd"];
-        page++;
+   
     }
     else {
         //1，2，3，4
@@ -109,22 +109,23 @@
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"myd"];
-        page++;
+   
     }
     //获取日志列表
     [[HttpClient httpClient] requestWithPath:@"/GetMQLogInfoPage" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [_rizhiTableView.footer endRefreshing];
+       
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
-        if (middleArr.count<rowscount&&flagFirst==1) {
-            [MBProgressHUD showError:@"已经加载了全部数据"];
-        }
+        if (middleArr.count<rowscount) {
+             [_rizhiTableView.footer endRefreshingWithNoMoreData];
+            }
         else{
-            [LogArr addObjectsFromArray:middleArr];
-            SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
-            [self.rizhiTableView reloadData];
-            
+            [_rizhiTableView.footer endRefreshing];
         }
+        [LogArr addObjectsFromArray:middleArr];
+        SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
+        [self.rizhiTableView reloadData];
+         page++;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [_rizhiTableView.footer endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
@@ -180,7 +181,7 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"LogCell" owner:nil options:nil] lastObject];
     }
-    [cell updateContent:LogArr[indexPath.row]];
+    [cell updateContent:SearchShowArr[indexPath.row]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return  cell;
     

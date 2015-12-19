@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *DWXiaShuBtn;
 @property (weak, nonatomic) IBOutlet UIButton *DWQitaBtn;
 - (IBAction)clickDWQiTaBtn:(id)sender;
+
 - (IBAction)clickSearchBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *LogTableView;

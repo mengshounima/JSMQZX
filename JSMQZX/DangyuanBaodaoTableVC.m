@@ -9,19 +9,50 @@
 #import "DangyuanBaodaoTableVC.h"
 
 @interface DangyuanBaodaoTableVC ()
-
+@property (nonatomic,weak)  NSDictionary *BaodaoInfoDic;
 @end
 
 @implementation DangyuanBaodaoTableVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getInfoData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+//获取党员报到信息
+-(void)getInfoData{
+    [MBProgressHUD showMessage:@"加载中"];
+    NSMutableDictionary *paramList = [[NSMutableDictionary alloc] init];
+    [paramList setObject:[_infoDic objectForKey:@"bd_id"] forKey:@"BD_ID"];
+    [paramList setObject:[_infoDic objectForKey:@"bdxx_id"] forKey:@"ID"];
+    [paramList setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [[HttpClient httpClient] requestWithPath:@"/GetDYBDInfo" method:TBHttpRequestPost parameters:paramList prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        _BaodaoInfoDic = (NSDictionary *)[jsonData objectFromJSONData];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"请求失败"];
+    }];
+    
+}
+-(NSData *)XMLString:(NSData *)data
+{
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
+    //获取根节点（Users）
+    GDataXMLElement *rootElement = [doc rootElement];
+    NSArray *users = [rootElement children];
+    GDataXMLNode  *contentNode = users[0];
+    NSString *str =  contentNode.XMLString;
+    NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    MyLog(@"***%@",str);
+    return  jsonData;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,15 +81,19 @@
 
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *ID = @"DangyuanInfoCell";
+    if (indexPath.section == 0) {
+        <#statements#>
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

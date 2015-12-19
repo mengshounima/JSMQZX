@@ -21,12 +21,12 @@
 }
 -(void)updateCell:(NSDictionary *)infoDic{
     MyLog(@"%@",infoDic);
-    _nameL.text = [infoDic objectForKey:@"bd_name"];
-    _shequL.text = [infoDic objectForKey:@"cun_name"];
-    _dwL.text = [infoDic objectForKey:@"dw_name"];
-    _dateL.text = [infoDic objectForKey:@"bd_bdrq"];
-    _workDanweiL.text = [infoDic objectForKey:@"bd_gzdw"];
-    _familyL.text = [infoDic objectForKey:@"fxgw_name"];
+    _nameL.text = [NSString stringWithFormat:@"姓名:%@",[infoDic objectForKey:@"bd_name"]];
+    _shequL.text = [NSString stringWithFormat:@"报到社区:%@",[infoDic objectForKey:@"cun_name"]];
+    _dwL.text = [NSString stringWithFormat:@"所属党委:%@",[infoDic objectForKey:@"dw_name"]];
+    _dateL.text = [NSString stringWithFormat:@"报到日期:%@",[infoDic objectForKey:@"bd_bdrq"]];
+    _workDanweiL.text = [NSString stringWithFormat:@"工作单位:%@",[infoDic objectForKey:@"bd_gzdw"]];
+    _familyL.text = [NSString stringWithFormat:@"家园奉献岗位:%@",[infoDic objectForKey:@"fxgw_name"]];
 }
 
 @end

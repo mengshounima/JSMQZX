@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GDataXMLNode.h"
 @interface DangyuanBaodaoTableVC : UITableViewController
 @property (nonatomic,weak) NSDictionary *infoDic ;
 @end

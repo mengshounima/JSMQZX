@@ -61,7 +61,7 @@
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
          [param setObject:@""forKey:@"KeyWord"];
         urlStr = @"/GetPeopleIndexPage";
-        page++;
+       
     }
     else if (_flagPeopleSelect.integerValue == 2){
         //已走访
@@ -70,7 +70,7 @@
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"KeyWord"];
          urlStr = @"/GetPeopleIndexPage";
-        page++;
+    
     }
     else if (_flagPeopleSelect.integerValue == 3){
         //未走访
@@ -79,7 +79,7 @@
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"KeyWord"];
         urlStr = @"/GetPeopleIndexPage";
-        page++;
+   
     }
     else {
         //随机走访_flagPeopleSelect == 4
@@ -88,18 +88,19 @@
         urlStr = @"/GetGridPeopleIndex";
     }
     [[HttpClient httpClient] requestWithPath:urlStr method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-         [_FarmerTable.footer endRefreshing];
+        
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
         if (middleArr.count<rowscount) {
-            [MBProgressHUD showError:@"已经加载了全部数据"];
+            [_FarmerTable.footer endRefreshingWithNoMoreData];
         }
         else{
-            [farmerArr addObjectsFromArray:middleArr];
-            SearchShowArr = [NSMutableArray arrayWithArray:farmerArr];
-            [self.FarmerTable reloadData];
-
+            [_FarmerTable.footer endRefreshing];
         }
+        [farmerArr addObjectsFromArray:middleArr];
+        SearchShowArr = [NSMutableArray arrayWithArray:farmerArr];
+        [self.FarmerTable reloadData];
+         page++;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
          [_FarmerTable.footer endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
@@ -172,11 +173,6 @@
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    /*if (self.searchController.active) {
-        return [self.searchList count];
-    }else{
-        return [self.dataList count];
-    }*/
     return SearchShowArr.count;
     
 }

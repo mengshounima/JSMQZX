@@ -7,8 +7,8 @@
 //
 
 #import "ZaizhiDangyuanVC.h"
-
-@interface ZaizhiDangyuanVC ()<UITableViewDataSource,UITableViewDelegate>
+#import "MJRefresh.h"
+@interface ZaizhiDangyuanVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     JKAlertDialog *alert;
     UITableView *_DWXiaShuTable;
@@ -22,7 +22,6 @@
     int f1 ;
     int f2;
     int f3;
-    BOOL IsFirst;
 
 }
 @property (nonatomic,strong) NSArray *DWXiaShuArr;
@@ -38,15 +37,102 @@
     [self getViewData];
 }
 -(void)initData{
+    LogArr = [[NSMutableArray alloc] init];
+    SearchShowArr = [[NSMutableArray alloc] init];
     f1 = 0;
     f2 = 0;
     f3 = 0;
-    IsFirst = YES;
     rowscount = 20;
     page = 1;
+    _mySearchBar.returnKeyType = UIReturnKeyDone;
 }
 -(void)initView{
+    _DWQiTaTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
+    _DWQiTaTable.delegate = self;
+    _DWQiTaTable.dataSource = self;
     
+    _DWXiaShuTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
+    _DWXiaShuTable.delegate = self;
+    _DWXiaShuTable.dataSource = self;
+
+    _mySearchBar.delegate = self;
+     [self setupRefreshView];//初始化刷新
+    
+}
+#pragma mark - 集成刷新控件
+- (void)setupRefreshView
+{
+    self.LogTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self reloadMoreList];//加载下一页
+    }];
+    
+}
+
+-(void)reloadMoreList{
+    //在职党员列表
+    NSMutableDictionary *paramList = [[NSMutableDictionary alloc] init];
+    if (ISNULL(selectDWID)) {
+        [paramList setObject:@"" forKey:@"dw_id"];
+    }
+    else{
+        [paramList setObject:selectDWID forKey:@"dw_id"];
+    }
+    
+    [paramList setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
+    [paramList setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [paramList setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [[HttpClient httpClient] requestWithPath:@"/GetDYBDIndexPage" method:TBHttpRequestPost parameters:paramList prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSData* jsonData = [self XMLString:responseObject];
+        NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
+        if (middleArr.count<rowscount) {
+            [_LogTableView.footer endRefreshingWithNoMoreData];
+        }
+        else{
+            [_LogTableView.footer endRefreshing];
+        }
+        [LogArr addObjectsFromArray:middleArr];
+        SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
+        [_LogTableView reloadData];
+        page++;
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [_LogTableView.footer endRefreshing];
+        [MBProgressHUD showError:@"请求失败"];
+    }];
+
+    
+ }
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self queryWithCondition:searchText];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+    [self initData];//重新开始搜索
+}
+
+-(void)queryWithCondition:(NSString *)searchKey
+{//在当前显示列表中搜索关键字
+    [SearchShowArr removeAllObjects];
+    for (int i=0;i<[LogArr count];i++) {
+        NSDictionary *Single=[LogArr objectAtIndex:i];
+        
+        if (ISNULLSTR(searchKey)) {//没有值，显示全部
+            SearchShowArr = [LogArr mutableCopy];
+            break;
+        }
+        
+        NSString *namePinyinStr = [Single objectForKey:@"bd_name"];
+        if (!ISNULLSTR(namePinyinStr)) {
+            if ([namePinyinStr rangeOfString:searchKey].location != NSNotFound) {
+                [SearchShowArr addObject:Single];
+                
+                continue;
+            }
+        }
+    }
+    [_LogTableView reloadData];
 }
 //其他党委GetDWIndex
 //下属type=1
@@ -90,13 +176,7 @@
     }];
     //在职党员列表
     NSMutableDictionary *paramList = [[NSMutableDictionary alloc] init];
-    if (IsFirst) {
-        [paramList setObject:@"" forKey:@"dw_id"];
-        IsFirst = !IsFirst;
-    }
-    else{
-        [paramList setObject:selectDWID forKey:@"dw_id"];
-    }
+    [paramList setObject:@"" forKey:@"dw_id"];
     
     [paramList setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
     [paramList setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
@@ -107,19 +187,18 @@
             [MBProgressHUD hideHUD];
         }
         NSData* jsonData = [self XMLString:responseObject];
-        LogArr = [jsonData objectFromJSONData];
-        MyLog(@"---**--%@",LogArr);
+        NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
+        [LogArr addObjectsFromArray:middleArr];
+         SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
+        //MyLog(@"---**--%@",LogArr);
         [_LogTableView reloadData];
+        page++;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
     }];
-
-    
-    
-    
 }
-    -(NSData *)XMLString:(NSData *)data
+-(NSData *)XMLString:(NSData *)data
     {
         GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
         //获取根节点（Users）
@@ -144,7 +223,7 @@
         return _DWQiTaArr.count+1;
     }
     else{
-        return LogArr.count;
+        return SearchShowArr.count;
     }
 }
 
@@ -186,7 +265,7 @@
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"DangyuanCell" owner:nil options:nil] lastObject];
         }
-        [cell updateCell:LogArr[indexPath.row]];
+        [cell updateCell:SearchShowArr[indexPath.row]];
         return cell;
 
     }
@@ -221,7 +300,7 @@
     }
     else{
         //报到详情
-        [self performSegueWithIdentifier:@"DangyuanVCToDangyuanInfo" sender:LogArr[indexPath.row]];
+        [self performSegueWithIdentifier:@"DangyuanVCToDangyuanInfo" sender:SearchShowArr[indexPath.row]];
     }
     
   
@@ -242,7 +321,11 @@
     
     [alert show];
 }
-
+- (IBAction)clickSearchBtn:(id)sender{
+    [self initData];//重新开始搜索
+    [self reloadMoreList];
+    
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

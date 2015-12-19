@@ -7,8 +7,9 @@
 //
 
 #import "AddVisitLogVC.h"
-
-@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextViewDelegate>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextViewDelegate,BMKLocationServiceDelegate>
 {
     UIDatePicker *datePicker;
     UITableView *_CommonTable;
@@ -23,10 +24,19 @@
     NSString *flagChuli;
     int f1;
     int f2;
+    BMKLocationService *_locService;
+    BMKUserLocation *_userLocation;
 }
 @end
 
 @implementation AddVisitLogVC
+-(void)viewWillAppear:(BOOL)animated {
+    _locService.delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    _locService.delegate = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,6 +102,12 @@
     _farmerF.text = notific.object;
 }
 -(void)initView{
+    //初始化BMKLocationService
+    _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
+    //启动LocationService
+    [_locService startUserLocationService];
+    
     _boxView.layer.cornerRadius = 6;
     _boxView.layer.borderColor = choiceColor(230, 230, 230).CGColor;
     _boxView.layer.borderWidth = 1;
@@ -151,6 +167,12 @@
     
 
 }
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    _userLocation = userLocation;
+}
+
 -(void)changeContentViewPosition:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -312,6 +334,10 @@
 
 //提交日志
 - (IBAction)clickSendBtn:(id)sender {
+    if (ISNULL(_userLocation)) {
+        [MBProgressHUD showError:@"尚未定位成功，请稍等再试"];
+        return;
+    }
     [MBProgressHUD showMessage:@"提交中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
@@ -326,8 +352,8 @@
     [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
     [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id
     [param setObject:@"20151201" forKey:@"rz_zjblsj"];//日志最终办理结果的时间
-    [param setObject:@"30" forKey:@"placeLongitude"];//经纬度
-    [param setObject:@"120" forKey:@"placeLatitude"];
+    [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.longitude] forKey:@"placeLongitude"];//经纬度
+    [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.latitude] forKey:@"placeLatitude"];
     [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
