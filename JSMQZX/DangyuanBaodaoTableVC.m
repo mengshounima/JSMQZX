@@ -17,12 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getInfoData];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 //获取党员报到信息
 -(void)getInfoData{
@@ -60,38 +54,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 5;
-    }
-    else if(section == 1){
-        return 2;
-    }
-    else if(section == 1){
-        return 6;
-    }else{
-        return 0;
-    }
-
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"DangyuanInfoCell";
-    if (indexPath.section == 0) {
-        <#statements#>
-    }
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    //if (indexPath.section == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell==nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        //cell内容
+        if (indexPath.row == 0) {
+            cell.textLabel.text = [NSString stringWithFormat:@"党员姓名:%@",[_BaodaoInfoDic objectForKey:@"bd_name"]];
+        }
+        else if (indexPath.row == 1) {
+            cell.textLabel.text = [NSString stringWithFormat:@"所属党委:%@",[_BaodaoInfoDic objectForKey:@"dw_name"]];
+        }
+        if (indexPath.row == 2) {
+            cell.textLabel.text = [NSString stringWithFormat:@"工作单位:%@",[_BaodaoInfoDic objectForKey:@"bd_gzdw"]];
+        }
+        if (indexPath.row == 3) {
+            cell.textLabel.text = [NSString stringWithFormat:@"联系电话:%@",[_BaodaoInfoDic objectForKey:@"bd_lxdh"]];
+        }
+        else
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"职务:%@",[_BaodaoInfoDic objectForKey:@"bd_zw"]];
+        }
+        //return cell;
+   // }
+    //else if(indexPath.section == 1){
+   
+        
+  //  }
     return cell;
+    
 }
 
 

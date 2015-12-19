@@ -52,6 +52,10 @@
 		F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */; };
 		F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */; };
 		F0B5593D1C2189D600E9103C /* PicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B5593C1C2189D600E9103C /* PicViewController.m */; };
+		F0B725241C258E7F0027B1F1 /* MessageBoardTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B725231C258E7F0027B1F1 /* MessageBoardTableVC.m */; };
+		F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B725291C2599020027B1F1 /* mailCell.m */; };
+		F0B7252C1C2599020027B1F1 /* mailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B7252A1C2599020027B1F1 /* mailCell.xib */; };
+		F0B7252F1C25A6FA0027B1F1 /* mailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B7252E1C25A6FA0027B1F1 /* mailInfoVC.m */; };
 		F0B733E51C207FA9000DA6F3 /* LogBanliGanbuTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */; };
 		F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B733E71C208215000DA6F3 /* LogListGanbuVC.m */; };
 		F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C5B5F41C230A1F00092FDB /* ZaizhiDangyuanVC.m */; };
@@ -175,6 +179,13 @@
 		F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
 		F0B5593B1C2189D600E9103C /* PicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicViewController.h; sourceTree = "<group>"; };
 		F0B5593C1C2189D600E9103C /* PicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicViewController.m; sourceTree = "<group>"; };
+		F0B725221C258E7F0027B1F1 /* MessageBoardTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBoardTableVC.h; sourceTree = "<group>"; };
+		F0B725231C258E7F0027B1F1 /* MessageBoardTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoardTableVC.m; sourceTree = "<group>"; };
+		F0B725281C2599020027B1F1 /* mailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mailCell.h; sourceTree = "<group>"; };
+		F0B725291C2599020027B1F1 /* mailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mailCell.m; sourceTree = "<group>"; };
+		F0B7252A1C2599020027B1F1 /* mailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mailCell.xib; sourceTree = "<group>"; };
+		F0B7252D1C25A6FA0027B1F1 /* mailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mailInfoVC.h; sourceTree = "<group>"; };
+		F0B7252E1C25A6FA0027B1F1 /* mailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mailInfoVC.m; sourceTree = "<group>"; };
 		F0B733E31C207FA9000DA6F3 /* LogBanliGanbuTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogBanliGanbuTable.h; sourceTree = "<group>"; };
 		F0B733E41C207FA9000DA6F3 /* LogBanliGanbuTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogBanliGanbuTable.m; sourceTree = "<group>"; };
 		F0B733E61C208215000DA6F3 /* LogListGanbuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogListGanbuVC.h; sourceTree = "<group>"; };
@@ -391,6 +402,9 @@
 				F04F68B91C2446F0000F1D58 /* DangyuanCell.h */,
 				F04F68BA1C2446F0000F1D58 /* DangyuanCell.m */,
 				F04F68BB1C2446F0000F1D58 /* DangyuanCell.xib */,
+				F0B725281C2599020027B1F1 /* mailCell.h */,
+				F0B725291C2599020027B1F1 /* mailCell.m */,
+				F0B7252A1C2599020027B1F1 /* mailCell.xib */,
 			);
 			name = GanBuUser;
 			sourceTree = "<group>";
@@ -585,9 +599,21 @@
 			name = GeneralUser;
 			sourceTree = "<group>";
 		};
+		F0B7251E1C258C780027B1F1 /* MinshengDongtai */ = {
+			isa = PBXGroup;
+			children = (
+				F0B725221C258E7F0027B1F1 /* MessageBoardTableVC.h */,
+				F0B725231C258E7F0027B1F1 /* MessageBoardTableVC.m */,
+				F0B7252D1C25A6FA0027B1F1 /* mailInfoVC.h */,
+				F0B7252E1C25A6FA0027B1F1 /* mailInfoVC.m */,
+			);
+			name = MinshengDongtai;
+			sourceTree = "<group>";
+		};
 		F0B733E21C207F66000DA6F3 /* LogBanliGanbu */ = {
 			isa = PBXGroup;
 			children = (
+				F0B7251E1C258C780027B1F1 /* MinshengDongtai */,
 				F0C5B5F11C2309DF00092FDB /* ZaizhiDangyuan */,
 				8E8FAE941C20F718006B02E9 /* LogBanli */,
 			);
@@ -725,6 +751,7 @@
 			files = (
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
 				F0C9AAAA1C252BDC00CFA498 /* mapapi.bundle in Resources */,
+				F0B7252C1C2599020027B1F1 /* mailCell.xib in Resources */,
 				F07D72A01C10756200C695CB /* Main.storyboard in Resources */,
 				F0800E8D1C1DA248004C2B6A /* SetView.xib in Resources */,
 				F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */,
@@ -783,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */,
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
 				F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */,
 				F074E7081C15D9180098792E /* HMTitleButton.m in Sources */,
@@ -801,6 +829,7 @@
 				F0B5593D1C2189D600E9103C /* PicViewController.m in Sources */,
 				F06D95421C1EF05D00FDE859 /* LogCell.m in Sources */,
 				F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */,
+				F0B7252F1C25A6FA0027B1F1 /* mailInfoVC.m in Sources */,
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
 				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,
@@ -813,6 +842,7 @@
 				F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */,
 				F06D953E1C1EE2C100FDE859 /* WeiBanLiVC.m in Sources */,
 				F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */,
+				F0B725241C258E7F0027B1F1 /* MessageBoardTableVC.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.mm in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,

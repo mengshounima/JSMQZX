@@ -87,8 +87,9 @@
     [self performSegueWithIdentifier:@"RootToLogBanliFGanbu" sender:nil];
     
 }
-
+//干部 民生动态
 - (IBAction)clickGanbuMinshendongtai:(id)sender {
+    [self performSegueWithIdentifier:@"GanbuRootToMessageBoard" sender:nil];
 }
 
 - (IBAction)clickGanbuFenxiyanpan:(id)sender {
