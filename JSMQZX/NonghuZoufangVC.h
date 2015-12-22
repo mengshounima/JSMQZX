@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PieChartView.h"
+#import "JKAlertDialog.h"
 @interface NonghuZoufangVC : UIViewController<PieChartDelegate>
 @property (weak, nonatomic) IBOutlet PieChartView *pieChartView;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;

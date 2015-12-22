@@ -80,7 +80,7 @@
     
     [paramList setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
     [paramList setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [paramList setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [paramList setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetDYBDIndexPage" method:TBHttpRequestPost parameters:paramList prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
@@ -144,7 +144,7 @@
     //获取下属单位
     NSMutableDictionary *paramXS = [[NSMutableDictionary alloc] init];
     [paramXS setObject:@"1" forKey:@"Type"];
-    [paramXS setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [paramXS setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetDWIndex" method:TBHttpRequestPost parameters:paramXS prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f1 = 1;
         if (f1 == 1&& f2 ==1 && f3 == 1) {
@@ -160,7 +160,7 @@
     //获取其他党委
     NSMutableDictionary *paramQT = [[NSMutableDictionary alloc] init];
     [paramQT setObject:@"2" forKey:@"Type"];
-    [paramQT setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [paramQT setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetDWIndex" method:TBHttpRequestPost parameters:paramQT prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f2 = 1;
         if (f1 == 1&& f2 ==1 &&f3 == 1) {
@@ -180,7 +180,7 @@
     
     [paramList setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
     [paramList setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [paramList setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [paramList setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetDYBDIndexPage" method:TBHttpRequestPost parameters:paramList prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f3 = 1;
         if (f1 == 1&& f2 ==1 &&f3 == 1) {

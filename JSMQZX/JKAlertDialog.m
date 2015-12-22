@@ -185,9 +185,10 @@
 #pragma mark - show and dismiss
 -(UIView*)topView{
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    return  window.subviews[0];
+    return  window;
 }
 - (void)show {
+    //MyLog(@"_contentView宽度%f 高度%f",_contentView.frame.size.width,_contentView.frame.size.height);
     [UIView animateWithDuration:0.5 animations:^{
         _coverView.alpha = 0.5;
 
@@ -217,6 +218,7 @@
     popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
                                      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
                                      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    //MyLog(@"_alertView宽度%f 高度%f",_alertView.frame.size.width,_alertView.frame.size.height);
     [_alertView.layer addAnimation:popAnimation forKey:nil];
 }
 

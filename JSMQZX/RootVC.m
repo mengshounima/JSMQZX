@@ -19,7 +19,7 @@
     [self initView];
 }
 -(void)initView{
-    NSString *powerStr = [NSString stringWithFormat:@"%@",[[UserInfo sharedInstance] ReadData].power];
+    NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
    // NSString *administerNameStr = [UserInfo sharedInstance].administerName;
     /*if ([administerNameStr isEqualToString:@"管理员"]) {
         //两个按钮

@@ -16,7 +16,7 @@
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD+MJ.h"
 #import "JSONKit.h"
-#import "UserInfo.h"
+#import "DataCenter.h"
 #import "XMLDictionary.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.

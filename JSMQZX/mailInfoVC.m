@@ -22,7 +22,7 @@
 -(void)getData{
     [MBProgressHUD showMessage:@"加载中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    NSString *idStr =[[DataCenter sharedInstance] ReadData].UserInfo.useID ;
     [param setObject:_IDNum forKey:@"ID"];
     [param setObject:idStr forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetMailInfoByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {

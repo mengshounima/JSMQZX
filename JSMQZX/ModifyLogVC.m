@@ -262,7 +262,7 @@
     //获取共性问题list
     [MBProgressHUD showMessage:@"构建页面"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID ;
     [param setObject:idStr forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetGXWTType" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f1 = 1;

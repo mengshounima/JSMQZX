@@ -1,17 +1,19 @@
 //
-//  UserInfo.h
+//  DataCenter.h
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/5.
+//  Created by 李 燕琴 on 15/12/22.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#define USER @"userInfo"
+#define ZJD @"zjd"
 
 @interface UserInfo : NSObject
 @property (weak,nonatomic) NSString *useType;//所属镇id   SSZ_id
 @property (weak,nonatomic) NSString *useID;
-@property (weak,nonatomic) NSString *usePassword;
+@property (strong,nonatomic) NSString *usePassword;
 @property (weak,nonatomic) NSString *power;//权限
 @property (weak,nonatomic) NSString *loginName;//登录编号
 @property (weak,nonatomic) NSString *name;//真实姓名
@@ -24,11 +26,36 @@
 
 
 //单例模式
-+(UserInfo *)sharedInstance;
+//+(UserInfo *)sharedInstance;
+
+
+@end
+
+
+
+
+//街道列表
+@interface ZJDModel : NSObject
+@property (weak,nonatomic) NSString *zjd_id;
+@property (weak,nonatomic) NSString *zjd_name;
+@property (weak,nonatomic) NSString *zjd_jx;
+@property (weak,nonatomic) NSString *zjd_sfxs;
+//+(ZJDModel *)sharedInstance;
+@end
+
+
+@interface DataCenter : NSObject
++(DataCenter *)sharedInstance;
+// 用户信息
+@property (strong, nonatomic) UserInfo *UserInfo;
 -(void)writeData:(NSDictionary *)resultdic;
 -(instancetype)ReadData;
 
--(void)writeZJDData:(NSDictionary *)resultdic;
+//街道信息
+@property (strong, nonatomic) NSArray *zjdArr;
+
+-(void)writeZJDData:(NSArray *)resultArr;
 -(instancetype)ReadZJDData;
+
 
 @end

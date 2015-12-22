@@ -57,7 +57,7 @@
     //获取共性问题list
     [MBProgressHUD showMessage:@"构建页面"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;
     [param setObject:idStr forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetGXWTType" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f1 = 1;
@@ -340,7 +340,7 @@
     }
     [MBProgressHUD showMessage:@"提交中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;
     [param setObject:idStr forKey:@"userId"];
     [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期
     [param setObject:_farmerF.text forKey:@"rz_zfnh"];//农户

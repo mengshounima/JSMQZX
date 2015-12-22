@@ -76,11 +76,11 @@
 }
 -(void)reloadMoreList{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID ;
     [param setObject:idStr forKey:@"userId"];
     if (_flagLogZT.integerValue == 5) {
         //未评价
-        [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"ssz_id"];
+        [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
         [param setObject:@"" forKey:@"cun_id"];
         [param setObject:@"" forKey:@"wg_id"];
         [param setObject:@"" forKey:@"ztxx"];
@@ -91,7 +91,7 @@
     }
     else if (_flagLogZT.integerValue == 6){
         //已评价
-        [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"ssz_id"];
+        [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
         [param setObject:@"" forKey:@"cun_id"];
         [param setObject:@"" forKey:@"wg_id"];
         [param setObject:@"" forKey:@"ztxx"];
@@ -102,7 +102,7 @@
     }
     else {
         //1，2，3，4
-        [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"ssz_id"];
+        [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
         [param setObject:@"" forKey:@"cun_id"];
         [param setObject:@"" forKey:@"wg_id"];
         [param setObject:_flagLogZT forKey:@"ztxx"];

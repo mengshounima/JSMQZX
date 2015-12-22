@@ -24,7 +24,7 @@
     NSMutableDictionary *paramList = [[NSMutableDictionary alloc] init];
     [paramList setObject:[_infoDic objectForKey:@"bd_id"] forKey:@"BD_ID"];
     [paramList setObject:[_infoDic objectForKey:@"bdxx_id"] forKey:@"ID"];
-    [paramList setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [paramList setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetDYBDInfo" method:TBHttpRequestPost parameters:paramList prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];

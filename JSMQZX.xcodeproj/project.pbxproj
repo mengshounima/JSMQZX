@@ -24,15 +24,12 @@
 		F0040F491C282511004DC329 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F481C282511004DC329 /* UICountingLabel.m */; };
 		F0040F4C1C2828C7004DC329 /* QingyubiaoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */; };
 		F0040F541C284660004DC329 /* RenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4F1C284660004DC329 /* RenderView.m */; };
-		F0040F551C284660004DC329 /* RotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F511C284660004DC329 /* RotatedView.m */; };
 		F0040F561C284660004DC329 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F531C284660004DC329 /* PieChartView.m */; };
 		F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F581C284693004DC329 /* NonghuZoufangVC.m */; };
-		F0040F5C1C284A08004DC329 /* ZJDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F5B1C284A08004DC329 /* ZJDModel.m */; };
 		F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F020D9701C186FB5001B78E4 /* FarmersVC.m */; };
 		F03009F21C12FAB600389829 /* UserTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F11C12FAB600389829 /* UserTypeView.m */; };
 		F03009FC1C132F3300389829 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F91C132F3300389829 /* HttpClient.m */; };
 		F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009FB1C132F3300389829 /* RTJSONResponseSerializerWithData.m */; };
-		F0300A001C13362F00389829 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009FF1C13362F00389829 /* UserInfo.m */; };
 		F0300A041C13376C00389829 /* HMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A031C13376C00389829 /* HMNavigationController.m */; };
 		F0300A0F1C133D8600389829 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A081C133D8600389829 /* UIBarButtonItem+Extension.m */; };
 		F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A0A1C133D8600389829 /* UIImage+Extension.m */; };
@@ -95,6 +92,8 @@
 		F0C9AAA61C252B2900CFA498 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C9AAA51C252B2900CFA498 /* CoreTelephony.framework */; };
 		F0C9AAA81C252B3D00CFA498 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C9AAA71C252B3D00CFA498 /* libstdc++.6.0.9.tbd */; };
 		F0C9AAAA1C252BDC00CFA498 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F0C9AAA91C252BDC00CFA498 /* mapapi.bundle */; };
+		F0D03D0B1C296C3C00D2BAF2 /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D03D0A1C296C3C00D2BAF2 /* DataCenter.m */; };
+		F0D03D0E1C2976D200D2BAF2 /* RotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D03D0D1C2976D200D2BAF2 /* RotatedView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */; };
 		F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */; };
 		F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E78DAB1C148A8800DDE8D8 /* GDataXMLNode.m */; };
@@ -148,14 +147,10 @@
 		F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingyubiaoVC.m; sourceTree = "<group>"; };
 		F0040F4E1C284660004DC329 /* RenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderView.h; sourceTree = "<group>"; };
 		F0040F4F1C284660004DC329 /* RenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderView.m; sourceTree = "<group>"; };
-		F0040F501C284660004DC329 /* RotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatedView.h; sourceTree = "<group>"; };
-		F0040F511C284660004DC329 /* RotatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatedView.m; sourceTree = "<group>"; };
 		F0040F521C284660004DC329 /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
 		F0040F531C284660004DC329 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		F0040F571C284693004DC329 /* NonghuZoufangVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonghuZoufangVC.h; sourceTree = "<group>"; };
 		F0040F581C284693004DC329 /* NonghuZoufangVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonghuZoufangVC.m; sourceTree = "<group>"; };
-		F0040F5A1C284A08004DC329 /* ZJDModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDModel.h; sourceTree = "<group>"; };
-		F0040F5B1C284A08004DC329 /* ZJDModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDModel.m; sourceTree = "<group>"; };
 		F020D96F1C186FB5001B78E4 /* FarmersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarmersVC.h; sourceTree = "<group>"; };
 		F020D9701C186FB5001B78E4 /* FarmersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarmersVC.m; sourceTree = "<group>"; };
 		F03009F01C12FAB600389829 /* UserTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeView.h; sourceTree = "<group>"; };
@@ -165,8 +160,6 @@
 		F03009F91C132F3300389829 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
 		F03009FA1C132F3300389829 /* RTJSONResponseSerializerWithData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTJSONResponseSerializerWithData.h; sourceTree = "<group>"; };
 		F03009FB1C132F3300389829 /* RTJSONResponseSerializerWithData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTJSONResponseSerializerWithData.m; sourceTree = "<group>"; };
-		F03009FE1C13362F00389829 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
-		F03009FF1C13362F00389829 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		F0300A021C13376C00389829 /* HMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMNavigationController.h; sourceTree = "<group>"; };
 		F0300A031C13376C00389829 /* HMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMNavigationController.m; sourceTree = "<group>"; };
 		F0300A071C133D8600389829 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
@@ -266,6 +259,10 @@
 		F0C9AAA51C252B2900CFA498 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		F0C9AAA71C252B3D00CFA498 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		F0C9AAA91C252BDC00CFA498 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		F0D03D091C296C3C00D2BAF2 /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
+		F0D03D0A1C296C3C00D2BAF2 /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
+		F0D03D0C1C2976D200D2BAF2 /* RotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatedView.h; sourceTree = "<group>"; };
+		F0D03D0D1C2976D200D2BAF2 /* RotatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatedView.m; sourceTree = "<group>"; };
 		F0D255A11C170D17005BD1F4 /* MinQinRiZhiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinQinRiZhiTableVC.h; sourceTree = "<group>"; };
 		F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinQinRiZhiTableVC.m; sourceTree = "<group>"; };
 		F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddVisitLogVC.h; sourceTree = "<group>"; };
@@ -447,10 +444,10 @@
 		F0040F4D1C284648004DC329 /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
+				F0D03D0C1C2976D200D2BAF2 /* RotatedView.h */,
+				F0D03D0D1C2976D200D2BAF2 /* RotatedView.m */,
 				F0040F4E1C284660004DC329 /* RenderView.h */,
 				F0040F4F1C284660004DC329 /* RenderView.m */,
-				F0040F501C284660004DC329 /* RotatedView.h */,
-				F0040F511C284660004DC329 /* RotatedView.m */,
 				F0040F521C284660004DC329 /* PieChartView.h */,
 				F0040F531C284660004DC329 /* PieChartView.m */,
 			);
@@ -469,10 +466,8 @@
 		F03009EF1C12FA9100389829 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F03009FE1C13362F00389829 /* UserInfo.h */,
-				F03009FF1C13362F00389829 /* UserInfo.m */,
-				F0040F5A1C284A08004DC329 /* ZJDModel.h */,
-				F0040F5B1C284A08004DC329 /* ZJDModel.m */,
+				F0D03D091C296C3C00D2BAF2 /* DataCenter.h */,
+				F0D03D0A1C296C3C00D2BAF2 /* DataCenter.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -955,10 +950,9 @@
 			files = (
 				F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */,
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
-				F0040F5C1C284A08004DC329 /* ZJDModel.m in Sources */,
+				F0D03D0B1C296C3C00D2BAF2 /* DataCenter.m in Sources */,
 				F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */,
 				F074E7081C15D9180098792E /* HMTitleButton.m in Sources */,
-				F0300A001C13362F00389829 /* UserInfo.m in Sources */,
 				F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */,
 				8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */,
 				F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */,
@@ -970,6 +964,7 @@
 				F0040F2F1C2824F6004DC329 /* ELineChart.m in Sources */,
 				F0040F211C281E4B004DC329 /* FenxiTableVC.m in Sources */,
 				F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */,
+				F0D03D0E1C2976D200D2BAF2 /* RotatedView.m in Sources */,
 				F0040F401C282507004DC329 /* EColumn.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
 				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
@@ -993,7 +988,6 @@
 				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,
 				F0040F411C282507004DC329 /* EColor.m in Sources */,
 				F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */,
-				F0040F551C284660004DC329 /* RotatedView.m in Sources */,
 				F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */,
 				F06D953E1C1EE2C100FDE859 /* WeiBanLiVC.m in Sources */,
 				F0040F461C282507004DC329 /* ELine.m in Sources */,

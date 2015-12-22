@@ -1,24 +1,55 @@
 //
-//  UserInfo.m
+//  DataCenter.m
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/5.
+//  Created by 李 燕琴 on 15/12/22.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
-#define USER @"userInfo"
-#define ZJD @"zjd"
-#import "UserInfo.h"
-#import "ZJDModel.h"
-@implementation UserInfo
-+(UserInfo *)sharedInstance{
-        static UserInfo *sharedUserInfoInstance = nil;
-        static dispatch_once_t predicate;
-        dispatch_once(&predicate, ^{
-            sharedUserInfoInstance = [[self alloc] init];
-        });
-        return sharedUserInfoInstance;
 
+#import "DataCenter.h"
+@implementation UserInfo
+/*+(UserInfo *)sharedInstance{
+    static UserInfo *sharedUserInfoInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedUserInfoInstance = [[self alloc] init];
+    });
+    return sharedUserInfoInstance;
+    
+}*/
+@end
+
+
+
+
+//镇街道
+@implementation ZJDModel
+/*+(ZJDModel *)sharedInstance{
+    static ZJDModel *sharedUserInfoInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedUserInfoInstance = [[self alloc] init];
+    });
+    return sharedUserInfoInstance;
+    
+}*/
+
+
+
+
+
+@end
+
+@implementation DataCenter
++(DataCenter *)sharedInstance{
+    static DataCenter *sharedUserInfoInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedUserInfoInstance = [[self alloc] init];
+    });
+    return sharedUserInfoInstance;
 }
+
 -(void)writeData:(NSDictionary *)resultdic
 {
     NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
@@ -51,31 +82,37 @@
     info.phone = [valueData objectForKey:@"phone"];
     info.lastLoginTime = [valueData objectForKey:@"lastLoginTime"];
     info.useType = [valueData objectForKey:@"Type"];
-    info.usePassword = [valueData objectForKey:@"password"];
-    return info;
+    info.usePassword = [[valueData objectForKey:@"password"] copy];
+    self.UserInfo = info;
+     MyLog(@"%@",[valueData objectForKey:@"password"]);
+    MyLog(@"%@",self.UserInfo.usePassword);
+    return self;
 }
 
-
--(void)writeZJDData:(NSDictionary *)resultdic
+-(void)writeZJDData:(NSArray *)resultArr
 {
-    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    NSArray *tempArr = resultArr;
+       /* NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
     [tempDic setObject:[resultdic objectForKey:@"zjd_id"] forKey:@"zjd_id"];
     [tempDic setObject:[resultdic objectForKey:@"zjd_name"] forKey:@"zjd_name"];
     [tempDic setObject:[resultdic objectForKey:@"zjd_jx"] forKey:@"zjd_jx"];
-    [tempDic setObject:[resultdic objectForKey:@"zjd_sfxs"] forKey:@"zjd_sfxs"];
-    [USERDEFAULTS setObject:tempDic forKey:ZJD];
+    [tempDic setObject:[resultdic objectForKey:@"zjd_sfxs"] forKey:@"zjd_sfxs"];*/
+    [USERDEFAULTS setObject:tempArr forKey:ZJD];
     [USERDEFAULTS synchronize];
     
 }
 
 -(instancetype)ReadZJDData
 {
-    id valueData = [USERDEFAULTS objectForKey:ZJD];
-    [ZJD init];
-    info.administerName = [valueData objectForKey:@"administerName"];
-    info.power = [valueData objectForKey:@"power"];
-    info.useID = [valueData objectForKey:@"id"];
-    return info;
+    NSArray *valueData = [USERDEFAULTS objectForKey:ZJD];
+    self.zjdArr = valueData;
+   //ZJDModel *zjdList = [[ZJDModel alloc] init];
+    /*self.zjd.zjd_id = [valueData objectForKey:@"zjd_id"];
+    self.zjd.zjd_name = [valueData objectForKey:@"zjd_name"];
+    self.zjd.zjd_jx = [valueData objectForKey:@"zjd_jx"];
+    self.zjd.zjd_sfxs = [valueData objectForKey:@"zjd_sfxs"];*/
+    return self;
 }
+
 
 @end

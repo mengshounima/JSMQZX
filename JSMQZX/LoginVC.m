@@ -37,13 +37,13 @@
      [param setObject:_passwordF.text forKey:@"Password"];
      NSString *firstName = [_typeDic objectForKey:@"zjd_jx"];//前缀
      [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];*/
-    _typeF.text = [[UserInfo sharedInstance] ReadData].administerName;
-    _userIDF.text = [[UserInfo sharedInstance] ReadData].loginName;
-    _passwordF.text = [[UserInfo sharedInstance] ReadData].usePassword;
+    _typeF.text = [[DataCenter sharedInstance] ReadData].UserInfo.administerName;
+    _userIDF.text = [[DataCenter sharedInstance] ReadData].UserInfo.loginName;
+    _passwordF.text = [[DataCenter sharedInstance] ReadData].UserInfo.usePassword;
     //调试
-    [param setObject:[[UserInfo sharedInstance] ReadData].useType forKey:@"UserType"];
-    [param setObject:[[UserInfo sharedInstance] ReadData].loginName forKey:@"LoginName"];
-    [param setObject:[[UserInfo sharedInstance] ReadData].usePassword forKey:@"Password"];
+    [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"UserType"];
+    [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.loginName forKey:@"LoginName"];
+    [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.usePassword forKey:@"Password"];
     [[HttpClient httpClient] requestWithPath:@"/CheckLogin" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
        /* NSData* jsonData = [self XMLString:responseObject];
@@ -65,23 +65,22 @@
 
 }
 -(void)getUserData{
-    //[MBProgressHUD showMessage:@"更新镇、街道列表"];
-    [MBProgressHUD showMessage:@"更新镇、街道列表" toView:self.view];
+    [MBProgressHUD showMessage:@"更新镇、街道列表"];
+   // [MBProgressHUD showMessage:@"更新镇、街道列表" toView:self.view];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:@"1" forKey:@"Type"];
     [param setObject:@"" forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetZJDIndex" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
          MyLog(@"---**--%@",responseObject);
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        //NSXMLParser *parser = (NSXMLParser *)responseObject;
-         //这里使用了第三方框架 XMLDictionary，他本身继承并实现 NSXMLParserDelegate 委托代理协议，对数据进行遍历处理
-        //[self convertXMLParserToDictionary:parser];
+        [MBProgressHUD hideHUD];
+        //[MBProgressHUD hideHUDForView:self.view animated:YES];
         
         NSData* jsonData = [self XMLString:responseObject];
         _typeArr = [jsonData objectFromJSONData];
-       
+       [[DataCenter sharedInstance] writeZJDData:_typeArr];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUD];
+         //[MBProgressHUD hideHUDForView:self.view animated:YES];
         MyLog(@"***%@",error);
     }];
 
@@ -190,7 +189,8 @@
         NSData* jsonData = [self XMLString:responseObject];
         NSDictionary *resultDic = [jsonData objectFromJSONData];
         MyLog(@"------------------%@",resultDic);
-       [[UserInfo sharedInstance] writeData:resultDic];//初始化个人数据
+       //[[UserInfo sharedInstance] writeData:resultDic];//初始化个人数据
+        [[DataCenter sharedInstance] writeData:resultDic];
         //保存是否记住密码
         if (_rememberBtn.selected) {
             [USERDEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:@"IsLogin"];

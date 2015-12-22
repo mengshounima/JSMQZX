@@ -50,7 +50,7 @@
 
 -(void)reloadMoreList{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr = [[UserInfo sharedInstance] ReadData].useID;
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID ;
     [param setObject:idStr forKey:@"userId"];
     //地址
     NSString *urlStr;

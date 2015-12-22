@@ -44,40 +44,40 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     if (indexPath.row ==0) {
-        cell.textLabel.text = [NSString stringWithFormat:@"登录编号:%@",[[UserInfo sharedInstance] ReadData].loginName];
+        cell.textLabel.text = [NSString stringWithFormat:@"登录编号:%@",[[DataCenter sharedInstance] ReadData].UserInfo.loginName];
     }
     else if (indexPath.row ==1)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"真实姓名:%@",[[UserInfo sharedInstance] ReadData].name];
+        cell.textLabel.text = [NSString stringWithFormat:@"真实姓名:%@",[[DataCenter sharedInstance] ReadData].UserInfo.name];
         
         
     }
     else if (indexPath.row ==2)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"镇、社区:%@",[[UserInfo sharedInstance] ReadData].departmentName];
+        cell.textLabel.text = [NSString stringWithFormat:@"镇、社区:%@",[[DataCenter sharedInstance] ReadData].UserInfo.departmentName];
         ;
         
     }
     else if (indexPath.row ==3)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"职务:%@",[[UserInfo sharedInstance] ReadData].administerName];
+        cell.textLabel.text = [NSString stringWithFormat:@"职务:%@",[[DataCenter sharedInstance] ReadData].UserInfo.administerName];
         ;
         
     }
     else if (indexPath.row ==4)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"是否党员:%@",[[UserInfo sharedInstance] ReadData].ismember];
+        cell.textLabel.text = [NSString stringWithFormat:@"是否党员:%@",[[DataCenter sharedInstance] ReadData].UserInfo.ismember];
         
     }
     else if (indexPath.row ==5)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"联系方式:%@",[[UserInfo sharedInstance] ReadData].phone];
+        cell.textLabel.text = [NSString stringWithFormat:@"联系方式:%@",[[DataCenter sharedInstance] ReadData].UserInfo.phone];
         
     }
 
     else
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"登录时间:%@",[[UserInfo sharedInstance] ReadData].lastLoginTime];
+        cell.textLabel.text = [NSString stringWithFormat:@"登录时间:%@",[[DataCenter sharedInstance] ReadData].UserInfo.lastLoginTime];
         
     }
     

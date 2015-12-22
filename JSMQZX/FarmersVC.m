@@ -27,7 +27,7 @@
 -(void)getGridData{
     [MBProgressHUD showMessage:@"加载中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr =[[UserInfo sharedInstance] ReadData].useID;
+    NSString *idStr =[[DataCenter sharedInstance] ReadData].UserInfo.useID ;
     [param setObject:idStr forKey:@"userId"];
     [param setObject:@"" forKey:@"cun_id"];
     

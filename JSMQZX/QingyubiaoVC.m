@@ -14,11 +14,10 @@
 #include <stdlib.h>
 @interface QingyubiaoVC ()<UITableViewDataSource,UITableViewDelegate,EColumnChartDelegate, EColumnChartDataSource>
 {
-    int f1;
-    int f2;
-    UITableView *_TypeTable;
+   JKAlertDialog *alert;
     NSString *flagZJD;
-    JKAlertDialog *alert;
+     UITableView *_TypeTable;
+    
 }
 @property (nonatomic,weak) NSArray *typeArr;
 @property (nonatomic,weak) NSArray *dicArr;
@@ -40,24 +39,30 @@
     
 }
 -(void)initData{
-    f1 = 0;
-    f2 = 0;
+       _typeArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
 }
 -(void)initView{
     _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
     _TypeTable.delegate = self;
     _TypeTable.dataSource = self;
+    
+    
+    UIButton *FieldBtn = [[UIButton alloc] initWithFrame:_searchField.frame];
+    [FieldBtn addTarget:self action:@selector(clickField:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:FieldBtn];
+
     _SearchBtn.layer.cornerRadius = 4;
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath == 0) {
-        flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
-        _searchField.text = [_typeArr[indexPath.row] objectForKey:@"zjd_name"];
+    [alert dismiss];
+    if (indexPath.row == 0) {
+        flagZJD = @"0";//用于提交接口参数
+        _searchField.text = @"选择镇(街道)/村(社区)";
     }
     else{
         flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
-        _searchField.text = [_typeArr[indexPath.row] objectForKey:@"zjd_name"];
+        _searchField.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
         
     }
 }
@@ -170,36 +175,17 @@ fingerDidLeaveColumn:(EColumn *)eColumn
 
 
 -(void)getUserData{
-    [MBProgressHUD showMessage:@"更新镇、街道列表"];
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setObject:@"1" forKey:@"Type"];
-    [param setObject:@"" forKey:@"userId"];
-    [[HttpClient httpClient] requestWithPath:@"/GetZJDIndex" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        MyLog(@"---**--%@",responseObject);
-        f1 = 1;
-        if (f1==1&&f2 ==1) {
-             [MBProgressHUD hideHUD];
-        }
-    
-        NSData* jsonData = [self XMLString:responseObject];
-        _typeArr = [jsonData objectFromJSONData];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        MyLog(@"***%@",error);
-    }];
+    [MBProgressHUD showMessage:@"加载中"];
     //获取统计信息
     NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
     [paramTongji setObject:@"1" forKey:@"AnalysisType"];//统计表类型
-    [paramTongji setObject:[[UserInfo sharedInstance] ReadData].useID forKey:@"userId"];
+    [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
     [paramTongji setObject:@"" forKey:@"ssz_id"];//统计表类型
     [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisRecord" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         MyLog(@"---**--%@",responseObject);
-        f2 = 1;
-        if (f1==1&&f2 ==1) {
-            [MBProgressHUD hideHUD];
-        }
+    
+        [MBProgressHUD hideHUD];
         
         NSData* jsonData = [self XMLString:responseObject];
         _dicArr = [jsonData objectFromJSONData];
@@ -251,13 +237,71 @@ fingerDidLeaveColumn:(EColumn *)eColumn
 }
 */
 
-- (IBAction)clickSearchBtn:(id)sender {
-    alert = [[JKAlertDialog alloc]initWithTitle:@"选择民情类别" message:@""];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _typeArr.count+1;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *ID = @"ZJDCellQY";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"选择镇(街道)/村(社区)";
+    }
+    else{
+        cell.textLabel.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+    }
+    return  cell;
+    
+}
+-(void)clickField:(UIButton *)button{
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/社区" message:@""];
     alert.contentView =  _TypeTable;
     
     [alert addButtonWithTitle:@"取消"];
-    
+
     [alert show];
+}
+- (IBAction)clickSearchBtn:(id)sender {
+    [self getUserDataByZJD];
 
 }
+-(void)getUserDataByZJD{
+    [MBProgressHUD showMessage:@"加载中"];
+    
+    //获取统计信息
+    NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
+    [paramTongji setObject:@"1" forKey:@"AnalysisType"];//统计表类型
+    [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
+    [paramTongji setObject:flagZJD forKey:@"ssz_id"];//统计表类型
+    [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
+    [[HttpClient httpClient] requestWithPath:@"/GetAnalysisRecord" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        MyLog(@"---**--%@",responseObject);
+        
+        [MBProgressHUD hideHUD];
+        
+        NSData* jsonData = [self XMLString:responseObject];
+        _dicArr = [jsonData objectFromJSONData];
+        NSMutableArray *temp = [NSMutableArray array];
+        for (int i = 0; i < _dicArr.count; i++)
+        {
+            NSNumber *value = [_dicArr[i] objectForKey:@"Value"];
+            EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value.floatValue index:i unit:@""];
+            [temp addObject:eColumnDataModel];
+        }
+        _data = [NSArray arrayWithArray:temp];
+        [_eColumnChart setColumnsIndexStartFromLeft:YES];
+        [_eColumnChart setDelegate:self];
+        [_eColumnChart setDataSource:self];
+        
+        [_eColumnChart reloadData];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        MyLog(@"***%@",error);
+    }];
+    
+}
+
 @end
