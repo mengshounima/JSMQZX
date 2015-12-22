@@ -91,8 +91,10 @@
 - (IBAction)clickGanbuMinshendongtai:(id)sender {
     [self performSegueWithIdentifier:@"GanbuRootToMessageBoard" sender:nil];
 }
-
+//干部 分析研判
 - (IBAction)clickGanbuFenxiyanpan:(id)sender {
+    [self performSegueWithIdentifier:@"RootNormalToFenxiYanpan" sender:nil];
+    
 }
 
 - (IBAction)clickGanliyuanRizhibanli:(id)sender {

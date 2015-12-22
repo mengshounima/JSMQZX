@@ -157,7 +157,7 @@
                                                object:nil];
     
     
-    _CommonTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 230) style:UITableViewStylePlain];
+    _CommonTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
     _CommonTable.delegate = self;
     _CommonTable.dataSource = self;
     

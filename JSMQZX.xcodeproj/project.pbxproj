@@ -9,6 +9,25 @@
 /* Begin PBXBuildFile section */
 		2104C122E74782FB5C3F127A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBED7DC9802B13D42CCD37A /* libPods.a */; };
 		8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E414FCF1C227CA20001AA13 /* XMLDictionary.m */; };
+		F0040F211C281E4B004DC329 /* FenxiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F201C281E4B004DC329 /* FenxiTableVC.m */; };
+		F0040F2E1C2824F6004DC329 /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F271C2824F6004DC329 /* EColumnChart.m */; };
+		F0040F2F1C2824F6004DC329 /* ELineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F291C2824F6004DC329 /* ELineChart.m */; };
+		F0040F301C2824F6004DC329 /* EPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F2B1C2824F6004DC329 /* EPieChart.m */; };
+		F0040F311C2824F6004DC329 /* EViewSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F2D1C2824F6004DC329 /* EViewSwitcher.m */; };
+		F0040F401C282507004DC329 /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F331C282507004DC329 /* EColumn.m */; };
+		F0040F411C282507004DC329 /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F351C282507004DC329 /* EColor.m */; };
+		F0040F421C282507004DC329 /* EColumnDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F371C282507004DC329 /* EColumnDataModel.m */; };
+		F0040F431C282507004DC329 /* EColumnChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F391C282507004DC329 /* EColumnChartLabel.m */; };
+		F0040F441C282507004DC329 /* EFloatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F3B1C282507004DC329 /* EFloatBox.m */; };
+		F0040F451C282507004DC329 /* ELineChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F3D1C282507004DC329 /* ELineChartDataModel.m */; };
+		F0040F461C282507004DC329 /* ELine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F3F1C282507004DC329 /* ELine.m */; };
+		F0040F491C282511004DC329 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F481C282511004DC329 /* UICountingLabel.m */; };
+		F0040F4C1C2828C7004DC329 /* QingyubiaoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */; };
+		F0040F541C284660004DC329 /* RenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4F1C284660004DC329 /* RenderView.m */; };
+		F0040F551C284660004DC329 /* RotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F511C284660004DC329 /* RotatedView.m */; };
+		F0040F561C284660004DC329 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F531C284660004DC329 /* PieChartView.m */; };
+		F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F581C284693004DC329 /* NonghuZoufangVC.m */; };
+		F0040F5C1C284A08004DC329 /* ZJDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F5B1C284A08004DC329 /* ZJDModel.m */; };
 		F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F020D9701C186FB5001B78E4 /* FarmersVC.m */; };
 		F03009F21C12FAB600389829 /* UserTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F11C12FAB600389829 /* UserTypeView.m */; };
 		F03009FC1C132F3300389829 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F91C132F3300389829 /* HttpClient.m */; };
@@ -99,6 +118,44 @@
 		8E414FCE1C227CA20001AA13 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		8E414FCF1C227CA20001AA13 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		D05FCD92B64E18EA08B9F805 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F0040F1F1C281E4B004DC329 /* FenxiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FenxiTableVC.h; sourceTree = "<group>"; };
+		F0040F201C281E4B004DC329 /* FenxiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FenxiTableVC.m; sourceTree = "<group>"; };
+		F0040F261C2824F6004DC329 /* EColumnChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChart.h; sourceTree = "<group>"; };
+		F0040F271C2824F6004DC329 /* EColumnChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChart.m; sourceTree = "<group>"; };
+		F0040F281C2824F6004DC329 /* ELineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELineChart.h; sourceTree = "<group>"; };
+		F0040F291C2824F6004DC329 /* ELineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELineChart.m; sourceTree = "<group>"; };
+		F0040F2A1C2824F6004DC329 /* EPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPieChart.h; sourceTree = "<group>"; };
+		F0040F2B1C2824F6004DC329 /* EPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPieChart.m; sourceTree = "<group>"; };
+		F0040F2C1C2824F6004DC329 /* EViewSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EViewSwitcher.h; sourceTree = "<group>"; };
+		F0040F2D1C2824F6004DC329 /* EViewSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EViewSwitcher.m; sourceTree = "<group>"; };
+		F0040F321C282507004DC329 /* EColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumn.h; sourceTree = "<group>"; };
+		F0040F331C282507004DC329 /* EColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumn.m; sourceTree = "<group>"; };
+		F0040F341C282507004DC329 /* EColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColor.h; sourceTree = "<group>"; };
+		F0040F351C282507004DC329 /* EColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColor.m; sourceTree = "<group>"; };
+		F0040F361C282507004DC329 /* EColumnDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnDataModel.h; sourceTree = "<group>"; };
+		F0040F371C282507004DC329 /* EColumnDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnDataModel.m; sourceTree = "<group>"; };
+		F0040F381C282507004DC329 /* EColumnChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChartLabel.h; sourceTree = "<group>"; };
+		F0040F391C282507004DC329 /* EColumnChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChartLabel.m; sourceTree = "<group>"; };
+		F0040F3A1C282507004DC329 /* EFloatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFloatBox.h; sourceTree = "<group>"; };
+		F0040F3B1C282507004DC329 /* EFloatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFloatBox.m; sourceTree = "<group>"; };
+		F0040F3C1C282507004DC329 /* ELineChartDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELineChartDataModel.h; sourceTree = "<group>"; };
+		F0040F3D1C282507004DC329 /* ELineChartDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELineChartDataModel.m; sourceTree = "<group>"; };
+		F0040F3E1C282507004DC329 /* ELine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELine.h; sourceTree = "<group>"; };
+		F0040F3F1C282507004DC329 /* ELine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELine.m; sourceTree = "<group>"; };
+		F0040F471C282510004DC329 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		F0040F481C282511004DC329 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		F0040F4A1C2828C7004DC329 /* QingyubiaoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingyubiaoVC.h; sourceTree = "<group>"; };
+		F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingyubiaoVC.m; sourceTree = "<group>"; };
+		F0040F4E1C284660004DC329 /* RenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderView.h; sourceTree = "<group>"; };
+		F0040F4F1C284660004DC329 /* RenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderView.m; sourceTree = "<group>"; };
+		F0040F501C284660004DC329 /* RotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatedView.h; sourceTree = "<group>"; };
+		F0040F511C284660004DC329 /* RotatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatedView.m; sourceTree = "<group>"; };
+		F0040F521C284660004DC329 /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
+		F0040F531C284660004DC329 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
+		F0040F571C284693004DC329 /* NonghuZoufangVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonghuZoufangVC.h; sourceTree = "<group>"; };
+		F0040F581C284693004DC329 /* NonghuZoufangVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonghuZoufangVC.m; sourceTree = "<group>"; };
+		F0040F5A1C284A08004DC329 /* ZJDModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDModel.h; sourceTree = "<group>"; };
+		F0040F5B1C284A08004DC329 /* ZJDModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDModel.m; sourceTree = "<group>"; };
 		F020D96F1C186FB5001B78E4 /* FarmersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarmersVC.h; sourceTree = "<group>"; };
 		F020D9701C186FB5001B78E4 /* FarmersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarmersVC.m; sourceTree = "<group>"; };
 		F03009F01C12FAB600389829 /* UserTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeView.h; sourceTree = "<group>"; };
@@ -319,6 +376,87 @@
 			name = LogBanli;
 			sourceTree = "<group>";
 		};
+		F0040F1E1C281E20004DC329 /* FenxiYanpan */ = {
+			isa = PBXGroup;
+			children = (
+				F0040F1F1C281E4B004DC329 /* FenxiTableVC.h */,
+				F0040F201C281E4B004DC329 /* FenxiTableVC.m */,
+				F0040F4A1C2828C7004DC329 /* QingyubiaoVC.h */,
+				F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */,
+				F0040F571C284693004DC329 /* NonghuZoufangVC.h */,
+				F0040F581C284693004DC329 /* NonghuZoufangVC.m */,
+			);
+			name = FenxiYanpan;
+			sourceTree = "<group>";
+		};
+		F0040F221C282470004DC329 /* EChart */ = {
+			isa = PBXGroup;
+			children = (
+				F0040F251C2824E7004DC329 /* Charts */,
+				F0040F241C2824D3004DC329 /* ThirdParty */,
+				F0040F231C2824CA004DC329 /* Components */,
+			);
+			name = EChart;
+			sourceTree = "<group>";
+		};
+		F0040F231C2824CA004DC329 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F0040F321C282507004DC329 /* EColumn.h */,
+				F0040F331C282507004DC329 /* EColumn.m */,
+				F0040F341C282507004DC329 /* EColor.h */,
+				F0040F351C282507004DC329 /* EColor.m */,
+				F0040F361C282507004DC329 /* EColumnDataModel.h */,
+				F0040F371C282507004DC329 /* EColumnDataModel.m */,
+				F0040F381C282507004DC329 /* EColumnChartLabel.h */,
+				F0040F391C282507004DC329 /* EColumnChartLabel.m */,
+				F0040F3A1C282507004DC329 /* EFloatBox.h */,
+				F0040F3B1C282507004DC329 /* EFloatBox.m */,
+				F0040F3C1C282507004DC329 /* ELineChartDataModel.h */,
+				F0040F3D1C282507004DC329 /* ELineChartDataModel.m */,
+				F0040F3E1C282507004DC329 /* ELine.h */,
+				F0040F3F1C282507004DC329 /* ELine.m */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		F0040F241C2824D3004DC329 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				F0040F471C282510004DC329 /* UICountingLabel.h */,
+				F0040F481C282511004DC329 /* UICountingLabel.m */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		F0040F251C2824E7004DC329 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				F0040F261C2824F6004DC329 /* EColumnChart.h */,
+				F0040F271C2824F6004DC329 /* EColumnChart.m */,
+				F0040F281C2824F6004DC329 /* ELineChart.h */,
+				F0040F291C2824F6004DC329 /* ELineChart.m */,
+				F0040F2A1C2824F6004DC329 /* EPieChart.h */,
+				F0040F2B1C2824F6004DC329 /* EPieChart.m */,
+				F0040F2C1C2824F6004DC329 /* EViewSwitcher.h */,
+				F0040F2D1C2824F6004DC329 /* EViewSwitcher.m */,
+			);
+			name = Charts;
+			sourceTree = "<group>";
+		};
+		F0040F4D1C284648004DC329 /* ChartView */ = {
+			isa = PBXGroup;
+			children = (
+				F0040F4E1C284660004DC329 /* RenderView.h */,
+				F0040F4F1C284660004DC329 /* RenderView.m */,
+				F0040F501C284660004DC329 /* RotatedView.h */,
+				F0040F511C284660004DC329 /* RotatedView.m */,
+				F0040F521C284660004DC329 /* PieChartView.h */,
+				F0040F531C284660004DC329 /* PieChartView.m */,
+			);
+			name = ChartView;
+			sourceTree = "<group>";
+		};
 		F03009EE1C12FA8500389829 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +471,8 @@
 			children = (
 				F03009FE1C13362F00389829 /* UserInfo.h */,
 				F03009FF1C13362F00389829 /* UserInfo.m */,
+				F0040F5A1C284A08004DC329 /* ZJDModel.h */,
+				F0040F5B1C284A08004DC329 /* ZJDModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -412,6 +552,8 @@
 		F060B39C1C145D38007F472F /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				F0040F4D1C284648004DC329 /* ChartView */,
+				F0040F221C282470004DC329 /* EChart */,
 				F0E78DA91C148A6C00DDE8D8 /* GDataXML */,
 				F060B39D1C145D4E007F472F /* MBProgressHUD */,
 			);
@@ -445,7 +587,7 @@
 			children = (
 				8E8FAE931C20F61C006B02E9 /* Root */,
 				8E8FAE921C20F5C3006B02E9 /* GeneralUser */,
-				F0B733E21C207F66000DA6F3 /* LogBanliGanbu */,
+				F0B733E21C207F66000DA6F3 /* GanbuUser */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -610,14 +752,15 @@
 			name = MinshengDongtai;
 			sourceTree = "<group>";
 		};
-		F0B733E21C207F66000DA6F3 /* LogBanliGanbu */ = {
+		F0B733E21C207F66000DA6F3 /* GanbuUser */ = {
 			isa = PBXGroup;
 			children = (
+				F0040F1E1C281E20004DC329 /* FenxiYanpan */,
 				F0B7251E1C258C780027B1F1 /* MinshengDongtai */,
 				F0C5B5F11C2309DF00092FDB /* ZaizhiDangyuan */,
 				8E8FAE941C20F718006B02E9 /* LogBanli */,
 			);
-			name = LogBanliGanbu;
+			name = GanbuUser;
 			sourceTree = "<group>";
 		};
 		F0C5B5F11C2309DF00092FDB /* ZaizhiDangyuan */ = {
@@ -812,44 +955,63 @@
 			files = (
 				F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */,
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
+				F0040F5C1C284A08004DC329 /* ZJDModel.m in Sources */,
 				F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */,
 				F074E7081C15D9180098792E /* HMTitleButton.m in Sources */,
 				F0300A001C13362F00389829 /* UserInfo.m in Sources */,
 				F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */,
 				8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */,
 				F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */,
+				F0040F2E1C2824F6004DC329 /* EColumnChart.m in Sources */,
 				F0B733E51C207FA9000DA6F3 /* LogBanliGanbuTable.m in Sources */,
+				F0040F441C282507004DC329 /* EFloatBox.m in Sources */,
 				F04F68BC1C2446F0000F1D58 /* DangyuanCell.m in Sources */,
 				F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */,
+				F0040F2F1C2824F6004DC329 /* ELineChart.m in Sources */,
+				F0040F211C281E4B004DC329 /* FenxiTableVC.m in Sources */,
 				F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */,
+				F0040F401C282507004DC329 /* EColumn.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
 				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
 				F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */,
+				F0040F421C282507004DC329 /* EColumnDataModel.m in Sources */,
 				F03009FC1C132F3300389829 /* HttpClient.m in Sources */,
 				F0B5593D1C2189D600E9103C /* PicViewController.m in Sources */,
+				F0040F431C282507004DC329 /* EColumnChartLabel.m in Sources */,
 				F06D95421C1EF05D00FDE859 /* LogCell.m in Sources */,
 				F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */,
+				F0040F491C282511004DC329 /* UICountingLabel.m in Sources */,
 				F0B7252F1C25A6FA0027B1F1 /* mailInfoVC.m in Sources */,
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
+				F0040F561C284660004DC329 /* PieChartView.m in Sources */,
 				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,
 				F0300A0F1C133D8600389829 /* UIBarButtonItem+Extension.m in Sources */,
 				F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */,
 				F03009F21C12FAB600389829 /* UserTypeView.m in Sources */,
 				F0300A111C133D8600389829 /* UIView+Extension.m in Sources */,
 				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,
+				F0040F411C282507004DC329 /* EColor.m in Sources */,
 				F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */,
+				F0040F551C284660004DC329 /* RotatedView.m in Sources */,
 				F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */,
 				F06D953E1C1EE2C100FDE859 /* WeiBanLiVC.m in Sources */,
+				F0040F461C282507004DC329 /* ELine.m in Sources */,
 				F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */,
 				F0B725241C258E7F0027B1F1 /* MessageBoardTableVC.m in Sources */,
+				F0040F541C284660004DC329 /* RenderView.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.mm in Sources */,
+				F0040F311C2824F6004DC329 /* EViewSwitcher.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,
+				F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */,
 				F0800E851C1D918D004C2B6A /* LogInfoTableVC.m in Sources */,
 				F07D72971C10756200C695CB /* main.m in Sources */,
 				F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */,
 				F0300A041C13376C00389829 /* HMNavigationController.m in Sources */,
+				F0040F451C282507004DC329 /* ELineChartDataModel.m in Sources */,
+				F0040F4C1C2828C7004DC329 /* QingyubiaoVC.m in Sources */,
+				F0040F301C2824F6004DC329 /* EPieChart.m in Sources */,
 				F060B3A51C145D5D007F472F /* MBProgressHUD.m in Sources */,
 				F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */,
 				F0800E8B1C1DA231004C2B6A /* SetView.m in Sources */,

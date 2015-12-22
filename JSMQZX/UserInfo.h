@@ -27,4 +27,8 @@
 +(UserInfo *)sharedInstance;
 -(void)writeData:(NSDictionary *)resultdic;
 -(instancetype)ReadData;
+
+-(void)writeZJDData:(NSDictionary *)resultdic;
+-(instancetype)ReadZJDData;
+
 @end

@@ -6,8 +6,9 @@
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 #define USER @"userInfo"
+#define ZJD @"zjd"
 #import "UserInfo.h"
-
+#import "ZJDModel.h"
 @implementation UserInfo
 +(UserInfo *)sharedInstance{
         static UserInfo *sharedUserInfoInstance = nil;
@@ -53,4 +54,28 @@
     info.usePassword = [valueData objectForKey:@"password"];
     return info;
 }
+
+
+-(void)writeZJDData:(NSDictionary *)resultdic
+{
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    [tempDic setObject:[resultdic objectForKey:@"zjd_id"] forKey:@"zjd_id"];
+    [tempDic setObject:[resultdic objectForKey:@"zjd_name"] forKey:@"zjd_name"];
+    [tempDic setObject:[resultdic objectForKey:@"zjd_jx"] forKey:@"zjd_jx"];
+    [tempDic setObject:[resultdic objectForKey:@"zjd_sfxs"] forKey:@"zjd_sfxs"];
+    [USERDEFAULTS setObject:tempDic forKey:ZJD];
+    [USERDEFAULTS synchronize];
+    
+}
+
+-(instancetype)ReadZJDData
+{
+    id valueData = [USERDEFAULTS objectForKey:ZJD];
+    [ZJD init];
+    info.administerName = [valueData objectForKey:@"administerName"];
+    info.power = [valueData objectForKey:@"power"];
+    info.useID = [valueData objectForKey:@"id"];
+    return info;
+}
+
 @end
