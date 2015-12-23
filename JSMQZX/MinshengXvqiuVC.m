@@ -1,14 +1,14 @@
 //
-//  NonghuZoufangVC.m
+//  MinshengXvqiuVC.m
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/21.
+//  Created by 李 燕琴 on 15/12/23.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 
-#import "NonghuZoufangVC.h"
+#import "MinshengXvqiuVC.h"
 
-@interface NonghuZoufangVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface MinshengXvqiuVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_TypeTable;
     NSString *flagZJD;
@@ -17,12 +17,15 @@
 @property (strong, nonatomic) IBOutlet PieChartView *pieChartView;
 @property (nonatomic,strong) UIView *pieContainer;
 @property (nonatomic,weak) NSArray *typeArr;
+
+@property (nonatomic,strong) NSArray *resultLabelArr;
 @property (nonatomic,strong) NSMutableArray *valueArray;
 @property (nonatomic,strong) NSMutableArray *colorArray;
 @property (nonatomic,strong) UILabel *selLabel;
+
 @end
 
-@implementation NonghuZoufangVC
+@implementation MinshengXvqiuVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +44,6 @@
     
     _searchBtn.layer.cornerRadius = 4;
     UIButton *FieldBtn = [[UIButton alloc] initWithFrame:_searchField.frame];
-    //[FieldBtn setBackgroundColor:[UIColor greenColor]];
     [FieldBtn addTarget:self action:@selector(clickField:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:FieldBtn];
     
@@ -52,30 +54,44 @@
     
     //获取统计信息
     NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
-    [paramTongji setObject:@"2" forKey:@"AnalysisType"];//统计表类型
+    [paramTongji setObject:@"3" forKey:@"AnalysisType"];//统计表类型
     [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
     [paramTongji setObject:flagZJD forKey:@"ssz_id"];//统计表类型
     [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
     [paramTongji setObject:@"20" forKey:@"rowscount"];//统计表类型
     [paramTongji setObject:@"1" forKey:@"page"];//统计表类型
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisInfo" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-         MyLog(@"---**--%@",responseObject);
-        
+       
         [MBProgressHUD hideHUD];
         
         NSData* jsonData = [self XMLString:responseObject];
+         MyLog(@"---**--%@",jsonData);
         NSArray *resultArr = [jsonData objectFromJSONData];
+        NSMutableArray *labelMutArr = [[NSMutableArray alloc] init];
+        self.valueArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic  in resultArr) {
+            NSNumber *value = [dic objectForKey:@"Value"];
+            NSString *labelstr = [dic objectForKey:@"Label"];
+            [self.valueArray addObject:value];//数据
+            [labelMutArr addObject:labelstr];//文本
+        }
+        _resultLabelArr = [labelMutArr copy];
+        /* NSNumber *beiZoufangI = [resultArr[0] objectForKey:@"Value"];//数量
+         NSNumber *weiZoufangI = [resultArr[1] objectForKey:@"Value"];//*/
         
-       /* NSNumber *beiZoufangI = [resultArr[0] objectForKey:@"Value"];//数量
-        NSNumber *weiZoufangI = [resultArr[1] objectForKey:@"Value"];//*/
+        /*NSNumber *beiZoufangI = [NSNumber numberWithInt:60];//数量
+        NSNumber *weiZoufangI = [NSNumber numberWithInt:40];//*/
         
-         NSNumber *beiZoufangI = [NSNumber numberWithInt:60];//数量
-         NSNumber *weiZoufangI = [NSNumber numberWithInt:40];//
-        self.valueArray = [[NSMutableArray alloc] initWithObjects:beiZoufangI,weiZoufangI,nil];
         
         self.colorArray = [NSMutableArray arrayWithObjects:
                            [UIColor colorWithHue:((0/8)%20)/20.0+0.02 saturation:(0%8+3)/10.0 brightness:91/100.0 alpha:1],
                            [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(1%8+3)/10.0 brightness:91/100.0 alpha:1],
+                           [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(2%8+3)/10.0 brightness:91/100.0 alpha:1],
+                           [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(3%8+3)/10.0 brightness:91/100.0 alpha:1],
+                           [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(4%8+3)/10.0 brightness:91/100.0 alpha:1],
+                           [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(5%8+3)/10.0 brightness:91/100.0 alpha:1],
+                           [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(6%8+3)/10.0 brightness:91/100.0 alpha:1],
+                           [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(7%8+3)/10.0 brightness:91/100.0 alpha:1],
                            
                            nil];
         
@@ -105,9 +121,9 @@
         
         self.view.backgroundColor = [UIColor lightGrayColor];
         [self.pieChartView reloadChart];
-
         
-
+        
+        
         //表格标题
         NSDate *currentdate = [NSDate date];
         NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -115,14 +131,14 @@
         NSString *nowDateStr = [dateformatter stringFromDate:currentdate];
         NSString *yearStr = [nowDateStr substringToIndex:4];
         /*if (flagZJD == [[DataCenter sharedInstance] ReadData].UserInfo.useType) {
-            //此刻未选择
-           [self.pieChartView setTitleText:[NSString stringWithFormat:@"%@年度民情统计",yearStr]];
-        }
-        else
-        {
-            [self.pieChartView setTitleText:[NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_searchField.text]];
-;
-        }*/
+         //此刻未选择
+         [self.pieChartView setTitleText:[NSString stringWithFormat:@"%@年度民情统计",yearStr]];
+         }
+         else
+         {
+         [self.pieChartView setTitleText:[NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_searchField.text]];
+         ;
+         }*/
         
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -132,18 +148,18 @@
     
 }
 -(NSData *)XMLString:(NSData *)data
-    {
-        GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
-        //获取根节点（Users）
-        GDataXMLElement *rootElement = [doc rootElement];
-        NSArray *users = [rootElement children];
-        GDataXMLNode  *contentNode = users[0];
-        NSString *str =  contentNode.XMLString;
-        NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];
-        MyLog(@"***%@",str);
-        return  jsonData;
-    }
-    
+{
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
+    //获取根节点（Users）
+    GDataXMLElement *rootElement = [doc rootElement];
+    NSArray *users = [rootElement children];
+    GDataXMLNode  *contentNode = users[0];
+    NSString *str =  contentNode.XMLString;
+    NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    MyLog(@"***%@",str);
+    return  jsonData;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [alert dismiss];
     if (indexPath.row == 0) {
@@ -185,13 +201,13 @@
 
 - (void)selectedFinish:(PieChartView *)pieChartView index:(NSInteger)index percent:(float)per
 {
-    if (index ==0) {
-        self.selLabel.text = [NSString stringWithFormat:@"%@ %2.2f%@",@"被走访农户" ,per*100,@"%"];
-    }
+    //if (index ==0) {
+        self.selLabel.text = [NSString stringWithFormat:@"%@ %2.2f%@",_resultLabelArr[index] ,per*100,@"%"];
+  /*  }
     else
     {
-        self.selLabel.text = [NSString stringWithFormat:@"%@  %2.2f%@",@"未被走访农户",per*100,@"%"];
-    }
+        self.selLabel.text = [NSString stringWithFormat:@"%@  %2.2f%@",_resultLabelArr[index],per*100,@"%"];
+    }*/
     
     // self.selLabel.text = [NSString stringWithFormat:@"%2.2f%@",per*100,@"%"];
 }
@@ -222,17 +238,19 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)clickSearchBtn:(id)sender {
     [self getUserDataByZJD];
     
 }
+
+
 @end

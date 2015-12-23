@@ -17,11 +17,12 @@
    JKAlertDialog *alert;
     NSString *flagZJD;
      UITableView *_TypeTable;
+    CGRect chatRect;
     
 }
 @property (nonatomic,weak) NSArray *typeArr;
 @property (nonatomic,weak) NSArray *dicArr;
-@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, weak) NSArray *data;
 @property (nonatomic, strong) EFloatBox *eFloatBox;
 
 @property (nonatomic, strong) EColumn *eColumnSelected;
@@ -32,14 +33,15 @@
 @implementation QingyubiaoVC
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initData];
     [self initView];
-    [self getUserData];
+    [self getUserDataByZJD];
     
 }
 -(void)initData{
        _typeArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+    flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
+    chatRect = _eColumnChart.frame;
 }
 -(void)initView{
     _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
@@ -53,11 +55,22 @@
 
     _SearchBtn.layer.cornerRadius = 4;
     
+    //表格标题
+    NSDate *currentdate = [NSDate date];
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    dateformatter.dateFormat = @"yyyy-mm-dd";
+    NSString *nowDateStr = [dateformatter stringFromDate:currentdate];
+    NSString *yearStr = [nowDateStr substringToIndex:4];
+    
+    _titleLabel.text = [NSString stringWithFormat:@"%@年度民情统计",yearStr];
+    
+    
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [alert dismiss];
     if (indexPath.row == 0) {
-        flagZJD = @"0";//用于提交接口参数
+        //传管理员自己的ssz
+        flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
         _searchField.text = @"选择镇(街道)/村(社区)";
     }
     else{
@@ -172,43 +185,6 @@ fingerDidLeaveColumn:(EColumn *)eColumn
     
 }
 
-
-
--(void)getUserData{
-    [MBProgressHUD showMessage:@"加载中"];
-    //获取统计信息
-    NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
-    [paramTongji setObject:@"1" forKey:@"AnalysisType"];//统计表类型
-    [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
-    [paramTongji setObject:@"" forKey:@"ssz_id"];//统计表类型
-    [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
-    [[HttpClient httpClient] requestWithPath:@"/GetAnalysisRecord" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        MyLog(@"---**--%@",responseObject);
-    
-        [MBProgressHUD hideHUD];
-        
-        NSData* jsonData = [self XMLString:responseObject];
-        _dicArr = [jsonData objectFromJSONData];
-        NSMutableArray *temp = [NSMutableArray array];
-        for (int i = 0; i < _dicArr.count; i++)
-        {
-            NSNumber *value = [_dicArr[i] objectForKey:@"Value"];
-            EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value.floatValue index:i unit:@""];
-            [temp addObject:eColumnDataModel];
-        }
-        _data = [NSArray arrayWithArray:temp];
-        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-        [_eColumnChart setDelegate:self];
-        [_eColumnChart setDataSource:self];
-
-        [_eColumnChart reloadData];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        MyLog(@"***%@",error);
-    }];
-    
-}
 -(NSData *)XMLString:(NSData *)data
 {
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
@@ -267,6 +243,7 @@ fingerDidLeaveColumn:(EColumn *)eColumn
     [self getUserDataByZJD];
 
 }
+
 -(void)getUserDataByZJD{
     [MBProgressHUD showMessage:@"加载中"];
     
@@ -277,7 +254,7 @@ fingerDidLeaveColumn:(EColumn *)eColumn
     [paramTongji setObject:flagZJD forKey:@"ssz_id"];//统计表类型
     [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisRecord" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        MyLog(@"---**--%@",responseObject);
+       // MyLog(@"---**--%@",responseObject);
         
         [MBProgressHUD hideHUD];
         
@@ -287,15 +264,33 @@ fingerDidLeaveColumn:(EColumn *)eColumn
         for (int i = 0; i < _dicArr.count; i++)
         {
             NSNumber *value = [_dicArr[i] objectForKey:@"Value"];
-            EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value.floatValue index:i unit:@""];
+            EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value.floatValue index:i unit:@"kws"];
             [temp addObject:eColumnDataModel];
         }
         _data = [NSArray arrayWithArray:temp];
+        [_eColumnChart removeFromSuperview];
+        _eColumnChart = nil;
+        
+        _eColumnChart = [[EColumnChart alloc] initWithFrame:chatRect];
+        [self.view addSubview:_eColumnChart];
         [_eColumnChart setColumnsIndexStartFromLeft:YES];
         [_eColumnChart setDelegate:self];
         [_eColumnChart setDataSource:self];
-        
-        [_eColumnChart reloadData];
+        //表格标题
+        NSDate *currentdate = [NSDate date];
+        NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+        dateformatter.dateFormat = @"yyyy-mm-dd";
+        NSString *nowDateStr = [dateformatter stringFromDate:currentdate];
+        NSString *yearStr = [nowDateStr substringToIndex:4];
+        if (flagZJD == [[DataCenter sharedInstance] ReadData].UserInfo.useType) {
+            //此刻未选择
+             _titleLabel.text = [NSString stringWithFormat:@"%@年度民情统计",yearStr];
+        }
+        else
+        {
+             _titleLabel.text = [NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_searchField.text];
+        }
+       
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];

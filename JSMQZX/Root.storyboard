@@ -358,6 +358,9 @@
                     <connections>
                         <segue destination="COU-s2-oue" kind="push" identifier="FenxiYanpanToQingyubiao" id="8vY-CC-nhA"/>
                         <segue destination="igQ-x5-Yr9" kind="push" identifier="FenxiYanpanToNonghuZoufang" id="w6a-HR-Z6t"/>
+                        <segue destination="vOG-oY-Zj2" kind="push" identifier="FenxiYanpanToMinshenXvqiu" id="YtL-5d-P7M"/>
+                        <segue destination="5p5-8p-vo9" kind="push" identifier="FenxiYanpanToGanBuZouFang" id="mGn-3V-sVI"/>
+                        <segue destination="Gvs-EM-dQI" kind="push" identifier="FenxiYanpanToGanBuFuWu" id="I0G-s8-nBe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdP-wo-Cug" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -398,27 +401,18 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clickSearchBtn:" destination="COU-s2-oue" eventType="touchUpInside" id="cOS-yG-PdN"/>
                                     <action selector="clickSearchBtn:" destination="igQ-x5-Yr9" eventType="touchUpInside" id="ruW-OX-Bkk"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjP-Af-RPA" customClass="PieChartView">
-                                <rect key="frame" x="8" y="122" width="304" height="388"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="hjP-Af-RPA" secondAttribute="trailing" constant="8" id="CLd-wP-aWQ"/>
-                            <constraint firstItem="ivA-jd-yb7" firstAttribute="top" secondItem="hjP-Af-RPA" secondAttribute="bottom" constant="58" id="JOe-Jc-pfc"/>
                             <constraint firstAttribute="trailing" secondItem="cLf-Db-mbb" secondAttribute="trailing" id="Qp1-rp-Eur"/>
                             <constraint firstAttribute="trailing" secondItem="fGG-bH-ZRb" secondAttribute="trailing" constant="8" id="V96-J4-YQc"/>
                             <constraint firstItem="0EE-Hp-0qB" firstAttribute="top" secondItem="bdm-yT-oUN" secondAttribute="bottom" constant="8" id="YQ9-Zd-pVG"/>
                             <constraint firstItem="fGG-bH-ZRb" firstAttribute="leading" secondItem="0EE-Hp-0qB" secondAttribute="trailing" constant="21" id="afG-DH-T2m"/>
                             <constraint firstItem="fGG-bH-ZRb" firstAttribute="top" secondItem="bdm-yT-oUN" secondAttribute="bottom" constant="8" id="chF-R4-XdU"/>
                             <constraint firstItem="fGG-bH-ZRb" firstAttribute="width" secondItem="2Ru-F6-7hm" secondAttribute="width" multiplier="0.2" id="dag-2e-cXs"/>
-                            <constraint firstItem="hjP-Af-RPA" firstAttribute="top" secondItem="cLf-Db-mbb" secondAttribute="bottom" constant="16" id="mNh-Lt-yiZ"/>
-                            <constraint firstItem="hjP-Af-RPA" firstAttribute="leading" secondItem="2Ru-F6-7hm" secondAttribute="leading" constant="8" id="quA-JU-H1X"/>
                             <constraint firstItem="0EE-Hp-0qB" firstAttribute="leading" secondItem="2Ru-F6-7hm" secondAttribute="leading" constant="8" id="s0f-uz-0xT"/>
                             <constraint firstItem="cLf-Db-mbb" firstAttribute="top" secondItem="0EE-Hp-0qB" secondAttribute="bottom" constant="3" id="snF-aW-9c9"/>
                             <constraint firstItem="cLf-Db-mbb" firstAttribute="leading" secondItem="2Ru-F6-7hm" secondAttribute="leading" id="voC-Cf-PmV"/>
@@ -426,7 +420,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="农户被走访情况统计" id="5wg-DL-C86"/>
                     <connections>
-                        <outlet property="pieChartView" destination="hjP-Af-RPA" id="5nj-7U-Zin"/>
+                        <outlet property="lineV" destination="cLf-Db-mbb" id="NMp-Oc-SMa"/>
                         <outlet property="searchBtn" destination="fGG-bH-ZRb" id="enI-Gc-6XM"/>
                         <outlet property="searchField" destination="0EE-Hp-0qB" id="FW5-uS-XmC"/>
                     </connections>
@@ -434,6 +428,205 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTO-Zo-nUG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="2434"/>
+        </scene>
+        <!--民生需求统计-->
+        <scene sceneID="IQG-dd-zHp">
+            <objects>
+                <viewController id="vOG-oY-Zj2" customClass="MinshengXvqiuVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T6v-ST-Tbc"/>
+                        <viewControllerLayoutGuide type="bottom" id="zah-QG-YQK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H9B-jr-goy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择镇(街道)/村(社区)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwX-ep-mOj">
+                                <rect key="frame" x="8" y="72" width="219" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfa-cf-mZF">
+                                <rect key="frame" x="0.0" y="105" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="PQP-cW-ZY2"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xl-NM-5WS">
+                                <rect key="frame" x="248" y="72" width="64" height="30"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MKk-Yv-dgd"/>
+                                </constraints>
+                                <state key="normal" title="查看">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickSearchBtn:" destination="vOG-oY-Zj2" eventType="touchUpInside" id="DKj-cN-jJe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bwX-ep-mOj" firstAttribute="top" secondItem="T6v-ST-Tbc" secondAttribute="bottom" constant="8" id="01v-LZ-8N6"/>
+                            <constraint firstItem="0xl-NM-5WS" firstAttribute="top" secondItem="T6v-ST-Tbc" secondAttribute="bottom" constant="8" id="1B4-Wv-mUq"/>
+                            <constraint firstAttribute="trailing" secondItem="0xl-NM-5WS" secondAttribute="trailing" constant="8" id="6bg-wW-bsS"/>
+                            <constraint firstAttribute="trailing" secondItem="Kfa-cf-mZF" secondAttribute="trailing" id="FeF-zR-8wj"/>
+                            <constraint firstItem="0xl-NM-5WS" firstAttribute="width" secondItem="H9B-jr-goy" secondAttribute="width" multiplier="0.2" id="HFY-v0-iYy"/>
+                            <constraint firstItem="0xl-NM-5WS" firstAttribute="leading" secondItem="bwX-ep-mOj" secondAttribute="trailing" constant="21" id="JM7-xW-kee"/>
+                            <constraint firstItem="Kfa-cf-mZF" firstAttribute="leading" secondItem="H9B-jr-goy" secondAttribute="leading" id="UPo-1w-7aS"/>
+                            <constraint firstItem="Kfa-cf-mZF" firstAttribute="top" secondItem="bwX-ep-mOj" secondAttribute="bottom" constant="3" id="fm3-Iy-nAb"/>
+                            <constraint firstItem="bwX-ep-mOj" firstAttribute="leading" secondItem="H9B-jr-goy" secondAttribute="leading" constant="8" id="ooJ-S1-pKc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="民生需求统计" id="gSR-60-NEv"/>
+                    <connections>
+                        <outlet property="lineV" destination="Kfa-cf-mZF" id="iAm-j7-27i"/>
+                        <outlet property="searchBtn" destination="0xl-NM-5WS" id="I5l-fd-72E"/>
+                        <outlet property="searchField" destination="bwX-ep-mOj" id="uuP-vU-s5C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lri-UT-9T9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1197" y="2487"/>
+        </scene>
+        <!--干部走访情况统计-->
+        <scene sceneID="l9v-aM-nSc">
+            <objects>
+                <viewController id="5p5-8p-vo9" customClass="GanBuZouFangVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i1s-DQ-K1R"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hxq-dJ-grG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vdA-9x-Jgs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择镇(街道)/村(社区)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRw-LJ-R68">
+                                <rect key="frame" x="8" y="72" width="219" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-Bk-Qk1">
+                                <rect key="frame" x="0.0" y="105" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="lUJ-LD-XwV"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNA-6G-Zqq">
+                                <rect key="frame" x="248" y="72" width="64" height="30"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="b5d-Bh-tds"/>
+                                </constraints>
+                                <state key="normal" title="查看">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickSearchBtn:" destination="5p5-8p-vo9" eventType="touchUpInside" id="mMf-Az-BtS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KNA-6G-Zqq" firstAttribute="leading" secondItem="cRw-LJ-R68" secondAttribute="trailing" constant="21" id="4w9-Ji-vhf"/>
+                            <constraint firstItem="KNA-6G-Zqq" firstAttribute="width" secondItem="vdA-9x-Jgs" secondAttribute="width" multiplier="0.2" id="C3j-c0-h4r"/>
+                            <constraint firstItem="bBc-Bk-Qk1" firstAttribute="leading" secondItem="vdA-9x-Jgs" secondAttribute="leading" id="OaX-Yh-Ech"/>
+                            <constraint firstItem="KNA-6G-Zqq" firstAttribute="top" secondItem="i1s-DQ-K1R" secondAttribute="bottom" constant="8" id="dkT-A3-sZj"/>
+                            <constraint firstAttribute="trailing" secondItem="KNA-6G-Zqq" secondAttribute="trailing" constant="8" id="jvi-zn-u2b"/>
+                            <constraint firstItem="bBc-Bk-Qk1" firstAttribute="top" secondItem="cRw-LJ-R68" secondAttribute="bottom" constant="3" id="mkU-DZ-wCb"/>
+                            <constraint firstItem="cRw-LJ-R68" firstAttribute="top" secondItem="i1s-DQ-K1R" secondAttribute="bottom" constant="8" id="pWQ-8Z-mWi"/>
+                            <constraint firstAttribute="trailing" secondItem="bBc-Bk-Qk1" secondAttribute="trailing" id="wNb-qT-Cyi"/>
+                            <constraint firstItem="cRw-LJ-R68" firstAttribute="leading" secondItem="vdA-9x-Jgs" secondAttribute="leading" constant="8" id="yTD-lE-9YB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="干部走访情况统计" id="uf6-5l-0h5"/>
+                    <connections>
+                        <outlet property="lineV" destination="bBc-Bk-Qk1" id="Pv1-9L-GY8"/>
+                        <outlet property="searchBtn" destination="KNA-6G-Zqq" id="PoN-yc-TGA"/>
+                        <outlet property="searchField" destination="cRw-LJ-R68" id="GfP-Mc-Fch"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3on-xP-dWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1486" y="1977"/>
+        </scene>
+        <!--干部服务指数评价-->
+        <scene sceneID="EXQ-Xu-FPT">
+            <objects>
+                <viewController id="Gvs-EM-dQI" customClass="GanBuFuWuVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6hb-Bs-b8v"/>
+                        <viewControllerLayoutGuide type="bottom" id="64Z-6V-al6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FDc-2n-Wso">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择镇(街道)/村(社区)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wwj-Bc-4BO">
+                                <rect key="frame" x="8" y="72" width="219" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vs3-VI-HdK">
+                                <rect key="frame" x="0.0" y="105" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="dhM-PP-JnT"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bq7-fF-IK8">
+                                <rect key="frame" x="248" y="72" width="64" height="30"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="zx3-T1-Bym"/>
+                                </constraints>
+                                <state key="normal" title="查看">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickSearchBtn:" destination="Gvs-EM-dQI" eventType="touchUpInside" id="v1M-3F-lCf"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FjY-0z-l8g">
+                                <rect key="frame" x="0.0" y="110" width="320" height="458"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gvs-EM-dQI" id="NtN-fs-iac"/>
+                                    <outlet property="delegate" destination="Gvs-EM-dQI" id="5Mr-BA-oGN"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FjY-0z-l8g" firstAttribute="leading" secondItem="FDc-2n-Wso" secondAttribute="leading" id="3qc-rC-haA"/>
+                            <constraint firstAttribute="trailing" secondItem="FjY-0z-l8g" secondAttribute="trailing" id="4Un-OI-Czg"/>
+                            <constraint firstItem="64Z-6V-al6" firstAttribute="top" secondItem="FjY-0z-l8g" secondAttribute="bottom" id="8jJ-Mi-ouN"/>
+                            <constraint firstAttribute="trailing" secondItem="Bq7-fF-IK8" secondAttribute="trailing" constant="8" id="BAQ-kY-5HD"/>
+                            <constraint firstItem="Vs3-VI-HdK" firstAttribute="trailing" secondItem="FjY-0z-l8g" secondAttribute="trailing" id="Bfv-vk-EZe"/>
+                            <constraint firstItem="Bq7-fF-IK8" firstAttribute="top" secondItem="6hb-Bs-b8v" secondAttribute="bottom" constant="8" id="MVJ-0F-GTi"/>
+                            <constraint firstItem="wwj-Bc-4BO" firstAttribute="leading" secondItem="FDc-2n-Wso" secondAttribute="leading" constant="8" id="RKB-Ps-KqO"/>
+                            <constraint firstItem="FjY-0z-l8g" firstAttribute="top" secondItem="Vs3-VI-HdK" secondAttribute="bottom" constant="4" id="Tx1-Yo-1rp"/>
+                            <constraint firstItem="Bq7-fF-IK8" firstAttribute="width" secondItem="FDc-2n-Wso" secondAttribute="width" multiplier="0.2" id="ZNq-Km-FLX"/>
+                            <constraint firstItem="Vs3-VI-HdK" firstAttribute="top" secondItem="wwj-Bc-4BO" secondAttribute="bottom" constant="3" id="hme-ya-Soi"/>
+                            <constraint firstItem="wwj-Bc-4BO" firstAttribute="top" secondItem="6hb-Bs-b8v" secondAttribute="bottom" constant="8" id="isH-Lz-wfQ"/>
+                            <constraint firstItem="Bq7-fF-IK8" firstAttribute="leading" secondItem="wwj-Bc-4BO" secondAttribute="trailing" constant="21" id="wN1-xE-ppm"/>
+                            <constraint firstItem="Vs3-VI-HdK" firstAttribute="leading" secondItem="FjY-0z-l8g" secondAttribute="leading" id="yAT-3r-Ehr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="干部服务指数评价" id="jM8-6z-ezg"/>
+                    <connections>
+                        <outlet property="evaluateTableView" destination="FjY-0z-l8g" id="KL9-aB-AIS"/>
+                        <outlet property="lineV" destination="Vs3-VI-HdK" id="qIG-sO-L5S"/>
+                        <outlet property="searchBtn" destination="Bq7-fF-IK8" id="oZH-Ov-jJR"/>
+                        <outlet property="searchField" destination="wwj-Bc-4BO" id="g3D-hE-3Wg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6TF-2J-Y6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1473" y="2731"/>
         </scene>
         <!--民情晴雨表-->
         <scene sceneID="p0T-vQ-PdW">
@@ -485,7 +678,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnU-YE-I45">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnU-YE-I45">
                                 <rect key="frame" x="20" y="114" width="280" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="ZOg-IT-uR6"/>
@@ -523,11 +716,12 @@
                         <outlet property="SearchBtn" destination="m4g-fJ-3jw" id="B68-SA-4ye"/>
                         <outlet property="eColumnChart" destination="IN9-S6-Fez" id="0ca-iD-ORg"/>
                         <outlet property="searchField" destination="Cud-A8-u21" id="ufv-7L-p6s"/>
+                        <outlet property="titleLabel" destination="xnU-YE-I45" id="cOP-qa-zKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oj7-E0-D3i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1054" y="1754"/>
+            <point key="canvasLocation" x="1310" y="1781"/>
         </scene>
         <!--民生留言板-->
         <scene sceneID="85n-62-cGI">

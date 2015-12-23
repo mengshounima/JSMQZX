@@ -50,7 +50,21 @@
         [self performSegueWithIdentifier:@"FenxiYanpanToNonghuZoufang" sender:Nil];
         
     }
-    
+    else if (indexPath.row == 2)
+    {
+        [self performSegueWithIdentifier:@"FenxiYanpanToMinshenXvqiu" sender:Nil];
+        
+    }
+    else if (indexPath.row == 3)
+    {
+        [self performSegueWithIdentifier:@"FenxiYanpanToGanBuZouFang" sender:Nil];
+        
+    }
+    else if (indexPath.row == 5)
+    {
+        [self performSegueWithIdentifier:@"FenxiYanpanToGanBuFuWu" sender:Nil];
+        
+    }
 }
 
 /*

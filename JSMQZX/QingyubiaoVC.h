@@ -12,9 +12,10 @@
 #import "JKAlertDialog.h"
 @interface QingyubiaoVC : UIViewController
 
-@property (weak, nonatomic) IBOutlet EColumnChart *eColumnChart;
+@property (strong, nonatomic) IBOutlet EColumnChart *eColumnChart;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickSearchBtn:(id)sender;
 @end

@@ -35,6 +35,12 @@
 		F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A0A1C133D8600389829 /* UIImage+Extension.m */; };
 		F0300A111C133D8600389829 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A0C1C133D8600389829 /* UIView+Extension.m */; };
 		F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */ = {isa = PBXBuildFile; fileRef = F0300A0E1C133D8600389829 /* UIImage+SJ.m */; };
+		F03889E51C2AF32A00FD190B /* MinshengXvqiuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F03889E41C2AF32A00FD190B /* MinshengXvqiuVC.m */; };
+		F03889E91C2AFE1F00FD190B /* JXBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03889E81C2AFE1F00FD190B /* JXBarChartView.m */; };
+		F03889EC1C2AFE5E00FD190B /* GanBuZouFangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F03889EB1C2AFE5E00FD190B /* GanBuZouFangVC.m */; };
+		F03889EF1C2B04CD00FD190B /* GanBuFuWuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F03889EE1C2B04CD00FD190B /* GanBuFuWuVC.m */; };
+		F03889F31C2B0AEA00FD190B /* EvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F03889F11C2B0AEA00FD190B /* EvaluateCell.m */; };
+		F03889F41C2B0AEA00FD190B /* EvaluateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F03889F21C2B0AEA00FD190B /* EvaluateCell.xib */; };
 		F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = F047615E1C21A5BF002A9EF6 /* PhotoStackView.m */; };
 		F04F68BC1C2446F0000F1D58 /* DangyuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F04F68BA1C2446F0000F1D58 /* DangyuanCell.m */; };
 		F04F68BD1C2446F0000F1D58 /* DangyuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04F68BB1C2446F0000F1D58 /* DangyuanCell.xib */; };
@@ -170,6 +176,17 @@
 		F0300A0C1C133D8600389829 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		F0300A0D1C133D8600389829 /* UIImage+SJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SJ.h"; sourceTree = "<group>"; };
 		F0300A0E1C133D8600389829 /* UIImage+SJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SJ.m"; sourceTree = "<group>"; };
+		F03889E31C2AF32A00FD190B /* MinshengXvqiuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinshengXvqiuVC.h; sourceTree = "<group>"; };
+		F03889E41C2AF32A00FD190B /* MinshengXvqiuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinshengXvqiuVC.m; sourceTree = "<group>"; };
+		F03889E71C2AFE1F00FD190B /* JXBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXBarChartView.h; sourceTree = "<group>"; };
+		F03889E81C2AFE1F00FD190B /* JXBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXBarChartView.m; sourceTree = "<group>"; };
+		F03889EA1C2AFE5E00FD190B /* GanBuZouFangVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanBuZouFangVC.h; sourceTree = "<group>"; };
+		F03889EB1C2AFE5E00FD190B /* GanBuZouFangVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanBuZouFangVC.m; sourceTree = "<group>"; };
+		F03889ED1C2B04CD00FD190B /* GanBuFuWuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanBuFuWuVC.h; sourceTree = "<group>"; };
+		F03889EE1C2B04CD00FD190B /* GanBuFuWuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanBuFuWuVC.m; sourceTree = "<group>"; };
+		F03889F01C2B0AEA00FD190B /* EvaluateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateCell.h; sourceTree = "<group>"; };
+		F03889F11C2B0AEA00FD190B /* EvaluateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateCell.m; sourceTree = "<group>"; };
+		F03889F21C2B0AEA00FD190B /* EvaluateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvaluateCell.xib; sourceTree = "<group>"; };
 		F047615D1C21A5BF002A9EF6 /* PhotoStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoStackView.h; sourceTree = "<group>"; };
 		F047615E1C21A5BF002A9EF6 /* PhotoStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoStackView.m; sourceTree = "<group>"; };
 		F04F68B91C2446F0000F1D58 /* DangyuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DangyuanCell.h; sourceTree = "<group>"; };
@@ -382,6 +399,12 @@
 				F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */,
 				F0040F571C284693004DC329 /* NonghuZoufangVC.h */,
 				F0040F581C284693004DC329 /* NonghuZoufangVC.m */,
+				F03889E31C2AF32A00FD190B /* MinshengXvqiuVC.h */,
+				F03889E41C2AF32A00FD190B /* MinshengXvqiuVC.m */,
+				F03889EA1C2AFE5E00FD190B /* GanBuZouFangVC.h */,
+				F03889EB1C2AFE5E00FD190B /* GanBuZouFangVC.m */,
+				F03889ED1C2B04CD00FD190B /* GanBuFuWuVC.h */,
+				F03889EE1C2B04CD00FD190B /* GanBuFuWuVC.m */,
 			);
 			name = FenxiYanpan;
 			sourceTree = "<group>";
@@ -531,6 +554,15 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
+		F03889E61C2AFDFE00FD190B /* JXBar */ = {
+			isa = PBXGroup;
+			children = (
+				F03889E71C2AFE1F00FD190B /* JXBarChartView.h */,
+				F03889E81C2AFE1F00FD190B /* JXBarChartView.m */,
+			);
+			name = JXBar;
+			sourceTree = "<group>";
+		};
 		F04F68B81C2446B0000F1D58 /* GanBuUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +572,9 @@
 				F0B725281C2599020027B1F1 /* mailCell.h */,
 				F0B725291C2599020027B1F1 /* mailCell.m */,
 				F0B7252A1C2599020027B1F1 /* mailCell.xib */,
+				F03889F01C2B0AEA00FD190B /* EvaluateCell.h */,
+				F03889F11C2B0AEA00FD190B /* EvaluateCell.m */,
+				F03889F21C2B0AEA00FD190B /* EvaluateCell.xib */,
 			);
 			name = GanBuUser;
 			sourceTree = "<group>";
@@ -547,6 +582,7 @@
 		F060B39C1C145D38007F472F /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				F03889E61C2AFDFE00FD190B /* JXBar */,
 				F0040F4D1C284648004DC329 /* ChartView */,
 				F0040F221C282470004DC329 /* EChart */,
 				F0E78DA91C148A6C00DDE8D8 /* GDataXML */,
@@ -571,7 +607,6 @@
 			isa = PBXGroup;
 			children = (
 				F074E7031C15C2630098792E /* Root.storyboard */,
-				F074E7051C15D9090098792E /* View */,
 				F074E7021C15C22E0098792E /* Controller */,
 			);
 			name = Home;
@@ -580,6 +615,7 @@
 		F074E7021C15C22E0098792E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F074E7051C15D9090098792E /* View */,
 				8E8FAE931C20F61C006B02E9 /* Root */,
 				8E8FAE921C20F5C3006B02E9 /* GeneralUser */,
 				F0B733E21C207F66000DA6F3 /* GanbuUser */,
@@ -887,6 +923,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03889F41C2B0AEA00FD190B /* EvaluateCell.xib in Resources */,
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
 				F0C9AAAA1C252BDC00CFA498 /* mapapi.bundle in Resources */,
 				F0B7252C1C2599020027B1F1 /* mailCell.xib in Resources */,
@@ -950,6 +987,7 @@
 			files = (
 				F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */,
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
+				F03889F31C2B0AEA00FD190B /* EvaluateCell.m in Sources */,
 				F0D03D0B1C296C3C00D2BAF2 /* DataCenter.m in Sources */,
 				F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */,
 				F074E7081C15D9180098792E /* HMTitleButton.m in Sources */,
@@ -980,10 +1018,12 @@
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
 				F0040F561C284660004DC329 /* PieChartView.m in Sources */,
+				F03889E51C2AF32A00FD190B /* MinshengXvqiuVC.m in Sources */,
 				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,
 				F0300A0F1C133D8600389829 /* UIBarButtonItem+Extension.m in Sources */,
 				F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */,
 				F03009F21C12FAB600389829 /* UserTypeView.m in Sources */,
+				F03889EC1C2AFE5E00FD190B /* GanBuZouFangVC.m in Sources */,
 				F0300A111C133D8600389829 /* UIView+Extension.m in Sources */,
 				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,
 				F0040F411C282507004DC329 /* EColor.m in Sources */,
@@ -991,9 +1031,11 @@
 				F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */,
 				F06D953E1C1EE2C100FDE859 /* WeiBanLiVC.m in Sources */,
 				F0040F461C282507004DC329 /* ELine.m in Sources */,
+				F03889EF1C2B04CD00FD190B /* GanBuFuWuVC.m in Sources */,
 				F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */,
 				F0B725241C258E7F0027B1F1 /* MessageBoardTableVC.m in Sources */,
 				F0040F541C284660004DC329 /* RenderView.m in Sources */,
+				F03889E91C2AFE1F00FD190B /* JXBarChartView.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.mm in Sources */,
 				F0040F311C2824F6004DC329 /* EViewSwitcher.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
