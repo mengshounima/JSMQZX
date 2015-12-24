@@ -15,25 +15,66 @@
 
 @implementation PicViewController
 
+
+-(void)deletePic{
+    NSMutableArray *photosMutable = [self.photos mutableCopy];
+    [photosMutable removeObjectAtIndex:self.pageControl.currentPage];
+    self.photos = photosMutable;
+    [self.photoStack reloadData];
+    self.pageControl.numberOfPages = [self.photos count];
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
 }
 -(void)initView{
+    //右上角删除按钮
+    self.navigationController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(deletePic)];;
+    
     self.photos = _RZ_imageArr;
     _photoStack.dataSource = self;
     _photoStack.delegate = self;
     _photoStack.userInteractionEnabled = NO;
     self.pageControl.numberOfPages = [self.photos count];
+    
 }
+
+-(void)viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        if (self.photos.count>0) {
+            NSMutableArray *imageArrMut = [[NSMutableArray alloc] init];
+            for (UIImage *image in self.photos) {
+                NSData *data;
+                data = UIImageJPEGRepresentation(image, 0.5);
+                [imageArrMut addObject:data];
+            }
+            NSArray *allPicArr = [imageArrMut copy];
+                       //添加通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddPicFinished" object:allPicArr];
+        }
+}
+    [super viewWillDisappear:animated];
+}
+
+
+
 #pragma mark -
 #pragma mark Deck DataSource Protocol Methods
 
 -(NSUInteger)numberOfPhotosInPhotoStackView:(PhotoStackView *)photoStack {
+    if (self.photos.count>0) {
+        //有图片，可删除
+        self.navigationController.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else{
+         self.navigationController.navigationItem.rightBarButtonItem.enabled = NO;
+    }
     return [self.photos count];
 }
 
 -(UIImage *)photoStackView:(PhotoStackView *)photoStack photoForIndex:(NSUInteger)index {
+    //reload图片
     NSString *imagename = [NSString stringWithFormat:@"%@%@",[_RZ_imageArr[index] objectForKey:@"photoCode"],[_RZ_imageArr[index] objectForKey:@"photoUrl"]];
     return [self.photos objectAtIndex:index];
 }
@@ -80,7 +121,7 @@
     UIActionSheet * sheet;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照", @"从相册", nil];
+        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照", nil];
     }
     else
     {
@@ -88,15 +129,7 @@
     }
     [sheet showInView:self.view];
 }
-- (IBAction)clickDelete:(id)sender {
-    NSMutableArray *photosMutable = [self.photos mutableCopy];
-    [photosMutable removeObjectAtIndex:self.pageControl.currentPage];
-    self.photos = photosMutable;
-    [self.photoStack reloadData];
-    self.pageControl.numberOfPages = [self.photos count];
-    
 
-}
 #pragma mark - 实现ActionSheet delegate事件
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -113,9 +146,7 @@
             case 1:
                 sourceType = UIImagePickerControllerSourceTypeCamera; // 相机
                 break;
-            case 2:
-                sourceType = UIImagePickerControllerSourceTypePhotoLibrary; // 相册
-                break;
+            
             default:
                 break;
         }

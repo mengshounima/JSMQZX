@@ -188,8 +188,11 @@
 }
 -(void)clickFarmer{
     //跳转到添加日志页面
-    //添加通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"selectOneFarmer" object:[farmerDic objectForKey:@"user_name"]];
+    //添加通知,传参农户姓名和id
+    NSDictionary *farmerInfo = @{@"user_name":[farmerDic objectForKey:@"user_name"],@"user_id":[farmerDic objectForKey:@"user_id"]};
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"selectOneFarmer" object:farmerInfo];
+    
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2]  animated:NO];
     
     

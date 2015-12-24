@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FarmersVC.h"
 #import "JKAlertDialog.h"
+#import "PicViewController.h"
 @interface AddVisitLogVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (weak, nonatomic) IBOutlet UIView *boxView;
@@ -42,4 +43,5 @@
 - (IBAction)clickbutton4:(id)sender;
 - (IBAction)clickbutton3:(id)sender;
 @property (nonatomic ,weak) NSString *XinxiLeibie;//1为固定走访的，2为非固定走访的
+@property (nonatomic,weak) NSArray *ImageArr;
 @end

@@ -18,12 +18,14 @@
     NSArray *typeArr;
     JKAlertDialog *alert;
     UIImage *_myImage;
-    NSString *flagGaiKuang;
-    NSString *flagGongXin;
-    NSString *flagLeiBie;
-    NSString *flagChuli;
+    NSNumber *flagGaiKuang;
+    NSNumber *flagGongXin;
+    NSNumber *flagLeiBie;
+    NSNumber *flagChuli;
+    NSNumber *flagNongHuID;
     int f1;
     int f2;
+    BOOL _hasImage;
     BMKLocationService *_locService;
     BMKUserLocation *_userLocation;
 }
@@ -32,15 +34,27 @@
 @implementation AddVisitLogVC
 -(void)viewWillAppear:(BOOL)animated {
     _locService.delegate = self;
+     [_locService startUserLocationService];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     _locService.delegate = nil;
+     [_locService stopUserLocationService];
 }
 
+
+-(void)PicAddMethod:(NSNotification *)notify{
+    //之前已经判断过有图片传过来
+    self.ImageArr = notify.object;
+    MyLog(@"添加的图片数量%lu",self.ImageArr.count);
+    _hasImage = true;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PicAddMethod:) name:@"AddPicFinished" object:nil];
     [self getViewNetData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectFarmerFinished:) name:@"selectOneFarmer" object:nil];
     [self initView];
@@ -52,6 +66,7 @@
     flagChuli = 0;
     f1 = 0;
     f2 = 0;
+    _hasImage = false;
 }
 -(void)getViewNetData{
     //获取共性问题list
@@ -99,7 +114,9 @@
 }
 
 -(void)selectFarmerFinished:(NSNotification *)notific{
-    _farmerF.text = notific.object;
+    NSDictionary *farmerDic = (NSDictionary *)notific.object;
+    _farmerF.text = [farmerDic objectForKey:@"user_name"];
+    flagNongHuID = [farmerDic objectForKey:@"user_id"];
 }
 -(void)initView{
     //初始化BMKLocationService
@@ -169,7 +186,6 @@
 }
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     _userLocation = userLocation;
 }
 
@@ -202,6 +218,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
      [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectOneFarmer" object:nil];
+      [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddPicFinished" object:nil];
 }
 //点击农户
 -(void)clickFarmers{
@@ -285,14 +302,14 @@
             //flagGongXin = 2008;
         }
         else{
-            flagGongXin = [NSString stringWithFormat:@"%@",[commomArr[indexPath.row-1] objectForKey:@"rdwt_id"]];//用于提交接口参数
+            flagGongXin = [commomArr[indexPath.row-1] objectForKey:@"rdwt_id"];//用于提交接口参数
             _commonF.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
 
         }
            }
     else{
         if (!indexPath.row==0) {
-            flagLeiBie = [NSString stringWithFormat:@"%@",[typeArr[indexPath.row-1] objectForKey:@"mqlb_id"]];//用于提交接口参数
+            flagLeiBie = [typeArr[indexPath.row-1] objectForKey:@"mqlb_id"];//用于提交接口参数
             _typeF.text = [typeArr[indexPath.row-1] objectForKey:@"mqlb_name"];
         }
 
@@ -328,8 +345,13 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    FarmersVC *farmers = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"AddVisitToFarmerRoot"]) {
+         FarmersVC *farmers = segue.destinationViewController;
+    }
+    else if([segue.identifier isEqualToString:@"AddLogToPicVC"]){
+        PicViewController *picVC = segue.destinationViewController;
+    }
+
 }
 
 //提交日志
@@ -338,106 +360,114 @@
         [MBProgressHUD showError:@"尚未定位成功，请稍等再试"];
         return;
     }
+    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||flagGaiKuang==0||flagChuli==0) {
+        [MBProgressHUD showError:@"内容未填写完整"];
+        return;
+    }
     [MBProgressHUD showMessage:@"提交中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;
     [param setObject:idStr forKey:@"userId"];
-    [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期
-    [param setObject:_farmerF.text forKey:@"rz_zfnh"];//农户
+    [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期***必填
+    [param setObject:flagNongHuID forKey:@"rz_zfnh"];//农户id***必填
 
-    [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234
-    [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id
-    [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本
-    [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）
+    [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234***必填
+    
+    [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id***有初始化为0
+    
+    if (ISNULLSTR(_needTextView.text)) {
+         [param setObject:@"" forKey:@"rz_msxq"];//需求，文本*****非必填
+    }
+    else{
+         [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本*****非必填
+    }
+    
+    
+    [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
     [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
-    [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id
-    [param setObject:@"20151201" forKey:@"rz_zjblsj"];//日志最终办理结果的时间
+    [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id****非必填有初始化
+    
+    //最近办理时间，添加日志时。填现在时间
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSString *currentStr = [formatter stringFromDate:[NSDate date]];
+    
+    [param setObject:currentStr forKey:@"rz_zjblsj"];//日志最终办理结果的时间
     [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.longitude] forKey:@"placeLongitude"];//经纬度
     [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.latitude] forKey:@"placeLatitude"];
     [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
-        NSDictionary *resultDic = (NSArray *)[jsonData objectFromJSONData];
-        MyLog(@"%@",resultDic);
+        NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        if (!ISNULLSTR(resultID)) {
+            [MBProgressHUD showSuccess:@"日志提交成功"];
+            MyLog(@"创建的日志id:%@",resultID);
+            //若有照片则传照片
+            if (_hasImage) {
+                [self uploadImages:resultID];
+            }
+            
+            
+            
+            
+        }
+        else{
+            [MBProgressHUD showError:@"日志提交失败，请重试"];
+        }
+        
+        
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求失败"];
     }];
     
-
-    
 }
-- (IBAction)clickPicBtn:(id)sender {
-    UIActionSheet * sheet;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照", @"从相册", nil];
-    }
-    else
-    {
-        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"从相册", nil];
-    }
-    [sheet showInView:self.view];
-
-}
-#pragma mark - 实现ActionSheet delegate事件
-- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+-(void)uploadImages:(NSString *)RiZiID{
+    NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSString *date = [formatter stringFromDate:[NSDate date] ];
+    [param setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
+    [param setObject:RiZiID forKey:@"rz_id"];
+    [param setObject:date forKey:@"photoCode"];
+    [param setObject:date forKey:@"takeDate"];
+    [MBProgressHUD showMessage:@"上传中"];
     
-    NSUInteger sourceType = 0;
-    // 判断是否支持相机
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        switch (buttonIndex)
-        {
-            case 0:
-                return;// 取消
-            case 1:
-                sourceType = UIImagePickerControllerSourceTypeCamera; // 相机
-                break;
-            case 2:
-                sourceType = UIImagePickerControllerSourceTypePhotoLibrary; // 相册
-                break;
-            default:
-                break;
-        }
-    }
-    else
-    {
-        if (buttonIndex == 0)
-        {
-            return;
+    //多张图片上传
+    [[HttpClient httpClient] requestOperaionManageWithURl:@"/CreateMQPhoto" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageArr DataNumber:self.ImageArr.count success:^(AFHTTPRequestOperation *operation, id response) {
+        MyLog(@"%@",response);
+        [MBProgressHUD hideHUD];
+
+        NSData* jsonData = [self XMLString:response];
+        [jsonData objectFromJSONData];
+        
+        /*NSString *result = [resultsDic objectForKey:@"result"];
+        MyLog(@"%@",result);
+        if ([result isEqualToString:@"true"]) {
+            [MBProgressHUD showSuccess:@"上传成功"];
+            //返回到主页
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TabBarRemove" object:nil];
         }
         else
         {
-            sourceType = UIImagePickerControllerSourceTypePhotoLibrary; // 相册
-        }
-    }
-    // 跳转到相机或相册页面
-    UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.delegate = self; // 设置代理
-    imagePicker.allowsEditing = YES; // 允许编辑
-    imagePicker.sourceType = sourceType; // 设置图片源
-    [self presentViewController:imagePicker animated:YES completion:^{
+            [MBProgressHUD showError:@"上传失败"];
+        }*/
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MyLog(@"%@",error);
+        [MBProgressHUD hideHUD];
     }];
+
 }
 
-#pragma mark - 实现ImagePicker delegate 事件
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    // 获取图片
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:YES completion:^{
-        [_picBtn setBackgroundImage:image forState:UIControlStateNormal];
-        [_picBtn setBackgroundImage:image forState:UIControlStateHighlighted];
-        //_hasImage = true;
-        _myImage = image;
-    }];
+- (IBAction)clickPicBtn:(id)sender {
+    [self performSegueWithIdentifier:@"AddLogToPicVC" sender:nil];
+    
 }
 
 - (IBAction)clickbtn1:(id)sender {
-    flagGaiKuang = @"1";
+    flagGaiKuang = [NSNumber numberWithInt:1];
     _btn1.selected = YES;
     _btn2.selected = NO;
     _btn3.selected = NO;
@@ -445,7 +475,7 @@
 }
 
 - (IBAction)clickbtn3:(id)sender {
-    flagGaiKuang = @"3";
+    flagGaiKuang = [NSNumber numberWithInt:3];
     _btn1.selected = NO;
     _btn2.selected = NO;
     _btn3.selected = YES;
@@ -453,7 +483,7 @@
 }
 
 - (IBAction)clickbtn2:(id)sender {
-    flagGaiKuang = @"2";
+    flagGaiKuang = [NSNumber numberWithInt:2];
     _btn1.selected = NO;
     _btn2.selected = YES;
     _btn3.selected = NO;
@@ -462,14 +492,14 @@
 }
 
 - (IBAction)clickbtn4:(id)sender {
-    flagGaiKuang = @"4";
+    flagGaiKuang = [NSNumber numberWithInt:4];
     _btn1.selected = NO;
     _btn2.selected = NO;
     _btn3.selected = NO;
     _btn4.selected = YES;
 }
 - (IBAction)clickbutton1:(id)sender {
-    flagChuli = @"1";
+    flagChuli = [NSNumber numberWithInt:1];
     _button1.selected = YES;
     _button2.selected = NO;
     _button3.selected = NO;
@@ -477,14 +507,14 @@
 }
 
 - (IBAction)clickbutton2:(id)sender {
-    flagChuli = @"2";
+    flagChuli = [NSNumber numberWithInt:2];
     _button1.selected = NO;
     _button2.selected = YES;
     _button3.selected = NO;
     _button4.selected = NO;
 }
 - (IBAction)clickbutton4:(id)sender {
-    flagChuli = @"4";
+    flagChuli = [NSNumber numberWithInt:4];
     _button1.selected = NO;
     _button2.selected = NO;
     _button3.selected = NO;
@@ -492,10 +522,12 @@
 }
 
 - (IBAction)clickbutton3:(id)sender {
-    flagChuli = @"3";
+    flagChuli = [NSNumber numberWithInt:3];
     _button1.selected = NO;
     _button2.selected = NO;
     _button3.selected = YES;
     _button4.selected = NO;
 }
+
+
 @end

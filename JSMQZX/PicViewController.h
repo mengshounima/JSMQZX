@@ -6,8 +6,11 @@
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import "PhotoStackView.h"
+
+
 @interface PicViewController : UIViewController<PhotoStackViewDataSource, PhotoStackViewDelegate>
 @property (weak, nonatomic) IBOutlet PhotoStackView *photoStack;//图片浏览器
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;

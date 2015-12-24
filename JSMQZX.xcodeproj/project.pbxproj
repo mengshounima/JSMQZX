@@ -710,8 +710,6 @@
 				F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */,
 				F06D953C1C1EE2C100FDE859 /* WeiBanLiVC.h */,
 				F06D953D1C1EE2C100FDE859 /* WeiBanLiVC.m */,
-				F0B5593B1C2189D600E9103C /* PicViewController.h */,
-				F0B5593C1C2189D600E9103C /* PicViewController.m */,
 			);
 			name = RiZhiBanLi;
 			sourceTree = "<group>";
@@ -818,6 +816,8 @@
 				F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */,
 				F0B4E1F21C19E48B00EAAC10 /* FarmerInfoTableVC.h */,
 				F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */,
+				F0B5593B1C2189D600E9103C /* PicViewController.h */,
+				F0B5593C1C2189D600E9103C /* PicViewController.m */,
 			);
 			name = MinQinRiZhi;
 			sourceTree = "<group>";
@@ -891,7 +891,7 @@
 				TargetAttributes = {
 					F07D72901C10756200C695CB = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = E9N858U5AD;
+						DevelopmentTeam = 8UZYHD6Q39;
 					};
 					F07D72A91C10756200C695CB = {
 						CreatedOnToolsVersion = 6.4;
@@ -1179,6 +1179,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BaiduMapAPI",
@@ -1227,6 +1228,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BaiduMapAPI",

@@ -96,15 +96,14 @@
  */
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (self.viewControllers.count > 0) { // 如果现在push的不是栈底控制器(最先push进来的那个控制器)
+    //if (self.viewControllers.count > 0) { // 如果现在push的不是栈底控制器(最先push进来的那个控制器)
         viewController.hidesBottomBarWhenPushed = YES;
         
         // 设置导航栏按钮
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"返回" highImageName:@"返回-选中" target:self action:@selector(back)];
         //右上角设置按钮
-        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(more)];
-        //[UIBarButtonItem itemWithImageName:@"返回" highImageName:@"返回-选中" target:self action:@selector(more)];
-    }
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"设置-灰" highImageName:@"设置-蓝" target:self action:@selector(Setting)];
+    //}
     [super pushViewController:viewController animated:animated];
 }
 
@@ -114,7 +113,7 @@
     [self popViewControllerAnimated:YES];
 }
 
-- (void)more
+- (void)Setting
 {
     //弹出设置框
     if (_backView == nil) {
@@ -134,6 +133,18 @@
         _setView.frame = CGRectMake(SCREEN_WIDTH-100, 0, 100, 200);
         _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
     } completion:^(BOOL finished) {
+    }];
+}
+
+#pragma mark
+- (void)Cancel
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        _backView.backgroundColor = [UIColor colorWithRed:238 green:238 blue:238 alpha:0];
+        
+    } completion:^(BOOL finished) {
+        [_backView removeFromSuperview];
+        [_setView removeFromSuperview];
     }];
 }
 -(void)SetViewClose{
@@ -166,6 +177,7 @@
         }
 
     }
+    [self Cancel];
 }
 - (void)exitApplication {
     
@@ -201,6 +213,10 @@
 }
 
 -(void)SetViewUser{
-    [self performSegueWithIdentifier:@"NavToUserInfo" sender:nil];
+    UserInfoTableVC *userVC = [[UserInfoTableVC alloc] init];
+    [self Cancel];
+    [self presentViewController:userVC animated:YES completion:^{
+    }];
+    
 }
 @end
