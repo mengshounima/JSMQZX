@@ -31,9 +31,8 @@ static id _instace;
     if (self = [super init]) {
         // 初始化请求管理对象
         self.opManager = [AFHTTPRequestOperationManager manager];
-        self.opManager.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.opManager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-        
+        self.opManager.responseSerializer.acceptableContentTypes =
+        [NSSet setWithObjects:@"application/json",@"charset=utf-8",@"image/jpeg",@"text/html",@"text/xml",nil];
             // 初始化 请求对象
             [self initRequest];
 
@@ -176,7 +175,7 @@ static id _instace;
             [self.opManager POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 for (int i =0 ; i<number; i++) {
                     NSString *fileName = [parameters objectForKey:@"filename"];
-                    [formData appendPartWithFileData:bodyData[i] name:fileName fileName:fileName mimeType:@"image/jpeg"];
+                    [formData appendPartWithFileData:bodyData[i] name:@"file" fileName:fileName mimeType:@"image/jpg"];
                 }
                 
                 /*if (bodyData) {

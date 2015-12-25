@@ -356,7 +356,8 @@
 
 //提交日志
 - (IBAction)clickSendBtn:(id)sender {
-    if (ISNULL(_userLocation)) {
+    [self uploadImages2:@"2015-12-25 19:45:45"];
+    /*if (ISNULL(_userLocation)) {
         [MBProgressHUD showError:@"尚未定位成功，请稍等再试"];
         return;
     }
@@ -416,7 +417,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求失败"];
-    }];
+    }];*/
     
 }
 -(void)uploadImages1:(NSString *)RiZiID{
@@ -451,36 +452,19 @@
 -(void)uploadImages2:(NSString *)PicID
 {
     NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
-    [param setObject:PicID forKey:@"filename"];
+    [param setObject:@"2015-12-25 19:45:45" forKey:@"filename"];
     [MBProgressHUD showMessage:@"上传中"];
     NSInteger count = self.ImageArr.count;
     //多张图片上传
     [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
         
+       
+        NSInteger resultStatusCode = [operation.response statusCode];
+         MyLog(@"result-----------------------------:%d",resultStatusCode);
         [MBProgressHUD hideHUD];
         
-        NSData* jsonData = [self XMLString:response];
-        NSArray *resultArr = (NSArray *)[jsonData objectFromJSONData];
-        MyLog(@"数组%@",resultArr);
-        NSDictionary *dic = (NSDictionary *)[jsonData objectFromJSONData];
-        MyLog(@"字典%@",dic);
-        NSString *PicSend  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        MyLog(@"string%@",PicSend);
-        /*NSString *result = [resultsDic objectForKey:@"result"];
-         MyLog(@"%@",result);
-         if ([result isEqualToString:@"true"]) {
-         [MBProgressHUD showSuccess:@"上传成功"];
-         //返回到主页
-         [self.navigationController popToRootViewControllerAnimated:YES];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"TabBarRemove" object:nil];
-         }
-         else
-         {
-         [MBProgressHUD showError:@"上传失败"];
-         }*/
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        MyLog(@"%@",error);
+        MyLog(@"错误i*/*******%@",error);
         [MBProgressHUD hideHUD];
     }];
     

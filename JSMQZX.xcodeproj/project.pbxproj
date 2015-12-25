@@ -16,7 +16,6 @@
 		8E9BD34A1C2CCBC8007121D9 /* BaiduMapAPI_Radar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3431C2CCBC8007121D9 /* BaiduMapAPI_Radar.framework */; };
 		8E9BD34B1C2CCBC8007121D9 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3441C2CCBC8007121D9 /* BaiduMapAPI_Search.framework */; };
 		8E9BD34C1C2CCBC8007121D9 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3451C2CCBC8007121D9 /* BaiduMapAPI_Utils.framework */; };
-		8E9BD34F1C2CCC11007121D9 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E9BD34E1C2CCC11007121D9 /* mapapi.bundle */; };
 		F0040F211C281E4B004DC329 /* FenxiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F201C281E4B004DC329 /* FenxiTableVC.m */; };
 		F0040F2E1C2824F6004DC329 /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F271C2824F6004DC329 /* EColumnChart.m */; };
 		F0040F2F1C2824F6004DC329 /* ELineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F291C2824F6004DC329 /* ELineChart.m */; };
@@ -34,6 +33,7 @@
 		F0040F541C284660004DC329 /* RenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4F1C284660004DC329 /* RenderView.m */; };
 		F0040F561C284660004DC329 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F531C284660004DC329 /* PieChartView.m */; };
 		F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F581C284693004DC329 /* NonghuZoufangVC.m */; };
+		F00B34C51C2D631F00BA36EA /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F00B34C41C2D631F00BA36EA /* mapapi.bundle */; };
 		F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F020D9701C186FB5001B78E4 /* FarmersVC.m */; };
 		F03009F21C12FAB600389829 /* UserTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F11C12FAB600389829 /* UserTypeView.m */; };
 		F03009FC1C132F3300389829 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F91C132F3300389829 /* HttpClient.m */; };
@@ -129,7 +129,6 @@
 		8E9BD3431C2CCBC8007121D9 /* BaiduMapAPI_Radar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Radar.framework; path = JSMQZX/BaiduMapAPI_Radar.framework; sourceTree = "<group>"; };
 		8E9BD3441C2CCBC8007121D9 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Search.framework; path = JSMQZX/BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
 		8E9BD3451C2CCBC8007121D9 /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Utils.framework; path = JSMQZX/BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
-		8E9BD34E1C2CCC11007121D9 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = JSMQZX/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		D05FCD92B64E18EA08B9F805 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F0040F1F1C281E4B004DC329 /* FenxiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FenxiTableVC.h; sourceTree = "<group>"; };
 		F0040F201C281E4B004DC329 /* FenxiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FenxiTableVC.m; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		F0040F531C284660004DC329 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		F0040F571C284693004DC329 /* NonghuZoufangVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonghuZoufangVC.h; sourceTree = "<group>"; };
 		F0040F581C284693004DC329 /* NonghuZoufangVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonghuZoufangVC.m; sourceTree = "<group>"; };
+		F00B34C41C2D631F00BA36EA /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		F020D96F1C186FB5001B78E4 /* FarmersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarmersVC.h; sourceTree = "<group>"; };
 		F020D9701C186FB5001B78E4 /* FarmersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarmersVC.m; sourceTree = "<group>"; };
 		F03009F01C12FAB600389829 /* UserTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeView.h; sourceTree = "<group>"; };
@@ -653,7 +653,7 @@
 		F07D72881C10756200C695CB = {
 			isa = PBXGroup;
 			children = (
-				8E9BD34E1C2CCC11007121D9 /* mapapi.bundle */,
+				F00B34C41C2D631F00BA36EA /* mapapi.bundle */,
 				F07D72931C10756200C695CB /* JSMQZX */,
 				F07D72AD1C10756200C695CB /* JSMQZXTests */,
 				F07D72921C10756200C695CB /* Products */,
@@ -905,7 +905,7 @@
 				TargetAttributes = {
 					F07D72901C10756200C695CB = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = E9N858U5AD;
+						DevelopmentTeam = 8UZYHD6Q39;
 					};
 					F07D72A91C10756200C695CB = {
 						CreatedOnToolsVersion = 6.4;
@@ -937,7 +937,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E9BD34F1C2CCC11007121D9 /* mapapi.bundle in Resources */,
+				F00B34C51C2D631F00BA36EA /* mapapi.bundle in Resources */,
 				F03889F41C2B0AEA00FD190B /* EvaluateCell.xib in Resources */,
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
 				F0B7252C1C2599020027B1F1 /* mailCell.xib in Resources */,
