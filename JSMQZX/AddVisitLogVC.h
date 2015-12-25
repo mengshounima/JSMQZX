@@ -43,5 +43,5 @@
 - (IBAction)clickbutton4:(id)sender;
 - (IBAction)clickbutton3:(id)sender;
 @property (nonatomic ,weak) NSString *XinxiLeibie;//1为固定走访的，2为非固定走访的
-@property (nonatomic,weak) NSArray *ImageArr;
+@property (nonatomic,strong) NSArray *ImageArr;
 @end
