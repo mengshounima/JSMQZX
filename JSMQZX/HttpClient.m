@@ -158,25 +158,25 @@ static id _instace;
 - (void)requestOperaionManageWithURl:(NSString *)urlStr
                           httpMethod:(NSInteger)method
                           parameters:(id)parameters
-                            bodyData:(NSMutableArray *)bodyData
+                            bodyData:(NSArray *)bodyData
                           DataNumber:(NSInteger)number
                              success:(void (^)(AFHTTPRequestOperation*, id))success
                              failure:(void (^)(AFHTTPRequestOperation*, NSError *))failure
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@", BaseURL, urlStr];
-   switch (method) {
+    switch (method) {
         case TBHttpRequestGet:
         {
-            [self.opManager GET:url parameters:parameters success:success failure:failure];
+            [self.opManager GET:urlStr parameters:nil success:success failure:failure];
         }
             break;
         case TBHttpRequestPost:
         {
             self.opManager.requestSerializer = [AFHTTPRequestSerializer serializer];
             self.opManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-            [self.opManager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [self.opManager POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 for (int i =0 ; i<number; i++) {
-                    [formData appendPartWithFileData:bodyData[i] name:@"photoUrl" fileName:@".jpg" mimeType:@"image/png"];
+                    NSString *fileName = [parameters objectForKey:@"filename"];
+                    [formData appendPartWithFileData:bodyData[i] name:fileName fileName:fileName mimeType:@"image/jpeg"];
                 }
                 
                 /*if (bodyData) {

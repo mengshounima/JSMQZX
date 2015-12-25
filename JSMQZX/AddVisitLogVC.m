@@ -400,16 +400,12 @@
         NSData* jsonData = [self XMLString:responseObject];
         NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         if (!ISNULLSTR(resultID)) {
-            [MBProgressHUD showSuccess:@"日志提交成功"];
+            //[MBProgressHUD showSuccess:@"日志提交成功"];
             MyLog(@"创建的日志id:%@",resultID);
             //若有照片则传照片
             if (_hasImage) {
-                [self uploadImages:resultID];
+                [self uploadImages1:resultID];
             }
-            
-            
-            
-            
         }
         else{
             [MBProgressHUD showError:@"日志提交失败，请重试"];
@@ -423,41 +419,71 @@
     }];
     
 }
--(void)uploadImages:(NSString *)RiZiID{
-    NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
+-(void)uploadImages1:(NSString *)RiZiID{
+    //传文件名，得到picID
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString *date = [formatter stringFromDate:[NSDate date] ];
-    [param setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
-    [param setObject:RiZiID forKey:@"rz_id"];
-    [param setObject:date forKey:@"photoCode"];
-    [param setObject:date forKey:@"takeDate"];
-    [MBProgressHUD showMessage:@"上传中"];
-    
-    //多张图片上传
-    [[HttpClient httpClient] requestOperaionManageWithURl:@"/CreateMQPhoto" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageArr DataNumber:self.ImageArr.count success:^(AFHTTPRequestOperation *operation, id response) {
-        MyLog(@"%@",response);
-        [MBProgressHUD hideHUD];
 
-        NSData* jsonData = [self XMLString:response];
-        [jsonData objectFromJSONData];
+    NSMutableDictionary *paramPic = [[NSMutableDictionary alloc] init];
+    [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
+    [paramPic setObject:RiZiID forKey:@"rz_id"];
+    [paramPic setObject:date forKey:@"photoCode"];
+    [paramPic setObject:date forKey:@"takeDate"];
+    [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        MyLog(@"%@",responseObject);
+        NSData* jsonData = [self XMLString:responseObject];
+        NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         
-        /*NSString *result = [resultsDic objectForKey:@"result"];
-        MyLog(@"%@",result);
-        if ([result isEqualToString:@"true"]) {
-            [MBProgressHUD showSuccess:@"上传成功"];
-            //返回到主页
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"TabBarRemove" object:nil];
+        if (!ISNULLSTR(PicID)) {
+            //开始上传图片数据
+            [self uploadImages2:PicID];
+            
         }
-        else
-        {
-            [MBProgressHUD showError:@"上传失败"];
-        }*/
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"请求失败"];
+    }];
+
+    
+    
+  }
+-(void)uploadImages2:(NSString *)PicID
+{
+    NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
+    [param setObject:PicID forKey:@"filename"];
+    [MBProgressHUD showMessage:@"上传中"];
+    NSInteger count = self.ImageArr.count;
+    //多张图片上传
+    [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
+        
+        [MBProgressHUD hideHUD];
+        
+        NSData* jsonData = [self XMLString:response];
+        NSArray *resultArr = (NSArray *)[jsonData objectFromJSONData];
+        MyLog(@"数组%@",resultArr);
+        NSDictionary *dic = (NSDictionary *)[jsonData objectFromJSONData];
+        MyLog(@"字典%@",dic);
+        NSString *PicSend  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        MyLog(@"string%@",PicSend);
+        /*NSString *result = [resultsDic objectForKey:@"result"];
+         MyLog(@"%@",result);
+         if ([result isEqualToString:@"true"]) {
+         [MBProgressHUD showSuccess:@"上传成功"];
+         //返回到主页
+         [self.navigationController popToRootViewControllerAnimated:YES];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"TabBarRemove" object:nil];
+         }
+         else
+         {
+         [MBProgressHUD showError:@"上传失败"];
+         }*/
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MyLog(@"%@",error);
         [MBProgressHUD hideHUD];
     }];
+    
 
 }
 
