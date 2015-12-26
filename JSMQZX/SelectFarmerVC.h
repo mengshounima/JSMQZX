@@ -19,4 +19,5 @@
 @property (nonatomic,weak) NSDictionary *gridInfo;
 @property (weak, nonatomic) IBOutlet UITableView *FarmerTable;
 @property (assign,nonatomic) NSNumber *flagPeopleSelect;
+@property (weak, nonatomic) NSNumber *FlagSuiji ;
 @end

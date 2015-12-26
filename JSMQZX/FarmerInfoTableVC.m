@@ -178,10 +178,14 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28)];
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, SCREEN_WIDTH-200, 28)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.25, 4, SCREEN_WIDTH*0.5, 20)];
     [btn setBackgroundColor:[UIColor orangeColor]];
+    
     btn.layer.cornerRadius = 6;
     [btn setTitle:@"选择该农户" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+
     [btn addTarget:self action:@selector(clickFarmer) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btn];
     return view;
@@ -190,10 +194,19 @@
     //跳转到添加日志页面
     //添加通知,传参农户姓名和id
     NSDictionary *farmerInfo = @{@"user_name":[farmerDic objectForKey:@"user_name"],@"user_id":[farmerDic objectForKey:@"user_id"]};
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"selectOneFarmer" object:farmerInfo];
-    
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2]  animated:NO];
+    if (_FlagSuiji.boolValue) {
+        //随机走访的，回退导航栏到前面第二个控制器
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"selectOneFarmer" object:farmerInfo];
+        
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2]  animated:NO];
+    }
+    else{
+        //不是，则直接new一个控制器
+       /* [[NSNotificationCenter defaultCenter] postNotificationName:@"selectOneFarmer" object:farmerInfo];*/
+        [self performSegueWithIdentifier:@"FarmerInfoBackToAddLog" sender:farmerInfo];
+        
+    }
+  
     
     
 }
@@ -232,14 +245,17 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"FarmerInfoBackToAddLog"]) {
+        AddVisitLogVC *addLogVC = segue.destinationViewController;
+        addLogVC.FlagSuiji = [NSNumber numberWithBool:YES];
+        addLogVC.farmerInfo = sender;
+    }
 }
-*/
+
 
 @end

@@ -19,7 +19,23 @@
     [self initView];
 }
 -(void)initView{
+    _mingqingrizhi.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _rizhibanli.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _ganburizhibanli.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _ganbuzaizhidangyuan.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _ganbumingshengdongtai.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _ganbufenxiyanpan.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanlirizhibanli.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanlizaizhidangyuan.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanlimingshendongtai.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanlizhiyuanfuwu.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanliweixinyuan.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanlidangdaibiao.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanlifenxiyanpan.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _guanlidangjianhongyun.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
     NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
+   
    // NSString *administerNameStr = [UserInfo sharedInstance].administerName;
     /*if ([administerNameStr isEqualToString:@"管理员"]) {
         //两个按钮
@@ -106,7 +122,7 @@
 
 
 
-//干部 在职党员
+//管理员 在职党员
 - (IBAction)clickGuanliyuanZaizhidangyuan:(id)sender {
    
     
@@ -114,14 +130,20 @@
 
 - (IBAction)clickGaunliyuanMinshendongtai:(id)sender {
 }
-
+//管理员 志愿服务
 - (IBAction)clickGuanliyuanFuwu:(id)sender {
+     [self performSegueWithIdentifier:@"GuanliyuanRootToZhiyuanfuwu" sender:nil];
+    
 }
-
+//管理员 微心愿
 - (IBAction)clickGaunliyuanWeixinyuan:(id)sender {
+     [self performSegueWithIdentifier:@"GaunliyuanRootToWeixinyuan" sender:nil];
+    
 }
-
+//管理员  党代表接待日
 - (IBAction)clickGaunliyuanDangdaibiao:(id)sender {
+    [self performSegueWithIdentifier:@"GuanliyaunRootToDangdaibiao" sender:nil];
+    
 }
 
 - (IBAction)clickGaunliyuanFenxi:(id)sender {

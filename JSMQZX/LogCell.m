@@ -17,16 +17,16 @@
     MyLog(@"%@",infoDic);
     NSNumber *rz_mqgk = [infoDic objectForKey:@"rz_mqgk"];
     if (rz_mqgk.integerValue==1) {
-        [_GKImageView setImage:[UIImage imageNamed:@"12"]];
+        [_GKImageView setImage:[UIImage imageNamed:@"晴天"]];
     }
     else if (rz_mqgk.integerValue==2){
-        [_GKImageView setImage:[UIImage imageNamed:@"13"]];
+        [_GKImageView setImage:[UIImage imageNamed:@"多云"]];
     }
     else if (rz_mqgk.integerValue==3){
-        [_GKImageView setImage:[UIImage imageNamed:@"14"]];
+        [_GKImageView setImage:[UIImage imageNamed:@"阴天"]];
     }
     else {
-        [_GKImageView setImage:[UIImage imageNamed:@"15"]];
+        [_GKImageView setImage:[UIImage imageNamed:@"下雨"]];
     }
     _nameL.text = [infoDic objectForKey:@"rz_zfnh_name"];
     _ZFGBLabel.text = [NSString stringWithFormat:@"走访干部:%@",[infoDic objectForKey:@"rz_zfrxm"]];//干部

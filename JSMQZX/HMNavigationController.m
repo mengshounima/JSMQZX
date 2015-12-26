@@ -102,7 +102,7 @@
         // 设置导航栏按钮
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"返回" highImageName:@"返回-选中" target:self action:@selector(back)];
         //右上角设置按钮
-        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"设置-灰" highImageName:@"设置-蓝" target:self action:@selector(Setting)];
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"设置" highImageName:@"设置-灰" target:self action:@selector(Setting)];
     //}
     [super pushViewController:viewController animated:animated];
 }

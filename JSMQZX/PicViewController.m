@@ -15,7 +15,6 @@
 
 @implementation PicViewController
 
-
 -(void)deletePic{
     NSMutableArray *photosMutable = [self.photos mutableCopy];
     [photosMutable removeObjectAtIndex:self.pageControl.currentPage];
@@ -35,7 +34,19 @@
     self.photos = _RZ_imageArr;
     _photoStack.dataSource = self;
     _photoStack.delegate = self;
-    _photoStack.userInteractionEnabled = NO;
+    MyLog(@"%f %f",SCREEN_WIDTH,SCREEN_HEIGHT);
+    _photoStack.frame =CGRectMake(20, 104,SCREEN_WIDTH-40,SCREEN_HEIGHT-145-80);
+    
+    //CGSizeMake(SCREEN_WIDTH-40,SCREEN_HEIGHT)
+    
+    MyLog(@"x=%f y=%f 高度%f 宽度%f", _photoStack.frame.origin.x, _photoStack.frame.origin.y,_photoStack.frame.size.width,_photoStack.frame.size.height);
+    [self.photoStack reloadData];
+    if (self.photos.count>0) {
+        _photoStack.userInteractionEnabled = YES;
+    }
+    else{
+        _photoStack.userInteractionEnabled = NO;
+    }
     self.pageControl.numberOfPages = [self.photos count];
     
 }
@@ -43,15 +54,9 @@
 -(void)viewWillDisappear:(BOOL)animated {
     if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
         if (self.photos.count>0) {
-            NSMutableArray *imageArrMut = [[NSMutableArray alloc] init];
-            for (UIImage *image in self.photos) {
-                NSData *data;
-                data = UIImageJPEGRepresentation(image, 0.5);
-                [imageArrMut addObject:data];
-            }
-            NSArray *allPicArr = [imageArrMut copy];
+           
                        //添加通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddPicFinished" object:allPicArr];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddPicFinished" object:self.photos];
         }
 }
     [super viewWillDisappear:animated];
@@ -75,7 +80,7 @@
 
 -(UIImage *)photoStackView:(PhotoStackView *)photoStack photoForIndex:(NSUInteger)index {
     //reload图片
-    NSString *imagename = [NSString stringWithFormat:@"%@%@",[_RZ_imageArr[index] objectForKey:@"photoCode"],[_RZ_imageArr[index] objectForKey:@"photoUrl"]];
+    /*NSString *imagename = [NSString stringWithFormat:@"%@%@",[self.photos[index] objectForKey:@"photoCode"],[self.photos[index] objectForKey:@"photoUrl"]];*/
     return [self.photos objectAtIndex:index];
 }
 

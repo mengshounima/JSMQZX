@@ -136,6 +136,7 @@
     SelectFarmerVC *selectFarmer = segue.destinationViewController;
     selectFarmer.gridInfo = sender;
     selectFarmer.flagPeopleSelect = [NSNumber numberWithInteger:4];//网格农户
+    selectFarmer.FlagSuiji = _FlagSuiji;
 }
 
 

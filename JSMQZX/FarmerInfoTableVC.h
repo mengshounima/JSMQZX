@@ -12,4 +12,5 @@
 @interface FarmerInfoTableVC : UITableViewController
 @property (nonatomic,weak) NSDictionary *farmerInfo;
 @property (strong, nonatomic) IBOutlet UITableView *InfoTableVIew;
+@property (weak, nonatomic) NSNumber *FlagSuiji ;
 @end

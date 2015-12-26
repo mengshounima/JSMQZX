@@ -27,8 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initData];
     [self initView];
     [self getViewData];
+}
+-(void)initData{
+    _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
 }
 -(void)initView{
     _CUNBtn.enabled = NO;
@@ -44,20 +48,7 @@
 
 }
 -(void)getViewData{
-    [MBProgressHUD showMessage:@"构建页面"];
-    //获取镇街道
-    NSMutableDictionary *paramZJD = [[NSMutableDictionary alloc] init];
-    [paramZJD setObject:@"1" forKey:@"Type"];
-    [paramZJD setObject:@"" forKey:@"userId"];
-    [[HttpClient httpClient] requestWithPath:@"/GetZJDIndex" method:TBHttpRequestPost parameters:paramZJD prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
-        NSData* jsonData = [self XMLString:responseObject];
-        _ZJDArr = [jsonData objectFromJSONData];
-        MyLog(@"---**--%@",_ZJDArr);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        MyLog(@"***%@",error);
-    }];
+    [MBProgressHUD showMessage:@"加载中"];
     //获取村社区
     /*NSMutableDictionary *paramCUN = [[NSMutableDictionary alloc] init];
     [paramCUN setObject:@"" forKey:@"zjd_id"];

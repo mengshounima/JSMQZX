@@ -43,5 +43,8 @@
 - (IBAction)clickbutton4:(id)sender;
 - (IBAction)clickbutton3:(id)sender;
 @property (nonatomic ,weak) NSString *XinxiLeibie;//1为固定走访的，2为非固定走访的
-@property (nonatomic,strong) NSArray *ImageArr;
+@property (nonatomic,strong) NSArray *ImageDataArr;//data
+@property (nonatomic,strong) NSArray *ImageArr;//image
+@property (strong, nonatomic) NSNumber *FlagSuiji ;
+@property (strong,nonatomic) NSDictionary *farmerInfo;
 @end

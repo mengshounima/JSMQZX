@@ -15,6 +15,6 @@
     UISearchBar *_mySearchBar;
 }
 @property (weak, nonatomic) IBOutlet UITableView *GridTable;
-//@property (strong, nonatomic) IBOutlet UISearchBar *mySearchBar;
+@property (weak, nonatomic) NSNumber *FlagSuiji ;
 
 @end

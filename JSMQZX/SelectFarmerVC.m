@@ -193,6 +193,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     FarmerInfoTableVC *farmerInfo = segue.destinationViewController;
     farmerInfo.farmerInfo = sender;
+    farmerInfo.FlagSuiji = _FlagSuiji;
 }
 
 

@@ -174,7 +174,7 @@ static id _instace;
             self.opManager.responseSerializer = [AFHTTPResponseSerializer serializer];
             [self.opManager POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 for (int i =0 ; i<number; i++) {
-                    NSString *fileName = [parameters objectForKey:@"filename"];
+                    NSString *fileName = [parameters objectForKey:@"filename"][i];
                     [formData appendPartWithFileData:bodyData[i] name:@"file" fileName:fileName mimeType:@"image/jpg"];
                 }
                 

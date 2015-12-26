@@ -19,5 +19,5 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBtn;
 - (IBAction)clickDelete:(id)sender;
 
-@property (nonatomic,weak) NSArray *RZ_imageArr;
+@property (nonatomic,strong) NSArray *RZ_imageArr;
 @end

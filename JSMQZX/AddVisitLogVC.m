@@ -28,6 +28,7 @@
     BOOL _hasImage;
     BMKLocationService *_locService;
     BMKUserLocation *_userLocation;
+    NSMutableArray *imageNameArr;
 }
 @end
 
@@ -45,25 +46,32 @@
 
 
 -(void)PicAddMethod:(NSNotification *)notify{
-    //之前已经判断过有图片传过来
+    [_picBtn setImage:[UIImage imageNamed:@"照片"] forState:UIControlStateNormal];
     self.ImageArr = notify.object;
-    MyLog(@"添加的图片数量%lu",self.ImageArr.count);
+    MyLog(@"添加的图片数量%lu",(unsigned long)self.ImageArr.count);
     _hasImage = true;
+    //将传过来的image转为data数组
+    NSMutableArray *imageArrMut = [[NSMutableArray alloc] init];
+    for (UIImage *image in self.ImageArr) {
+        NSData *data;
+        data = UIImageJPEGRepresentation(image, 0.5);
+        [imageArrMut addObject:data];
+    }
+   self.ImageDataArr = [imageArrMut copy];
+    //之前已经判断过有图片传过来
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PicAddMethod:) name:@"AddPicFinished" object:nil];
     [self getViewNetData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectFarmerFinished:) name:@"selectOneFarmer" object:nil];
     [self initView];
 }
 -(void)initData{
-    flagGaiKuang = 0;
-    flagLeiBie = 0;
-    flagGongXin = 0;
-    flagChuli = 0;
+    _commonF.text = @"不是共性问题";
+    _typeF.text = @"未选择";
+    imageNameArr = [[NSMutableArray alloc] init];
     f1 = 0;
     f2 = 0;
     _hasImage = false;
@@ -119,6 +127,13 @@
     flagNongHuID = [farmerDic objectForKey:@"user_id"];
 }
 -(void)initView{
+    if (_FlagSuiji.boolValue) {
+        _farmerF.enabled = NO;//若是选择农户new的控制器，则农户不允许选择
+    }
+    if (!ISNULL(_farmerInfo)) {
+        _farmerF.text = [_farmerInfo objectForKey:@"user_name"];
+        flagNongHuID = [_farmerInfo objectForKey:@"user_id"];
+    }
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
@@ -222,7 +237,8 @@
 }
 //点击农户
 -(void)clickFarmers{
-    [self performSegueWithIdentifier:@"AddVisitToFarmerRoot" sender:nil];
+    BOOL flag = YES;
+    [self performSegueWithIdentifier:@"AddVisitToFarmerRoot" sender:[NSNumber numberWithBool:flag]];
     
 }
 //点击共性
@@ -298,24 +314,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [alert dismiss];
     if (tableView == _CommonTable) {
-        if (indexPath.row==0) {
-            //flagGongXin = 2008;
-        }
-        else{
+        if (indexPath.row!=0) {
+        
             flagGongXin = [commomArr[indexPath.row-1] objectForKey:@"rdwt_id"];//用于提交接口参数
             _commonF.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
 
-        }
            }
+    }
     else{
         if (!indexPath.row==0) {
             flagLeiBie = [typeArr[indexPath.row-1] objectForKey:@"mqlb_id"];//用于提交接口参数
             _typeF.text = [typeArr[indexPath.row-1] objectForKey:@"mqlb_name"];
         }
-
-        
-    }
-    
+  }
 }
 
 -(void)clickCancel{
@@ -347,21 +358,24 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"AddVisitToFarmerRoot"]) {
          FarmersVC *farmers = segue.destinationViewController;
+        farmers.FlagSuiji = sender;
     }
     else if([segue.identifier isEqualToString:@"AddLogToPicVC"]){
         PicViewController *picVC = segue.destinationViewController;
+        if (_hasImage) {
+            picVC.RZ_imageArr = sender;
+        }
     }
 
 }
 
 //提交日志
 - (IBAction)clickSendBtn:(id)sender {
-    [self uploadImages2:@"2015-12-25 19:45:45"];
-    /*if (ISNULL(_userLocation)) {
+    if (ISNULL(_userLocation)) {
         [MBProgressHUD showError:@"尚未定位成功，请稍等再试"];
         return;
     }
-    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||flagGaiKuang==0||flagChuli==0) {
+    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||flagGaiKuang==0) {
         [MBProgressHUD showError:@"内容未填写完整"];
         return;
     }
@@ -374,19 +388,35 @@
 
     [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234***必填
     
-    [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id***有初始化为0
+    if (ISNULL(flagLeiBie)) {
+        [param setObject: @"" forKey:@"rz_mqlb"];//类别id
+    }
+    else{
+        [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id***
+    }
+    
     
     if (ISNULLSTR(_needTextView.text)) {
-         [param setObject:@"" forKey:@"rz_msxq"];//需求，文本*****非必填
+         [param setObject:@"" forKey:@"rz_msxq"];//需求，文本*
     }
     else{
          [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本*****非必填
     }
-    
-    
-    [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
+    if (ISNULL(flagChuli)) {
+        [param setObject:@"" forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
+    }
+    else{
+        [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
+
+    }
+    //随机走访，非固定
     [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
-    [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id****非必填有初始化
+    if (ISNULL(flagGongXin)) {
+        [param setObject:@"" forKey:@"rz_sfgx"];//共性问题类别id****非必填
+    }
+    else{
+        [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id****非必填
+    }
     
     //最近办理时间，添加日志时。填现在时间
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -400,8 +430,7 @@
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        if (!ISNULLSTR(resultID)) {
-            //[MBProgressHUD showSuccess:@"日志提交成功"];
+        if (![resultID isEqualToString:@"-1"]) {
             MyLog(@"创建的日志id:%@",resultID);
             //若有照片则传照片
             if (_hasImage) {
@@ -409,70 +438,102 @@
             }
         }
         else{
-            [MBProgressHUD showError:@"日志提交失败，请重试"];
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"日志提交失败，请重试1"];
         }
         
         
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:@"请求失败"];
-    }];*/
-    
-}
--(void)uploadImages1:(NSString *)RiZiID{
-    //传文件名，得到picID
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSString *date = [formatter stringFromDate:[NSDate date] ];
-
-    NSMutableDictionary *paramPic = [[NSMutableDictionary alloc] init];
-    [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
-    [paramPic setObject:RiZiID forKey:@"rz_id"];
-    [paramPic setObject:date forKey:@"photoCode"];
-    [paramPic setObject:date forKey:@"takeDate"];
-    [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        MyLog(@"%@",responseObject);
-        NSData* jsonData = [self XMLString:responseObject];
-        NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-        if (!ISNULLSTR(PicID)) {
-            //开始上传图片数据
-            [self uploadImages2:PicID];
-            
-        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求失败"];
     }];
+    
+}
+-(void)uploadImages1:(NSString *)RiZiID{
+    for (int i = 0; i<self.ImageDataArr.count; i++) {
+        //传文件名，得到picID
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        NSString *date = [formatter stringFromDate:[NSDate date] ];
+        
+        NSMutableDictionary *paramPic = [[NSMutableDictionary alloc] init];
+        [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
+        [paramPic setObject:RiZiID forKey:@"rz_id"];
+        [paramPic setObject:[NSString stringWithFormat:@"%@%d",date,i] forKey:@"photoCode"];//为了唯一性，添加i
+        [paramPic setObject:date forKey:@"takeDate"];
+        [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            MyLog(@"%@",responseObject);
+            NSData* jsonData = [self XMLString:responseObject];
+            NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
+            if (![PicID isEqualToString:@"-1"]&&i==self.ImageDataArr.count-1)  {
+                //开始上传图片数据
+                [imageNameArr addObject:PicID];
+                NSArray *imageName = [imageNameArr copy];
+                [self uploadImages2:imageName];
+            }
+            if (![PicID isEqualToString:@"-1"]&&i!=self.ImageDataArr.count-1) {
+                [imageNameArr addObject:PicID];
+            }
+            else{
+                [MBProgressHUD hideHUD];
+                [MBProgressHUD showError:@"日志提交失败，请重试2"];
+                return ;//退出循环
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"请求失败"];
+             return ;//退出循环
+        }];
+        
 
+    }
+    
     
     
   }
--(void)uploadImages2:(NSString *)PicID
+-(void)uploadImages2:(NSArray *)imageNameARR
 {
     NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
-    [param setObject:@"2015-12-25 19:45:45" forKey:@"filename"];
+    //此param不传到服务器，但传入函数作为图片指定名称
+    [param setObject:imageNameARR forKey:@"filename"];//传入多张图片名数组
     [MBProgressHUD showMessage:@"上传中"];
-    NSInteger count = self.ImageArr.count;
+    NSInteger count = self.ImageDataArr.count;
     //多张图片上传
-    [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
-        
-       
+    [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
         NSInteger resultStatusCode = [operation.response statusCode];
          MyLog(@"result-----------------------------:%d",resultStatusCode);
-        [MBProgressHUD hideHUD];
+        if (resultStatusCode==200) {
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showSuccess:@"提交成功"];
+            //跳出该控制器
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"日志提交失败，请重试3"];
+        }
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MyLog(@"错误i*/*******%@",error);
         [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"请求失败"];
     }];
     
 
 }
 
 - (IBAction)clickPicBtn:(id)sender {
-    [self performSegueWithIdentifier:@"AddLogToPicVC" sender:nil];
+    if (_hasImage) {
+        //有图片
+         [self performSegueWithIdentifier:@"AddLogToPicVC" sender:self.ImageArr];
+    }
+    else{
+         [self performSegueWithIdentifier:@"AddLogToPicVC" sender:nil];
+    }
+   
     
 }
 

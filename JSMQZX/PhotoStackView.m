@@ -349,10 +349,16 @@ static CGFloat const PhotoRotationOffsetDefault = 4.0f;
                     // If there is a border image, we need to add a background image view, and add some padding around the photo for the border
 
                     CGRect photoFrame                = photoImageView.frame;
+                    
                     photoFrame.origin                = CGPointMake(self.borderWidth, self.borderWidth);
+                    
                     photoImageView.frame             = photoFrame;
 
-                    view.frame                       = CGRectMake(0, 0, photoImageView.frame.size.width+(self.borderWidth*2), photoImageView.frame.size.height+(self.borderWidth*2));
+                    //view.frame                       = CGRectMake(0, 0, photoImageView.frame.size.width+(self.borderWidth*2), photoImageView.frame.size.height+(self.borderWidth*2));
+                    view.frame                       = CGRectMake(20, 40, self.frame.size.width-40, self.frame.size.height-80);
+                   // CGSize imageSize = CGSizeMake(self.frame.size.width-40, self.frame.size.height-80);
+                    
+                    
                     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:view.frame];
                     backgroundImageView.image        = borderImage;
                     
