@@ -8,8 +8,11 @@
 //
 
 #import "LoginVC.h"
-
-@interface LoginVC ()<UserTypeSelectDelegate,UIGestureRecognizerDelegate,NSXMLParserDelegate>
+#import "JKAlertDialog.h"
+@interface LoginVC ()<UserTypeSelectDelegate,UIGestureRecognizerDelegate,NSXMLParserDelegate,UITableViewDataSource,UITableViewDelegate>{
+    JKAlertDialog *alert;
+    UITableView *_TypeTable;
+}
 @property (strong,nonatomic) UIView *backView;
 @property (nonatomic,strong)UserTypeView *TypeView;
 @property (nonatomic,strong) NSArray *typeArr;
@@ -46,15 +49,6 @@
     [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.usePassword forKey:@"Password"];
     [[HttpClient httpClient] requestWithPath:@"/CheckLogin" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
-       /* NSData* jsonData = [self XMLString:responseObject];
-        NSDictionary *resultDic = [jsonData objectFromJSONData];
-        MyLog(@"------------------%@",resultDic);
-        [[UserInfo sharedInstance] writeData:resultDic];//初始化个人数据
-        //保存是否记住密码
-        if (_rememberBtn.selected) {
-            [USERDEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:@"IsLogin"];
-        }*/
-        
         //创建导航栏
         HMNavigationController *rootNav;
         UIStoryboard *schoolStoryBoard=[UIStoryboard storyboardWithName:@"Root" bundle:nil];
@@ -66,21 +60,19 @@
 }
 -(void)getUserData{
     [MBProgressHUD showMessage:@"更新镇、街道列表"];
-   // [MBProgressHUD showMessage:@"更新镇、街道列表" toView:self.view];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:@"1" forKey:@"Type"];
     [param setObject:@"" forKey:@"userId"];
     [[HttpClient httpClient] requestWithPath:@"/GetZJDIndex" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-         MyLog(@"---**--%@",responseObject);
+        
         [MBProgressHUD hideHUD];
-        //[MBProgressHUD hideHUDForView:self.view animated:YES];
         
         NSData* jsonData = [self XMLString:responseObject];
         _typeArr = [jsonData objectFromJSONData];
+        MyLog(@"---**--%@",_typeArr);
        [[DataCenter sharedInstance] writeZJDData:_typeArr];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
-         //[MBProgressHUD hideHUDForView:self.view animated:YES];
         MyLog(@"***%@",error);
     }];
 
@@ -101,6 +93,36 @@
     _loginBtn.layer.cornerRadius = 6;
     _rememberBtn.selected = YES;//默认选中记住密码
     _passwordF.secureTextEntry = YES;
+    
+    //添加键盘监听
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeContentViewPosition:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeContentViewPosition:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
+    _TypeTable.delegate = self;
+    _TypeTable.dataSource = self;
+
+}
+
+-(void)changeContentViewPosition:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGFloat keyBoardEndY = value.CGRectValue.origin.y;
+    
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.view.center = CGPointMake(self.view.center.x, keyBoardEndY - self.view.bounds.size.height/2.0);
+    }];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self tapResignFirstResponder];
@@ -132,8 +154,13 @@
 }
 //用户类型选择
 - (IBAction)clickSelectBtn:(id)sender {
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/社区" message:@""];
+    alert.contentView =  _TypeTable;
+    
+    //[alert addButtonWithTitle:@"取消"];
+    [alert show];
     //当前页添加蒙板
-    _backView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+   /* _backView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _backView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];//透明黑色背景
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBackView:)];//点击背景取消
     [_backView addGestureRecognizer:tapGes];
@@ -146,26 +173,34 @@
     [self.view addSubview:_TypeView];
     [UIView animateWithDuration:0.3 animations:^{
         _TypeView.frame = CGRectMake(20, 80, SCREEN_WIDTH-40, SCREEN_HEIGHT-160);
-    }];
+    }];*/
 }
 
-//点击背景
--(void)clickBackView:(UITapGestureRecognizer *)tap
-{
-    [_TypeView removeFromSuperview];
-    [_backView removeFromSuperview];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+        [alert dismiss];
+        _typeDic = _typeArr[indexPath.row];
+        _typeF.text = [_typeDic objectForKey:@"zjd_name"];
 }
-//选择页面的代理方法
--(void)delegateCancel{
-    [_backView removeFromSuperview];
-}
--(void)delegateSelectOneType:(NSDictionary *)typeDic
-{
-    [_backView removeFromSuperview];
-    _typeDic = typeDic;
-    _typeF.text = [typeDic objectForKey:@"zjd_name"];;
     
+    
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+        return _typeArr.count;
 }
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+        static NSString *ID = @"ZJDCellQY";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.textLabel.text = [_typeArr[indexPath.row] objectForKey:@"zjd_name"];
+
+        return  cell;
+
+}
+
+//**********************************
+
+
 //登录
 - (IBAction)clickLoginBtn:(id)sender {
     if (ISNULLSTR(_userIDF.text)||ISNULLSTR(_typeF.text)||ISNULLSTR(_passwordF.text)) {
@@ -189,22 +224,29 @@
         NSData* jsonData = [self XMLString:responseObject];
         NSDictionary *resultDic = [jsonData objectFromJSONData];
         MyLog(@"------------------%@",resultDic);
-       //[[UserInfo sharedInstance] writeData:resultDic];//初始化个人数据
-        [[DataCenter sharedInstance] writeData:resultDic];
-        //保存是否记住密码
-        if (_rememberBtn.selected) {
-            [USERDEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:@"IsLogin"];
+        if (ISNULL(resultDic)) {
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"账号密码不匹配"];
         }
-       
-        //创建导航栏
-        HMNavigationController *rootNav;
-        UIStoryboard *schoolStoryBoard=[UIStoryboard storyboardWithName:@"Root" bundle:nil];
-        rootNav = [schoolStoryBoard instantiateInitialViewController];
-        [self presentViewController:rootNav animated:YES completion:nil];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        else{
+            [[DataCenter sharedInstance] writeData:resultDic];
+            //保存是否记住密码
+            if (_rememberBtn.selected) {
+                [USERDEFAULTS setObject:[NSNumber numberWithBool:YES] forKey:@"IsLogin"];
+            }
+            
+            //创建导航栏
+            HMNavigationController *rootNav;
+            UIStoryboard *schoolStoryBoard=[UIStoryboard storyboardWithName:@"Root" bundle:nil];
+            rootNav = [schoolStoryBoard instantiateInitialViewController];
+            [self presentViewController:rootNav animated:YES completion:nil];
+        }
         
+       
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"请求失败"];
     }];
-    
 }
 
 

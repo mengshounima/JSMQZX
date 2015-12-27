@@ -12,13 +12,13 @@
 
 - (void)awakeFromNib {
     _huodongL = [[UILabel alloc] init];
-    _huodongL.font=[UIFont systemFontOfSize:13];
+    _huodongL.font=[UIFont systemFontOfSize:12];
     _huodongL.textColor = [UIColor darkGrayColor];
     _huodongL.numberOfLines =0;
     [self.contentView addSubview:_huodongL];
     
     _dangyuanL = [[UILabel alloc] init];
-    _dangyuanL.font=[UIFont systemFontOfSize:13];
+    _dangyuanL.font=[UIFont systemFontOfSize:12];
     _dangyuanL.textColor = [UIColor darkGrayColor];
     _dangyuanL.numberOfLines =0;
     [self.contentView addSubview:_dangyuanL];

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
 #import "FuwuCell.h"
+#import "FuwuInfoVC.h"
 @interface ZhiyuanFuwuVC : UIViewController
 - (IBAction)clickZJDBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;

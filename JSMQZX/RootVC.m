@@ -93,7 +93,7 @@
     [self performSegueWithIdentifier:@"RootNormalToRiZhiBanLi" sender:nil];
 }
 
-
+//干部在职党员
 - (IBAction)clickGanbuZaizhidangyuan:(id)sender {
      [self performSegueWithIdentifier:@"GanbuRootToZaizhiDangyuan" sender:nil];
     
@@ -125,10 +125,11 @@
 //管理员 在职党员
 - (IBAction)clickGuanliyuanZaizhidangyuan:(id)sender {
    
-    
+     [self performSegueWithIdentifier:@"GanbuRootToZaizhiDangyuan" sender:nil];
 }
-
+//管理员 民生动态
 - (IBAction)clickGaunliyuanMinshendongtai:(id)sender {
+    [self performSegueWithIdentifier:@"GanbuRootToMessageBoard" sender:nil];
 }
 //管理员 志愿服务
 - (IBAction)clickGuanliyuanFuwu:(id)sender {
@@ -149,6 +150,8 @@
 - (IBAction)clickGaunliyuanFenxi:(id)sender {
 }
 
+//红云
 - (IBAction)clickGaunliyuanHongyun:(id)sender {
+     [self performSegueWithIdentifier:@"RootToHongyun" sender:nil];
 }
 @end

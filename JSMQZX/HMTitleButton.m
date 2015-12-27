@@ -16,12 +16,13 @@
     if (self) {
         // 内部图标居中
         self.imageView.contentMode = UIViewContentModeCenter;
-        
+        self.imageView.backgroundColor = [UIColor redColor];
         // 文字对齐
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        
+        self.titleLabel.backgroundColor = [UIColor greenColor];
        
         self.titleLabel.adjustsFontSizeToFitWidth  = YES;
+        
         // 文字颜色
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         // 字体

@@ -46,15 +46,23 @@
     _CUNBtn.enabled = NO;
     _ZJDBtn.layer.cornerRadius = 4;
     _CUNBtn.layer.cornerRadius = 4;
-    _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 230) style:UITableViewStylePlain];
+    _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
     _ZJDTable.delegate = self;
     _ZJDTable.dataSource = self;
     
-    _CUNTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
+    _CUNTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
     _CUNTable.delegate = self;
     _CUNTable.dataSource = self;
     _mySearchBar.delegate = self;
+    //搜索键盘点击done缩回键盘
+    _mySearchBar.returnKeyType = UIReturnKeyDone;
     
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    _mySearchBar.text = @"";
+    SearchShowArr = [LogArr mutableCopy];
+    [_LogTableView reloadData];
+    [_mySearchBar resignFirstResponder];
 }
 -(void)getViewData{
     
@@ -182,7 +190,7 @@
             cell.textLabel.text = @"选择村(社区)";
         }
         else{
-            cell.textLabel.text = [_CUNArr[indexPath.row-1] objectForKey:@"zjd_name"];
+            cell.textLabel.text = [_CUNArr[indexPath.row-1] objectForKey:@"cun_name"];
         }
         return  cell;
 
@@ -257,7 +265,7 @@
     }
     else{
          //点击列表，详情
-         [self performSegueWithIdentifier:@"" sender:SearchShowArr[indexPath.row]];//log详情
+         [self performSegueWithIdentifier:@"ZhiyuanFuwuToFuwuInfo" sender:SearchShowArr[indexPath.row]];//log详情
     }
 }
 
@@ -272,7 +280,9 @@
         [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         _CUNArr = (NSArray *)[jsonData objectFromJSONData];
+
         [_CUNTable reloadData];
+         _CUNBtn.enabled = YES;//可选
         MyLog(@"村%@",_CUNArr);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
@@ -285,7 +295,6 @@
 //点击镇街道
 - (IBAction)clickZJDBtn:(id)sender{
     //弹框
-    _CUNBtn.enabled = YES;//可选
     alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/街道" message:@""];
     alert.contentView =  _ZJDTable;
     
@@ -297,12 +306,14 @@
 - (IBAction)clickCUNBtn:(id)sender{
     alert = [[JKAlertDialog alloc]initWithTitle:@"选择村/社区" message:@""];
     alert.contentView =  _CUNTable;
-    
     [alert addButtonWithTitle:@"取消"];
     
     [alert show];
 }
 - (IBAction)clickSearchBtn:(id)sender{
+    page = 1;
+    [self getViewData];
+    
     
 }
 - (void)didReceiveMemoryWarning {
@@ -310,14 +321,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    FuwuInfoVC *fuwuVC = segue.destinationViewController;
+    fuwuVC.infoDic = sender;
 }
-*/
+
 
 @end

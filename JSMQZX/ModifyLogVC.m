@@ -102,7 +102,7 @@
     _CommonTable.delegate = self;
     _CommonTable.dataSource = self;
     
-    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
+    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
     _TypeTable.delegate = self;
     _TypeTable.dataSource = self;
     
@@ -140,7 +140,7 @@
 }
 //点击图片按钮
 - (IBAction)clickPicBtn:(id)sender{
-    [self performSegueWithIdentifier:@"ModiFyLogToPicVC" sender:imageArr];
+    //[self performSegueWithIdentifier:@"ModiFyLogToPicVC" sender:imageArr];
 }
 //点击农户
 -(void)clickFarmers{
@@ -402,7 +402,16 @@
         PicViewController *picVC = segue.destinationViewController;
         picVC.RZ_imageArr = sender;
     }
+    else if ([segue.identifier isEqualToString:@"LogModifyToLocation"]) {
+        
+        LocationVC *location = segue.destinationViewController;
+        location.infoDic = sender;
+    }
 }
 
 
+- (IBAction)clickLocationBtn:(id)sender {
+    [self performSegueWithIdentifier:@"LogModifyToLocation" sender:LogDic];
+    
+}
 @end

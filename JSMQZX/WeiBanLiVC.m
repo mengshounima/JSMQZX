@@ -44,7 +44,7 @@
         
     }
     else if (_flagLogZT.integerValue == 1){
-        self.title = @"未已办理日志";
+        self.title = @"已办理日志";
         
     }
     else if (_flagLogZT.integerValue == 5){
@@ -192,7 +192,15 @@
 }
 //点击某一网格
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"RiZhiLIstToLogInfo" sender:SearchShowArr[indexPath.row]];//log详情
+    if (_flagLogZT.integerValue==2) {
+        //未办理
+         [self performSegueWithIdentifier:@"RiZhiLIstToModify" sender:SearchShowArr[indexPath.row]];//log详情
+    }
+    else {
+          [self performSegueWithIdentifier:@"RiZhiLIstToDetail" sender:SearchShowArr[indexPath.row]];//log详情列表 不可修改
+    }
+    
+   
     
     
 }
@@ -208,8 +216,15 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ModifyLogVC *modifyLogVC = segue.destinationViewController;
-    modifyLogVC.myLogInfo = sender;
+    if ([segue.identifier isEqualToString:@"RiZhiLIstToModify"]) {
+        ModifyLogVC *modifyLogVC = segue.destinationViewController;
+        modifyLogVC.myLogInfo = sender;
+    }
+    else if ([segue.identifier isEqualToString:@"RiZhiLIstToDetail"]){
+        LogDetailVC *detailVC = segue.destinationViewController;
+        detailVC.infoDic = sender;
+    }
+   
 }
 
 

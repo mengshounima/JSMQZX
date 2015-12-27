@@ -15,23 +15,18 @@
 
 @implementation PicViewController
 
--(void)deletePic{
-    NSMutableArray *photosMutable = [self.photos mutableCopy];
-    [photosMutable removeObjectAtIndex:self.pageControl.currentPage];
-    self.photos = photosMutable;
-    [self.photoStack reloadData];
-    self.pageControl.numberOfPages = [self.photos count];
-
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
 }
 -(void)initView{
-    //右上角删除按钮
-    self.navigationController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(deletePic)];;
-    
     self.photos = _RZ_imageArr;
+    if (self.photos.count>0) {
+        _deleteBtn.enabled = YES;
+    }
+    else{
+          _deleteBtn.enabled = NO;
+    }
     _photoStack.dataSource = self;
     _photoStack.delegate = self;
     MyLog(@"%f %f",SCREEN_WIDTH,SCREEN_HEIGHT);
@@ -53,6 +48,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        MyLog(@"返回时照片------------------------------------------------%d",self.photos.count);
+
         if (self.photos.count>0) {
            
                        //添加通知
@@ -68,14 +65,8 @@
 #pragma mark Deck DataSource Protocol Methods
 
 -(NSUInteger)numberOfPhotosInPhotoStackView:(PhotoStackView *)photoStack {
-    if (self.photos.count>0) {
-        //有图片，可删除
-        self.navigationController.navigationItem.rightBarButtonItem.enabled = YES;
-    }
-    else{
-         self.navigationController.navigationItem.rightBarButtonItem.enabled = NO;
-    }
     return [self.photos count];
+    MyLog(@"刷新时*************%d",self.photos.count);
 }
 
 -(UIImage *)photoStackView:(PhotoStackView *)photoStack photoForIndex:(NSUInteger)index {
@@ -188,12 +179,14 @@
         NSData *data;
         data = UIImageJPEGRepresentation(image, 0.5);
         NSMutableArray *photosMutable = [[NSMutableArray alloc] init];
+                [photosMutable addObject:image];
+        self.photos = photosMutable;
         if (self.photos.count>0) {
             photosMutable  = [self.photos mutableCopy];
+            _deleteBtn.enabled = YES;
         }
-        [photosMutable addObject:image];
-        self.photos = photosMutable;
-        NSLog(@"****///////////////////////******%d", [self.photos count]);
+
+        MyLog(@"添加后照片------------------------------------------------%d",self.photos.count);
         [self.photoStack reloadData];
         self.photoStack.userInteractionEnabled = YES;
         self.pageControl.numberOfPages = [self.photos count];
@@ -202,6 +195,24 @@
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
+- (IBAction)clickDelete:(id)sender{
+    NSMutableArray *photosMutable = [self.photos mutableCopy];
+    [photosMutable removeObjectAtIndex:self.pageControl.currentPage];
+    self.photos = photosMutable;
+    MyLog(@"删除后照片------------------------------------------------%d",self.photos.count);
+    if (self.photos.count>0) {
+        _deleteBtn.enabled = YES;
+    }
+    else{
+        _deleteBtn.enabled = NO;
+    }
+
+    [self.photoStack reloadData];
+    self.pageControl.numberOfPages = [self.photos count];
 }
 
 @end

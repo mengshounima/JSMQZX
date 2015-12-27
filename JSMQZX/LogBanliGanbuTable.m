@@ -59,7 +59,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row ==0) {
-        [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:nil];
+       // [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:nil];
     }
     else if (indexPath.row ==1){
            }

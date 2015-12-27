@@ -36,7 +36,7 @@
     flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
 }
 -(void)initView{
-    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
+    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
     _TypeTable.delegate = self;
     _TypeTable.dataSource = self;
     
@@ -112,7 +112,7 @@
     else{
         //点击列表，无操作
     }
-   }
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == _TypeTable) {
          return _typeArr.count+1;

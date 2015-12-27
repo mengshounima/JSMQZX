@@ -34,7 +34,7 @@
     [super viewDidLoad];
     [self initData];
     [self initView];
-    [self getViewData];
+    [self getViewData];//开始请求一次，里面有3个请求
 }
 -(void)initData{
     LogArr = [[NSMutableArray alloc] init];
@@ -45,6 +45,12 @@
     rowscount = 20;
     page = 1;
     _mySearchBar.returnKeyType = UIReturnKeyDone;
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    _mySearchBar.text = @"";
+    SearchShowArr = [LogArr mutableCopy];
+    [_LogTableView reloadData];
+    [_mySearchBar resignFirstResponder];
 }
 -(void)initView{
     _DWQiTaTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
@@ -67,7 +73,7 @@
     }];
     
 }
-
+//搜索用
 -(void)reloadMoreList{
     //在职党员列表
     NSMutableDictionary *paramList = [[NSMutableDictionary alloc] init];
@@ -105,11 +111,6 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self queryWithCondition:searchText];
-}
-
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [searchBar resignFirstResponder];
-    [self initData];//重新开始搜索
 }
 
 -(void)queryWithCondition:(NSString *)searchKey
@@ -273,6 +274,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==_DWXiaShuTable) {
+         [alert dismiss];
         if (indexPath.row == 0) {
             [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
             [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
@@ -285,6 +287,7 @@
         }
     }
     else if (tableView==_DWQiTaTable){
+         [alert dismiss];
         if (indexPath.row == 0) {
             [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
             [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
@@ -331,7 +334,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"DangyuanVCToDangyuanInfo"]) {
-        DangyuanBaodaoTableVC *baodaoInfoVC = segue.destinationViewController;
+        BaodaoInfoVC *baodaoInfoVC = segue.destinationViewController;
         baodaoInfoVC.infoDic = sender;
     }
 }

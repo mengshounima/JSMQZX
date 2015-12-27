@@ -35,7 +35,7 @@
     flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
 }
 -(void)initView{
-    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
+    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
     _TypeTable.delegate = self;
     _TypeTable.dataSource = self;
     

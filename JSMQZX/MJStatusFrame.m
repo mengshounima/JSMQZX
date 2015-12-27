@@ -7,7 +7,7 @@
 //
 
 // 正文的字体
-#define MJTextFont [UIFont systemFontOfSize:13]
+#define MJTextFont [UIFont systemFontOfSize:12]
 
 #import "MJStatusFrame.h"
 //#import "MJStatus.h"

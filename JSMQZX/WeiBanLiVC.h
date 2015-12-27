@@ -10,6 +10,7 @@
 #import "LogCell.h"
 #import "GDataXMLNode.h"
 #import "ModifyLogVC.h"
+#import "LogDetailVC.h"
 @interface WeiBanLiVC : UIViewController
 {
     UISearchDisplayController *searchDisplayController;

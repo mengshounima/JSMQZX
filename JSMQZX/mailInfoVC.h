@@ -17,8 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressL;
 @property (weak, nonatomic) IBOutlet UILabel *phoneL;
 @property (weak, nonatomic) IBOutlet UILabel *toPeopleL;
-@property (weak, nonatomic) IBOutlet UILabel *titleL;
-@property (weak, nonatomic) IBOutlet UILabel *contentL;
-@property (weak, nonatomic) IBOutlet UILabel *reply;
+@property (strong, nonatomic) IBOutlet UILabel *titleL;
+@property (strong, nonatomic) IBOutlet UILabel *contentL;
+@property (strong, nonatomic) IBOutlet UILabel *reply;
 @property (weak,nonatomic) NSNumber *IDNum;
+@property (weak, nonatomic) IBOutlet UIView *backView;
+@property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @end

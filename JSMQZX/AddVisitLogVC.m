@@ -34,6 +34,12 @@
 
 @implementation AddVisitLogVC
 -(void)viewWillAppear:(BOOL)animated {
+    if (_hasImage) {
+        [_picBtn setImage:[UIImage imageNamed:@"照片"] forState:UIControlStateNormal];
+    }
+    else{
+        [_picBtn setImage:[UIImage imageNamed:@"相机蓝色"] forState:UIControlStateNormal];
+    }
     _locService.delegate = self;
      [_locService startUserLocationService];
     
@@ -151,7 +157,7 @@
     _dateF.inputView =datePicker;
     //创建工具条
     UIToolbar *toolbar=[[UIToolbar alloc]init];
-    toolbar.barTintColor=[UIColor redColor];
+    toolbar.barTintColor=choiceColor(123, 0, 15);
     toolbar.frame=CGRectMake(0, 0, SCREEN_WIDTH, 44);
     UIBarButtonItem *item0=[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickCancel) ];
     UIBarButtonItem *item1=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -178,7 +184,7 @@
     _needTextView.delegate = self;
     _needTextView.returnKeyType = UIReturnKeyDone;
     //添加键盘监听
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changeContentViewPosition:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
@@ -186,14 +192,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changeContentViewPosition:)
                                                  name:UIKeyboardWillHideNotification
-                                               object:nil];
+                                               object:nil];*/
     
     
     _CommonTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
     _CommonTable.delegate = self;
     _CommonTable.dataSource = self;
     
-    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
+    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
     _TypeTable.delegate = self;
     _TypeTable.dataSource = self;
     
@@ -365,6 +371,7 @@
         if (_hasImage) {
             picVC.RZ_imageArr = sender;
         }
+         _hasImage = false;
     }
 
 }
@@ -375,10 +382,16 @@
         [MBProgressHUD showError:@"尚未定位成功，请稍等再试"];
         return;
     }
-    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||flagGaiKuang==0) {
+    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||ISNULL(flagGaiKuang)||ISNULL(flagChuli)) {
         [MBProgressHUD showError:@"内容未填写完整"];
         return;
     }
+    //弹框，确认提交日志
+    
+    
+    
+    
+    
     [MBProgressHUD showMessage:@"提交中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;
@@ -402,13 +415,9 @@
     else{
          [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本*****非必填
     }
-    if (ISNULL(flagChuli)) {
-        [param setObject:@"" forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
-    }
-    else{
-        [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
+    
+    [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
 
-    }
     //随机走访，非固定
     [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
     if (ISNULL(flagGongXin)) {
@@ -435,6 +444,8 @@
             //若有照片则传照片
             if (_hasImage) {
                 [self uploadImages1:resultID];
+            }else{
+                [MBProgressHUD showMessage:@"提交成功"];
             }
         }
         else{
@@ -473,10 +484,10 @@
                 NSArray *imageName = [imageNameArr copy];
                 [self uploadImages2:imageName];
             }
-            if (![PicID isEqualToString:@"-1"]&&i!=self.ImageDataArr.count-1) {
+            if (![PicID isEqualToString:@"-1"]&&i<self.ImageDataArr.count-1) {
                 [imageNameArr addObject:PicID];
             }
-            else{
+            else if([PicID isEqualToString:@"-1"]){
                 [MBProgressHUD hideHUD];
                 [MBProgressHUD showError:@"日志提交失败，请重试2"];
                 return ;//退出循环
@@ -526,8 +537,10 @@
 }
 
 - (IBAction)clickPicBtn:(id)sender {
+ 
     if (_hasImage) {
         //有图片
+        
          [self performSegueWithIdentifier:@"AddLogToPicVC" sender:self.ImageArr];
     }
     else{

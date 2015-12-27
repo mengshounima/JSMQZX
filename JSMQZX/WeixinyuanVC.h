@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
+#import "XinyuanCell.h"
+#import "XinyuanInfoVC.h"
 @interface WeixinyuanVC : UIViewController
 - (IBAction)clickZJDBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;
