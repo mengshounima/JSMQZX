@@ -208,7 +208,6 @@
         GDataXMLNode  *contentNode = users[0];
         NSString *str =  contentNode.XMLString;
         NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];
-        MyLog(@"***%@",str);
         return  jsonData;
     }
 

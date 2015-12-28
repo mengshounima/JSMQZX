@@ -239,7 +239,6 @@
     if (tableView == _ZJDTable) {
         [alert dismiss];
         if (indexPath.row == 0) {
-            //传管理员自己的ssz
             _ZJDFlag = @"";
             [_ZJDBtn setTitle:@"选择镇(街道)" forState: UIControlStateNormal ];
         }
@@ -254,7 +253,6 @@
     else if (tableView == _CUNTable) {
         [alert dismiss];
         if (indexPath.row == 0) {
-            //传管理员自己的ssz
             _CUNFlag = @"";
             [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
         }

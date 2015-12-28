@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JXBarChartView.h"
 #import "JKAlertDialog.h"
 #import "GDataXMLNode.h"
 @interface GanBuZouFangVC : UIViewController

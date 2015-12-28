@@ -10,13 +10,16 @@
 
 @interface NonghuZoufangVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-    UITableView *_TypeTable;
-    NSString *flagZJD;
+    UITableView *_ZJDTable;
+    UITableView *_CUNTable;
     JKAlertDialog *alert;
 }
 @property (strong, nonatomic) IBOutlet PieChartView *pieChartView;
 @property (nonatomic,strong) UIView *pieContainer;
-@property (nonatomic,weak) NSArray *typeArr;
+@property (nonatomic,strong) NSArray *ZJDArr;
+@property (nonatomic,strong) NSArray *CUNArr;
+@property (nonatomic,strong) NSString *ZJDFlag;
+@property (nonatomic,strong) NSString *CUNFlag;
 @property (nonatomic,strong) NSMutableArray *valueArray;
 @property (nonatomic,strong) NSMutableArray *colorArray;
 @property (nonatomic,strong) UILabel *selLabel;
@@ -31,20 +34,22 @@
     [self getUserDataByZJD];
 }
 -(void)initData{
-    _typeArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
-    flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
+     _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
 }
 -(void)initView{
-    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
-    _TypeTable.delegate = self;
-    _TypeTable.dataSource = self;
+    _CUNBtn.enabled = NO;
+    _ZJDBtn.layer.cornerRadius = 4;
+    _CUNBtn.layer.cornerRadius = 4;
+    _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
+    _ZJDTable.delegate = self;
+    _ZJDTable.dataSource = self;
     
-    _searchBtn.layer.cornerRadius = 4;
-    UIButton *FieldBtn = [[UIButton alloc] initWithFrame:_searchField.frame];
-    //[FieldBtn setBackgroundColor:[UIColor greenColor]];
-    [FieldBtn addTarget:self action:@selector(clickField:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:FieldBtn];
+    _CUNTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
+    _CUNTable.delegate = self;
+    _CUNTable.dataSource = self;
+
     
+    _SearchBtn.layer.cornerRadius = 4;
 }
 
 -(void)getUserDataByZJD{
@@ -54,8 +59,21 @@
     NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
     [paramTongji setObject:@"2" forKey:@"AnalysisType"];//统计表类型
     [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
-    [paramTongji setObject:flagZJD forKey:@"ssz_id"];//统计表类型
-    [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
+    if (ISNULLSTR(_ZJDFlag)) {
+        [paramTongji setObject:@"" forKey:@"ssz_id"];//统计表类型
+    }
+    else{
+        [paramTongji setObject:_ZJDFlag forKey:@"ssz_id"];//统计表类型
+    }
+    if (ISNULLSTR(_CUNFlag)) {
+        [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
+        
+    }
+    else{
+        [paramTongji setObject:_CUNFlag forKey:@"cun_id"];//统计表类型
+        
+    }
+
     [paramTongji setObject:@"20" forKey:@"rowscount"];//统计表类型
     [paramTongji setObject:@"1" forKey:@"page"];//统计表类型
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisInfo" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -66,16 +84,16 @@
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *resultArr = [jsonData objectFromJSONData];
         
-       /* NSNumber *beiZoufangI = [resultArr[0] objectForKey:@"Value"];//数量
-        NSNumber *weiZoufangI = [resultArr[1] objectForKey:@"Value"];//*/
+        NSNumber *beiZoufangI = [resultArr[0] objectForKey:@"Value"];//数量
+        NSNumber *weiZoufangI = [resultArr[1] objectForKey:@"Value"];//
         
-         NSNumber *beiZoufangI = [NSNumber numberWithInt:60];//数量
-         NSNumber *weiZoufangI = [NSNumber numberWithInt:40];//
+         /*NSNumber *beiZoufangI = [NSNumber numberWithInt:60];//数量
+         NSNumber *weiZoufangI = [NSNumber numberWithInt:40];//*/
         self.valueArray = [[NSMutableArray alloc] initWithObjects:beiZoufangI,weiZoufangI,nil];
         
         self.colorArray = [NSMutableArray arrayWithObjects:
                            [UIColor colorWithHue:((0/8)%20)/20.0+0.02 saturation:(0%8+3)/10.0 brightness:91/100.0 alpha:1],
-                           [UIColor colorWithHue:((1/8)%20)/20.0+0.02 saturation:(1%8+3)/10.0 brightness:91/100.0 alpha:1],
+                           [UIColor colorWithHue:((3/8)%20)/20.0+0.02 saturation:(3%8+3)/10.0 brightness:91/100.0 alpha:1],
                            
                            nil];
         
@@ -145,44 +163,116 @@
     }
     
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [alert dismiss];
-    if (indexPath.row == 0) {
-        //传管理员自己的ssz
-        flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
-        _searchField.text = @"选择镇(街道)/村(社区)";
+    if (tableView == _ZJDTable) {
+        [alert dismiss];
+        [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
+        _CUNFlag = @"";
+        if (indexPath.row == 0) {
+            _ZJDFlag = @"";
+            [_ZJDBtn setTitle:@"选择镇(街道)" forState: UIControlStateNormal ];
+            _CUNBtn.enabled = NO;
+        }
+        else{
+            _ZJDFlag = [NSString stringWithFormat:@"%@",[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
+            [_ZJDBtn setTitle:[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"] forState: UIControlStateNormal ];
+            //作请求，得到该镇内的村
+            [self getCunData:_ZJDFlag];
+        }
+        
     }
     else{
-        flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
-        _searchField.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        [alert dismiss];
+        if (indexPath.row == 0) {
+            _CUNFlag = @"";
+            [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
+        }
+        else{
+            _CUNFlag = [NSString stringWithFormat:@"%@",[_CUNArr[indexPath.row-1] objectForKey:@"cun_id"]];//用于提交接口参数
+            [_CUNBtn setTitle:[_CUNArr[indexPath.row-1] objectForKey:@"cun_name"] forState: UIControlStateNormal ];
+        }
         
     }
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _typeArr.count+1;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID = @"ZJDCellQY";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"选择镇(街道)/村(社区)";
-    }
-    else{
-        cell.textLabel.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
-    }
-    return  cell;
-    
-}
--(void)clickField:(UIButton *)button{
-    alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/社区" message:@""];
-    alert.contentView =  _TypeTable;
-    
-    [alert addButtonWithTitle:@"取消"];
-    [alert show];
+
+-(void)getCunData:(NSString *)ZJD_ID{
+    [MBProgressHUD showMessage:@"获取该镇的村列表"];
+    //获取下属单位
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setObject:ZJD_ID forKey:@"zjd_id"];
+    [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        _CUNArr = (NSArray *)[jsonData objectFromJSONData];
+        
+        [_CUNTable reloadData];
+        _CUNBtn.enabled = YES;//可选
+        MyLog(@"村%@",_CUNArr);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        MyLog(@"***%@",error);
+    }];
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (tableView == _ZJDTable) {
+        return _ZJDArr.count+1;
+    }
+    else {
+        return _CUNArr.count +1;
+    }
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _ZJDTable) {
+        static NSString *ID = @"nhBzjdCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"选择镇(街道)";
+        }
+        else{
+            cell.textLabel.text = [_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        }
+        return  cell;
+        
+    }
+    else
+    {
+        static NSString *ID = @"nhBcunCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"选择村(社区)";
+        }
+        else{
+            cell.textLabel.text = [_CUNArr[indexPath.row-1] objectForKey:@"cun_name"];
+        }
+        return  cell;
+        
+    }
+    
+}
+//点击镇街道
+- (IBAction)clickZJDBtn:(id)sender{
+    //弹框
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/街道" message:@""];
+    alert.contentView =  _ZJDTable;
+    
+    [alert addButtonWithTitle:@"取消"];
+    
+    [alert show];
+    
+}
+- (IBAction)clickCUNBtn:(id)sender{
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择村/社区" message:@""];
+    alert.contentView =  _CUNTable;
+    [alert addButtonWithTitle:@"取消"];
+    
+    [alert show];
+}
 - (void)selectedFinish:(PieChartView *)pieChartView index:(NSInteger)index percent:(float)per
 {
     if (index ==0) {

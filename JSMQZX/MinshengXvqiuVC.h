@@ -12,8 +12,15 @@
 #import "GDataXMLNode.h"
 #define PIE_HEIGHT 300
 @interface MinshengXvqiuVC : UIViewController<PieChartDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *searchField;
-@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
+@property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
+
+
+
+- (IBAction)clickZJDBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;
+@property (weak, nonatomic) IBOutlet UIButton *CUNBtn;
+- (IBAction)clickCUNBtn:(id)sender;
 - (IBAction)clickSearchBtn:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIView *lineV;
 @end
