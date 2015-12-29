@@ -436,7 +436,7 @@
     [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.longitude] forKey:@"placeLongitude"];//经纬度
     [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.latitude] forKey:@"placeLatitude"];
     [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+        //[MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         if (![resultID isEqualToString:@"-1"]) {
@@ -445,7 +445,8 @@
             if (_hasImage) {
                 [self uploadImages1:resultID];
             }else{
-                [MBProgressHUD showMessage:@"提交成功"];
+                [MBProgressHUD hideHUD];
+                [MBProgressHUD showSuccess:@"提交成功"];
             }
         }
         else{
@@ -509,7 +510,7 @@
     NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
     //此param不传到服务器，但传入函数作为图片指定名称
     [param setObject:imageNameARR forKey:@"filename"];//传入多张图片名数组
-    [MBProgressHUD showMessage:@"上传中"];
+    //[MBProgressHUD showMessage:@"上传中"];
     NSInteger count = self.ImageDataArr.count;
     //多张图片上传
     [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
