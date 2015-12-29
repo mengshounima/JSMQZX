@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 - (IBAction)clickSearchBtn:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *lineV;
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @end

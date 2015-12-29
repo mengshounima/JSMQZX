@@ -7,7 +7,7 @@
 //
 
 #import "GanBuZouFangVC.h"
-
+#import "GanbuZoufangCell.h"
 @interface GanBuZouFangVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_TypeTable;
@@ -42,7 +42,6 @@
     
     _searchBtn.layer.cornerRadius = 4;
     UIButton *FieldBtn = [[UIButton alloc] initWithFrame:_searchField.frame];
-    //[FieldBtn setBackgroundColor:[UIColor greenColor]];
     [FieldBtn addTarget:self action:@selector(clickField:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:FieldBtn];
     
@@ -99,7 +98,7 @@
         _cgbZSArr = [cgbZSMut mutableCopy];
         
         _titleArr = [titleMut mutableCopy];
-        
+        [_myTableView reloadData];
         
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -122,34 +121,69 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [alert dismiss];
-    if (indexPath.row == 0) {
-        //传管理员自己的ssz
-        flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
-        _searchField.text = @"选择镇(街道)/村(社区)";
+    if (tableView == _TypeTable) {
+        [alert dismiss];
+        if (indexPath.row == 0) {
+            //传管理员自己的ssz
+            flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
+            _searchField.text = @"选择镇(街道)/村(社区)";
+        }
+        else{
+            flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
+            _searchField.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+            
+        }
+
+    }
+  }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (tableView==_TypeTable) {
+        return _typeArr.count+1;
     }
     else{
-        flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
-        _searchField.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
-        
+        return _zgbDataArr.count;
     }
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _typeArr.count+1;
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID = @"ZJDCellQY";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"选择镇(街道)/村(社区)";
+    
+    if (tableView==_TypeTable) {
+        static NSString *ID = @"ZJDCellQY";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"选择镇(街道)/村(社区)";
+        }
+        else{
+            cell.textLabel.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        }
+        return  cell;
+
     }
     else{
-        cell.textLabel.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        static NSString *ID = @"GanbuzoufCell";
+        GanbuZoufangCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"GanbuZoufangCell" owner:nil options:nil] lastObject];
+        }
+        NSNumber *zgbData= _zgbDataArr[indexPath.row];
+        NSNumber *zgbZS=_zgbZSArr[indexPath.row];
+        NSNumber *cgbData= _cgbDataArr[indexPath.row];
+        NSNumber *cgbZS=_cgbZSArr[indexPath.row];
+        float ZJDpercent  = zgbZS.floatValue/zgbData.floatValue;
+        float CJDpercent  = cgbZS.floatValue/cgbData.floatValue;
+        NSDictionary *paramDic =  @{@"title":_titleArr[indexPath.row],@"ZJDpercent":[NSNumber numberWithFloat:ZJDpercent],@"CJDpercent":[NSNumber numberWithFloat:CJDpercent],@"ZJDZS":zgbZS,@"CJDZS":cgbZS};
+        [cell UpdateWithInfoDic:paramDic];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        return cell;
     }
-    return  cell;
+    
+}
+- (IBAction)clickSearchBtn:(id)sender{
+    [self getUserDataByZJD];
     
 }
 -(void)clickField:(UIButton *)button{

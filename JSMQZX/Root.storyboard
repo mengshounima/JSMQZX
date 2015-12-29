@@ -642,12 +642,24 @@
                                     <action selector="clickSearchBtn:" destination="5p5-8p-vo9" eventType="touchUpInside" id="mMf-Az-BtS"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcs-VA-aYX">
+                                <rect key="frame" x="0.0" y="102" width="320" height="466"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="5p5-8p-vo9" id="9Vl-Fq-3wB"/>
+                                    <outlet property="delegate" destination="5p5-8p-vo9" id="IwO-6a-8Pc"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KNA-6G-Zqq" firstAttribute="leading" secondItem="cRw-LJ-R68" secondAttribute="trailing" constant="21" id="4w9-Ji-vhf"/>
+                            <constraint firstAttribute="trailing" secondItem="fcs-VA-aYX" secondAttribute="trailing" id="5hN-en-UBs"/>
+                            <constraint firstItem="fcs-VA-aYX" firstAttribute="leading" secondItem="vdA-9x-Jgs" secondAttribute="leading" id="993-1k-R7Q"/>
                             <constraint firstItem="KNA-6G-Zqq" firstAttribute="width" secondItem="vdA-9x-Jgs" secondAttribute="width" multiplier="0.2" id="C3j-c0-h4r"/>
+                            <constraint firstItem="Hxq-dJ-grG" firstAttribute="top" secondItem="fcs-VA-aYX" secondAttribute="bottom" id="IH8-qA-Uhg"/>
                             <constraint firstItem="bBc-Bk-Qk1" firstAttribute="leading" secondItem="vdA-9x-Jgs" secondAttribute="leading" id="OaX-Yh-Ech"/>
+                            <constraint firstItem="fcs-VA-aYX" firstAttribute="top" secondItem="KNA-6G-Zqq" secondAttribute="bottom" id="R7P-6q-aiq"/>
                             <constraint firstItem="KNA-6G-Zqq" firstAttribute="top" secondItem="i1s-DQ-K1R" secondAttribute="bottom" constant="8" id="dkT-A3-sZj"/>
                             <constraint firstAttribute="trailing" secondItem="KNA-6G-Zqq" secondAttribute="trailing" constant="8" id="jvi-zn-u2b"/>
                             <constraint firstItem="bBc-Bk-Qk1" firstAttribute="top" secondItem="cRw-LJ-R68" secondAttribute="bottom" constant="3" id="mkU-DZ-wCb"/>
@@ -659,6 +671,7 @@
                     <navigationItem key="navigationItem" title="干部走访情况统计" id="uf6-5l-0h5"/>
                     <connections>
                         <outlet property="lineV" destination="bBc-Bk-Qk1" id="Pv1-9L-GY8"/>
+                        <outlet property="myTableView" destination="fcs-VA-aYX" id="hyD-C3-RZf"/>
                         <outlet property="searchBtn" destination="KNA-6G-Zqq" id="PoN-yc-TGA"/>
                         <outlet property="searchField" destination="cRw-LJ-R68" id="GfP-Mc-Fch"/>
                     </connections>
