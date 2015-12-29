@@ -146,8 +146,9 @@
     [self performSegueWithIdentifier:@"GuanliyaunRootToDangdaibiao" sender:nil];
     
 }
-
+//管理员 分析研判
 - (IBAction)clickGaunliyuanFenxi:(id)sender {
+     [self performSegueWithIdentifier:@"RootNormalToFenxiYanpan" sender:nil];
 }
 
 //红云

@@ -80,6 +80,8 @@
 		F0800E8D1C1DA248004C2B6A /* SetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0800E8C1C1DA248004C2B6A /* SetView.xib */; };
 		F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */; };
 		F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */; };
+		F0820C7C1C31FA03009D299D /* GanbuZoufangCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0820C7A1C31FA03009D299D /* GanbuZoufangCell.m */; };
+		F0820C7D1C31FA03009D299D /* GanbuZoufangCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */; };
 		F084677C1C107E4300BE1020 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F084677B1C107E4300BE1020 /* LoginVC.m */; };
 		F08C87731C304827003661EA /* LogDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08C87721C304827003661EA /* LogDetailVC.m */; };
 		F08C87761C30546E003661EA /* LocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08C87751C30546E003661EA /* LocationVC.m */; };
@@ -265,6 +267,9 @@
 		F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiZhiBanLiTableVC.m; sourceTree = "<group>"; };
 		F0800E921C1DBF2E004C2B6A /* ModifyLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyLogVC.h; sourceTree = "<group>"; };
 		F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyLogVC.m; sourceTree = "<group>"; };
+		F0820C791C31FA03009D299D /* GanbuZoufangCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuZoufangCell.h; sourceTree = "<group>"; };
+		F0820C7A1C31FA03009D299D /* GanbuZoufangCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuZoufangCell.m; sourceTree = "<group>"; };
+		F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GanbuZoufangCell.xib; sourceTree = "<group>"; };
 		F084677A1C107E4300BE1020 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		F084677B1C107E4300BE1020 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		F08C87711C304827003661EA /* LogDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogDetailVC.h; sourceTree = "<group>"; };
@@ -632,6 +637,9 @@
 				F03889F01C2B0AEA00FD190B /* EvaluateCell.h */,
 				F03889F11C2B0AEA00FD190B /* EvaluateCell.m */,
 				F03889F21C2B0AEA00FD190B /* EvaluateCell.xib */,
+				F0820C791C31FA03009D299D /* GanbuZoufangCell.h */,
+				F0820C7A1C31FA03009D299D /* GanbuZoufangCell.m */,
+				F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */,
 			);
 			name = GanBuUser;
 			sourceTree = "<group>";
@@ -1038,6 +1046,7 @@
 				F0B7252C1C2599020027B1F1 /* mailCell.xib in Resources */,
 				F07D72A01C10756200C695CB /* Main.storyboard in Resources */,
 				F0800E8D1C1DA248004C2B6A /* SetView.xib in Resources */,
+				F0820C7D1C31FA03009D299D /* GanbuZoufangCell.xib in Resources */,
 				F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */,
 				F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */,
 				F036187B1C2FD10900E83500 /* XinyuanCell.xib in Resources */,
@@ -1147,6 +1156,7 @@
 				F08C87761C30546E003661EA /* LocationVC.m in Sources */,
 				F0BEA0631C2EC8EB00FE5E36 /* WeixinyuanVC.m in Sources */,
 				F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */,
+				F0820C7C1C31FA03009D299D /* GanbuZoufangCell.m in Sources */,
 				F03618811C2FE2B700E83500 /* XinyuanInfoVC.m in Sources */,
 				F036187A1C2FD10900E83500 /* XinyuanCell.m in Sources */,
 				F0BEA05D1C2EAACD00FE5E36 /* DangdaibiaoInfoVC.m in Sources */,

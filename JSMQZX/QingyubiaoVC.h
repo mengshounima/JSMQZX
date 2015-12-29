@@ -13,9 +13,15 @@
 @interface QingyubiaoVC : UIViewController
 
 @property (strong, nonatomic) IBOutlet EColumnChart *eColumnChart;
-@property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+
+
+- (IBAction)clickZJDBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;
+@property (weak, nonatomic) IBOutlet UIButton *CUNBtn;
+- (IBAction)clickCUNBtn:(id)sender;
 - (IBAction)clickSearchBtn:(id)sender;
 @end

@@ -15,14 +15,17 @@
 @interface QingyubiaoVC ()<UITableViewDataSource,UITableViewDelegate,EColumnChartDelegate, EColumnChartDataSource>
 {
    JKAlertDialog *alert;
-    NSString *flagZJD;
-     UITableView *_TypeTable;
+    UITableView *_ZJDTable;
+    UITableView *_CUNTable;
     CGRect chatRect;
     
 }
-@property (nonatomic,weak) NSArray *typeArr;
+@property (nonatomic,strong) NSArray *ZJDArr;
+@property (nonatomic,strong) NSArray *CUNArr;
+@property (nonatomic,strong) NSString *ZJDFlag;
+@property (nonatomic,strong) NSString *CUNFlag;
 @property (nonatomic,weak) NSArray *dicArr;
-@property (nonatomic, weak) NSArray *data;
+@property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) EFloatBox *eFloatBox;
 
 @property (nonatomic, strong) EColumn *eColumnSelected;
@@ -39,19 +42,21 @@
     
 }
 -(void)initData{
-       _typeArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
-    flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
+       _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
     chatRect = _eColumnChart.frame;
 }
 -(void)initView{
-    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
-    _TypeTable.delegate = self;
-    _TypeTable.dataSource = self;
+    _CUNBtn.enabled = NO;
+    _ZJDBtn.layer.cornerRadius = 4;
+    _CUNBtn.layer.cornerRadius = 4;
+    _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
+    _ZJDTable.delegate = self;
+    _ZJDTable.dataSource = self;
     
-    
-    UIButton *FieldBtn = [[UIButton alloc] initWithFrame:_searchField.frame];
-    [FieldBtn addTarget:self action:@selector(clickField:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:FieldBtn];
+    _CUNTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
+    _CUNTable.delegate = self;
+    _CUNTable.dataSource = self;
+
 
     _SearchBtn.layer.cornerRadius = 4;
     
@@ -67,18 +72,79 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [alert dismiss];
-    if (indexPath.row == 0) {
-        //传管理员自己的ssz
-        flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
-        _searchField.text = @"选择镇(街道)/村(社区)";
+    if (tableView == _ZJDTable) {
+        [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
+        _CUNFlag = @"";
+        [alert dismiss];
+        if (indexPath.row == 0) {
+            _ZJDFlag = @"";
+            [_ZJDBtn setTitle:@"选择镇(街道)" forState: UIControlStateNormal ];
+            _CUNBtn.enabled = NO;
+        }
+        else{
+            _ZJDFlag = [NSString stringWithFormat:@"%@",[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
+            [_ZJDBtn setTitle:[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"] forState: UIControlStateNormal ];
+            //作请求，得到该镇内的村
+            [self getCunData:_ZJDFlag];
+        }
+        
     }
     else{
-        flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
-        _searchField.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        [alert dismiss];
+        if (indexPath.row == 0) {
+            _CUNFlag = @"";
+            [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
+        }
+        else{
+            _CUNFlag = [NSString stringWithFormat:@"%@",[_CUNArr[indexPath.row-1] objectForKey:@"cun_id"]];//用于提交接口参数
+            [_CUNBtn setTitle:[_CUNArr[indexPath.row-1] objectForKey:@"cun_name"] forState: UIControlStateNormal ];
+        }
         
     }
 }
+
+-(void)getCunData:(NSString *)ZJD_ID{
+    [MBProgressHUD showMessage:@"获取该镇的村列表"];
+    //获取下属单位
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setObject:ZJD_ID forKey:@"zjd_id"];
+    [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        _CUNArr = (NSArray *)[jsonData objectFromJSONData];
+        
+        [_CUNTable reloadData];
+        _CUNBtn.enabled = YES;//可选
+        MyLog(@"村%@",_CUNArr);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        MyLog(@"***%@",error);
+    }];
+}
+//点击镇街道
+- (IBAction)clickZJDBtn:(id)sender{
+    //弹框
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/街道" message:@""];
+    alert.contentView =  _ZJDTable;
+    
+    [alert addButtonWithTitle:@"取消"];
+    
+    [alert show];
+    
+}
+- (IBAction)clickCUNBtn:(id)sender{
+    alert = [[JKAlertDialog alloc]initWithTitle:@"选择村/社区" message:@""];
+    alert.contentView =  _CUNTable;
+    [alert addButtonWithTitle:@"取消"];
+    
+    [alert show];
+}
+- (IBAction)clickSearchBtn:(id)sender{
+    [self getUserDataByZJD];
+    
+    
+}
+
 #pragma -mark- EColumnChartDataSource
 
 - (NSInteger)numberOfColumnsInEColumnChart:(EColumnChart *)eColumnChart
@@ -214,34 +280,46 @@ fingerDidLeaveColumn:(EColumn *)eColumn
 */
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _typeArr.count+1;
+    if (tableView == _ZJDTable) {
+        return _ZJDArr.count+1;
+    }
+    else {
+        return _CUNArr.count +1;
+    }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID = @"ZJDCellQY";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    if (tableView == _ZJDTable) {
+        static NSString *ID = @"QYBzjdCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"选择镇(街道)";
+        }
+        else{
+            cell.textLabel.text = [_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        }
+        return  cell;
+        
     }
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"选择镇(街道)/村(社区)";
+    else
+    {
+        static NSString *ID = @"QYBcunCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"选择村(社区)";
+        }
+        else{
+            cell.textLabel.text = [_CUNArr[indexPath.row-1] objectForKey:@"cun_name"];
+        }
+        return  cell;
+        
     }
-    else{
-        cell.textLabel.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
-    }
-    return  cell;
     
-}
--(void)clickField:(UIButton *)button{
-    alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/社区" message:@""];
-    alert.contentView =  _TypeTable;
-    
-    [alert addButtonWithTitle:@"取消"];
-
-    [alert show];
-}
-- (IBAction)clickSearchBtn:(id)sender {
-    [self getUserDataByZJD];
-
 }
 
 -(void)getUserDataByZJD{
@@ -251,15 +329,37 @@ fingerDidLeaveColumn:(EColumn *)eColumn
     NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
     [paramTongji setObject:@"1" forKey:@"AnalysisType"];//统计表类型
     [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
-    [paramTongji setObject:flagZJD forKey:@"ssz_id"];//统计表类型
-    [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
-    [[HttpClient httpClient] requestWithPath:@"/GetAnalysisRecord" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-       // MyLog(@"---**--%@",responseObject);
+    if (ISNULLSTR(_ZJDFlag)) {
+        [paramTongji setObject:@"" forKey:@"ssz_id"];//统计表类型
+    }
+    else{
+        [paramTongji setObject:_ZJDFlag forKey:@"ssz_id"];//统计表类型
+    }
+    if (ISNULLSTR(_CUNFlag)) {
+        [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
+
+    }
+    else{
+        [paramTongji setObject:_CUNFlag forKey:@"cun_id"];//统计表类型
+
+    }
+    [paramTongji setObject:@"20" forKey:@"rowscount"];//统计表类型
+    [paramTongji setObject:@"1" forKey:@"page"];//统计表类型
+       [[HttpClient httpClient] requestWithPath:@"/GetAnalysisInfo" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [MBProgressHUD hideHUD];
         
         NSData* jsonData = [self XMLString:responseObject];
         _dicArr = [jsonData objectFromJSONData];
+        //挑选数据
+       /* NSMutableArray *tempMut = [NSMutableArray array];
+        for (NSDictionary *dic  in _dicArr) {
+            NSString *LabelStr = [dic objectForKey:@"Label"];
+            if (!ISNULLSTR(LabelStr)) {
+                [tempMut addObject:dic];
+            }
+        }*/
+        
         NSMutableArray *temp = [NSMutableArray array];
         for (int i = 0; i < _dicArr.count; i++)
         {
@@ -267,7 +367,7 @@ fingerDidLeaveColumn:(EColumn *)eColumn
             EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value.floatValue index:i unit:@"kws"];
             [temp addObject:eColumnDataModel];
         }
-        _data = [NSArray arrayWithArray:temp];
+        _data = [temp mutableCopy];
         [_eColumnChart removeFromSuperview];
         _eColumnChart = nil;
         
@@ -282,14 +382,22 @@ fingerDidLeaveColumn:(EColumn *)eColumn
         dateformatter.dateFormat = @"yyyy-mm-dd";
         NSString *nowDateStr = [dateformatter stringFromDate:currentdate];
         NSString *yearStr = [nowDateStr substringToIndex:4];
-        if (flagZJD == [[DataCenter sharedInstance] ReadData].UserInfo.useType) {
+        if (ISNULLSTR(_ZJDFlag)&&ISNULLSTR(_CUNFlag)) {
             //此刻未选择
              _titleLabel.text = [NSString stringWithFormat:@"%@年度民情统计",yearStr];
         }
-        else
+        else if (!ISNULLSTR(_ZJDFlag)&&ISNULLSTR(_CUNFlag))
         {
-             _titleLabel.text = [NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_searchField.text];
+             _titleLabel.text = [NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_ZJDBtn.titleLabel.text];
         }
+        else if (ISNULLSTR(_ZJDFlag)&&!ISNULLSTR(_CUNFlag))
+        {
+            _titleLabel.text = [NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_CUNBtn.titleLabel.text];
+        }
+        else{
+            _titleLabel.text = [NSString stringWithFormat:@"%@年度%@%@民情统计",yearStr,_ZJDBtn.titleLabel.text,_CUNBtn.titleLabel.text];
+        }
+
        
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

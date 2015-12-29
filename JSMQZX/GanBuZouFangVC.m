@@ -7,7 +7,7 @@
 //
 
 #import "GanBuZouFangVC.h"
-
+#import "GanbuZoufangCell.h"
 @interface GanBuZouFangVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_TypeTable;
@@ -15,7 +15,12 @@
     JKAlertDialog *alert;
 }
 @property (nonatomic,weak) NSArray *typeArr;
+@property (nonatomic,strong) NSArray *zgbDataArr;
+@property (nonatomic,strong) NSArray *zgbZSArr;
 
+@property (nonatomic,strong) NSArray *cgbZSArr;
+@property (nonatomic,strong) NSArray *cgbDataArr;
+@property (nonatomic,strong) NSArray *titleArr;
 @end
 
 @implementation GanBuZouFangVC
@@ -29,7 +34,6 @@
 }
 -(void)initData{
     _typeArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
-    flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
 }
 -(void)initView{
     _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
@@ -38,7 +42,6 @@
     
     _searchBtn.layer.cornerRadius = 4;
     UIButton *FieldBtn = [[UIButton alloc] initWithFrame:_searchField.frame];
-    //[FieldBtn setBackgroundColor:[UIColor greenColor]];
     [FieldBtn addTarget:self action:@selector(clickField:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:FieldBtn];
     
@@ -49,9 +52,16 @@
     
     //获取统计信息
     NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
-    [paramTongji setObject:@"2" forKey:@"AnalysisType"];//统计表类型
+    [paramTongji setObject:@"4" forKey:@"AnalysisType"];//统计表类型
     [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
-    [paramTongji setObject:flagZJD forKey:@"ssz_id"];//统计表类型
+    
+    if (ISNULLSTR(flagZJD)) {
+        [paramTongji setObject:@"" forKey:@"ssz_id"];//统计表类型
+    }
+    else{
+        [paramTongji setObject:flagZJD forKey:@"ssz_id"];//统计表类型
+    }
+
     [paramTongji setObject:@"" forKey:@"cun_id"];//统计表类型
     [paramTongji setObject:@"20" forKey:@"rowscount"];//统计表类型
     [paramTongji setObject:@"1" forKey:@"page"];//统计表类型
@@ -62,24 +72,34 @@
         
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *resultArr = [jsonData objectFromJSONData];
-        NSNumber *ZGBValue = [resultArr[0] objectForKey:@"zjd_zgb_zfrzs"];//走访数
-        NSNumber *ZGBBig = [resultArr[1] objectForKey:@"zjd_zgb_zfnhs"];//走访数大数
+        NSMutableArray *zgbMut = [[NSMutableArray alloc] init];
+        NSMutableArray *zgbZSMut = [[NSMutableArray alloc] init];
+        NSMutableArray *cgbMut = [[NSMutableArray alloc] init];
+        NSMutableArray *cgbZSMut = [[NSMutableArray alloc] init];
+        NSMutableArray *titleMut = [[NSMutableArray alloc] init];
+        for (int i=0;i<resultArr.count;i++) {
+            NSNumber *value1 = [resultArr[i] objectForKey:@"zjd_zgb_zfnhs"];
+            [zgbMut addObject:value1];
+            NSNumber *value2 = [resultArr[i] objectForKey:@"zjd_zgb_zfrzs"];//总数，显示
+            [zgbZSMut addObject:value2];
+            NSNumber *value3 = [resultArr[i] objectForKey:@"zjd_cgb_zfnhs"];
+            [cgbMut addObject:value3];
+            NSNumber *value4 = [resultArr[i] objectForKey:@"zjd_cgb_zfrzs"];
+            [cgbZSMut addObject:value4];
+            
+            
+            NSString *label = [resultArr[i] objectForKey:@"zjd_name"];
+            [titleMut addObject:label];
+        }
         
-        NSNumber *CGBValue = [resultArr[0] objectForKey:@"zjd_cgb_zfrzs"];//走访数
-        NSNumber *CGBBig = [resultArr[1] objectForKey:@"zjd_cgb_zfnhs"];//走访数大数
-
+        _zgbDataArr = [zgbMut mutableCopy];
+        _zgbZSArr= [zgbZSMut mutableCopy];
+        _cgbDataArr = [cgbMut mutableCopy];
+        _cgbZSArr = [cgbZSMut mutableCopy];
         
+        _titleArr = [titleMut mutableCopy];
+        [_myTableView reloadData];
         
-        
-        NSMutableArray *textIndicators = [[NSMutableArray alloc] initWithObjects:@"镇干部", @"村干部", nil];
-        NSMutableArray *values = [[NSMutableArray alloc] initWithObjects:ZGBValue, CGBValue, nil];
-        CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        JXBarChartView *barChartView = [[JXBarChartView alloc] initWithFrame:frame startPoint:CGPointMake(20, 20) values:values maxValue:12736 textIndicators:textIndicators textColor:[UIColor blackColor] barHeight:30 barMaxWidth:200 gradient:nil];
-        [self.view addSubview:barChartView];
-
-        
-        NSNumber *beiZoufangI = [NSNumber numberWithInt:60];//数量
-        NSNumber *weiZoufangI = [NSNumber numberWithInt:40];//
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
@@ -101,34 +121,69 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [alert dismiss];
-    if (indexPath.row == 0) {
-        //传管理员自己的ssz
-        flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
-        _searchField.text = @"选择镇(街道)/村(社区)";
+    if (tableView == _TypeTable) {
+        [alert dismiss];
+        if (indexPath.row == 0) {
+            //传管理员自己的ssz
+            flagZJD = [[DataCenter sharedInstance] ReadData].UserInfo.useType;
+            _searchField.text = @"选择镇(街道)/村(社区)";
+        }
+        else{
+            flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
+            _searchField.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+            
+        }
+
+    }
+  }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (tableView==_TypeTable) {
+        return _typeArr.count+1;
     }
     else{
-        flagZJD = [NSString stringWithFormat:@"%@",[_typeArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
-        _searchField.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
-        
+        return _zgbDataArr.count;
     }
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _typeArr.count+1;
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID = @"ZJDCellQY";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"选择镇(街道)/村(社区)";
+    
+    if (tableView==_TypeTable) {
+        static NSString *ID = @"ZJDCellQY";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"选择镇(街道)/村(社区)";
+        }
+        else{
+            cell.textLabel.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        }
+        return  cell;
+
     }
     else{
-        cell.textLabel.text = [_typeArr[indexPath.row-1] objectForKey:@"zjd_name"];
+        static NSString *ID = @"GanbuzoufCell";
+        GanbuZoufangCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"GanbuZoufangCell" owner:nil options:nil] lastObject];
+        }
+        NSNumber *zgbData= _zgbDataArr[indexPath.row];
+        NSNumber *zgbZS=_zgbZSArr[indexPath.row];
+        NSNumber *cgbData= _cgbDataArr[indexPath.row];
+        NSNumber *cgbZS=_cgbZSArr[indexPath.row];
+        float ZJDpercent  = zgbZS.floatValue/zgbData.floatValue;
+        float CJDpercent  = cgbZS.floatValue/cgbData.floatValue;
+        NSDictionary *paramDic =  @{@"title":_titleArr[indexPath.row],@"ZJDpercent":[NSNumber numberWithFloat:ZJDpercent],@"CJDpercent":[NSNumber numberWithFloat:CJDpercent],@"ZJDZS":zgbZS,@"CJDZS":cgbZS};
+        [cell UpdateWithInfoDic:paramDic];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        return cell;
     }
-    return  cell;
+    
+}
+- (IBAction)clickSearchBtn:(id)sender{
+    [self getUserDataByZJD];
     
 }
 -(void)clickField:(UIButton *)button{
