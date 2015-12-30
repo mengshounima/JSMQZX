@@ -47,6 +47,7 @@
                    NSString *allURL = [NSString stringWithFormat:@"http://122.225.44.14:802/ClientPhoto/%@",urlStr];
                    
                    NSURL *URL = [NSURL URLWithString:allURL];
+                   MyLog(@"--------%@",allURL);
                      SDWebImageManager *manager = [SDWebImageManager sharedManager];
                     [manager downloadImageWithURL:URL options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                        

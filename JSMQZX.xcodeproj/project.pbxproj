@@ -17,6 +17,8 @@
 		8E9BD34A1C2CCBC8007121D9 /* BaiduMapAPI_Radar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3431C2CCBC8007121D9 /* BaiduMapAPI_Radar.framework */; };
 		8E9BD34B1C2CCBC8007121D9 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3441C2CCBC8007121D9 /* BaiduMapAPI_Search.framework */; };
 		8E9BD34C1C2CCBC8007121D9 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3451C2CCBC8007121D9 /* BaiduMapAPI_Utils.framework */; };
+		8ED91E871C33C96A0027807E /* ganbuLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED91E851C33C96A0027807E /* ganbuLogCell.m */; };
+		8ED91E881C33C96A0027807E /* ganbuLogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ED91E861C33C96A0027807E /* ganbuLogCell.xib */; };
 		F0040F211C281E4B004DC329 /* FenxiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F201C281E4B004DC329 /* FenxiTableVC.m */; };
 		F0040F2E1C2824F6004DC329 /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F271C2824F6004DC329 /* EColumnChart.m */; };
 		F0040F2F1C2824F6004DC329 /* ELineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F291C2824F6004DC329 /* ELineChart.m */; };
@@ -146,6 +148,9 @@
 		8E9BD3431C2CCBC8007121D9 /* BaiduMapAPI_Radar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Radar.framework; path = JSMQZX/BaiduMapAPI_Radar.framework; sourceTree = "<group>"; };
 		8E9BD3441C2CCBC8007121D9 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Search.framework; path = JSMQZX/BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
 		8E9BD3451C2CCBC8007121D9 /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Utils.framework; path = JSMQZX/BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
+		8ED91E841C33C96A0027807E /* ganbuLogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ganbuLogCell.h; sourceTree = "<group>"; };
+		8ED91E851C33C96A0027807E /* ganbuLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ganbuLogCell.m; sourceTree = "<group>"; };
+		8ED91E861C33C96A0027807E /* ganbuLogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ganbuLogCell.xib; sourceTree = "<group>"; };
 		D05FCD92B64E18EA08B9F805 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F0040F1F1C281E4B004DC329 /* FenxiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FenxiTableVC.h; sourceTree = "<group>"; };
 		F0040F201C281E4B004DC329 /* FenxiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FenxiTableVC.m; sourceTree = "<group>"; };
@@ -637,6 +642,9 @@
 				F0820C791C31FA03009D299D /* GanbuZoufangCell.h */,
 				F0820C7A1C31FA03009D299D /* GanbuZoufangCell.m */,
 				F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */,
+				8ED91E841C33C96A0027807E /* ganbuLogCell.h */,
+				8ED91E851C33C96A0027807E /* ganbuLogCell.m */,
+				8ED91E861C33C96A0027807E /* ganbuLogCell.xib */,
 			);
 			name = GanBuUser;
 			sourceTree = "<group>";
@@ -1035,6 +1043,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ED91E881C33C96A0027807E /* ganbuLogCell.xib in Resources */,
 				8E4D38AF1C30D1680011F605 /* mapapi.bundle in Resources */,
 				F03889F41C2B0AEA00FD190B /* EvaluateCell.xib in Resources */,
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
@@ -1150,6 +1159,7 @@
 				F0040F411C282507004DC329 /* EColor.m in Sources */,
 				F08C87761C30546E003661EA /* LocationVC.m in Sources */,
 				F0BEA0631C2EC8EB00FE5E36 /* WeixinyuanVC.m in Sources */,
+				8ED91E871C33C96A0027807E /* ganbuLogCell.m in Sources */,
 				F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */,
 				F0820C7C1C31FA03009D299D /* GanbuZoufangCell.m in Sources */,
 				F03618811C2FE2B700E83500 /* XinyuanInfoVC.m in Sources */,

@@ -7,8 +7,8 @@
 //
 
 #import "LogListGanbuVC.h"
-
-@interface LogListGanbuVC ()<UITableViewDataSource,UITableViewDelegate>
+#import "MJRefresh.h"
+@interface LogListGanbuVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     JKAlertDialog *alert;
     UITableView *_ZJDTable;
@@ -21,6 +21,8 @@
 }
 @property (nonatomic,strong) NSArray *ZJDArr;
 @property (nonatomic,strong) NSArray *CUNArr;
+@property (nonatomic,strong) NSString *ZJDFlag;
+@property (nonatomic,strong) NSString *CUNFlag;
 @end
 
 @implementation LogListGanbuVC
@@ -33,66 +35,67 @@
 }
 -(void)initData{
     _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+    rowscount = 20;
+    page = 1;
 }
 -(void)initView{
     _CUNBtn.enabled = NO;
     _ZJDBtn.layer.cornerRadius = 4;
     _CUNBtn.layer.cornerRadius = 4;
-    _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 230) style:UITableViewStylePlain];
+    _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
     _ZJDTable.delegate = self;
     _ZJDTable.dataSource = self;
     
-    _CUNTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
+    _CUNTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
     _CUNTable.delegate = self;
     _CUNTable.dataSource = self;
+    _mySearchBar.delegate = self;
+    //搜索键盘点击done缩回键盘
+    _mySearchBar.returnKeyType = UIReturnKeyDone;
+    [self setupRefreshView];
 
 }
+- (void)setupRefreshView
+{
+    self.LogTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getViewData];//加载下一页
+    }];
+    
+}
+
 -(void)getViewData{
-    [MBProgressHUD showMessage:@"加载中"];
-    //获取村社区
-    /*NSMutableDictionary *paramCUN = [[NSMutableDictionary alloc] init];
-    [paramCUN setObject:@"" forKey:@"zjd_id"];
-    [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:paramCUN prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
-        NSData* jsonData = [self XMLString:responseObject];
-        _CUNArr = [jsonData objectFromJSONData];
-        MyLog(@"---**--%@",_CUNArr);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        MyLog(@"***%@",error);
-    }];*/
-    //获取日志
-    /*NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+       //获取日志
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID ;
     [param setObject:idStr forKey:@"userId"];
-    if (_flagLogZT.integerValue == 5) {
-        //未评价
+    if (_flagLogZT.integerValue == 0) {
+        //提交镇一级未处理
         [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
         [param setObject:@"" forKey:@"cun_id"];
         [param setObject:@"" forKey:@"wg_id"];
-        [param setObject:@"" forKey:@"ztxx"];
+        [param setObject:@"3" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"myd"];
         page++;
     }
-    else if (_flagLogZT.integerValue == 6){
-        //已评价
+    else if (_flagLogZT.integerValue == 1){
+        //提交镇一级已处理
         [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
         [param setObject:@"" forKey:@"cun_id"];
         [param setObject:@"" forKey:@"wg_id"];
-        [param setObject:@"" forKey:@"ztxx"];
+        [param setObject:@"31" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"myd"];
         page++;
     }
     else {
-        //1，2，3，4
+        //辖区内所有,不填
         [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
         [param setObject:@"" forKey:@"cun_id"];
         [param setObject:@"" forKey:@"wg_id"];
-        [param setObject:_flagLogZT forKey:@"ztxx"];
+        [param setObject:@"" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"myd"];
@@ -100,27 +103,24 @@
     }
     //获取日志列表
     [[HttpClient httpClient] requestWithPath:@"/GetMQLogInfoPage" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [_rizhiTableView.footer endRefreshing];
+        
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
-        if (middleArr.count<rowscount&&flagFirst==1) {
-            [MBProgressHUD showError:@"已经加载了全部数据"];
+        if (middleArr.count<rowscount) {
+            [_LogTableView.footer endRefreshingWithNoMoreData];
         }
         else{
+            [_LogTableView.footer endRefreshing];
             [LogArr addObjectsFromArray:middleArr];
             SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
-            [self.rizhiTableView reloadData];
+            [self.LogTableView reloadData];
             
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [_rizhiTableView.footer endRefreshing];
+        [_LogTableView.footer endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
-    }];*/
+    }];
     
-    
-    
-    
-
     
     
 }
@@ -178,73 +178,123 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView ==_ZJDTable) {
+    if (tableView == _ZJDTable) {
         return _ZJDArr.count+1;
     }
-    else{
-        return _CUNArr.count+1;
+    else if (tableView == _CUNTable){
+        return _CUNArr.count +1;
     }
-    
+    else{
+        return SearchShowArr.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == _ZJDTable) {//是否共性
-        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CommomCell"];
-        static NSString *CellIdentifier = @"CommomCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (tableView == _ZJDTable) {
+        static NSString *ID = @"ZJDCellFuwu";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"不是共性问题";
+            cell.textLabel.text = @"选择镇(街道)";
         }
         else{
-            //cell.textLabel.text = [_ZJDArr[indexPath.row-1] objectForKey:@"rdwt_name"];
+            cell.textLabel.text = [_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"];
         }
-        return cell;
+        return  cell;
+        
+    }
+    else if (tableView == _CUNTable)
+    {
+        static NSString *ID = @"CUNCellFuwu";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"选择村(社区)";
+        }
+        else{
+            cell.textLabel.text = [_CUNArr[indexPath.row-1] objectForKey:@"cun_name"];
+        }
+        return  cell;
         
     }
     else{
-        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"typeCell"];
-        static NSString *CellIdentifier = @"typeCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        //服务列表
+        static NSString *ID = @"LogGanbuCell";
+        ganbuLogCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"ganbuLogCell" owner:nil options:nil] lastObject];
         }
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"未选择";
-        }
-        else
-        {
-            //cell.textLabel.text = [_CUNArr[indexPath.row-1] objectForKey:@"mqlb_name"];
-        }
-        return cell;
+        [cell updateWithInfoDic:SearchShowArr[indexPath.row]];
+        cell.statusFrame = _statusFrameArray[indexPath.row];
+        return  cell;
         
     }
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [alert dismiss];
-   /* if (tableView == _CommonTable) {
-        if (indexPath.row==0) {
-            //flagGongXin = 2008;
-        }
-        else{
-            flagGongXin = [NSString stringWithFormat:@"%@",[commomArr[indexPath.row-1] objectForKey:@"rdwt_id"]];//用于提交接口参数
-            _commonF.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
-            
-        }
-    }
-    else{
-        if (!indexPath.row==0) {
-            flagLeiBie = [NSString stringWithFormat:@"%@",[typeArr[indexPath.row-1] objectForKey:@"mqlb_id"]];//用于提交接口参数
-            _typeF.text = [typeArr[indexPath.row-1] objectForKey:@"mqlb_name"];
-        }
-        
-        
-    }*/
+
     
+   }
+//点击
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _ZJDTable) {
+        [alert dismiss];
+        if (indexPath.row == 0) {
+            _ZJDFlag = @"";
+            [_ZJDBtn setTitle:@"选择镇(街道)" forState: UIControlStateNormal ];
+        }
+        else{
+            _ZJDFlag = [NSString stringWithFormat:@"%@",[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
+            [_ZJDBtn setTitle:[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"] forState: UIControlStateNormal ];
+            //作请求，得到该镇内的村
+            [self getCunData:_ZJDFlag];
+        }
+        
+    }
+    else if (tableView == _CUNTable) {
+        [alert dismiss];
+        if (indexPath.row == 0) {
+            _CUNFlag = @"";
+            [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
+        }
+        else{
+            _CUNFlag = [NSString stringWithFormat:@"%@",[_CUNArr[indexPath.row-1] objectForKey:@"cun_id"]];//用于提交接口参数
+            [_CUNBtn setTitle:[_CUNArr[indexPath.row-1] objectForKey:@"cun_name"] forState: UIControlStateNormal ];
+        }
+        
+    }
+    else{
+        //点击列表，详情
+        [self performSegueWithIdentifier:@"XinyuanVCToInfo" sender:SearchShowArr[indexPath.row]];//log详情
+    }
 }
 
-- (IBAction)clickSearchBtn:(id)sender {
+
+
+-(void)getCunData:(NSString *)ZJD_ID{
+    [MBProgressHUD showMessage:@"获取该镇的村列表"];
+    //获取下属单位
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setObject:ZJD_ID forKey:@"zjd_id"];
+    [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        _CUNArr = (NSArray *)[jsonData objectFromJSONData];
+        
+        [_CUNTable reloadData];
+        _CUNBtn.enabled = YES;//可选
+        MyLog(@"村%@",_CUNArr);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        MyLog(@"***%@",error);
+    }];
+}
+
+- (IBAction)clickSearchBtn:(id)sender{
+    page = 1;
+    [self getViewData];
+    
+    
 }
 @end
