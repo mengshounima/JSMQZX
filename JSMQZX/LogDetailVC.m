@@ -7,20 +7,96 @@
 //
 
 #import "LogDetailVC.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
+#import "UIImageView+WebCache.h"
 #define fuwuFont [UIFont systemFontOfSize:14]
-@interface LogDetailVC ()
-
+@interface LogDetailVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIGestureRecognizerDelegate>
+{
+    BOOL HasPicture;
+    
+}
+@property (nonatomic,strong) NSArray *picsArr;
+@property (nonatomic,weak) UIImageView *picImageV;
 @end
 
 @implementation LogDetailVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initView];
+   
+    [self getLogPics];
 }
+-(void)getLogPics{
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID ;
+    [param setObject:idStr forKey:@"userId"];
+    [param setObject:[_infoDic objectForKey:@"rz_id"] forKey:@"rz_id"];
+    
+       [[HttpClient httpClient] requestWithPath:@"/GetMQPhotosRzID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSData* jsonData = [self XMLString:responseObject];
+        NSArray *resultArr = (NSArray *)[jsonData objectFromJSONData];
+           if (resultArr.count>0) {
+               HasPicture = YES;
+               
+               //图片加载
+               NSMutableArray *middleArr = [[NSMutableArray alloc] init];
+               for (NSDictionary *dic  in resultArr) {
+                   NSString *urlStr = [dic objectForKey:@"photoUrl"];
+                   NSString *allURL = [NSString stringWithFormat:@"http://122.225.44.14:802/ClientPhoto/%@",urlStr];
+                   
+                   NSURL *URL = [NSURL URLWithString:allURL];
+                     SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                    [manager downloadImageWithURL:URL options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                       
+                       
+                       
+                       NSLog(@"显示当前进度");
+                   } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                       
+                       if (!ISNULL(image)) {
+                            [middleArr addObject:image];
+                           if (!ISNULL(middleArr)) {
+                               _picsArr = [middleArr mutableCopy];
+
+                           }
+                        }
+                       
+                       NSLog(@"下载完成");
+                       
+                   }];
+                 
+               }
+              
+            }
+           else{
+               HasPicture = NO;
+           }
+           [self initView];
+       
+       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    
+        [MBProgressHUD showError:@"请求失败"];
+    }];
+    
+
+}
+-(NSData *)XMLString:(NSData *)data
+{
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
+    //获取根节点（Users）
+    GDataXMLElement *rootElement = [doc rootElement];
+    NSArray *users = [rootElement children];
+    GDataXMLNode  *contentNode = users[0];
+    NSString *str =  contentNode.XMLString;
+    NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    return  jsonData;
+}
+
 -(void)initView{
     MyLog(@"%@",_infoDic);
-    UIScrollView *myScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    UIScrollView *myScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     UIView *backView = [[UIView alloc] init];
     backView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     backView.layer.borderWidth = 1;
@@ -219,9 +295,19 @@
     picL.text = @"附加照片";
     picL.font = fuwuFont;
     [PicV addSubview:picL];
+   
     UIButton *picBtn = [[UIButton alloc] initWithFrame:CGRectMake(80, 2, 36, 36)];
-    [picBtn setImage:[UIImage imageNamed:@"照片"] forState:UIControlStateNormal];
-    [PicV addSubview:picBtn];
+    [picBtn setImage:[UIImage imageNamed:@"照片"]  forState:UIControlStateNormal];
+
+    if (HasPicture) {
+        picBtn.enabled = YES;
+        [picBtn addTarget:self action:@selector(LookPics:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else{
+         picBtn.enabled = NO;
+    }
+    
+    [PicV addSubview:picBtn];//透明，盖在上面
     
     Y = CGRectGetMaxY(PicV.frame);
 
@@ -250,6 +336,28 @@
     [self.view addSubview:myScroll];
     
 }
+-(void)LookPics:(UIButton *)button
+{
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    if (_picsArr.count>0) {
+        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:_picsArr.count];
+        
+        for (int i= 0;i<_picsArr.count;i++) {
+            UIImage *imageS =  _picsArr[i];
+            MJPhoto *photo= [[MJPhoto alloc] init];
+            photo.image = imageS;
+            photo.index =i;
+            [photos addObject:photo];
+        }
+        
+        
+        browser.photos = photos;
+        browser.currentPhotoIndex =0;
+        [browser show];
+    }
+    
+}
+
 -(void)clickLocationBtn:(UIButton *)button{
     
     [self performSegueWithIdentifier:@"LogDetailToLocation" sender:_infoDic];

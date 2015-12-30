@@ -74,7 +74,6 @@
 		F07D72A21C10756200C695CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F07D72A11C10756200C695CB /* Images.xcassets */; };
 		F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07D72A31C10756200C695CB /* LaunchScreen.xib */; };
 		F07D72B11C10756200C695CB /* JSMQZXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F07D72B01C10756200C695CB /* JSMQZXTests.m */; };
-		F0800E851C1D918D004C2B6A /* LogInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E841C1D918D004C2B6A /* LogInfoTableVC.m */; };
 		F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E871C1D9729004C2B6A /* UserInfoTableVC.m */; };
 		F0800E8B1C1DA231004C2B6A /* SetView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0800E8A1C1DA231004C2B6A /* SetView.m */; };
 		F0800E8D1C1DA248004C2B6A /* SetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0800E8C1C1DA248004C2B6A /* SetView.xib */; };
@@ -256,8 +255,6 @@
 		F07D72AA1C10756200C695CB /* JSMQZXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSMQZXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07D72AF1C10756200C695CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F07D72B01C10756200C695CB /* JSMQZXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMQZXTests.m; sourceTree = "<group>"; };
-		F0800E831C1D918D004C2B6A /* LogInfoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInfoTableVC.h; sourceTree = "<group>"; };
-		F0800E841C1D918D004C2B6A /* LogInfoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInfoTableVC.m; sourceTree = "<group>"; };
 		F0800E861C1D9729004C2B6A /* UserInfoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableVC.h; sourceTree = "<group>"; };
 		F0800E871C1D9729004C2B6A /* UserInfoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableVC.m; sourceTree = "<group>"; };
 		F0800E891C1DA231004C2B6A /* SetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetView.h; sourceTree = "<group>"; };
@@ -770,8 +767,6 @@
 		F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */ = {
 			isa = PBXGroup;
 			children = (
-				F0800E831C1D918D004C2B6A /* LogInfoTableVC.h */,
-				F0800E841C1D918D004C2B6A /* LogInfoTableVC.m */,
 				F0800E8F1C1DBD3B004C2B6A /* RiZhiBanLiTableVC.h */,
 				F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */,
 				F0800E921C1DBF2E004C2B6A /* ModifyLogVC.h */,
@@ -1174,7 +1169,6 @@
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,
 				F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */,
-				F0800E851C1D918D004C2B6A /* LogInfoTableVC.m in Sources */,
 				F07D72971C10756200C695CB /* main.m in Sources */,
 				F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */,
 				F08C87791C305D03003661EA /* HongyunVC.m in Sources */,
