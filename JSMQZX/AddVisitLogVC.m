@@ -467,17 +467,20 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
         NSString *date = [formatter stringFromDate:[NSDate date] ];
-        
+        NSDate *nowDate = [NSDate date] ;
+        NSTimeInterval timeStamp= [nowDate timeIntervalSince1970];//当前日期转化为毫秒数
+        NSTimeInterval timeStampIN = timeStamp*1000000;
         NSMutableDictionary *paramPic = [[NSMutableDictionary alloc] init];
         [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
         [paramPic setObject:RiZiID forKey:@"rz_id"];
-        [paramPic setObject:[NSString stringWithFormat:@"%@%d",date,i] forKey:@"photoCode"];//为了唯一性，添加i
+        
+        [paramPic setObject:[NSString stringWithFormat:@"%f-%d",timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i
         [paramPic setObject:date forKey:@"takeDate"];
         [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             MyLog(@"%@",responseObject);
             NSData* jsonData = [self XMLString:responseObject];
             NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            
+             MyLog(@"创建的图片id:%@",PicID);
             if (![PicID isEqualToString:@"-1"]&&i==self.ImageDataArr.count-1)  {
                 //开始上传图片数据
                 [imageNameArr addObject:PicID];

@@ -1,32 +1,33 @@
 //
-//  GanBuFuWuVC.m
+//  JifenVC.m
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/24.
+//  Created by 李 燕琴 on 15/12/29.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 
-#import "GanBuFuWuVC.h"
+#import "JifenVC.h"
 #import "MJRefresh.h"
-@interface GanBuFuWuVC ()<UITableViewDataSource,UITableViewDelegate>
+@interface JifenVC ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_ZJDTable;
     UITableView *_CUNTable;
-
+    
     JKAlertDialog *alert;
     NSInteger rowscount;
     NSInteger page;
     NSInteger Index;
-
+    
 }
 @property (nonatomic,strong) NSArray *ZJDArr;
 @property (nonatomic,strong) NSArray *CUNArr;
 @property (nonatomic,strong) NSString *ZJDFlag;
 @property (nonatomic,strong) NSString *CUNFlag;
 @property (nonatomic,strong) NSArray *resultArr;
+
 @end
 
-@implementation GanBuFuWuVC
+@implementation JifenVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,7 +71,7 @@
     
     //获取统计信息
     NSMutableDictionary *paramTongji = [[NSMutableDictionary alloc] init];
-    [paramTongji setObject:@"7" forKey:@"AnalysisType"];//统计表类型
+    [paramTongji setObject:@"8" forKey:@"AnalysisType"];//统计表类型
     [paramTongji setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID  forKey:@"userId"];
     if (ISNULLSTR(_ZJDFlag)) {
         [paramTongji setObject:@"" forKey:@"ssz_id"];//统计表类型
@@ -86,7 +87,7 @@
         [paramTongji setObject:_CUNFlag forKey:@"cun_id"];//统计表类型
         
     }
-
+    
     [paramTongji setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];//统计表类型
     [paramTongji setObject:[NSNumber numberWithInteger:page] forKey:@"page"];//统计表类型
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisInfo" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -135,7 +136,7 @@
             [_ZJDBtn setTitle:[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"] forState: UIControlStateNormal ];
             //作请求，得到该镇内的村
             [self getCunData:_ZJDFlag];        }
-
+        
     }
     else if (tableView == _CUNTable){
         [alert dismiss];
@@ -148,7 +149,7 @@
             [_CUNBtn setTitle:[_CUNArr[indexPath.row-1] objectForKey:@"cun_name"] forState: UIControlStateNormal ];
         }
         
-
+        
     }
 }
 -(void)getCunData:(NSString *)ZJD_ID{
@@ -180,7 +181,7 @@
     else{
         return _resultArr.count;
     }
-   
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _ZJDTable) {
@@ -217,16 +218,16 @@
     else{
         //列表
         static NSString *ID = @"PinJiaCell";
-        EvaluateCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        JifenCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"EvaluateCell" owner:nil options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"JifenCell" owner:nil options:nil] lastObject];
             Index++;
         }
         /*NSNumber *numberIndex = [NSNumber numberWithInteger:Index];
-        NSMutableDictionary *middle = [NSMutableDictionary dictionaryWithDictionary:_resultArr[indexPath.row]];
-        [ middle setObject:numberIndex forKey:@"index"];*/
+         NSMutableDictionary *middle = [NSMutableDictionary dictionaryWithDictionary:_resultArr[indexPath.row]];
+         [ middle setObject:numberIndex forKey:@"index"];*/
         
-        [cell updateCellWithInfoDic:_resultArr[indexPath.row]];
+        //[cell updateCellWithInfoDic:_resultArr[indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return  cell;
@@ -263,13 +264,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

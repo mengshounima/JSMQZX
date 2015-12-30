@@ -1,16 +1,16 @@
 //
-//  GanBuFuWuVC.h
+//  JifenVC.h
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/24.
+//  Created by 李 燕琴 on 15/12/29.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "JKAlertDialog.h"
 #import "GDataXMLNode.h"
-#import "EvaluateCell.h"
-@interface GanBuFuWuVC : UIViewController
+#import "JifenCell.h"
+@interface JifenVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
 
 - (IBAction)clickZJDBtn:(id)sender;

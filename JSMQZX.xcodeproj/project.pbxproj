@@ -86,6 +86,12 @@
 		F08C87731C304827003661EA /* LogDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08C87721C304827003661EA /* LogDetailVC.m */; };
 		F08C87761C30546E003661EA /* LocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08C87751C30546E003661EA /* LocationVC.m */; };
 		F08C87791C305D03003661EA /* HongyunVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08C87781C305D03003661EA /* HongyunVC.m */; };
+		F09537961C329C4100906436 /* GanbuMingshiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F09537951C329C4100906436 /* GanbuMingshiVC.m */; };
+		F095379A1C329D9300906436 /* GanbuMingshiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F09537981C329D9300906436 /* GanbuMingshiCell.m */; };
+		F095379B1C329D9300906436 /* GanbuMingshiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09537991C329D9300906436 /* GanbuMingshiCell.xib */; };
+		F095379E1C32B8C400906436 /* JifenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F095379D1C32B8C400906436 /* JifenVC.m */; };
+		F09537A21C32BF0400906436 /* JifenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F09537A01C32BF0400906436 /* JifenCell.m */; };
+		F09537A31C32BF0400906436 /* JifenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09537A11C32BF0400906436 /* JifenCell.xib */; };
 		F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */; };
 		F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1EE1C19DA1100EAAC10 /* SelectFarmerCell.m */; };
 		F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */; };
@@ -278,6 +284,16 @@
 		F08C87751C30546E003661EA /* LocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationVC.m; sourceTree = "<group>"; };
 		F08C87771C305D03003661EA /* HongyunVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HongyunVC.h; sourceTree = "<group>"; };
 		F08C87781C305D03003661EA /* HongyunVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HongyunVC.m; sourceTree = "<group>"; };
+		F09537941C329C4100906436 /* GanbuMingshiVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuMingshiVC.h; sourceTree = "<group>"; };
+		F09537951C329C4100906436 /* GanbuMingshiVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuMingshiVC.m; sourceTree = "<group>"; };
+		F09537971C329D9300906436 /* GanbuMingshiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuMingshiCell.h; sourceTree = "<group>"; };
+		F09537981C329D9300906436 /* GanbuMingshiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuMingshiCell.m; sourceTree = "<group>"; };
+		F09537991C329D9300906436 /* GanbuMingshiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GanbuMingshiCell.xib; sourceTree = "<group>"; };
+		F095379C1C32B8C400906436 /* JifenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenVC.h; sourceTree = "<group>"; };
+		F095379D1C32B8C400906436 /* JifenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenVC.m; sourceTree = "<group>"; };
+		F095379F1C32BF0400906436 /* JifenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenCell.h; sourceTree = "<group>"; };
+		F09537A01C32BF0400906436 /* JifenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenCell.m; sourceTree = "<group>"; };
+		F09537A11C32BF0400906436 /* JifenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JifenCell.xib; sourceTree = "<group>"; };
 		F0B4E1E71C19C1E600EAAC10 /* SelectFarmerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFarmerVC.h; sourceTree = "<group>"; };
 		F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFarmerVC.m; sourceTree = "<group>"; };
 		F0B4E1ED1C19DA1100EAAC10 /* SelectFarmerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFarmerCell.h; sourceTree = "<group>"; };
@@ -427,7 +443,6 @@
 			isa = PBXGroup;
 			children = (
 				F0D255A41C1715EC005BD1F4 /* MinQinRiZhi */,
-				F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */,
 			);
 			name = GeneralUser;
 			sourceTree = "<group>";
@@ -465,8 +480,12 @@
 				F03889E41C2AF32A00FD190B /* MinshengXvqiuVC.m */,
 				F03889EA1C2AFE5E00FD190B /* GanBuZouFangVC.h */,
 				F03889EB1C2AFE5E00FD190B /* GanBuZouFangVC.m */,
+				F09537941C329C4100906436 /* GanbuMingshiVC.h */,
+				F09537951C329C4100906436 /* GanbuMingshiVC.m */,
 				F03889ED1C2B04CD00FD190B /* GanBuFuWuVC.h */,
 				F03889EE1C2B04CD00FD190B /* GanBuFuWuVC.m */,
+				F095379C1C32B8C400906436 /* JifenVC.h */,
+				F095379D1C32B8C400906436 /* JifenVC.m */,
 			);
 			name = FenxiYanpan;
 			sourceTree = "<group>";
@@ -640,6 +659,12 @@
 				F0820C791C31FA03009D299D /* GanbuZoufangCell.h */,
 				F0820C7A1C31FA03009D299D /* GanbuZoufangCell.m */,
 				F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */,
+				F09537971C329D9300906436 /* GanbuMingshiCell.h */,
+				F09537981C329D9300906436 /* GanbuMingshiCell.m */,
+				F09537991C329D9300906436 /* GanbuMingshiCell.xib */,
+				F095379F1C32BF0400906436 /* JifenCell.h */,
+				F09537A01C32BF0400906436 /* JifenCell.m */,
+				F09537A11C32BF0400906436 /* JifenCell.xib */,
 			);
 			name = GanBuUser;
 			sourceTree = "<group>";
@@ -935,6 +960,7 @@
 				F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */,
 				F0B5593B1C2189D600E9103C /* PicViewController.h */,
 				F0B5593C1C2189D600E9103C /* PicViewController.m */,
+				F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */,
 			);
 			name = MinQinRiZhi;
 			sourceTree = "<group>";
@@ -1041,6 +1067,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00B34C51C2D631F00BA36EA /* mapapi.bundle in Resources */,
+				F095379B1C329D9300906436 /* GanbuMingshiCell.xib in Resources */,
 				F03889F41C2B0AEA00FD190B /* EvaluateCell.xib in Resources */,
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
 				F0B7252C1C2599020027B1F1 /* mailCell.xib in Resources */,
@@ -1052,6 +1079,7 @@
 				F036187B1C2FD10900E83500 /* XinyuanCell.xib in Resources */,
 				F0BEA0691C2ECC2A00FE5E36 /* FuwuCell.xib in Resources */,
 				F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */,
+				F09537A31C32BF0400906436 /* JifenCell.xib in Resources */,
 				F06D95431C1EF05D00FDE859 /* LogCell.xib in Resources */,
 				F07D72A21C10756200C695CB /* Images.xcassets in Resources */,
 				F04F68BD1C2446F0000F1D58 /* DangyuanCell.xib in Resources */,
@@ -1106,8 +1134,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */,
+				F095379E1C32B8C400906436 /* JifenVC.m in Sources */,
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
 				F03889F31C2B0AEA00FD190B /* EvaluateCell.m in Sources */,
+				F095379A1C329D9300906436 /* GanbuMingshiCell.m in Sources */,
 				F0D03D0B1C296C3C00D2BAF2 /* DataCenter.m in Sources */,
 				F0BEA0681C2ECC2A00FE5E36 /* FuwuCell.m in Sources */,
 				F0BEA06D1C2ED20D00FE5E36 /* MJStatusFrame.m in Sources */,
@@ -1128,6 +1158,7 @@
 				F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */,
 				F0D03D0E1C2976D200D2BAF2 /* RotatedView.m in Sources */,
 				F0BEA05A1C2E9EB300FE5E36 /* dangdaibiaoVC.m in Sources */,
+				F09537A21C32BF0400906436 /* JifenCell.m in Sources */,
 				F0040F401C282507004DC329 /* EColumn.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
 				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
@@ -1145,6 +1176,7 @@
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
 				F0040F561C284660004DC329 /* PieChartView.m in Sources */,
 				F03889E51C2AF32A00FD190B /* MinshengXvqiuVC.m in Sources */,
+				F09537961C329C4100906436 /* GanbuMingshiVC.m in Sources */,
 				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,
 				F0300A0F1C133D8600389829 /* UIBarButtonItem+Extension.m in Sources */,
 				F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */,

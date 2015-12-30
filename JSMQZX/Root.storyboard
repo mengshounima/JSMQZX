@@ -395,11 +395,13 @@
                         <segue destination="vOG-oY-Zj2" kind="push" identifier="FenxiYanpanToMinshenXvqiu" id="YtL-5d-P7M"/>
                         <segue destination="5p5-8p-vo9" kind="push" identifier="FenxiYanpanToGanBuZouFang" id="mGn-3V-sVI"/>
                         <segue destination="Gvs-EM-dQI" kind="push" identifier="FenxiYanpanToGanBuFuWu" id="I0G-s8-nBe"/>
+                        <segue destination="sfd-bf-9R6" kind="push" identifier="FenxiYanpanToGanBuMingshi" id="4Za-QE-xTN"/>
+                        <segue destination="8nZ-ez-JV8" kind="push" identifier="FenxiYanpanToJifenVC" id="2IJ-0V-xQb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdP-wo-Cug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="690" y="1746"/>
+            <point key="canvasLocation" x="1439" y="1601"/>
         </scene>
         <!--农户被走访情况统计-->
         <scene sceneID="HwO-HV-3AU">
@@ -501,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTO-Zo-nUG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050" y="2080"/>
+            <point key="canvasLocation" x="2170" y="2054"/>
         </scene>
         <!--民生需求统计-->
         <scene sceneID="IQG-dd-zHp">
@@ -603,7 +605,118 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lri-UT-9T9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1682" y="2505"/>
+            <point key="canvasLocation" x="1935" y="2492"/>
+        </scene>
+        <!--干部联系服务群众积分-->
+        <scene sceneID="Ktg-hX-w5k">
+            <objects>
+                <viewController id="8nZ-ez-JV8" customClass="JifenVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hfr-iX-pl7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qul-kU-Jbh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A35-fb-WsW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7R-it-0c0" userLabel="SearchView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuw-Y2-a2E">
+                                        <rect key="frame" x="8" y="5" width="42" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="DRt-OI-fb7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DB-Lb-C2o">
+                                        <rect key="frame" x="58" y="5" width="89" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="选择镇(街道)"/>
+                                        <connections>
+                                            <action selector="clickZJDBtn:" destination="8nZ-ez-JV8" eventType="touchUpInside" id="Ygb-En-w00"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrD-7X-4XZ">
+                                        <rect key="frame" x="155" y="5" width="89" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="选择村(社区)"/>
+                                        <connections>
+                                            <action selector="clickCUNBtn:" destination="8nZ-ez-JV8" eventType="touchUpInside" id="jC5-QS-SFc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wt8-px-W2h">
+                                        <rect key="frame" x="252" y="11" width="60" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="ezE-b0-63Y"/>
+                                        </constraints>
+                                        <state key="normal" title="搜索"/>
+                                        <connections>
+                                            <action selector="clickSearchBtn:" destination="8nZ-ez-JV8" eventType="touchUpInside" id="JpO-VL-xXN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.4823529412" green="0.0" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="fuw-Y2-a2E" firstAttribute="leading" secondItem="g7R-it-0c0" secondAttribute="leading" constant="8" id="1KB-1c-Rcj"/>
+                                    <constraint firstItem="nrD-7X-4XZ" firstAttribute="leading" secondItem="1DB-Lb-C2o" secondAttribute="trailing" constant="8" id="5SP-aM-dYk"/>
+                                    <constraint firstItem="fuw-Y2-a2E" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="top" constant="5" id="AUP-oA-r5l"/>
+                                    <constraint firstItem="wt8-px-W2h" firstAttribute="leading" secondItem="nrD-7X-4XZ" secondAttribute="trailing" constant="8" id="C5t-Ew-bVa"/>
+                                    <constraint firstItem="1DB-Lb-C2o" firstAttribute="leading" secondItem="fuw-Y2-a2E" secondAttribute="trailing" constant="8" id="FUy-Rf-ljx"/>
+                                    <constraint firstAttribute="trailing" secondItem="wt8-px-W2h" secondAttribute="trailing" constant="8" id="JBm-1T-49l"/>
+                                    <constraint firstAttribute="bottom" secondItem="1DB-Lb-C2o" secondAttribute="bottom" constant="5" id="JfR-vd-d6b"/>
+                                    <constraint firstAttribute="bottom" secondItem="nrD-7X-4XZ" secondAttribute="bottom" constant="5" id="O3y-oe-qNA"/>
+                                    <constraint firstItem="nrD-7X-4XZ" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="top" constant="5" id="Od4-tF-sSX"/>
+                                    <constraint firstItem="nrD-7X-4XZ" firstAttribute="width" secondItem="1DB-Lb-C2o" secondAttribute="width" id="QQO-1U-nWV"/>
+                                    <constraint firstAttribute="height" constant="40" id="Rp4-eT-wng"/>
+                                    <constraint firstItem="wt8-px-W2h" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="top" constant="11" id="aOt-W3-dYQ"/>
+                                    <constraint firstItem="1DB-Lb-C2o" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="top" constant="5" id="dEV-o8-Kf9"/>
+                                    <constraint firstAttribute="bottom" secondItem="fuw-Y2-a2E" secondAttribute="bottom" constant="5" id="fwR-G5-NQa"/>
+                                    <constraint firstAttribute="bottom" secondItem="wt8-px-W2h" secondAttribute="bottom" constant="5" id="sVH-jI-cso"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVN-sS-UZC">
+                                <rect key="frame" x="0.0" y="104" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="0Bf-DO-96n"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-vh-Xr2">
+                                <rect key="frame" x="0.0" y="105" width="320" height="463"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OVN-sS-UZC" firstAttribute="trailing" secondItem="XwU-vh-Xr2" secondAttribute="trailing" id="CcY-Xf-rZy"/>
+                            <constraint firstItem="OVN-sS-UZC" firstAttribute="leading" secondItem="A35-fb-WsW" secondAttribute="leading" id="DsN-P6-jU9"/>
+                            <constraint firstItem="OVN-sS-UZC" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="bottom" id="LsL-Pc-fV2"/>
+                            <constraint firstAttribute="trailing" secondItem="OVN-sS-UZC" secondAttribute="trailing" id="SR3-BS-NZE"/>
+                            <constraint firstItem="g7R-it-0c0" firstAttribute="leading" secondItem="A35-fb-WsW" secondAttribute="leading" id="W0e-c9-L4l"/>
+                            <constraint firstItem="XwU-vh-Xr2" firstAttribute="top" secondItem="OVN-sS-UZC" secondAttribute="bottom" id="Zs7-0H-8cc"/>
+                            <constraint firstAttribute="trailing" secondItem="g7R-it-0c0" secondAttribute="trailing" id="dIg-Lb-o7u"/>
+                            <constraint firstItem="OVN-sS-UZC" firstAttribute="leading" secondItem="XwU-vh-Xr2" secondAttribute="leading" id="ddj-zI-aC2"/>
+                            <constraint firstItem="OVN-sS-UZC" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="bottom" id="iz4-8q-g2j"/>
+                            <constraint firstItem="Qul-kU-Jbh" firstAttribute="top" secondItem="XwU-vh-Xr2" secondAttribute="bottom" id="lhr-Ug-VJY"/>
+                            <constraint firstItem="g7R-it-0c0" firstAttribute="top" secondItem="Hfr-iX-pl7" secondAttribute="bottom" id="pYn-1B-UU2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="干部联系服务群众积分" id="nPF-9a-FR4"/>
+                    <connections>
+                        <outlet property="CUNBtn" destination="nrD-7X-4XZ" id="EVs-P0-EOm"/>
+                        <outlet property="SearchBtn" destination="wt8-px-W2h" id="zOK-dX-sU3"/>
+                        <outlet property="ZJDBtn" destination="1DB-Lb-C2o" id="XbP-gQ-WBB"/>
+                        <outlet property="evaluateTableView" destination="XwU-vh-Xr2" id="GZN-wb-DNi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gu-MI-f4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1273" y="2775"/>
         </scene>
         <!--干部走访情况统计-->
         <scene sceneID="l9v-aM-nSc">
@@ -678,7 +791,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3on-xP-dWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1880" y="1823"/>
+            <point key="canvasLocation" x="1807" y="2231"/>
         </scene>
         <!--干部服务指数评价-->
         <scene sceneID="EXQ-Xu-FPT">
@@ -692,68 +805,109 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择镇(街道)/村(社区)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wwj-Bc-4BO">
-                                <rect key="frame" x="8" y="72" width="219" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vs3-VI-HdK">
-                                <rect key="frame" x="0.0" y="105" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="104" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="dhM-PP-JnT"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bq7-fF-IK8">
-                                <rect key="frame" x="248" y="72" width="64" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="zx3-T1-Bym"/>
-                                </constraints>
-                                <state key="normal" title="查看">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickSearchBtn:" destination="Gvs-EM-dQI" eventType="touchUpInside" id="v1M-3F-lCf"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FjY-0z-l8g">
-                                <rect key="frame" x="0.0" y="110" width="320" height="458"/>
+                                <rect key="frame" x="0.0" y="109" width="320" height="459"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Gvs-EM-dQI" id="NtN-fs-iac"/>
                                     <outlet property="delegate" destination="Gvs-EM-dQI" id="5Mr-BA-oGN"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ga8-Vq-MiN" userLabel="SearchView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpN-ao-XXq">
+                                        <rect key="frame" x="8" y="5" width="42" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="HjU-4y-2EA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgY-of-8OF">
+                                        <rect key="frame" x="58" y="5" width="89" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="选择镇(街道)"/>
+                                        <connections>
+                                            <action selector="clickZJDBtn:" destination="Gvs-EM-dQI" eventType="touchUpInside" id="cDb-to-hDW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRj-UE-EPl">
+                                        <rect key="frame" x="155" y="5" width="89" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="选择村(社区)"/>
+                                        <connections>
+                                            <action selector="clickCUNBtn:" destination="Gvs-EM-dQI" eventType="touchUpInside" id="Osf-Vn-R8N"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKY-Ja-OyE">
+                                        <rect key="frame" x="252" y="11" width="60" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="BBT-Ho-k5Y"/>
+                                        </constraints>
+                                        <state key="normal" title="搜索"/>
+                                        <connections>
+                                            <action selector="clickSearchBtn:" destination="Gvs-EM-dQI" eventType="touchUpInside" id="MsK-VV-dQp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.4823529412" green="0.0" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="zRj-UE-EPl" firstAttribute="top" secondItem="ga8-Vq-MiN" secondAttribute="top" constant="5" id="2lj-8t-Vta"/>
+                                    <constraint firstItem="zRj-UE-EPl" firstAttribute="leading" secondItem="YgY-of-8OF" secondAttribute="trailing" constant="8" id="2ys-os-IS7"/>
+                                    <constraint firstAttribute="height" constant="40" id="AEH-bC-vx4"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="FBU-MP-aPt"/>
+                                    <constraint firstItem="SpN-ao-XXq" firstAttribute="top" secondItem="ga8-Vq-MiN" secondAttribute="top" constant="5" id="GhA-L2-Ywj"/>
+                                    <constraint firstItem="DKY-Ja-OyE" firstAttribute="leading" secondItem="zRj-UE-EPl" secondAttribute="trailing" constant="8" id="Hds-Vg-KW9"/>
+                                    <constraint firstAttribute="bottom" secondItem="SpN-ao-XXq" secondAttribute="bottom" constant="5" id="TXQ-ry-2m2"/>
+                                    <constraint firstAttribute="bottom" secondItem="zRj-UE-EPl" secondAttribute="bottom" constant="5" id="bE1-JK-B9a"/>
+                                    <constraint firstItem="YgY-of-8OF" firstAttribute="leading" secondItem="SpN-ao-XXq" secondAttribute="trailing" constant="8" id="ced-8p-VdM"/>
+                                    <constraint firstAttribute="trailing" secondItem="DKY-Ja-OyE" secondAttribute="trailing" constant="8" id="fcy-OB-OHk"/>
+                                    <constraint firstAttribute="bottom" secondItem="DKY-Ja-OyE" secondAttribute="bottom" constant="5" id="j4r-SQ-hls"/>
+                                    <constraint firstItem="YgY-of-8OF" firstAttribute="top" secondItem="ga8-Vq-MiN" secondAttribute="top" constant="5" id="oMd-Yj-btf"/>
+                                    <constraint firstItem="DKY-Ja-OyE" firstAttribute="top" secondItem="ga8-Vq-MiN" secondAttribute="top" constant="11" id="qA4-2t-W9b"/>
+                                    <constraint firstItem="SpN-ao-XXq" firstAttribute="leading" secondItem="ga8-Vq-MiN" secondAttribute="leading" constant="8" id="tZK-5m-h03"/>
+                                    <constraint firstAttribute="bottom" secondItem="YgY-of-8OF" secondAttribute="bottom" constant="5" id="vfT-T9-L46"/>
+                                    <constraint firstItem="zRj-UE-EPl" firstAttribute="width" secondItem="YgY-of-8OF" secondAttribute="width" id="zdq-7b-jLl"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FjY-0z-l8g" firstAttribute="leading" secondItem="FDc-2n-Wso" secondAttribute="leading" id="3qc-rC-haA"/>
                             <constraint firstAttribute="trailing" secondItem="FjY-0z-l8g" secondAttribute="trailing" id="4Un-OI-Czg"/>
                             <constraint firstItem="64Z-6V-al6" firstAttribute="top" secondItem="FjY-0z-l8g" secondAttribute="bottom" id="8jJ-Mi-ouN"/>
-                            <constraint firstAttribute="trailing" secondItem="Bq7-fF-IK8" secondAttribute="trailing" constant="8" id="BAQ-kY-5HD"/>
                             <constraint firstItem="Vs3-VI-HdK" firstAttribute="trailing" secondItem="FjY-0z-l8g" secondAttribute="trailing" id="Bfv-vk-EZe"/>
-                            <constraint firstItem="Bq7-fF-IK8" firstAttribute="top" secondItem="6hb-Bs-b8v" secondAttribute="bottom" constant="8" id="MVJ-0F-GTi"/>
-                            <constraint firstItem="wwj-Bc-4BO" firstAttribute="leading" secondItem="FDc-2n-Wso" secondAttribute="leading" constant="8" id="RKB-Ps-KqO"/>
+                            <constraint firstItem="Vs3-VI-HdK" firstAttribute="top" secondItem="ga8-Vq-MiN" secondAttribute="bottom" id="IY0-sX-Is5"/>
                             <constraint firstItem="FjY-0z-l8g" firstAttribute="top" secondItem="Vs3-VI-HdK" secondAttribute="bottom" constant="4" id="Tx1-Yo-1rp"/>
-                            <constraint firstItem="Bq7-fF-IK8" firstAttribute="width" secondItem="FDc-2n-Wso" secondAttribute="width" multiplier="0.2" id="ZNq-Km-FLX"/>
-                            <constraint firstItem="Vs3-VI-HdK" firstAttribute="top" secondItem="wwj-Bc-4BO" secondAttribute="bottom" constant="3" id="hme-ya-Soi"/>
-                            <constraint firstItem="wwj-Bc-4BO" firstAttribute="top" secondItem="6hb-Bs-b8v" secondAttribute="bottom" constant="8" id="isH-Lz-wfQ"/>
-                            <constraint firstItem="Bq7-fF-IK8" firstAttribute="leading" secondItem="wwj-Bc-4BO" secondAttribute="trailing" constant="21" id="wN1-xE-ppm"/>
+                            <constraint firstItem="ga8-Vq-MiN" firstAttribute="leading" secondItem="FDc-2n-Wso" secondAttribute="leading" id="Xkj-V3-nnb"/>
+                            <constraint firstAttribute="trailing" secondItem="ga8-Vq-MiN" secondAttribute="trailing" id="p0k-Ep-iY5"/>
+                            <constraint firstItem="ga8-Vq-MiN" firstAttribute="top" secondItem="6hb-Bs-b8v" secondAttribute="bottom" id="wcN-Sh-o3j"/>
                             <constraint firstItem="Vs3-VI-HdK" firstAttribute="leading" secondItem="FjY-0z-l8g" secondAttribute="leading" id="yAT-3r-Ehr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="干部服务指数评价" id="jM8-6z-ezg"/>
                     <connections>
+                        <outlet property="CUNBtn" destination="zRj-UE-EPl" id="D9a-xF-WAa"/>
+                        <outlet property="SearchBtn" destination="DKY-Ja-OyE" id="Rba-nC-tEc"/>
+                        <outlet property="ZJDBtn" destination="YgY-of-8OF" id="N5Y-WJ-dZs"/>
                         <outlet property="evaluateTableView" destination="FjY-0z-l8g" id="KL9-aB-AIS"/>
                         <outlet property="lineV" destination="Vs3-VI-HdK" id="qIG-sO-L5S"/>
-                        <outlet property="searchBtn" destination="Bq7-fF-IK8" id="oZH-Ov-jJR"/>
-                        <outlet property="searchField" destination="wwj-Bc-4BO" id="g3D-hE-3Wg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6TF-2J-Y6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1473" y="2731"/>
+            <point key="canvasLocation" x="1602" y="2652"/>
         </scene>
         <!--民情晴雨表-->
         <scene sceneID="p0T-vQ-PdW">
@@ -3673,6 +3827,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pyi-V1-oGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-149" y="2982"/>
+        </scene>
+        <!--干部民事办理统计-->
+        <scene sceneID="2hk-4d-LMf">
+            <objects>
+                <viewController id="sfd-bf-9R6" customClass="GanbuMingshiVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nfb-94-zMw"/>
+                        <viewControllerLayoutGuide type="bottom" id="ecc-eH-NgQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dGx-jL-Ttp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择镇(街道)/村(社区)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EF9-AO-504">
+                                <rect key="frame" x="8" y="72" width="219" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRg-I3-JPc">
+                                <rect key="frame" x="0.0" y="105" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.41568627450000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="KaI-SW-IsL"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diA-wj-miC">
+                                <rect key="frame" x="248" y="72" width="64" height="30"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8vO-Pm-gOX"/>
+                                </constraints>
+                                <state key="normal" title="查看">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickSearchBtn:" destination="sfd-bf-9R6" eventType="touchUpInside" id="tSA-nD-TP8"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oI2-LZ-BDX">
+                                <rect key="frame" x="0.0" y="102" width="320" height="466"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sfd-bf-9R6" id="09L-bw-Spq"/>
+                                    <outlet property="delegate" destination="sfd-bf-9R6" id="CCj-vp-rB7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ecc-eH-NgQ" firstAttribute="top" secondItem="oI2-LZ-BDX" secondAttribute="bottom" id="21A-sY-7LP"/>
+                            <constraint firstItem="EF9-AO-504" firstAttribute="top" secondItem="Nfb-94-zMw" secondAttribute="bottom" constant="8" id="445-HF-WBo"/>
+                            <constraint firstAttribute="trailing" secondItem="CRg-I3-JPc" secondAttribute="trailing" id="7Ep-Fs-mX6"/>
+                            <constraint firstItem="CRg-I3-JPc" firstAttribute="leading" secondItem="dGx-jL-Ttp" secondAttribute="leading" id="G97-BT-pTP"/>
+                            <constraint firstItem="oI2-LZ-BDX" firstAttribute="leading" secondItem="dGx-jL-Ttp" secondAttribute="leading" id="OjI-bF-jp0"/>
+                            <constraint firstItem="oI2-LZ-BDX" firstAttribute="top" secondItem="diA-wj-miC" secondAttribute="bottom" id="R8P-ZB-rJp"/>
+                            <constraint firstAttribute="trailing" secondItem="oI2-LZ-BDX" secondAttribute="trailing" id="Ude-YE-goF"/>
+                            <constraint firstItem="diA-wj-miC" firstAttribute="top" secondItem="Nfb-94-zMw" secondAttribute="bottom" constant="8" id="cAA-rv-bjt"/>
+                            <constraint firstItem="diA-wj-miC" firstAttribute="width" secondItem="dGx-jL-Ttp" secondAttribute="width" multiplier="0.2" id="df3-xs-ZRR"/>
+                            <constraint firstAttribute="trailing" secondItem="diA-wj-miC" secondAttribute="trailing" constant="8" id="k4J-h7-XjI"/>
+                            <constraint firstItem="EF9-AO-504" firstAttribute="leading" secondItem="dGx-jL-Ttp" secondAttribute="leading" constant="8" id="lEl-TK-wOi"/>
+                            <constraint firstItem="diA-wj-miC" firstAttribute="leading" secondItem="EF9-AO-504" secondAttribute="trailing" constant="21" id="sA1-Md-rlc"/>
+                            <constraint firstItem="CRg-I3-JPc" firstAttribute="top" secondItem="EF9-AO-504" secondAttribute="bottom" constant="3" id="zSk-Tc-Hu5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="干部民事办理统计" id="Lf4-bt-Ex7"/>
+                    <connections>
+                        <outlet property="lineV" destination="CRg-I3-JPc" id="HL8-Sv-RAj"/>
+                        <outlet property="myTableView" destination="oI2-LZ-BDX" id="EMi-5a-vhN"/>
+                        <outlet property="searchBtn" destination="diA-wj-miC" id="jnK-AC-xCv"/>
+                        <outlet property="searchField" destination="EF9-AO-504" id="j5L-bF-8jz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CMx-5O-2wZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2114" y="1511"/>
         </scene>
     </scenes>
     <resources>

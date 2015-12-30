@@ -179,13 +179,13 @@
         NSData *data;
         data = UIImageJPEGRepresentation(image, 0.5);
         NSMutableArray *photosMutable = [[NSMutableArray alloc] init];
-                [photosMutable addObject:image];
-        self.photos = photosMutable;
+        
         if (self.photos.count>0) {
             photosMutable  = [self.photos mutableCopy];
             _deleteBtn.enabled = YES;
         }
-
+        [photosMutable addObject:image];
+        self.photos = photosMutable;
         MyLog(@"添加后照片------------------------------------------------%d",self.photos.count);
         [self.photoStack reloadData];
         self.photoStack.userInteractionEnabled = YES;
