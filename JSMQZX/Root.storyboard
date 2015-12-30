@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qM6-AL-sZY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qM6-AL-sZY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -24,7 +24,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Fl-Da-QSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-302" y="-720"/>
+            <point key="canvasLocation" x="-713" y="-901"/>
         </scene>
         <!--党建红云-->
         <scene sceneID="CaR-b0-L45">
@@ -81,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhN-6j-oJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="370" y="-848"/>
+            <point key="canvasLocation" x="178" y="-908"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LWc-0g-WBq">
@@ -121,12 +121,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbA-Gb-BHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530" y="767"/>
+            <point key="canvasLocation" x="-387" y="618"/>
         </scene>
-        <!--Log Banli Ganbu Table-->
+        <!--Log List GanbuVC-->
         <scene sceneID="4np-fe-dx5">
             <objects>
-                <viewController id="8cx-md-Lyb" customClass="LogBanliGanbuTable" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vw2-Mx-HEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="8cx-md-Lyb" customClass="LogListGanbuVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eUI-C6-rSN"/>
                         <viewControllerLayoutGuide type="bottom" id="Mqy-QZ-mBc"/>
@@ -233,7 +234,6 @@
                         <outlet property="mySearchBar" destination="7r9-rj-J5p" id="gle-0p-WHf"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vw2-Mx-HEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-173" y="1179"/>
         </scene>
@@ -1821,10 +1821,10 @@
                         <viewControllerLayoutGuide type="bottom" id="zvb-X7-7bd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FLD-0N-S57">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aht-mY-v5L">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aht-mY-v5L">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2797,7 +2797,7 @@
             <objects>
                 <tableViewController id="ojl-JA-Svu" customClass="FarmerInfoTableVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="2p5-DW-ciP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
@@ -3539,7 +3539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4S-QZ-Y86" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-436" y="1666"/>
+            <point key="canvasLocation" x="-700" y="1360"/>
         </scene>
         <!--党员报道信息-->
         <scene sceneID="HOl-ip-0Ww">
@@ -3673,7 +3673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Luo-qg-mK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-570" y="2289"/>
+            <point key="canvasLocation" x="-610" y="1823"/>
         </scene>
         <!--党员服务详细信息-->
         <scene sceneID="ElV-XZ-Ipm">
@@ -3930,7 +3930,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zdR-aI-UmH"/>
-        <segue reference="cJM-qf-foT"/>
+        <segue reference="FAg-9X-8fj"/>
         <segue reference="LLz-j9-6aK"/>
         <segue reference="v81-6d-mO3"/>
     </inferredMetricsTieBreakers>

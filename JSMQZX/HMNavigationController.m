@@ -132,22 +132,29 @@
     if (_setView == nil) {
         _setView = [SetView sharedSetView];
         _setView.delegate = self;
-        _setView.frame = CGRectMake(SCREEN_WIDTH, 0, 100, 200);
+        _setView.frame = CGRectMake(SCREEN_WIDTH, 64, 100, 200);
     }
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:_backView];//加上第一个蒙版
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBackCancel:)];
+    
+    [_backView addGestureRecognizer:tap];
     [window addSubview:_setView];
-    [UIView animateWithDuration:0.3 animations:^{
-        _setView.frame = CGRectMake(SCREEN_WIDTH-100, 0, 100, 200);
+    [UIView animateWithDuration:0.1 animations:^{
+        _setView.frame = CGRectMake(SCREEN_WIDTH-100, 64, 100, 200);
         _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
     } completion:^(BOOL finished) {
     }];
 }
 
+-(void)clickBackCancel:(UIGestureRecognizer *)gesture
+{
+    [self Cancel];
+}
 #pragma mark
 - (void)Cancel
 {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.1 animations:^{
         _backView.backgroundColor = [UIColor colorWithRed:238 green:238 blue:238 alpha:0];
         
     } completion:^(BOOL finished) {
@@ -223,8 +230,6 @@
 -(void)SetViewUser{
     UserInfoTableVC *userVC = [[UserInfoTableVC alloc] init];
     [self Cancel];
-    [self presentViewController:userVC animated:YES completion:^{
-    }];
-    
+    [self pushViewController:userVC animated:YES];
 }
 @end

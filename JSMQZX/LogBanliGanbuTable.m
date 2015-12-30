@@ -7,7 +7,7 @@
 //
 
 #import "LogBanliGanbuTable.h"
-
+#import "WeiBanLiVC.h"
 @interface LogBanliGanbuTable ()
 
 @end
@@ -59,10 +59,14 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row ==0) {
-       // [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:nil];
+        [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:[NSNumber numberWithInteger:0]];
     }
     else if (indexPath.row ==1){
+         [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:[NSNumber numberWithInteger:1]];
            }
+    else {
+        [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:[NSNumber numberWithInteger:2]];
+    }
 }
 
 /*
@@ -99,14 +103,14 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    LogListGanbuVC *ganbuLogList = segue.destinationViewController;
+    ganbuLogList.flagLogZT = sender;
 }
-*/
+
 
 @end

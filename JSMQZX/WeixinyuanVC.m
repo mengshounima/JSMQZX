@@ -58,6 +58,7 @@
     //搜索键盘点击done缩回键盘
     _mySearchBar.returnKeyType = UIReturnKeyDone;
     
+    
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     _mySearchBar.text = @"";

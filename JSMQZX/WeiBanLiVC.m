@@ -86,7 +86,7 @@
         [param setObject:@"" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-        [param setObject:@""forKey:@"myd"];
+        [param setObject:@"-1"forKey:@"myd"];
    
     }
     else if (_flagLogZT.integerValue == 6){
@@ -97,7 +97,7 @@
         [param setObject:@"" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-        [param setObject:@""forKey:@"myd"];
+        [param setObject:@"1,2,3"forKey:@"myd"];
    
     }
     else {
