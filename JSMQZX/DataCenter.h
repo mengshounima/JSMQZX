@@ -14,7 +14,7 @@
 @property (weak,nonatomic) NSString *useType;//所属镇id   SSZ_id
 @property (weak,nonatomic) NSString *useID;
 @property (strong,nonatomic) NSString *usePassword;
-@property (weak,nonatomic) NSString *power;//权限
+@property (weak,nonatomic) NSNumber *power;//权限
 @property (weak,nonatomic) NSString *loginName;//登录编号
 @property (weak,nonatomic) NSString *name;//真实姓名
 @property (weak,nonatomic) NSString *phone;//联系方式

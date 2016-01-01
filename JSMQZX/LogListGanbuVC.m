@@ -35,10 +35,21 @@
 }
 -(void)initData{
     _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+    LogArr = [[NSMutableArray alloc] init];
     rowscount = 20;
     page = 1;
 }
 -(void)initView{
+    if (_flagLogZT.integerValue == 0) {
+        self.title = @"提交镇一级未办理日志";
+    }
+    else if (_flagLogZT.integerValue == 1)
+    {
+        self.title = @"提交镇一级已办理日志";
+    }
+    else{
+        self.title = @"辖区内所有日志";
+    }
     _CUNBtn.enabled = NO;
     _ZJDBtn.layer.cornerRadius = 4;
     _CUNBtn.layer.cornerRadius = 4;
@@ -70,8 +81,21 @@
     [param setObject:idStr forKey:@"userId"];
     if (_flagLogZT.integerValue == 0) {
         //提交镇一级未处理
-        [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
-        [param setObject:@"" forKey:@"cun_id"];
+        if (ISNULLSTR(_ZJDFlag)) {
+            [param setObject:@"" forKey:@"ssz_id"];//统计表类型
+        }
+        else{
+            [param setObject:_ZJDFlag forKey:@"ssz_id"];//统计表类型
+        }
+        if (ISNULLSTR(_CUNFlag)) {
+            [param setObject:@"" forKey:@"cun_id"];//统计表类型
+            
+        }
+        else{
+            [param setObject:_CUNFlag forKey:@"cun_id"];//统计表类型
+            
+        }
+
         [param setObject:@"" forKey:@"wg_id"];
         [param setObject:@"3" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
@@ -81,8 +105,21 @@
     }
     else if (_flagLogZT.integerValue == 1){
         //提交镇一级已处理
-        [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
-        [param setObject:@"" forKey:@"cun_id"];
+        if (ISNULLSTR(_ZJDFlag)) {
+            [param setObject:@"" forKey:@"ssz_id"];//统计表类型
+        }
+        else{
+            [param setObject:_ZJDFlag forKey:@"ssz_id"];//统计表类型
+        }
+        if (ISNULLSTR(_CUNFlag)) {
+            [param setObject:@"" forKey:@"cun_id"];//统计表类型
+            
+        }
+        else{
+            [param setObject:_CUNFlag forKey:@"cun_id"];//统计表类型
+            
+        }
+
         [param setObject:@"" forKey:@"wg_id"];
         [param setObject:@"31" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
@@ -92,8 +129,20 @@
     }
     else {
         //辖区内所有,不填
-        [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
-        [param setObject:@"" forKey:@"cun_id"];
+        if (ISNULLSTR(_ZJDFlag)) {
+            [param setObject:@"" forKey:@"ssz_id"];//统计表类型
+        }
+        else{
+            [param setObject:_ZJDFlag forKey:@"ssz_id"];//统计表类型
+        }
+        if (ISNULLSTR(_CUNFlag)) {
+            [param setObject:@"" forKey:@"cun_id"];//统计表类型
+            
+        }
+        else{
+            [param setObject:_CUNFlag forKey:@"cun_id"];//统计表类型
+            
+        }
         [param setObject:@"" forKey:@"wg_id"];
         [param setObject:@"" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
@@ -228,13 +277,11 @@
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ganbuLogCell" owner:nil options:nil] lastObject];
         }
-        [cell updateWithInfoDic:SearchShowArr[indexPath.row]];
-        cell.statusFrame = _statusFrameArray[indexPath.row];
+        [cell  updateCell:SearchShowArr[indexPath.row]];
+        
         return  cell;
         
     }
-
-    
    }
 //点击
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -265,8 +312,24 @@
         
     }
     else{
+        
+        NSString *bl_bljg = [SearchShowArr[indexPath.row] objectForKey:@"bl_bljg"];
         //点击列表，详情
-        [self performSegueWithIdentifier:@"XinyuanVCToInfo" sender:SearchShowArr[indexPath.row]];//log详情
+        if (ISNULLSTR(bl_bljg)) {
+            //未办理
+            GanbuLogDetailWeiVC *weibanliVC = [[GanbuLogDetailWeiVC alloc] init];
+            weibanliVC.infoDic = SearchShowArr[indexPath.row];
+            [self.navigationController pushViewController:weibanliVC animated:YES];
+            
+        }
+        else{
+            //已办理
+            GanbuLogDetailVC *banliVC = [[GanbuLogDetailVC alloc] init];
+            banliVC.infoDic = SearchShowArr[indexPath.row];
+            [self.navigationController pushViewController:banliVC animated:YES];
+            
+        }
+        
     }
 }
 

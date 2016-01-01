@@ -10,6 +10,8 @@
 #import "GDataXMLNode.h"
 #import "JKAlertDialog.h"
 #import "ganbuLogCell.h"
+#import "GanbuLogDetailVC.h"
+#import "GanbuLogDetailWeiVC.h"
 @interface LogListGanbuVC : UIViewController
 - (IBAction)clickZJDBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;

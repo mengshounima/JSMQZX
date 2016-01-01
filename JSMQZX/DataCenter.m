@@ -63,6 +63,7 @@
     [tempDic setObject:[resultdic objectForKey:@"phone"] forKey:@"phone"];
     [tempDic setObject:[resultdic objectForKey:@"lastLoginTime"] forKey:@"lastLoginTime"];
     [tempDic setObject:[resultdic objectForKey:@"password"] forKey:@"password"];
+    [tempDic setObject:[resultdic objectForKey:@"ismember"] forKey:@"ismember"];//是否党员
     
     [USERDEFAULTS setObject:tempDic forKey:USER];
     [USERDEFAULTS synchronize];
@@ -83,6 +84,7 @@
     info.lastLoginTime = [valueData objectForKey:@"lastLoginTime"];
     info.useType = [valueData objectForKey:@"Type"];
     info.usePassword = [[valueData objectForKey:@"password"] copy];
+    info.ismember =  [valueData objectForKey:@"ismember"];
     self.UserInfo = info;
      MyLog(@"%@",[valueData objectForKey:@"password"]);
     MyLog(@"%@",self.UserInfo.usePassword);

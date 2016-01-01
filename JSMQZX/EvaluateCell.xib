@@ -20,7 +20,7 @@
                             <constraint firstAttribute="width" constant="2" id="f34-An-tea"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.90658538509999997" green="0.17649941690000001" blue="0.12202322140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbo-cP-7Oz" userLabel="ViewUp">

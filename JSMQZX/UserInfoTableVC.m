@@ -80,7 +80,7 @@
         cell.textLabel.text = [NSString stringWithFormat:@"登录时间:%@",[[DataCenter sharedInstance] ReadData].UserInfo.lastLoginTime];
         
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

@@ -113,6 +113,7 @@
     
 }
 
+//管理员 日志办理
 - (IBAction)clickGanliyuanRizhibanli:(id)sender {
     
     

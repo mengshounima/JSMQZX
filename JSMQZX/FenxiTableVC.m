@@ -71,7 +71,7 @@
     }
     else if (indexPath.row == 6)
     {
-        [self performSegueWithIdentifier:@"FenxiYanpanToJifenVC" sender:Nil];
+        //[self performSegueWithIdentifier:@"FenxiYanpanToJifenVC" sender:Nil];
         
     }
     

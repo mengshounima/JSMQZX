@@ -126,7 +126,8 @@
     }
     else if (indexPath.row ==9)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"三户合一情况:%@",[farmerDic objectForKey:@""]];
+       // cell.textLabel.text = [NSString stringWithFormat:@"三户合一情况:%@",[farmerDic objectForKey:@""]];
+        cell.textLabel.text =@"三户合一情况:";
         
     }
     else if (indexPath.row ==10)
@@ -156,12 +157,15 @@
     }
     else if (indexPath.row ==15)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"重点户类型:%@",[farmerDic objectForKey:@""]];
+        //cell.textLabel.text = [NSString stringWithFormat:@"重点户类型:%@",[farmerDic objectForKey:@""]];
+        cell.textLabel.text = @"重点户类型:";
         
     }
     else if (indexPath.row ==16)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"是否重点走访重点户:%@",[farmerDic objectForKey:@""]];
+        //cell.textLabel.text = [NSString stringWithFormat:@"是否重点走访重点户:%@",[farmerDic objectForKey:@""]];
+        cell.textLabel.text = @"是否重点走访重点户:";
+
         
     }
     

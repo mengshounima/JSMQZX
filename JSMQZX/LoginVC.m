@@ -157,7 +157,7 @@
     alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/社区" message:@""];
     alert.contentView =  _TypeTable;
     
-    //[alert addButtonWithTitle:@"取消"];
+    [alert addButtonWithTitle:@"取消"];
     [alert show];
     //当前页添加蒙板
    /* _backView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];

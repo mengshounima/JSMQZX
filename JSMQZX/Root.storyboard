@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qM6-AL-sZY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qM6-AL-sZY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -81,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhN-6j-oJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="178" y="-908"/>
+            <point key="canvasLocation" x="50" y="-1124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LWc-0g-WBq">
@@ -121,12 +121,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbA-Gb-BHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-387" y="618"/>
+            <point key="canvasLocation" x="-198" y="2145"/>
         </scene>
         <!--Log List GanbuVC-->
         <scene sceneID="4np-fe-dx5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vw2-Mx-HEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="8cx-md-Lyb" customClass="LogListGanbuVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eUI-C6-rSN"/>
@@ -234,8 +233,9 @@
                         <outlet property="mySearchBar" destination="7r9-rj-J5p" id="gle-0p-WHf"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vw2-Mx-HEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-173" y="1179"/>
+            <point key="canvasLocation" x="-248" y="1184"/>
         </scene>
         <!--分析研判-->
         <scene sceneID="mqG-Yo-xOo">
@@ -695,14 +695,18 @@
                         <constraints>
                             <constraint firstItem="OVN-sS-UZC" firstAttribute="trailing" secondItem="XwU-vh-Xr2" secondAttribute="trailing" id="CcY-Xf-rZy"/>
                             <constraint firstItem="OVN-sS-UZC" firstAttribute="leading" secondItem="A35-fb-WsW" secondAttribute="leading" id="DsN-P6-jU9"/>
+                            <constraint firstItem="XwU-vh-Xr2" firstAttribute="top" secondItem="OVN-sS-UZC" secondAttribute="bottom" id="Ezn-xK-Apb"/>
                             <constraint firstItem="OVN-sS-UZC" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="bottom" id="LsL-Pc-fV2"/>
                             <constraint firstAttribute="trailing" secondItem="OVN-sS-UZC" secondAttribute="trailing" id="SR3-BS-NZE"/>
                             <constraint firstItem="g7R-it-0c0" firstAttribute="leading" secondItem="A35-fb-WsW" secondAttribute="leading" id="W0e-c9-L4l"/>
                             <constraint firstItem="XwU-vh-Xr2" firstAttribute="top" secondItem="OVN-sS-UZC" secondAttribute="bottom" id="Zs7-0H-8cc"/>
                             <constraint firstAttribute="trailing" secondItem="g7R-it-0c0" secondAttribute="trailing" id="dIg-Lb-o7u"/>
                             <constraint firstItem="OVN-sS-UZC" firstAttribute="leading" secondItem="XwU-vh-Xr2" secondAttribute="leading" id="ddj-zI-aC2"/>
+                            <constraint firstItem="Qul-kU-Jbh" firstAttribute="top" secondItem="XwU-vh-Xr2" secondAttribute="bottom" id="dpW-KS-Znh"/>
+                            <constraint firstAttribute="trailing" secondItem="XwU-vh-Xr2" secondAttribute="trailing" id="fLW-hu-N8a"/>
                             <constraint firstItem="OVN-sS-UZC" firstAttribute="top" secondItem="g7R-it-0c0" secondAttribute="bottom" id="iz4-8q-g2j"/>
                             <constraint firstItem="Qul-kU-Jbh" firstAttribute="top" secondItem="XwU-vh-Xr2" secondAttribute="bottom" id="lhr-Ug-VJY"/>
+                            <constraint firstItem="XwU-vh-Xr2" firstAttribute="leading" secondItem="A35-fb-WsW" secondAttribute="leading" id="nUr-XA-Wdh"/>
                             <constraint firstItem="g7R-it-0c0" firstAttribute="top" secondItem="Hfr-iX-pl7" secondAttribute="bottom" id="pYn-1B-UU2"/>
                         </constraints>
                     </view>
@@ -2086,24 +2090,6 @@
             </objects>
             <point key="canvasLocation" x="1221" y="1167"/>
         </scene>
-        <!--Log Info TableVC-->
-        <scene sceneID="wBk-Ex-EYR">
-            <objects>
-                <tableViewController id="Tlh-OB-2OZ" customClass="LogInfoTableVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="nrd-Vo-CdW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Tlh-OB-2OZ" id="D6i-hC-WJL"/>
-                            <outlet property="delegate" destination="Tlh-OB-2OZ" id="HXI-JX-1b2"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hV4-2A-vZ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1552" y="505"/>
-        </scene>
         <!--Wei Ban LiVC-->
         <scene sceneID="QYj-0P-J86">
             <objects>
@@ -2142,7 +2128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZ8-Vq-Ixn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464" y="-1581"/>
+            <point key="canvasLocation" x="254" y="-1607"/>
         </scene>
         <!--走访日志信息-->
         <scene sceneID="PIo-q1-UfT">
@@ -2164,7 +2150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yh-Du-xDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="-1369"/>
+            <point key="canvasLocation" x="310" y="-1871"/>
         </scene>
         <!--地图位置-->
         <scene sceneID="hkf-df-Kbn">
@@ -2175,11 +2161,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4xu-Fu-xhM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Q9m-gh-R1A">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca8-2Y-WHS" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -2198,7 +2184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3jp-HW-Uxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1138" y="-1717"/>
+            <point key="canvasLocation" x="1530" y="-1761"/>
         </scene>
         <!--修改走访日志-->
         <scene sceneID="KI2-8Q-VEi">
@@ -2354,7 +2340,7 @@
                                                                         <state key="normal" image="晴天-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected" title="晴天" image="晴天-选中"/>
+                                                                        <state key="selected" image="晴天-选中"/>
                                                                         <connections>
                                                                             <action selector="clickbtn1:" destination="u8d-Vf-43i" eventType="touchUpInside" id="ZJi-jo-wPA"/>
                                                                         </connections>
@@ -2364,7 +2350,7 @@
                                                                         <state key="normal" image="多云-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected" title="多云" image="多云-选中"/>
+                                                                        <state key="selected" image="多云-选中"/>
                                                                         <connections>
                                                                             <action selector="clickbtn2:" destination="u8d-Vf-43i" eventType="touchUpInside" id="F3u-jE-emB"/>
                                                                         </connections>
@@ -2374,7 +2360,7 @@
                                                                         <state key="normal" image="下雨-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected" title="下雨" image="下雨-选中"/>
+                                                                        <state key="selected" image="下雨-选中"/>
                                                                         <connections>
                                                                             <action selector="clickbtn4:" destination="u8d-Vf-43i" eventType="touchUpInside" id="F2D-g0-VhP"/>
                                                                         </connections>
@@ -2384,7 +2370,7 @@
                                                                         <state key="normal" image="阴天-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
-                                                                        <state key="selected" title="阴天" image="阴天-选中"/>
+                                                                        <state key="selected" image="阴天-选中"/>
                                                                         <connections>
                                                                             <action selector="clickbtn3:" destination="u8d-Vf-43i" eventType="touchUpInside" id="shS-9w-vPc"/>
                                                                         </connections>
@@ -3932,6 +3918,6 @@
         <segue reference="zdR-aI-UmH"/>
         <segue reference="FAg-9X-8fj"/>
         <segue reference="LLz-j9-6aK"/>
-        <segue reference="v81-6d-mO3"/>
+        <segue reference="xCO-Hq-o13"/>
     </inferredMetricsTieBreakers>
 </document>
