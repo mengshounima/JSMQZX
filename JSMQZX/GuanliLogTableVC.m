@@ -1,18 +1,18 @@
 //
-//  LogBanliGanbuTable.m
+//  GuanliLogTableVC.m
 //  JSMQZX
 //
-//  Created by 李 燕琴 on 15/12/16.
-//  Copyright © 2015年 liyanqin. All rights reserved.
+//  Created by 李 燕琴 on 16/1/4.
+//  Copyright © 2016年 liyanqin. All rights reserved.
 //
 
-#import "LogBanliGanbuTable.h"
-#import "WeiBanLiVC.h"
-@interface LogBanliGanbuTable ()
+#import "GuanliLogTableVC.h"
+
+@interface GuanliLogTableVC ()
 
 @end
 
-@implementation LogBanliGanbuTable
+@implementation GuanliLogTableVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,10 +47,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     if (indexPath.row==0) {
-        cell.textLabel.text = @"提交镇一级未办理日志";
+        cell.textLabel.text = @"未办理日志";
     }
     else if (indexPath.row ==1){
-        cell.textLabel.text = @"提交镇一级已办理日志";
+        cell.textLabel.text = @"已办理日志";
     }
     else{
         cell.textLabel.text = @"辖区内所有日志";
@@ -59,13 +59,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row ==0) {
-        [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:[NSNumber numberWithInteger:0]];
+        [self performSegueWithIdentifier:@"GuanliyuanTableTLogolist" sender:[NSNumber numberWithInteger:0]];
     }
     else if (indexPath.row ==1){
-         [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:[NSNumber numberWithInteger:1]];
-           }
+        [self performSegueWithIdentifier:@"GuanliyuanTableTLogolist" sender:[NSNumber numberWithInteger:1]];
+    }
     else {
-        [self performSegueWithIdentifier:@"GanbuRizhiToLogList" sender:[NSNumber numberWithInteger:2]];
+        [self performSegueWithIdentifier:@"GuanliyuanTableTLogolist" sender:[NSNumber numberWithInteger:2]];
     }
 }
 

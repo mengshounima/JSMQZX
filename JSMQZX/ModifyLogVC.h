@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
 #import "JKAlertDialog.h"
-#import "PicViewController.h"
 #import "LocationVC.h"
 @interface ModifyLogVC : UIViewController
 @property (nonatomic,weak) NSDictionary *myLogInfo;//传递参数

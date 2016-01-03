@@ -35,6 +35,15 @@
 		F0040F541C284660004DC329 /* RenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4F1C284660004DC329 /* RenderView.m */; };
 		F0040F561C284660004DC329 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F531C284660004DC329 /* PieChartView.m */; };
 		F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F581C284693004DC329 /* NonghuZoufangVC.m */; };
+		F004D4651C39523F006B7DA6 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F004D4641C39523F006B7DA6 /* mapapi.bundle */; };
+		F004D4681C39715B006B7DA6 /* BanJieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D4671C39715B006B7DA6 /* BanJieVC.m */; };
+		F004D46C1C39960D006B7DA6 /* JifenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D46A1C39960D006B7DA6 /* JifenCell.m */; };
+		F004D46D1C39960D006B7DA6 /* JifenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F004D46B1C39960D006B7DA6 /* JifenCell.xib */; };
+		F004D4701C39962A006B7DA6 /* JifenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D46F1C39962A006B7DA6 /* JifenVC.m */; };
+		F004D4731C39963C006B7DA6 /* GanbuMingshiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D4721C39963C006B7DA6 /* GanbuMingshiVC.m */; };
+		F004D4771C39964B006B7DA6 /* GanbuMingshiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D4751C39964B006B7DA6 /* GanbuMingshiCell.m */; };
+		F004D4781C39964B006B7DA6 /* GanbuMingshiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F004D4761C39964B006B7DA6 /* GanbuMingshiCell.xib */; };
+		F004D47E1C399C69006B7DA6 /* GuanliLogTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D47D1C399C69006B7DA6 /* GuanliLogTableVC.m */; };
 		F019E77B1C355B4F00A16BD9 /* GanbuLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F019E77A1C355B4F00A16BD9 /* GanbuLocationVC.m */; };
 		F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F020D9701C186FB5001B78E4 /* FarmersVC.m */; };
 		F03009F21C12FAB600389829 /* UserTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F11C12FAB600389829 /* UserTypeView.m */; };
@@ -60,7 +69,6 @@
 		F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = F047615E1C21A5BF002A9EF6 /* PhotoStackView.m */; };
 		F04F68BC1C2446F0000F1D58 /* DangyuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F04F68BA1C2446F0000F1D58 /* DangyuanCell.m */; };
 		F04F68BD1C2446F0000F1D58 /* DangyuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04F68BB1C2446F0000F1D58 /* DangyuanCell.xib */; };
-		F05252EA1C33FB2E00F0E289 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F05252E91C33FB2E00F0E289 /* mapapi.bundle */; };
 		F05252ED1C34201200F0E289 /* GanbuLogDetailWeiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F05252EC1C34201200F0E289 /* GanbuLogDetailWeiVC.m */; };
 		F05252F01C34202D00F0E289 /* GanbuLogDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F05252EF1C34202D00F0E289 /* GanbuLogDetailVC.m */; };
 		F060B39B1C14557C007F472F /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F060B39A1C14557C007F472F /* RootVC.m */; };
@@ -72,6 +80,7 @@
 		F06D95431C1EF05D00FDE859 /* LogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F06D95411C1EF05D00FDE859 /* LogCell.xib */; };
 		F074E7041C15C2630098792E /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F074E7031C15C2630098792E /* Root.storyboard */; };
 		F074E7081C15D9180098792E /* HMTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F074E7071C15D9180098792E /* HMTitleButton.m */; };
+		F079A7BB1C3801DA00628399 /* MyPicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F079A7BA1C3801DA00628399 /* MyPicVC.m */; };
 		F07D72971C10756200C695CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F07D72961C10756200C695CB /* main.m */; };
 		F07D729A1C10756200C695CB /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = F07D72991C10756200C695CB /* AppDelegate.mm */; };
 		F07D729D1C10756200C695CB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07D729C1C10756200C695CB /* ViewController.m */; };
@@ -95,7 +104,6 @@
 		F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B4E1EF1C19DA1100EAAC10 /* SelectFarmerCell.xib */; };
 		F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */; };
 		F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */; };
-		F0B5593D1C2189D600E9103C /* PicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B5593C1C2189D600E9103C /* PicViewController.m */; };
 		F0B725241C258E7F0027B1F1 /* MessageBoardTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B725231C258E7F0027B1F1 /* MessageBoardTableVC.m */; };
 		F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B725291C2599020027B1F1 /* mailCell.m */; };
 		F0B7252C1C2599020027B1F1 /* mailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B7252A1C2599020027B1F1 /* mailCell.xib */; };
@@ -188,6 +196,21 @@
 		F0040F531C284660004DC329 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		F0040F571C284693004DC329 /* NonghuZoufangVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonghuZoufangVC.h; sourceTree = "<group>"; };
 		F0040F581C284693004DC329 /* NonghuZoufangVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonghuZoufangVC.m; sourceTree = "<group>"; };
+		F004D4641C39523F006B7DA6 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		F004D4661C39715B006B7DA6 /* BanJieVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BanJieVC.h; sourceTree = "<group>"; };
+		F004D4671C39715B006B7DA6 /* BanJieVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BanJieVC.m; sourceTree = "<group>"; };
+		F004D4691C39960D006B7DA6 /* JifenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenCell.h; sourceTree = "<group>"; };
+		F004D46A1C39960D006B7DA6 /* JifenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenCell.m; sourceTree = "<group>"; };
+		F004D46B1C39960D006B7DA6 /* JifenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JifenCell.xib; sourceTree = "<group>"; };
+		F004D46E1C39962A006B7DA6 /* JifenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenVC.h; sourceTree = "<group>"; };
+		F004D46F1C39962A006B7DA6 /* JifenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenVC.m; sourceTree = "<group>"; };
+		F004D4711C39963C006B7DA6 /* GanbuMingshiVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuMingshiVC.h; sourceTree = "<group>"; };
+		F004D4721C39963C006B7DA6 /* GanbuMingshiVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuMingshiVC.m; sourceTree = "<group>"; };
+		F004D4741C39964B006B7DA6 /* GanbuMingshiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuMingshiCell.h; sourceTree = "<group>"; };
+		F004D4751C39964B006B7DA6 /* GanbuMingshiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuMingshiCell.m; sourceTree = "<group>"; };
+		F004D4761C39964B006B7DA6 /* GanbuMingshiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GanbuMingshiCell.xib; sourceTree = "<group>"; };
+		F004D47C1C399C69006B7DA6 /* GuanliLogTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuanliLogTableVC.h; sourceTree = "<group>"; };
+		F004D47D1C399C69006B7DA6 /* GuanliLogTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuanliLogTableVC.m; sourceTree = "<group>"; };
 		F019E7791C355B4F00A16BD9 /* GanbuLocationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuLocationVC.h; sourceTree = "<group>"; };
 		F019E77A1C355B4F00A16BD9 /* GanbuLocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuLocationVC.m; sourceTree = "<group>"; };
 		F020D96F1C186FB5001B78E4 /* FarmersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarmersVC.h; sourceTree = "<group>"; };
@@ -256,6 +279,8 @@
 		F074E7031C15C2630098792E /* Root.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Root.storyboard; sourceTree = "<group>"; };
 		F074E7061C15D9180098792E /* HMTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTitleButton.h; sourceTree = "<group>"; };
 		F074E7071C15D9180098792E /* HMTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTitleButton.m; sourceTree = "<group>"; };
+		F079A7B91C3801DA00628399 /* MyPicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPicVC.h; sourceTree = "<group>"; };
+		F079A7BA1C3801DA00628399 /* MyPicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPicVC.m; sourceTree = "<group>"; };
 		F07D72911C10756200C695CB /* JSMQZX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSMQZX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07D72951C10756200C695CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F07D72961C10756200C695CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -298,8 +323,6 @@
 		F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FarmerInfoTableVC.m; sourceTree = "<group>"; };
 		F0B4E1F51C19FBD500EAAC10 /* JKAlertDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlertDialog.h; sourceTree = "<group>"; };
 		F0B4E1F61C19FBD500EAAC10 /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
-		F0B5593B1C2189D600E9103C /* PicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicViewController.h; sourceTree = "<group>"; };
-		F0B5593C1C2189D600E9103C /* PicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicViewController.m; sourceTree = "<group>"; };
 		F0B725221C258E7F0027B1F1 /* MessageBoardTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBoardTableVC.h; sourceTree = "<group>"; };
 		F0B725231C258E7F0027B1F1 /* MessageBoardTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoardTableVC.m; sourceTree = "<group>"; };
 		F0B725281C2599020027B1F1 /* mailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mailCell.h; sourceTree = "<group>"; };
@@ -465,6 +488,8 @@
 				F05252EF1C34202D00F0E289 /* GanbuLogDetailVC.m */,
 				F019E7791C355B4F00A16BD9 /* GanbuLocationVC.h */,
 				F019E77A1C355B4F00A16BD9 /* GanbuLocationVC.m */,
+				F004D4661C39715B006B7DA6 /* BanJieVC.h */,
+				F004D4671C39715B006B7DA6 /* BanJieVC.m */,
 			);
 			name = LogBanli;
 			sourceTree = "<group>";
@@ -472,6 +497,10 @@
 		F0040F1E1C281E20004DC329 /* FenxiYanpan */ = {
 			isa = PBXGroup;
 			children = (
+				F004D4711C39963C006B7DA6 /* GanbuMingshiVC.h */,
+				F004D4721C39963C006B7DA6 /* GanbuMingshiVC.m */,
+				F004D46E1C39962A006B7DA6 /* JifenVC.h */,
+				F004D46F1C39962A006B7DA6 /* JifenVC.m */,
 				F0040F1F1C281E4B004DC329 /* FenxiTableVC.h */,
 				F0040F201C281E4B004DC329 /* FenxiTableVC.m */,
 				F0040F4A1C2828C7004DC329 /* QingyubiaoVC.h */,
@@ -645,6 +674,12 @@
 		F04F68B81C2446B0000F1D58 /* GanBuUser */ = {
 			isa = PBXGroup;
 			children = (
+				F004D4741C39964B006B7DA6 /* GanbuMingshiCell.h */,
+				F004D4751C39964B006B7DA6 /* GanbuMingshiCell.m */,
+				F004D4761C39964B006B7DA6 /* GanbuMingshiCell.xib */,
+				F004D4691C39960D006B7DA6 /* JifenCell.h */,
+				F004D46A1C39960D006B7DA6 /* JifenCell.m */,
+				F004D46B1C39960D006B7DA6 /* JifenCell.xib */,
 				F04F68B91C2446F0000F1D58 /* DangyuanCell.h */,
 				F04F68BA1C2446F0000F1D58 /* DangyuanCell.m */,
 				F04F68BB1C2446F0000F1D58 /* DangyuanCell.xib */,
@@ -727,6 +762,7 @@
 		F07D72881C10756200C695CB = {
 			isa = PBXGroup;
 			children = (
+				F004D4641C39523F006B7DA6 /* mapapi.bundle */,
 				F05252E91C33FB2E00F0E289 /* mapapi.bundle */,
 				F07D72931C10756200C695CB /* JSMQZX */,
 				F07D72AD1C10756200C695CB /* JSMQZXTests */,
@@ -790,10 +826,10 @@
 		F0800E8E1C1DBCF6004C2B6A /* RiZhiBanLi */ = {
 			isa = PBXGroup;
 			children = (
-				F0800E8F1C1DBD3B004C2B6A /* RiZhiBanLiTableVC.h */,
-				F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */,
 				F0800E921C1DBF2E004C2B6A /* ModifyLogVC.h */,
 				F0800E931C1DBF2E004C2B6A /* ModifyLogVC.m */,
+				F0800E8F1C1DBD3B004C2B6A /* RiZhiBanLiTableVC.h */,
+				F0800E901C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m */,
 				F06D953C1C1EE2C100FDE859 /* WeiBanLiVC.h */,
 				F06D953D1C1EE2C100FDE859 /* WeiBanLiVC.m */,
 				F08C87711C304827003661EA /* LogDetailVC.h */,
@@ -899,6 +935,8 @@
 				F03618801C2FE2B700E83500 /* XinyuanInfoVC.m */,
 				F08C87771C305D03003661EA /* HongyunVC.h */,
 				F08C87781C305D03003661EA /* HongyunVC.m */,
+				F004D47C1C399C69006B7DA6 /* GuanliLogTableVC.h */,
+				F004D47D1C399C69006B7DA6 /* GuanliLogTableVC.m */,
 			);
 			name = Administer;
 			sourceTree = "<group>";
@@ -951,8 +989,8 @@
 				F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */,
 				F0B4E1F21C19E48B00EAAC10 /* FarmerInfoTableVC.h */,
 				F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */,
-				F0B5593B1C2189D600E9103C /* PicViewController.h */,
-				F0B5593C1C2189D600E9103C /* PicViewController.m */,
+				F079A7B91C3801DA00628399 /* MyPicVC.h */,
+				F079A7BA1C3801DA00628399 /* MyPicVC.m */,
 			);
 			name = MinQinRiZhi;
 			sourceTree = "<group>";
@@ -1058,7 +1096,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F05252EA1C33FB2E00F0E289 /* mapapi.bundle in Resources */,
+				F004D4651C39523F006B7DA6 /* mapapi.bundle in Resources */,
 				8ED91E881C33C96A0027807E /* ganbuLogCell.xib in Resources */,
 				F03889F41C2B0AEA00FD190B /* EvaluateCell.xib in Resources */,
 				F074E7041C15C2630098792E /* Root.storyboard in Resources */,
@@ -1069,8 +1107,10 @@
 				F060B3A41C145D5D007F472F /* MBProgressHUD.bundle in Resources */,
 				F07D72A51C10756200C695CB /* LaunchScreen.xib in Resources */,
 				F036187B1C2FD10900E83500 /* XinyuanCell.xib in Resources */,
+				F004D4781C39964B006B7DA6 /* GanbuMingshiCell.xib in Resources */,
 				F0BEA0691C2ECC2A00FE5E36 /* FuwuCell.xib in Resources */,
 				F0B4E1F11C19DA1100EAAC10 /* SelectFarmerCell.xib in Resources */,
+				F004D46D1C39960D006B7DA6 /* JifenCell.xib in Resources */,
 				F06D95431C1EF05D00FDE859 /* LogCell.xib in Resources */,
 				F07D72A21C10756200C695CB /* Images.xcassets in Resources */,
 				F04F68BD1C2446F0000F1D58 /* DangyuanCell.xib in Resources */,
@@ -1129,7 +1169,9 @@
 				F03889F31C2B0AEA00FD190B /* EvaluateCell.m in Sources */,
 				F0D03D0B1C296C3C00D2BAF2 /* DataCenter.m in Sources */,
 				F0BEA0681C2ECC2A00FE5E36 /* FuwuCell.m in Sources */,
+				F004D4771C39964B006B7DA6 /* GanbuMingshiCell.m in Sources */,
 				F0BEA06D1C2ED20D00FE5E36 /* MJStatusFrame.m in Sources */,
+				F079A7BB1C3801DA00628399 /* MyPicVC.m in Sources */,
 				F0800E881C1D9729004C2B6A /* UserInfoTableVC.m in Sources */,
 				F074E7081C15D9180098792E /* HMTitleButton.m in Sources */,
 				F036187E1C2FDA7600E83500 /* XinyuanCellFrame.m in Sources */,
@@ -1150,12 +1192,12 @@
 				F0D03D0E1C2976D200D2BAF2 /* RotatedView.m in Sources */,
 				F0BEA05A1C2E9EB300FE5E36 /* dangdaibiaoVC.m in Sources */,
 				F0040F401C282507004DC329 /* EColumn.m in Sources */,
+				F004D4681C39715B006B7DA6 /* BanJieVC.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
 				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
 				F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */,
 				F0040F421C282507004DC329 /* EColumnDataModel.m in Sources */,
 				F03009FC1C132F3300389829 /* HttpClient.m in Sources */,
-				F0B5593D1C2189D600E9103C /* PicViewController.m in Sources */,
 				F0040F431C282507004DC329 /* EColumnChartLabel.m in Sources */,
 				F06D95421C1EF05D00FDE859 /* LogCell.m in Sources */,
 				F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */,
@@ -1173,10 +1215,12 @@
 				F03889EC1C2AFE5E00FD190B /* GanBuZouFangVC.m in Sources */,
 				F0300A111C133D8600389829 /* UIView+Extension.m in Sources */,
 				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,
+				F004D46C1C39960D006B7DA6 /* JifenCell.m in Sources */,
 				F0040F411C282507004DC329 /* EColor.m in Sources */,
 				F08C87761C30546E003661EA /* LocationVC.m in Sources */,
 				F0BEA0631C2EC8EB00FE5E36 /* WeixinyuanVC.m in Sources */,
 				8ED91E871C33C96A0027807E /* ganbuLogCell.m in Sources */,
+				F004D4701C39962A006B7DA6 /* JifenVC.m in Sources */,
 				F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */,
 				F0820C7C1C31FA03009D299D /* GanbuZoufangCell.m in Sources */,
 				F03618811C2FE2B700E83500 /* XinyuanInfoVC.m in Sources */,
@@ -1193,6 +1237,7 @@
 				F03889E91C2AFE1F00FD190B /* JXBarChartView.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.mm in Sources */,
 				F0040F311C2824F6004DC329 /* EViewSwitcher.m in Sources */,
+				F004D4731C39963C006B7DA6 /* GanbuMingshiVC.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,
 				F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */,
@@ -1205,6 +1250,7 @@
 				F0040F451C282507004DC329 /* ELineChartDataModel.m in Sources */,
 				F0040F4C1C2828C7004DC329 /* QingyubiaoVC.m in Sources */,
 				F0040F301C2824F6004DC329 /* EPieChart.m in Sources */,
+				F004D47E1C399C69006B7DA6 /* GuanliLogTableVC.m in Sources */,
 				F060B3A51C145D5D007F472F /* MBProgressHUD.m in Sources */,
 				F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */,
 				F0800E8B1C1DA231004C2B6A /* SetView.m in Sources */,
@@ -1335,8 +1381,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1387,8 +1433,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

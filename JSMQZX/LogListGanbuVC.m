@@ -8,6 +8,7 @@
 
 #import "LogListGanbuVC.h"
 #import "MJRefresh.h"
+#import "LogDetailVC.h"
 @interface LogListGanbuVC ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     JKAlertDialog *alert;
@@ -160,11 +161,10 @@
         }
         else{
             [_LogTableView.footer endRefreshing];
-            [LogArr addObjectsFromArray:middleArr];
-            SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
-            [self.LogTableView reloadData];
-            
         }
+        [LogArr addObjectsFromArray:middleArr];
+        SearchShowArr = [NSMutableArray arrayWithArray:LogArr];
+        [self.LogTableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [_LogTableView.footer endRefreshing];
         [MBProgressHUD showError:@"请求失败"];
@@ -312,23 +312,44 @@
         
     }
     else{
-        
+        NSString *ztxxStr = [SearchShowArr[indexPath.row] objectForKey:@"rz_ztxx"];
         NSString *bl_bljg = [SearchShowArr[indexPath.row] objectForKey:@"bl_bljg"];
         //点击列表，详情
-        if (ISNULLSTR(bl_bljg)) {
-            //未办理
-            GanbuLogDetailWeiVC *weibanliVC = [[GanbuLogDetailWeiVC alloc] init];
-            weibanliVC.infoDic = SearchShowArr[indexPath.row];
-            [self.navigationController pushViewController:weibanliVC animated:YES];
-            
+        if ([ztxxStr isEqualToString:@"3"]) {
+            if (ISNULLSTR(bl_bljg)) {
+                
+                GanbuLogDetailWeiVC *weibanliVC = [[GanbuLogDetailWeiVC alloc] init];
+                weibanliVC.infoDic = SearchShowArr[indexPath.row];
+                [self.navigationController pushViewController:weibanliVC animated:YES];
+                
+            }
+            else{
+                if ([bl_bljg isEqualToString:@"1"]) {
+                    BanJieVC *banjievc = [[BanJieVC alloc] init];
+                    banjievc.infoDic = SearchShowArr[indexPath.row];
+                    [self.navigationController pushViewController:banjievc animated:YES];
+                }
+                else{
+                    GanbuLogDetailVC *banliVC = [[GanbuLogDetailVC alloc] init];
+                    banliVC.infoDic = SearchShowArr[indexPath.row];
+                    [self.navigationController pushViewController:banliVC animated:YES];
+                }
+                
+            }
+
         }
         else{
-            //已办理
-            GanbuLogDetailVC *banliVC = [[GanbuLogDetailVC alloc] init];
-            banliVC.infoDic = SearchShowArr[indexPath.row];
-            [self.navigationController pushViewController:banliVC animated:YES];
+            
+            LogDetailVC *logInfoVC = [[LogDetailVC alloc] init];
+            logInfoVC.infoDic =  SearchShowArr[indexPath.row];
+            [self.navigationController pushViewController:logInfoVC animated:YES];
+            
             
         }
+        
+        
+        
+        
         
     }
 }

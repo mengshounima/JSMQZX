@@ -104,7 +104,7 @@
                                              selector:@selector(changeContentViewPosition:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.6, SCREEN_HEIGHT*0.8) style:UITableViewStylePlain];
+    _TypeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 270, SCREEN_HEIGHT*0.6) style:UITableViewStylePlain];
     _TypeTable.delegate = self;
     _TypeTable.dataSource = self;
 
@@ -156,7 +156,6 @@
 - (IBAction)clickSelectBtn:(id)sender {
     alert = [[JKAlertDialog alloc]initWithTitle:@"选择镇/社区" message:@""];
     alert.contentView =  _TypeTable;
-    
     [alert addButtonWithTitle:@"取消"];
     [alert show];
     //当前页添加蒙板

@@ -7,7 +7,7 @@
 //
 
 #import "HMNavigationController.h"
-#import "PicViewController.h"
+
 @interface HMNavigationController ()<UIActionSheetDelegate>
 
 @end
@@ -103,7 +103,7 @@
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"返回" highImageName:@"返回-选中" target:self action:@selector(back)];
         //右上角设置按钮
     
-    if ([viewController isKindOfClass:[PicViewController class]]) {
+    if ([viewController isKindOfClass:[MyPicVC class]]) {
         
     }
     else

@@ -8,6 +8,7 @@
 
 #import "RootVC.h"
 #import "HMTitleButton.h"
+#import "GuanliLogTableVC.h"
 @interface RootVC ()
 
 @end
@@ -115,8 +116,7 @@
 
 //管理员 日志办理
 - (IBAction)clickGanliyuanRizhibanli:(id)sender {
-    
-    
+     [self performSegueWithIdentifier:@"RootToGuanliyuanLogTable" sender:nil];
     
 }
 

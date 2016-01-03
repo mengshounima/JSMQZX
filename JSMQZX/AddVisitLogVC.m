@@ -366,14 +366,6 @@
          FarmersVC *farmers = segue.destinationViewController;
         farmers.FlagSuiji = sender;
     }
-    else if([segue.identifier isEqualToString:@"AddLogToPicVC"]){
-        PicViewController *picVC = segue.destinationViewController;
-        if (_hasImage) {
-            picVC.RZ_imageArr = sender;
-        }
-         _hasImage = false;
-    }
-
 }
 
 //提交日志
@@ -447,6 +439,9 @@
             }else{
                 [MBProgressHUD hideHUD];
                 [MBProgressHUD showSuccess:@"提交成功"];
+                //跳出该控制器
+                [self.navigationController popViewControllerAnimated:YES];
+
             }
         }
         else{
@@ -475,23 +470,30 @@
         [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
         [paramPic setObject:RiZiID forKey:@"rz_id"];
         
-        [paramPic setObject:[NSString stringWithFormat:@"%f-%d",timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i
+        [paramPic setObject:[NSString stringWithFormat:@"%ld-%d",(long)timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i
+
         [paramPic setObject:date forKey:@"takeDate"];
         [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             MyLog(@"%@",responseObject);
             NSData* jsonData = [self XMLString:responseObject];
             NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
              MyLog(@"创建的图片id:%@",PicID);
-            if (![PicID isEqualToString:@"-1"]&&i==self.ImageDataArr.count-1)  {
-                //开始上传图片数据
-                [imageNameArr addObject:PicID];
-                NSArray *imageName = [imageNameArr copy];
-                [self uploadImages2:imageName];
+            if (![PicID isEqualToString:@"-1"]) {
+                if (i==self.ImageDataArr.count-1)  {
+                    //开始上传图片数据
+                    [imageNameArr addObject:PicID];
+                    NSArray *imageName = [imageNameArr copy];
+                    MyLog(@"最后一次添加后imageNameArr.count%d",imageNameArr.count);
+                    [self uploadImages2:imageName];
+                }
+                if (i<self.ImageDataArr.count-1) {
+                    
+                    [imageNameArr addObject:PicID];
+                    MyLog(@"imageNameArr.count%d",imageNameArr.count);
+                }
+                
             }
-            if (![PicID isEqualToString:@"-1"]&&i<self.ImageDataArr.count-1) {
-                [imageNameArr addObject:PicID];
-            }
-            else if([PicID isEqualToString:@"-1"]){
+            else{
                 [MBProgressHUD hideHUD];
                 [MBProgressHUD showError:@"日志提交失败，请重试2"];
                 return ;//退出循环
@@ -543,12 +545,15 @@
 - (IBAction)clickPicBtn:(id)sender {
  
     if (_hasImage) {
+        _hasImage = false;
         //有图片
-        
-         [self performSegueWithIdentifier:@"AddLogToPicVC" sender:self.ImageArr];
+        MyPicVC *mypicVC = [[MyPicVC alloc] init];
+        mypicVC.RZ_imageArr = self.ImageArr;
+        [self.navigationController pushViewController:mypicVC animated:YES];
     }
     else{
-         [self performSegueWithIdentifier:@"AddLogToPicVC" sender:nil];
+        MyPicVC *mypicVC = [[MyPicVC alloc] init];
+        [self.navigationController pushViewController:mypicVC animated:YES];
     }
    
     

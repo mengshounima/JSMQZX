@@ -111,9 +111,9 @@
         [param setObject:@""forKey:@"myd"];
    
     }
+    //[MBProgressHUD showMessage:@"加载中"];
     //获取日志列表
     [[HttpClient httpClient] requestWithPath:@"/GetMQLogInfoPage" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-       
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
         if (middleArr.count<rowscount) {

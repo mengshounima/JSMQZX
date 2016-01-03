@@ -13,9 +13,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *zongfenL;
 @property (weak, nonatomic) IBOutlet UILabel *Label1;
 @property (weak, nonatomic) IBOutlet UILabel *Label2;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *Label3;
+@property (weak, nonatomic) IBOutlet UILabel *Label3;
+
 @property (weak, nonatomic) IBOutlet UILabel *Label4;
 @property (weak, nonatomic) IBOutlet UILabel *Label5;
 @property (weak, nonatomic) IBOutlet UILabel *Label6;
-
+-(void)updateCell:(NSDictionary *)infoDic;
 @end

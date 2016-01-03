@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FarmersVC.h"
 #import "JKAlertDialog.h"
-#import "PicViewController.h"
+#import "MyPicVC.h"
 @interface AddVisitLogVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (weak, nonatomic) IBOutlet UIView *boxView;

@@ -15,14 +15,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0f0-p8-oeo">
-                        <rect key="frame" x="4" y="5" width="36" height="36"/>
+                        <rect key="frame" x="4" y="9" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="36" id="tSE-uT-SKg"/>
-                            <constraint firstAttribute="width" constant="36" id="zC2-Ms-t4C"/>
+                            <constraint firstAttribute="height" constant="20" id="tSE-uT-SKg"/>
+                            <constraint firstAttribute="width" constant="20" id="zC2-Ms-t4C"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Huw-9o-lYm" userLabel="nameL">
-                        <rect key="frame" x="44" y="0.0" width="44" height="23"/>
+                        <rect key="frame" x="28" y="0.0" width="44" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="JwZ-05-BVH"/>
                             <constraint firstAttribute="height" constant="22" id="SDD-fe-cn6"/>
@@ -32,25 +32,25 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="走访干部：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ER-Px-df3">
-                        <rect key="frame" x="92" y="0.0" width="63" height="23"/>
+                        <rect key="frame" x="76" y="0.0" width="69" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015年12月11日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-ih-oq4">
-                        <rect key="frame" x="159" y="0.0" width="64" height="23"/>
+                        <rect key="frame" x="149" y="0.0" width="68" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未办理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5D-J2-hpi">
-                        <rect key="frame" x="227" y="0.0" width="63" height="23"/>
+                        <rect key="frame" x="221" y="0.0" width="69" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民情类别:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-Q8-D8C">
-                        <rect key="frame" x="44" y="23" width="113" height="22"/>
+                        <rect key="frame" x="28" y="22" width="121" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="SiF-Kj-Hhy"/>
                         </constraints>
@@ -59,7 +59,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民情需求:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1e-mF-voK">
-                        <rect key="frame" x="170" y="23" width="113" height="22"/>
+                        <rect key="frame" x="162" y="15" width="121" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="p8V-71-U77"/>
                         </constraints>
@@ -73,6 +73,7 @@
                     <constraint firstItem="H1e-mF-voK" firstAttribute="top" secondItem="qGS-ih-oq4" secondAttribute="bottom" id="9r0-By-DkM"/>
                     <constraint firstItem="H1e-mF-voK" firstAttribute="top" secondItem="y5D-J2-hpi" secondAttribute="bottom" id="AbJ-DY-2pW"/>
                     <constraint firstItem="Huw-9o-lYm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="C38-rR-EPT"/>
+                    <constraint firstItem="0f0-p8-oeo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DRm-Le-ECY"/>
                     <constraint firstAttribute="bottom" secondItem="H1e-mF-voK" secondAttribute="bottom" id="Dzd-0Z-nNt"/>
                     <constraint firstAttribute="trailing" secondItem="H1e-mF-voK" secondAttribute="trailing" constant="37" id="JKN-SC-q9a"/>
                     <constraint firstItem="Oe8-Q8-D8C" firstAttribute="top" secondItem="Huw-9o-lYm" secondAttribute="bottom" id="KTD-hC-wX7"/>
@@ -80,13 +81,11 @@
                     <constraint firstItem="qGS-ih-oq4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MIy-sW-68D"/>
                     <constraint firstItem="9ER-Px-df3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="OHp-qU-fE1"/>
                     <constraint firstItem="0f0-p8-oeo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="PUj-Sd-1bi"/>
-                    <constraint firstAttribute="bottom" secondItem="0f0-p8-oeo" secondAttribute="bottom" constant="4" id="SZB-sI-4F7"/>
                     <constraint firstItem="9ER-Px-df3" firstAttribute="leading" secondItem="Huw-9o-lYm" secondAttribute="trailing" constant="4" id="T0i-SZ-JwM"/>
                     <constraint firstItem="y5D-J2-hpi" firstAttribute="width" secondItem="9ER-Px-df3" secondAttribute="width" id="Uab-Ax-lIq"/>
                     <constraint firstItem="Oe8-Q8-D8C" firstAttribute="leading" secondItem="0f0-p8-oeo" secondAttribute="trailing" constant="4" id="dKs-Cg-0fe"/>
                     <constraint firstItem="y5D-J2-hpi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eIA-Ml-Uon"/>
                     <constraint firstItem="H1e-mF-voK" firstAttribute="width" secondItem="Oe8-Q8-D8C" secondAttribute="width" id="edp-bi-ghO"/>
-                    <constraint firstItem="0f0-p8-oeo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="fFx-h3-tgm"/>
                     <constraint firstItem="Oe8-Q8-D8C" firstAttribute="top" secondItem="9ER-Px-df3" secondAttribute="bottom" id="gKE-ok-bry"/>
                     <constraint firstAttribute="bottom" secondItem="Oe8-Q8-D8C" secondAttribute="bottom" id="gZc-AI-kJa"/>
                     <constraint firstItem="qGS-ih-oq4" firstAttribute="leading" secondItem="9ER-Px-df3" secondAttribute="trailing" constant="4" id="okH-nL-IG1"/>

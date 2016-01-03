@@ -63,15 +63,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LrH-Ec-PBa" userLabel="type">
                                                 <rect key="frame" x="30" y="20" width="260" height="33"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lez-eL-PSp" userLabel="Image1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="用户类型" translatesAutoresizingMaskIntoConstraints="NO" id="lez-eL-PSp" userLabel="Image1">
+                                                        <rect key="frame" x="0.0" y="4" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="33" id="WCj-bD-yno"/>
-                                                            <constraint firstAttribute="width" constant="33" id="WN4-pG-w3K"/>
+                                                            <constraint firstAttribute="height" constant="25" id="WCj-bD-yno"/>
+                                                            <constraint firstAttribute="width" constant="25" id="WN4-pG-w3K"/>
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择用户类型" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="85P-Ju-FVK" userLabel="TypeField">
-                                                        <rect key="frame" x="41" y="2" width="211" height="30"/>
+                                                        <rect key="frame" x="33" y="2" width="219" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="fJe-8P-guO"/>
                                                         </constraints>
@@ -79,7 +79,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knt-aB-7OJ" userLabel="隐藏按钮">
-                                                        <rect key="frame" x="41" y="0.0" width="219" height="33"/>
+                                                        <rect key="frame" x="33" y="0.0" width="227" height="33"/>
                                                         <connections>
                                                             <action selector="clickSelectBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nWQ-pF-Glc"/>
                                                         </connections>
@@ -100,15 +100,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8h-3c-VsC" userLabel="ID">
                                                 <rect key="frame" x="30" y="58" width="260" height="33"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R61-eF-D9X" userLabel="Image2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="用户名" translatesAutoresizingMaskIntoConstraints="NO" id="R61-eF-D9X" userLabel="Image2">
+                                                        <rect key="frame" x="0.0" y="4" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="33" id="3Nu-7C-AWX"/>
-                                                            <constraint firstAttribute="height" constant="33" id="g3N-jz-ooS"/>
+                                                            <constraint firstAttribute="width" constant="25" id="3Nu-7C-AWX"/>
+                                                            <constraint firstAttribute="height" constant="25" id="g3N-jz-ooS"/>
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入用户编号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fW0-6G-4cm" userLabel="IDField">
-                                                        <rect key="frame" x="41" y="2" width="211" height="30"/>
+                                                        <rect key="frame" x="33" y="2" width="219" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="ymB-wk-hE2"/>
                                                         </constraints>
@@ -127,15 +127,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5l-xK-1cL" userLabel="Password">
                                                 <rect key="frame" x="30" y="96" width="260" height="33"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a28-Yc-Cz0" userLabel="Image3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="密码" translatesAutoresizingMaskIntoConstraints="NO" id="a28-Yc-Cz0" userLabel="Image3">
+                                                        <rect key="frame" x="0.0" y="4" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="33" id="Nh1-TK-ZoC"/>
-                                                            <constraint firstAttribute="width" constant="33" id="wiU-P2-4uu"/>
+                                                            <constraint firstAttribute="height" constant="25" id="Nh1-TK-ZoC"/>
+                                                            <constraint firstAttribute="width" constant="25" id="wiU-P2-4uu"/>
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wXh-QE-QF7" userLabel="PassField">
-                                                        <rect key="frame" x="41" y="2" width="211" height="30"/>
+                                                        <rect key="frame" x="33" y="2" width="219" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="RrF-gD-CLT"/>
                                                         </constraints>
@@ -251,6 +251,9 @@
     </scenes>
     <resources>
         <image name="icon" width="166" height="168"/>
+        <image name="密码" width="29" height="29"/>
+        <image name="用户名" width="29" height="29"/>
+        <image name="用户类型" width="29" height="29"/>
         <image name="记住密码已选" width="25" height="25"/>
         <image name="记住密码未选" width="25" height="25"/>
     </resources>

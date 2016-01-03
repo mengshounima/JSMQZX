@@ -121,7 +121,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AbA-Gb-BHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-198" y="2145"/>
+            <point key="canvasLocation" x="-149" y="2089"/>
         </scene>
         <!--Log List GanbuVC-->
         <scene sceneID="4np-fe-dx5">
@@ -235,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vw2-Mx-HEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-248" y="1184"/>
+            <point key="canvasLocation" x="90" y="1188"/>
         </scene>
         <!--分析研判-->
         <scene sceneID="mqG-Yo-xOo">
@@ -689,6 +689,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-vh-Xr2">
                                 <rect key="frame" x="0.0" y="105" width="320" height="463"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8nZ-ez-JV8" id="WZU-bo-bPK"/>
+                                    <outlet property="delegate" destination="8nZ-ez-JV8" id="7M0-n8-Yau"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -795,7 +799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3on-xP-dWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807" y="2231"/>
+            <point key="canvasLocation" x="1805" y="2239"/>
         </scene>
         <!--干部服务指数评价-->
         <scene sceneID="EXQ-Xu-FPT">
@@ -1137,6 +1141,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FfA-wY-3kI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1671" y="-785"/>
+        </scene>
+        <!--日志办理-->
+        <scene sceneID="Zyn-1x-TSy">
+            <objects>
+                <tableViewController id="frU-CN-OO0" customClass="GuanliLogTableVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cfz-wt-O3I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="frU-CN-OO0" id="qYr-1J-ccl"/>
+                            <outlet property="delegate" destination="frU-CN-OO0" id="fdi-gn-IaU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="日志办理" id="5lb-bD-FzU"/>
+                    <connections>
+                        <segue destination="8cx-md-Lyb" kind="push" identifier="GuanliyuanTableTLogolist" id="1Xb-gz-uZJ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fBX-XQ-4DC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-350" y="1246"/>
         </scene>
         <!--民情在线(干部版)-->
         <scene sceneID="gPt-Ul-rVQ">
@@ -1662,6 +1688,7 @@
                         <segue destination="udm-Tp-diP" kind="push" identifier="GuanliyuanRootToZhiyuanfuwu" id="mjP-JD-EZV"/>
                         <segue destination="iCD-sW-lPq" kind="push" identifier="GaunliyuanRootToWeixinyuan" id="blO-DS-3FD"/>
                         <segue destination="89Y-4Z-cYb" kind="push" identifier="RootToHongyun" id="AWc-Fc-KED"/>
+                        <segue destination="frU-CN-OO0" kind="push" identifier="RootToGuanliyuanLogTable" id="r6o-cw-Ur8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA2-WS-ewd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2161,11 +2188,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4xu-Fu-xhM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Q9m-gh-R1A">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca8-2Y-WHS" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -3916,8 +3943,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zdR-aI-UmH"/>
-        <segue reference="FAg-9X-8fj"/>
         <segue reference="LLz-j9-6aK"/>
-        <segue reference="xCO-Hq-o13"/>
+        <segue reference="v81-6d-mO3"/>
+        <segue reference="1Xb-gz-uZJ"/>
+        <segue reference="FAg-9X-8fj"/>
     </inferredMetricsTieBreakers>
 </document>

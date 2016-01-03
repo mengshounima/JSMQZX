@@ -111,6 +111,9 @@
     }];
     
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70;
+}
 -(NSData *)XMLString:(NSData *)data
 {
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
@@ -151,6 +154,7 @@
         
         
     }
+
 }
 -(void)getCunData:(NSString *)ZJD_ID{
     [MBProgressHUD showMessage:@"获取该镇的村列表"];
@@ -229,7 +233,7 @@
         
         //[cell updateCellWithInfoDic:_resultArr[indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+        [cell updateCell:_resultArr[indexPath.row]];
         return  cell;
     }
     

@@ -5,18 +5,19 @@
 //  Created by 李 燕琴 on 15/12/30.
 //  Copyright © 2015年 liyanqin. All rights reserved.
 //
-
+//责任部门文本框，办理结果单选框，责任部门文本框，提交按钮
 #import "GanbuLogDetailWeiVC.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "UIImageView+WebCache.h"
 #define fuwuFont [UIFont systemFontOfSize:14]
-@interface GanbuLogDetailWeiVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIGestureRecognizerDelegate>
+@interface GanbuLogDetailWeiVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate>
 {
     BOOL HasPicture;
     UIButton *zhengzaiBtn;
     UIButton *xianzhangBtn;
     UITextField *textF;
+    int flagBanliJieguo;
     
 }
 @property (nonatomic,strong) NSArray *picsArr;
@@ -33,9 +34,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self getLogPics];
 }
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [textF resignFirstResponder];
-}
+
 -(void)getLogPics{
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID ;
@@ -92,6 +91,17 @@
     
     
 }
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string{
+    if ([string isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+        [textF resignFirstResponder];
+        
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    return YES;
+}
+
 -(NSData *)XMLString:(NSData *)data
 {
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
@@ -104,9 +114,35 @@
     return  jsonData;
 }
 
+-(void)changeContentViewPosition:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGFloat keyBoardEndY = value.CGRectValue.origin.y;
+    
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.view.center = CGPointMake(self.view.center.x, keyBoardEndY - self.view.bounds.size.height/2.0);
+    }];
+}
+
+
 -(void)initView{
     MyLog(@"%@",_infoDic);
+    //添加键盘监听
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeContentViewPosition:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeContentViewPosition:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+
     UIScrollView *myScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     UIView *backView = [[UIView alloc] init];
     backView.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -199,10 +235,31 @@
     [backView addSubview:line6];
     
     //民情概况
-    UILabel *gaikuangL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
-    gaikuangL.text = [NSString stringWithFormat:@"民情概况：%@",[_infoDic objectForKey:@"rz_mqgk"]];
+    UILabel *gaikuangL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, 80, 20)];
+    
+    gaikuangL.text = @"民情概况：";
+    //[NSString stringWithFormat:@"民情概况：%@",[_infoDic objectForKey:@"rz_mqgk"]];
     gaikuangL.font = fuwuFont;
     [backView addSubview:gaikuangL];
+    
+    //太阳图案
+    NSString *mqgk = [_infoDic objectForKey:@"rz_mqgk"];
+    UIImageView *gkImageV = [[UIImageView alloc] initWithFrame:CGRectMake(88, Y+1, 20, 20)];
+    if ([mqgk isEqualToString:@"1"]) {
+        gkImageV.image = [UIImage imageNamed:@"晴天"];
+    }
+    else if ([mqgk isEqualToString:@"2"]) {
+        gkImageV.image = [UIImage imageNamed:@"多云"];
+    }
+    else if ([mqgk isEqualToString:@"3"]) {
+        gkImageV.image = [UIImage imageNamed:@"阴天"];
+    }
+    else{
+        gkImageV.image = [UIImage imageNamed:@"下雨"];
+    }
+    [backView addSubview:gkImageV];
+
+    
     
     Y = CGRectGetMaxY(gaikuangL.frame);
     //line
@@ -357,40 +414,48 @@
     
     Y = CGRectGetMaxY(zerenBumenL.frame)+2;
     textF = [[UITextField alloc] initWithFrame:CGRectMake(8, Y, SCREEN_WIDTH-36, 30)];
+    textF.layer.borderWidth = 1;
+    textF.delegate = self;
+    textF.returnKeyType = UIReturnKeyDone;
     [BanliJiluV addSubview:textF];
     
     //线
-    Y = CGRectGetMaxY(textF.frame);
+    Y = CGRectGetMaxY(textF.frame)+2;
 
     UIView *line14 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
     line14.backgroundColor = [UIColor lightGrayColor];
     [BanliJiluV addSubview:line14];
     
     //处理结果
-    UILabel *resultL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, 100, 40)];
+    UILabel *resultL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, 80, 40)];
+    //resultL.backgroundColor = [UIColor redColor];
     resultL.text = @"处理结果";
     [BanliJiluV addSubview:resultL];
     
     float X = CGRectGetMaxX(resultL.frame);
     zhengzaiBtn = [[UIButton alloc] initWithFrame:CGRectMake(X, Y+1, SCREEN_WIDTH-36-100, 20)];
     zhengzaiBtn.selected = NO;
+    //zhengzaiBtn.backgroundColor = [UIColor yellowColor];
+    zhengzaiBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [zhengzaiBtn setImage:[UIImage imageNamed:@"勾选-未选中"] forState:UIControlStateNormal];
     [zhengzaiBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     zhengzaiBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [zhengzaiBtn setTitle:@"正在办理" forState:UIControlStateNormal];
-    [zhengzaiBtn setTitle:@"正在办理" forState:UIControlStateHighlighted];
-    [zhengzaiBtn setImage:[UIImage imageNamed:@"勾选-选中"] forState:UIControlStateHighlighted];
+    [zhengzaiBtn setTitle:@"正在办理" forState:UIControlStateSelected];
+    [zhengzaiBtn setImage:[UIImage imageNamed:@"勾选-选中"] forState:UIControlStateSelected];
     [BanliJiluV addSubview:zhengzaiBtn];
     [zhengzaiBtn addTarget:self action:@selector(clickZhengzai:) forControlEvents:UIControlEventTouchUpInside];
     
     xianzhangBtn = [[UIButton alloc] initWithFrame:CGRectMake(X, Y+1+20, SCREEN_WIDTH-36-100, 20)];
     xianzhangBtn.selected = NO;
+    //xianzhangBtn.backgroundColor = [UIColor purpleColor];
+    xianzhangBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [xianzhangBtn setImage:[UIImage imageNamed:@"勾选-未选中"] forState:UIControlStateNormal];
     [xianzhangBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     xianzhangBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [xianzhangBtn setTitle:@"提交县长热线" forState:UIControlStateNormal];
-    [xianzhangBtn setTitle:@"提交县长热线" forState:UIControlStateHighlighted];
-    [xianzhangBtn setImage:[UIImage imageNamed:@"勾选-选中"] forState:UIControlStateHighlighted];
+    [xianzhangBtn setTitle:@"提交县长热线" forState:UIControlStateSelected];
+    [xianzhangBtn setImage:[UIImage imageNamed:@"勾选-选中"] forState:UIControlStateSelected];
     [BanliJiluV addSubview:xianzhangBtn];
     [xianzhangBtn addTarget:self action:@selector(clickXianzhang:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -399,7 +464,7 @@
     
     
     
-    BanliJiluV.frame = CGRectMake(10, 20+AllHeight+20, SCREEN_WIDTH-20, 90);
+    BanliJiluV.frame = CGRectMake(10, 20+AllHeight+20, SCREEN_WIDTH-20, 100);
     [myScroll addSubview:BanliJiluV];
     Y = CGRectGetMaxY(BanliJiluV.frame);
     //添加提交按钮
@@ -424,6 +489,7 @@
 {
     zhengzaiBtn.selected = YES;
     xianzhangBtn.selected = NO;
+    flagBanliJieguo = 0;
     
     
 }
@@ -431,10 +497,55 @@
 {
     xianzhangBtn.selected = YES;
     zhengzaiBtn.selected = NO;
+    flagBanliJieguo = 1;
 }
+//镇干部办理
 -(void)ClickSend:(UIButton *)button
 {
+    NSString *ss = textF.text;
+    MyLog(@"%@",ss);
+    if (ISNULLSTR(textF.text)) {
+        [MBProgressHUD showError:@"责任部门不能为空"];
+        return;
+    }
+    if ((!zhengzaiBtn.selected)&&(!xianzhangBtn.selected)) {
+        [MBProgressHUD showError:@"处理结果未选择"];
+        return;
+    }
+    //弹框，确认提交日志
     
+    [MBProgressHUD showMessage:@"提交中"];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID ;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSString *now = [formatter stringFromDate:[NSDate date]];
+    [param setObject:idStr forKey:@"userId"];
+    [param setObject:[_infoDic objectForKey:@"rz_id"] forKey:@"bl_rz_id"];
+    if (flagBanliJieguo==0) {
+        //真正办理
+        [param setObject:[NSNumber numberWithInt:3] forKey:@"bl_bljg"];//日志结果：1已办理；2转交县一级；3办理中
+    }else{
+        //提交
+        [param setObject: [NSNumber numberWithInt:2]  forKey:@"bl_bljg"];//日志结果：1已办理；2转交县一级；3办理中
+    }
+    
+    [param setObject:now forKey:@"bl_zjrq"];//转交办理日期
+    [param setObject:textF.text forKey:@"bl_zrdw"];//责任单位
+    [param setObject:@"" forKey:@"bl_blbz"];
+    
+    [[HttpClient httpClient] requestWithPath:@"/CreateMQLogBLRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        [jsonData objectFromJSONData];
+        [MBProgressHUD showSuccess:@"提交成功"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"请求失败"];
+    }];
+
     
     
 }

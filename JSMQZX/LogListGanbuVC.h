@@ -12,6 +12,7 @@
 #import "ganbuLogCell.h"
 #import "GanbuLogDetailVC.h"
 #import "GanbuLogDetailWeiVC.h"
+#import "BanJieVC.h"
 @interface LogListGanbuVC : UIViewController
 - (IBAction)clickZJDBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;
