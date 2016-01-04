@@ -98,7 +98,7 @@
         }
 
         [param setObject:@"" forKey:@"wg_id"];
-        [param setObject:@"3" forKey:@"ztxx"];
+        [param setObject:@"2" forKey:@"ztxx"];
         [param setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];
         [param setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         [param setObject:@""forKey:@"myd"];
@@ -280,7 +280,6 @@
         [cell  updateCell:SearchShowArr[indexPath.row]];
         
         return  cell;
-        
     }
    }
 //点击
