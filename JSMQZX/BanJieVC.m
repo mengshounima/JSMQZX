@@ -5,7 +5,7 @@
 //  Created by 李 燕琴 on 16/1/3.
 //  Copyright © 2016年 liyanqin. All rights reserved.
 //
-
+//只有办理转交列表
 #import "BanJieVC.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"

@@ -278,11 +278,11 @@
             [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
             [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
             
-            selectDWID =[NSNumber numberWithInteger:0];//查询所以党员报到
+            selectDWID =nil;//查询所有党员报到
         }
         else{
             [_DWXiaShuBtn setTitle:[_DWXiaShuArr[indexPath.row-1] objectForKey:@"dw_name"] forState:UIControlStateNormal];
-            selectDWID =[_DWXiaShuArr[indexPath.row] objectForKey:@"dw_id"];
+            selectDWID =[_DWXiaShuArr[indexPath.row-1] objectForKey:@"dw_id"];
         }
     }
     else if (tableView==_DWQiTaTable){
@@ -290,13 +290,13 @@
         if (indexPath.row == 0) {
             [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
             [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
-            selectDWID =[NSNumber numberWithInteger:0];//查询所以党员报到
+            selectDWID =nil;//查询所以党员报到
             
             
         }
         else{
             [_DWQitaBtn setTitle:[_DWQiTaArr[indexPath.row-1] objectForKey:@"dw_name"] forState:UIControlStateNormal];
-            selectDWID =[_DWQiTaArr[indexPath.row] objectForKey:@"dw_id"];
+            selectDWID =[_DWQiTaArr[indexPath.row-1] objectForKey:@"dw_id"];
         }
 
     }
