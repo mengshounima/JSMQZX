@@ -27,7 +27,7 @@
     float longitude = longitudeStr.doubleValue;
     
     
-    if (pointAnnotation == nil) {
+    if (pointAnnotation == nil&&(!ISNULLSTR(latitudeStr))&&(!ISNULLSTR(longitudeStr)) ) {
         pointAnnotation = [[BMKPointAnnotation alloc]init];
         CLLocationCoordinate2D coor;
         coor.latitude = latitude;

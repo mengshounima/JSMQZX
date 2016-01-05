@@ -311,66 +311,12 @@
         
     }
     else{
-        NSString *ztxxStr = [SearchShowArr[indexPath.row] objectForKey:@"rz_ztxx"];
-        NSString *bl_bljg = [SearchShowArr[indexPath.row] objectForKey:@"bl_bljg"];
+       /* NSString *ztxxStr = [SearchShowArr[indexPath.row] objectForKey:@"rz_ztxx"];
+        NSString *bl_bljg = [SearchShowArr[indexPath.row] objectForKey:@"bl_bljg"];*/
         
-        
-        if (1) {
-            GanbuLogDetailWeiVC *weibanliVC = [[GanbuLogDetailWeiVC alloc] init];
-            weibanliVC.infoDic = SearchShowArr[indexPath.row];
-            [self.navigationController pushViewController:weibanliVC animated:YES];
-        }
-      /*  else{
-            if ([bl_bljg isEqualToString:@"1"]) {
-                BanJieVC *banjievc = [[BanJieVC alloc] init];
-                banjievc.infoDic = SearchShowArr[indexPath.row];
-                [self.navigationController pushViewController:banjievc animated:YES];
-            }
-            else{
-                GanbuLogDetailVC *banliVC = [[GanbuLogDetailVC alloc] init];
-                banliVC.infoDic = SearchShowArr[indexPath.row];
-                [self.navigationController pushViewController:banliVC animated:YES];
-            }
-
-        }*/
-        
-        //点击列表，详情
-       /* if ([ztxxStr isEqualToString:@"3"]) {
-            if (ISNULLSTR(bl_bljg)) {
-                
-                GanbuLogDetailWeiVC *weibanliVC = [[GanbuLogDetailWeiVC alloc] init];
-                weibanliVC.infoDic = SearchShowArr[indexPath.row];
-                [self.navigationController pushViewController:weibanliVC animated:YES];
-                
-            }
-            else{
-                if ([bl_bljg isEqualToString:@"1"]) {
-                    BanJieVC *banjievc = [[BanJieVC alloc] init];
-                    banjievc.infoDic = SearchShowArr[indexPath.row];
-                    [self.navigationController pushViewController:banjievc animated:YES];
-                }
-                else{
-                    GanbuLogDetailVC *banliVC = [[GanbuLogDetailVC alloc] init];
-                    banliVC.infoDic = SearchShowArr[indexPath.row];
-                    [self.navigationController pushViewController:banliVC animated:YES];
-                }
-                
-            }
-
-        }
-        else{
-            
-            LogDetailVC *logInfoVC = [[LogDetailVC alloc] init];
-            logInfoVC.infoDic =  SearchShowArr[indexPath.row];
-            [self.navigationController pushViewController:logInfoVC animated:YES];
-            
-            
-        }*/
-        
-        
-        
-        
-        
+        GanbuLogDetailWeiVC *weibanliVC = [[GanbuLogDetailWeiVC alloc] init];
+        weibanliVC.infoDic = SearchShowArr[indexPath.row];
+        [self.navigationController pushViewController:weibanliVC animated:YES];
     }
 }
 

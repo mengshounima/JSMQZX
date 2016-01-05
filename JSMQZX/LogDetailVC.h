@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LocationVC.h"
+#import "GanbuLocationVC.h"
 #import "GDataXMLNode.h"
 @interface LogDetailVC : UIViewController
 @property (nonatomic,weak) NSDictionary *infoDic;//传递参数

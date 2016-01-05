@@ -170,8 +170,12 @@
 
 }
 -(void)SetViewHelp{
-    
-}                                                                                                                                                                                                                                                                                                                                                                      
+    NSNumber *power = [[DataCenter sharedInstance] ReadData].UserInfo.power;
+    HelperVC *helper = [[HelperVC alloc] init];
+    [self Cancel];
+    helper.flagHelp = power;
+    [self pushViewController:helper animated:YES];
+}
 -(void)SetViewSignUp{
     //注销
    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"注销用户提示" message:@"是否确认注销当前登录用户，注销后下次登录必须重新输入用户名和密码" delegate:self cancelButtonTitle:@"取消" otherButtonTitles: @"注销",nil];

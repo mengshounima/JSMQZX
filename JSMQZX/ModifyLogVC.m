@@ -646,18 +646,8 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"LogModifyToLocation"]) {
-        
-        LocationVC *location = segue.destinationViewController;
-        location.infoDic = sender;
-    }
-}
-
-
 - (IBAction)clickLocationBtn:(id)sender {
-    LocationVC *locationVc = [[LocationVC alloc] init];
+    GanbuLocationVC *locationVc = [[GanbuLocationVC alloc] init];
     locationVc.infoDic = LogDic;
     [self.navigationController pushViewController:locationVc animated:YES];
     

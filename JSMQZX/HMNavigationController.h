@@ -10,6 +10,7 @@
 #import "SetView.h"
 #import "UserInfoTableVC.h"
 #import "MyPicVC.h"
+#import "HelperVC.h"
 @interface HMNavigationController : UINavigationController<SetViewDelegate>
 // 蒙版
 @property (strong, nonatomic) UIView *backView;

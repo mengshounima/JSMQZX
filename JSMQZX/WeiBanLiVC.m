@@ -101,7 +101,7 @@
    
     }
     else {
-        //1，2，3，4
+        //1234
         [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"ssz_id"];
         [param setObject:@"" forKey:@"cun_id"];
         [param setObject:@"" forKey:@"wg_id"];

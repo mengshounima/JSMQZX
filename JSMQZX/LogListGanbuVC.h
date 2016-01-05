@@ -10,7 +10,6 @@
 #import "GDataXMLNode.h"
 #import "JKAlertDialog.h"
 #import "ganbuLogCell.h"
-#import "GanbuLogDetailVC.h"
 #import "GanbuLogDetailWeiVC.h"
 #import "BanJieVC.h"
 @interface LogListGanbuVC : UIViewController

@@ -363,9 +363,11 @@
     
     if (HasPicture) {
         picBtn.enabled = YES;
+        [picBtn setImage:[UIImage imageNamed:@"照片"]  forState:UIControlStateNormal];
         [picBtn addTarget:self action:@selector(LookPics:) forControlEvents:UIControlEventTouchUpInside];
     }
     else{
+        [picBtn setImage:[UIImage imageNamed:@"相机灰色"]  forState:UIControlStateNormal];
         picBtn.enabled = NO;
     }
     

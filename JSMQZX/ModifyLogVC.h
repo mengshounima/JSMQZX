@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
 #import "JKAlertDialog.h"
-#import "LocationVC.h"
+#import "GanbuLocationVC.h"
 @interface ModifyLogVC : UIViewController
 @property (nonatomic,weak) NSDictionary *myLogInfo;//传递参数
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;

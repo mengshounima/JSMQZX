@@ -33,13 +33,9 @@
 }
 //自动登录
 -(void)autoLogin{
-    [MBProgressHUD showMessage:@"登录中"];
+    _loginBtn.enabled = NO;
+    [MBProgressHUD showMessage:@"自动登录中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    //真实
-    /*[param setObject:[_typeDic objectForKey:@"zjd_id"] forKey:@"UserType"];
-     [param setObject:_passwordF.text forKey:@"Password"];
-     NSString *firstName = [_typeDic objectForKey:@"zjd_jx"];//前缀
-     [param setObject:[NSString stringWithFormat:@"%@%@",firstName,_userIDF.text] forKey:@"LoginName"];*/
     _typeF.text = [[DataCenter sharedInstance] ReadData].UserInfo.administerName;
     _userIDF.text = [[DataCenter sharedInstance] ReadData].UserInfo.loginName;
     _passwordF.text = [[DataCenter sharedInstance] ReadData].UserInfo.usePassword;

@@ -74,6 +74,12 @@
         [self performSegueWithIdentifier:@"FenxiYanpanToJifenVC" sender:Nil];
         
     }
+    else
+    {
+        [self performSegueWithIdentifier:@"FenxiYanpanToRedianVC" sender:Nil];
+        
+    }
+
     
 }
 
