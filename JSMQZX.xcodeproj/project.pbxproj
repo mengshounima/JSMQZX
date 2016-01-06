@@ -94,6 +94,7 @@
 		F0820C7C1C31FA03009D299D /* GanbuZoufangCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0820C7A1C31FA03009D299D /* GanbuZoufangCell.m */; };
 		F0820C7D1C31FA03009D299D /* GanbuZoufangCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */; };
 		F084677C1C107E4300BE1020 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F084677B1C107E4300BE1020 /* LoginVC.m */; };
+		F088E8BC1C3D616D008CCC66 /* LogConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E8BB1C3D616D008CCC66 /* LogConfirmView.m */; };
 		F08A0AB01C3BD5380094C70F /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F08A0AAF1C3BD5380094C70F /* mapapi.bundle */; };
 		F08A0AB31C3C00D50094C70F /* ReDianVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08A0AB21C3C00D50094C70F /* ReDianVC.m */; };
 		F08A0AB91C3C0EDE0094C70F /* HelperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08A0AB81C3C0EDE0094C70F /* HelperVC.m */; };
@@ -365,6 +366,8 @@
 		F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GanbuZoufangCell.xib; sourceTree = "<group>"; };
 		F084677A1C107E4300BE1020 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		F084677B1C107E4300BE1020 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		F088E8BA1C3D616D008CCC66 /* LogConfirmView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogConfirmView.h; sourceTree = "<group>"; };
+		F088E8BB1C3D616D008CCC66 /* LogConfirmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogConfirmView.m; sourceTree = "<group>"; };
 		F08A0AAF1C3BD5380094C70F /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		F08A0AB11C3C00D50094C70F /* ReDianVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReDianVC.h; sourceTree = "<group>"; };
 		F08A0AB21C3C00D50094C70F /* ReDianVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReDianVC.m; sourceTree = "<group>"; };
@@ -1073,6 +1076,8 @@
 				F06D953F1C1EF05D00FDE859 /* LogCell.h */,
 				F06D95401C1EF05D00FDE859 /* LogCell.m */,
 				F06D95411C1EF05D00FDE859 /* LogCell.xib */,
+				F088E8BA1C3D616D008CCC66 /* LogConfirmView.h */,
+				F088E8BB1C3D616D008CCC66 /* LogConfirmView.m */,
 			);
 			name = GeneralUser;
 			sourceTree = "<group>";
@@ -1476,6 +1481,7 @@
 				F0B725241C258E7F0027B1F1 /* MessageBoardTableVC.m in Sources */,
 				F0040F541C284660004DC329 /* RenderView.m in Sources */,
 				F03889E91C2AFE1F00FD190B /* JXBarChartView.m in Sources */,
+				F088E8BC1C3D616D008CCC66 /* LogConfirmView.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.mm in Sources */,
 				F0040F311C2824F6004DC329 /* EViewSwitcher.m in Sources */,
 				F004D4731C39963C006B7DA6 /* GanbuMingshiVC.m in Sources */,
@@ -1664,7 +1670,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JiaShan.MinQinZX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d7037236-d423-4168-8b34-dc1399c537f8";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1716,7 +1722,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JiaShan.MinQinZX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d7037236-d423-4168-8b34-dc1399c537f8";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

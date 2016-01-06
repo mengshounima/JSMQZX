@@ -15,6 +15,7 @@
     int f3;
     int page ;
     int rowscount;
+    NSString *ZhiWuStr;
 }
 @property (nonatomic,strong) NSArray *baodaoArr;
 @property (nonatomic,strong) NSArray *fuwuArr;
@@ -47,7 +48,9 @@
         f1 = 1;
         NSData* jsonData = [self XMLString:responseObject];
         _baodaoArr = (NSArray *)[jsonData objectFromJSONData];
-
+        if (_baodaoArr.count>0) {
+            ZhiWuStr = [_baodaoArr[0] objectForKey:@"bd_zw"];
+        }
         if (f1==1&&f2 ==1&&f3 ==1) {
             [MBProgressHUD hideHUD];
             [self initView];
@@ -112,7 +115,7 @@
 }
 
 -(void)initView{
-    
+    MyLog(@"传信息%@",_infoDic);
     UIScrollView *myScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     [self.view addSubview:myScroll];
     //党员基本信息
@@ -184,7 +187,8 @@
     
     //
     UILabel *zhiwuL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
-    zhiwuL.text = [NSString stringWithFormat:@"职务："];
+    
+    zhiwuL.text = [NSString stringWithFormat:@"职务：%@",ZhiWuStr];
     zhiwuL.font = fuwuFont;
     [view1 addSubview:zhiwuL];
     
@@ -235,8 +239,39 @@
         //星际
         
         UILabel *StarL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1+60, SCREEN_WIDTH-36, 20)];
-        StarL.text = [NSString stringWithFormat:@"星级：%@  人户分离：%@    备注：%@",[baodaoDic objectForKey:@"bd_pddj"],[baodaoDic objectForKey:@"bd_rhfl"],[baodaoDic objectForKey:@"bd_bz"]];
-        StarL.font = fuwuFont;
+        NSNumber *stars = [baodaoDic objectForKey:@"bd_pddj"];//⭐️
+        if (stars.intValue<40) {
+            StarL.text = [NSString stringWithFormat:@"星级：  人户分离：%@    备注：%@",[baodaoDic objectForKey:@"bd_rhfl"],[baodaoDic objectForKey:@"bd_bz"]];
+        }
+        else{
+            int starnumber = (stars.intValue-40)/30;
+            if (starnumber==0) {
+                StarL.text = [NSString stringWithFormat:@"星级：⭐️  人户分离：%@    备注：%@",[baodaoDic objectForKey:@"bd_rhfl"],[baodaoDic objectForKey:@"bd_bz"]];
+
+            }
+            else if (starnumber==1) {
+                StarL.text = [NSString stringWithFormat:@"星级：⭐️⭐️ 人户分离：%@    备注：%@",[baodaoDic objectForKey:@"bd_rhfl"],[baodaoDic objectForKey:@"bd_bz"]];
+                
+            }
+            else if (starnumber==2) {
+                StarL.text = [NSString stringWithFormat:@"星级：⭐️⭐️⭐️  人户分离：%@    备注：%@",[baodaoDic objectForKey:@"bd_rhfl"],[baodaoDic objectForKey:@"bd_bz"]];
+                
+            }
+            else if (starnumber==3) {
+                StarL.text = [NSString stringWithFormat:@"星级：⭐️⭐️⭐️⭐️  人户分离：%@    备注：%@",[baodaoDic objectForKey:@"bd_rhfl"],[baodaoDic objectForKey:@"bd_bz"]];
+                
+            }
+            else if (starnumber>3) {
+                StarL.text = [NSString stringWithFormat:@"星级：⭐️⭐️⭐️⭐️⭐️  人户分离：%@    备注：%@",[baodaoDic objectForKey:@"bd_rhfl"],[baodaoDic objectForKey:@"bd_bz"]];
+                
+            }
+
+
+
+
+            
+        }
+                StarL.font = fuwuFont;
         [view2 addSubview:StarL];
         
         Y = Y+80;

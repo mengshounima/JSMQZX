@@ -46,10 +46,9 @@
     page = 1;
     _mySearchBar.returnKeyType = UIReturnKeyDone;
 }
+
+
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    _mySearchBar.text = @"";
-    SearchShowArr = [LogArr mutableCopy];
-    [_LogTableView reloadData];
     [_mySearchBar resignFirstResponder];
 }
 -(void)initView{
@@ -273,10 +272,12 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView==_DWXiaShuTable) {
+        //互斥
+        [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
          [alert dismiss];
         if (indexPath.row == 0) {
             [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
-            [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
+            
             
             selectDWID =nil;//查询所有党员报到
         }
@@ -286,11 +287,13 @@
         }
     }
     else if (tableView==_DWQiTaTable){
+        //互斥
          [alert dismiss];
+        [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
+
         if (indexPath.row == 0) {
             [_DWQitaBtn setTitle:@"其他党委" forState:UIControlStateNormal];
-            [_DWXiaShuBtn setTitle:@"机关党委下属单位" forState:UIControlStateNormal];
-            selectDWID =nil;//查询所以党员报到
+                        selectDWID =nil;//查询所以党员报到
             
             
         }

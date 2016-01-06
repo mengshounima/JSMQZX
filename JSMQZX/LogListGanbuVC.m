@@ -36,6 +36,7 @@
 }
 -(void)initData{
     _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+    MyLog(@"%@",_ZJDArr);
     LogArr = [[NSMutableArray alloc] init];
     rowscount = 20;
     page = 1;
@@ -67,6 +68,7 @@
     [self setupRefreshView];
 
 }
+
 - (void)setupRefreshView
 {
     self.LogTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -74,6 +76,7 @@
     }];
     
 }
+
 
 -(void)getViewData{
        //获取日志
@@ -86,6 +89,7 @@
             [param setObject:@"" forKey:@"ssz_id"];//统计表类型
         }
         else{
+            MyLog(@"%@",_ZJDFlag);
             [param setObject:_ZJDFlag forKey:@"ssz_id"];//统计表类型
         }
         if (ISNULLSTR(_CUNFlag)) {
@@ -134,6 +138,7 @@
             [param setObject:@"" forKey:@"ssz_id"];//统计表类型
         }
         else{
+            MyLog(@"%@",_ZJDFlag);
             [param setObject:_ZJDFlag forKey:@"ssz_id"];//统计表类型
         }
         if (ISNULLSTR(_CUNFlag)) {
@@ -285,6 +290,7 @@
 //点击
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _ZJDTable) {
+        [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
         [alert dismiss];
         if (indexPath.row == 0) {
             _ZJDFlag = @"";
@@ -292,6 +298,7 @@
         }
         else{
             _ZJDFlag = [NSString stringWithFormat:@"%@",[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数
+            MyLog(@"%@",_ZJDFlag);
             [_ZJDBtn setTitle:[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_name"] forState: UIControlStateNormal ];
             //作请求，得到该镇内的村
             [self getCunData:_ZJDFlag];
@@ -343,8 +350,45 @@
 
 - (IBAction)clickSearchBtn:(id)sender{
     page = 1;
+    [LogArr removeAllObjects];//搜索时，数组清空
     [self getViewData];
-    
-    
 }
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+   
+    [_mySearchBar resignFirstResponder];
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if (ISNULLSTR(searchBar.text)) {
+         [self queryWithCondition:@""];
+        
+    }
+    else{
+        [self queryWithCondition:searchBar.text];
+    }
+}
+
+-(void)queryWithCondition:(NSString *)searchKey
+{//搜索网格名
+    [SearchShowArr removeAllObjects];
+    for (int i=0;i<[LogArr count];i++) {
+        NSDictionary *Single=[LogArr objectAtIndex:i];
+        
+        if (ISNULLSTR(searchKey)) {//没有值，显示全部
+            SearchShowArr = [LogArr mutableCopy];
+            break;
+        }
+        //公告标题搜索
+        NSString *namePinyinStr = [Single objectForKey:@"rz_zfnh_name"];
+        if (!ISNULLSTR(namePinyinStr)) {
+            if ([namePinyinStr rangeOfString:searchKey].location != NSNotFound) {
+                [SearchShowArr addObject:Single];
+                
+                continue;
+            }
+        }
+    }
+    [_LogTableView reloadData];
+}
+
 @end

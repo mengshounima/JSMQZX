@@ -9,7 +9,8 @@
 #import "AddVisitLogVC.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
-@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextViewDelegate,BMKLocationServiceDelegate>
+#import "LogConfirmView.h"
+@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextViewDelegate,BMKLocationServiceDelegate,LogConfirmDelegate>
 {
     UIDatePicker *datePicker;
     UITableView *_CommonTable;
@@ -181,6 +182,9 @@
     TypeBtn.backgroundColor = [UIColor clearColor];
     [TypeBtn addTarget:self action:@selector(clickType) forControlEvents:UIControlEventTouchUpInside];
     [_TypeView addSubview:TypeBtn];
+    _needTextView.layer.cornerRadius = 5;
+    _needTextView.layer.borderColor = [UIColor orangeColor].CGColor;
+    _needTextView.layer.borderWidth=1;
     _needTextView.delegate = self;
     _needTextView.returnKeyType = UIReturnKeyDone;
     //添加键盘监听
@@ -320,15 +324,25 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [alert dismiss];
     if (tableView == _CommonTable) {
-        if (indexPath.row!=0) {
-        
-            flagGongXin = [commomArr[indexPath.row-1] objectForKey:@"rdwt_id"];//用于提交接口参数
-            _commonF.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
+        if (indexPath.row==0)
+        {
+            flagGongXin = nil;
+            _commonF.text = @"不是共性问题";
 
            }
+        else{
+            
+            flagGongXin = [commomArr[indexPath.row-1] objectForKey:@"rdwt_id"];//用于提交接口参数
+            _commonF.text = [commomArr[indexPath.row-1] objectForKey:@"rdwt_name"];
+        }
+        
     }
     else{
-        if (!indexPath.row==0) {
+        if (indexPath.row==0) {
+            flagLeiBie = nil;
+            _typeF.text = @"未选择";
+        }
+        else{
             flagLeiBie = [typeArr[indexPath.row-1] objectForKey:@"mqlb_id"];//用于提交接口参数
             _typeF.text = [typeArr[indexPath.row-1] objectForKey:@"mqlb_name"];
         }
@@ -371,7 +385,7 @@
 //提交日志
 - (IBAction)clickSendBtn:(id)sender {
     if (ISNULL(_userLocation)) {
-        [MBProgressHUD showError:@"尚未定位成功，请稍等再试"];
+        [MBProgressHUD showError:@"尚未定位成功，请稍后再试"];
         return;
     }
     if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||ISNULL(flagGaiKuang)||ISNULL(flagChuli)) {

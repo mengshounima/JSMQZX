@@ -7,7 +7,7 @@
 //
 
 #import "mailInfoVC.h"
-#define mailFont [UIFont systemFontOfSize:14]
+#define mailFont [UIFont systemFontOfSize:13]
 @interface mailInfoVC ()
 @property (nonatomic,strong) NSDictionary *infoDic;
 @end
@@ -52,29 +52,105 @@
     return  jsonData;
 }
 -(void)initView{
-    //字体为system14
-        _IDLABEL.text = [NSString stringWithFormat:@"民生留言[ID:%@]",[_infoDic objectForKey:@"ID"]];
-    _zhuangtaiL.text = [NSString stringWithFormat:@"信件状态:%@",[_infoDic objectForKey:@"ZT"]];
-    _sendPeopleL.text = [NSString stringWithFormat:@"写信人:%@",[_infoDic objectForKey:@"username"]];
-    _dateL.text = [NSString stringWithFormat:@"来信时间:%@",[_infoDic objectForKey:@"add_date"]];
-    _addressL.text = [NSString stringWithFormat:@"联系地址:%@",[_infoDic objectForKey:@"Address"]];
-    _phoneL.text = [NSString stringWithFormat:@"联系电话:%@",[_infoDic objectForKey:@"tel"]];
-      _toPeopleL.text = [NSString stringWithFormat:@"受信人:%@",[_infoDic objectForKey:@"sjr_name"]];
     
-    float Y = CGRectGetMaxY(_toPeopleL.frame)+1;
+    UIScrollView *myScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    [self.view addSubview:myScroll];
+    UIView *backView = [[UIView alloc] init];
+    backView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    backView.layer.borderWidth = 1;
+    backView.layer.cornerRadius = 5;
+    [myScroll addSubview:backView];
+    //字体为system14
+    _IDLABEL = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, SCREEN_WIDTH-36, 20)];
+    _IDLABEL.text = [NSString stringWithFormat:@"民生留言[ID:%@]",[_infoDic objectForKey:@"ID"]];
+    _IDLABEL.textColor = choiceColor(16, 86, 148);
+    _IDLABEL.textAlignment = NSTextAlignmentCenter;
+    [backView addSubview:_IDLABEL];
+    _IDLABEL.font = [UIFont systemFontOfSize:16];
+    
+    
+    float Y = CGRectGetMaxY(_IDLABEL.frame);
+    //线
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
+    line.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line];
+    
+    
+    _zhuangtaiL =  [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
+    _zhuangtaiL.text = [NSString stringWithFormat:@"信件状态:%@",[_infoDic objectForKey:@"ZT"]];
+    [backView addSubview:_zhuangtaiL];
+    _zhuangtaiL.font = mailFont;
+    Y = CGRectGetMaxY(_zhuangtaiL.frame);
+    //线
+    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
+    line1.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line1];
+  
+    _sendPeopleL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
+    _sendPeopleL.text = [NSString stringWithFormat:@"写信人:%@",[_infoDic objectForKey:@"username"]];
+    [backView addSubview:_sendPeopleL];
+    _sendPeopleL.font = mailFont;
+    
+    Y = CGRectGetMaxY(_sendPeopleL.frame);
+    //线
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
+    line2.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line2];
+
+    _dateL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
+    _dateL.text = [NSString stringWithFormat:@"来信时间:%@",[_infoDic objectForKey:@"add_date"]];
+    [backView addSubview:_dateL];
+    _dateL.font = mailFont;
+    Y = CGRectGetMaxY(_dateL.frame);
+    //线
+    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
+    line3.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line3];
+    
+    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
+    _addressL.text = [NSString stringWithFormat:@"联系地址:%@",[_infoDic objectForKey:@"Address"]];
+    [backView addSubview:_addressL];
+    _addressL.font = mailFont;
+    
+    Y = CGRectGetMaxY(_addressL.frame);
+    //线
+    UIView *line13 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
+    line13.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line13];
+    
+    _phoneL =  [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
+    _phoneL.text = [NSString stringWithFormat:@"联系电话:%@",[_infoDic objectForKey:@"tel"]];
+    [backView addSubview:_phoneL];
+    _phoneL.font = mailFont;
+    Y = CGRectGetMaxY(_phoneL.frame);
+    //线
+    UIView *line4 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
+    line4.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line4];
+    
+    _toPeopleL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
+    _toPeopleL.text = [NSString stringWithFormat:@"受信人:%@",[_infoDic objectForKey:@"sjr_name"]];
+    [backView addSubview:_toPeopleL];
+    _toPeopleL.font = mailFont;
+    
+    Y = CGRectGetMaxY(_toPeopleL.frame);
+    //线
+    UIView *line5 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
+    line5.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line5];
+    
     //主题
     NSString *titleStr = [NSString stringWithFormat:@"信件主题:%@",[_infoDic objectForKey:@"mail_title"]];
     CGSize titleRect = [self sizeWithText:titleStr font:mailFont maxSize:CGSizeMake(SCREEN_WIDTH-36, MAXFLOAT)];
-    _titleL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y, SCREEN_WIDTH-36, titleRect.height)];
+    _titleL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, titleRect.height)];
     _titleL.font = mailFont;
     _titleL.numberOfLines = 0;
     _titleL.text = titleStr;
-    //_titleL.backgroundColor = [UIColor redColor];
-    [self.backView addSubview:_titleL];
+    [backView addSubview:_titleL];
     //分割线
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_titleL.frame), SCREEN_WIDTH-20, 1)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    [self.backView addSubview:line];
+    UIView *line6 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_titleL.frame), SCREEN_WIDTH-20, 1)];
+    line6.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line6];
     
     
     Y = CGRectGetMaxY(_titleL.frame)+1;
@@ -86,12 +162,12 @@
     _contentL.numberOfLines = 0;
     //_contentL.backgroundColor = [UIColor greenColor];
     _contentL.text = contentStr;
-    [self.backView addSubview:_contentL];
+    [backView addSubview:_contentL];
     
     //分割线
-    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentL.frame), SCREEN_WIDTH-20, 1)];
-    line1.backgroundColor = [UIColor lightGrayColor];
-    [self.backView addSubview:line1];
+    UIView *line7 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentL.frame), SCREEN_WIDTH-20, 1)];
+    line7.backgroundColor = [UIColor lightGrayColor];
+    [backView addSubview:line7];
     
     
     Y = CGRectGetMaxY(_contentL.frame)+1;
@@ -104,16 +180,19 @@
     //_reply.backgroundColor = [UIColor yellowColor];
     _reply.text = replyStr;
     
-    [self.backView addSubview:_reply];
+    [backView addSubview:_reply];
     
+    Y = CGRectGetMaxY(_reply.frame);
     //总高度
-    float allHeight = Y+replyRect.height+20;
+    float allHeight = Y+20;
     MyLog(@"%f",allHeight);
-    _myScrollView.contentSize = CGSizeMake(0, allHeight);
-    _backView.frame = CGRectMake(10, 20, SCREEN_WIDTH-20, allHeight);
-    _backView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _backView.layer.cornerRadius = 5;
-    _backView.layer.borderWidth = 1;
+    myScroll.contentSize = CGSizeMake(0, allHeight+40);
+    
+    
+    backView.frame = CGRectMake(10, 20, SCREEN_WIDTH-20, allHeight);
+    backView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    backView.layer.cornerRadius = 5;
+    backView.layer.borderWidth = 1;
 
     
 }

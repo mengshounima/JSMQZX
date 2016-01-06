@@ -171,6 +171,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 30;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 28;
 }
@@ -181,8 +184,8 @@
     return  label;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28)];
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.25, 4, SCREEN_WIDTH*0.5, 20)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.25, 0, SCREEN_WIDTH*0.5, 30)];
     [btn setBackgroundColor:[UIColor orangeColor]];
     
     btn.layer.cornerRadius = 6;
