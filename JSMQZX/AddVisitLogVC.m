@@ -31,6 +31,7 @@
     BMKLocationService *_locService;
     BMKUserLocation *_userLocation;
     NSMutableArray *imageNameArr;
+    BOOL flaghttp;
 }
 // 蒙版
 @property (strong, nonatomic) UIView *backView;
@@ -56,13 +57,13 @@
      [_locService stopUserLocationService];
 }
 
-
+//通知有照片拍得
 -(void)PicAddMethod:(NSNotification *)notify{
     [_picBtn setImage:[UIImage imageNamed:@"照片"] forState:UIControlStateNormal];
-    self.ImageArr = notify.object;
+    self.ImageArr = notify.object ;
     MyLog(@"添加的图片数量%lu",(unsigned long)self.ImageArr.count);
     _hasImage = true;
-    //将传过来的image转为data数组
+    //将传过来的uiimage转为data数组
     NSMutableArray *imageArrMut = [[NSMutableArray alloc] init];
     for (UIImage *image in self.ImageArr) {
         NSData *data;
@@ -74,6 +75,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     [self initData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PicAddMethod:) name:@"AddPicFinished" object:nil];
@@ -196,17 +198,6 @@
     _needTextView.layer.borderWidth=1;
     _needTextView.delegate = self;
     _needTextView.returnKeyType = UIReturnKeyDone;
-    //添加键盘监听
-    /*[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(changeContentViewPosition:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(changeContentViewPosition:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];*/
-    
     
     _CommonTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, 390) style:UITableViewStylePlain];
     _CommonTable.delegate = self;
@@ -510,8 +501,83 @@ errorCode:(BMKSearchErrorCode)error{
         [MBProgressHUD showError:@"内容未填写完整"];
         return;
     }
+    
+    [MBProgressHUD showMessage:@"提交中"];
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;
+    [param setObject:idStr forKey:@"userId"];
+    [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期***必填
+    [param setObject:flagNongHuID forKey:@"rz_zfnh"];//农户id***必填
+    
+    [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234***必填
+    
+    if (ISNULL(flagLeiBie)) {
+        [param setObject: @"" forKey:@"rz_mqlb"];//类别id
+    }
+    else{
+        [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id***
+    }
+    
+    
+    if (ISNULLSTR(_needTextView.text)) {
+        [param setObject:@"" forKey:@"rz_msxq"];//需求，文本*
+    }
+    else{
+        [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本*****非必填
+    }
+    
+    [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
+    
+    //随机走访，非固定
+    [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
+    if (ISNULL(flagGongXin)) {
+        [param setObject:@"" forKey:@"rz_sfgx"];//共性问题类别id****非必填
+    }
+    else{
+        [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id****非必填
+    }
+    
+    //最近办理时间，添加日志时。填现在时间
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSString *currentStr = [formatter stringFromDate:[NSDate date]];
+    
+    [param setObject:currentStr forKey:@"rz_zjblsj"];//日志最终办理结果的时间
+    [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.longitude] forKey:@"placeLongitude"];//经纬度
+    [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.latitude] forKey:@"placeLatitude"];
+    [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        //[MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        if (![resultID isEqualToString:@"-1"]) {
+            MyLog(@"创建的日志id:%@",resultID);
+            //若有照片则传照片
+            if (_hasImage) {
+                [self uploadImages1:resultID];
+            }else{
+                [MBProgressHUD hideHUD];
+                [MBProgressHUD showSuccess:@"提交成功"];
+                //跳出该控制器
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+        }
+        else{
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"日志提交失败，请重试1"];
+        }
+        
+        
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"请求失败"];
+    }];
+
+    
+    
     //弹框，确认提交日志
-    if (_backView == nil) {
+   /* if (_backView == nil) {
         _backView = [[UIView alloc] init];
         _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0];
         _backView.frame = [UIScreen mainScreen].bounds;
@@ -556,7 +622,7 @@ errorCode:(BMKSearchErrorCode)error{
 
         [dic setObject:[NSNumber numberWithInt:self.ImageArr.count] forKey:@"Location"];
         
-        _conFirmView updateView:<#(NSDictionary *)#>
+        [_conFirmView updateView:dic];
         _conFirmView.delegate = self;
         _conFirmView.frame = CGRectMake(0, SCREEN_HEIGHT, 0, 0);
     }
@@ -567,49 +633,53 @@ errorCode:(BMKSearchErrorCode)error{
         _conFirmView.frame = CGRectMake(0, 0, 0, 0);
         _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
     } completion:^(BOOL finished) {
-    }];
+    }];*/
     
 }
 -(void)uploadImages1:(NSString *)RiZiID{
+     flaghttp = true;
     for (int i = 0; i<self.ImageDataArr.count; i++) {
         //传文件名，得到picID
+        MyLog(@"------------------------------i:%d",i);
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
         NSString *date = [formatter stringFromDate:[NSDate date] ];
+        
         NSDate *nowDate = [NSDate date] ;
-        NSTimeInterval timeStamp= [nowDate timeIntervalSince1970];//当前日期转化为毫秒数
+        NSTimeInterval timeStamp= [nowDate timeIntervalSince1970];//当前日期转化为毫秒数,用作图片名称
         NSTimeInterval timeStampIN = timeStamp*1000000;
         NSMutableDictionary *paramPic = [[NSMutableDictionary alloc] init];
         [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
         [paramPic setObject:RiZiID forKey:@"rz_id"];
         
-        [paramPic setObject:[NSString stringWithFormat:@"%ld-%d",(long)timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i
+        [paramPic setObject:[NSString stringWithFormat:@"%lld-%d",(long long)timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i
 
         [paramPic setObject:date forKey:@"takeDate"];
         [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            MyLog(@"%@",responseObject);
-            NSData* jsonData = [self XMLString:responseObject];
-            NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-             MyLog(@"创建的图片id:%@",PicID);
-            if (![PicID isEqualToString:@"-1"]) {
-                if (i==self.ImageDataArr.count-1)  {
-                    //开始上传图片数据
-                    [imageNameArr addObject:PicID];
-                    NSArray *imageName = [imageNameArr copy];
-                    MyLog(@"最后一次添加后imageNameArr.count%d",imageNameArr.count);
-                    [self uploadImages2:imageName];
-                }
-                if (i<self.ImageDataArr.count-1) {
-                    
-                    [imageNameArr addObject:PicID];
-                    MyLog(@"imageNameArr.count%d",imageNameArr.count);
-                }
+            if (flaghttp) {
+                flaghttp =false;
+                NSData* jsonData = [self XMLString:responseObject];
+                NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                 
-            }
-            else{
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"日志提交失败，请重试2"];
-                return ;//退出循环
+                MyLog(@"/////////////////////////////PicID:%@",PicID);
+                MyLog(@"/////////////////////////////self.ImageDataArr.count:%lu",(unsigned long)self.ImageDataArr.count);
+                if (![PicID isEqualToString:@"-1"]) {
+                    [imageNameArr addObject:PicID];
+                    flaghttp = true;
+                    if (i==self.ImageDataArr.count-1)  {
+                        //开始上传图片数据
+                        NSArray *imageName = [imageNameArr copy];
+                        MyLog(@"最后一次添加后imageNameArr.count%d",imageName.count);
+                        [self uploadImages2:imageName];//传图片id
+                    }
+                }
+                else{
+                    [MBProgressHUD hideHUD];
+                    [MBProgressHUD showError:@"日志提交失败，请重试2"];
+                    return ;//退出循环
+                }
+
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [MBProgressHUD hideHUD];
@@ -628,7 +698,8 @@ errorCode:(BMKSearchErrorCode)error{
     NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
     //此param不传到服务器，但传入函数作为图片指定名称
     [param setObject:imageNameARR forKey:@"filename"];//传入多张图片名数组
-    //[MBProgressHUD showMessage:@"上传中"];
+     MyLog(@"/////////////////////////////创建的图片名称:%@",imageNameARR);
+    
     NSInteger count = self.ImageDataArr.count;
     //多张图片上传
     [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {

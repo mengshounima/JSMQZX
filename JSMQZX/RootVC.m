@@ -17,6 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //test
+    /*NSDate *nowDate = [NSDate date] ;
+    NSTimeInterval timeStamp= [nowDate timeIntervalSince1970];//当前日期转化为毫秒数,用作图片名称
+    NSTimeInterval timeStampIN = timeStamp*1000000;
+    MyLog(@"%lld",(long long)timeStampIN);*/
     [self initView];
 }
 -(void)initView{

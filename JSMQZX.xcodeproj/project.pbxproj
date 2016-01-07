@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2104C122E74782FB5C3F127A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBED7DC9802B13D42CCD37A /* libPods.a */; };
+		8E1ED7921C3E558100A6B4E2 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E1ED7911C3E558100A6B4E2 /* mapapi.bundle */; };
 		8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E414FCF1C227CA20001AA13 /* XMLDictionary.m */; };
 		8E9BD3461C2CCBC8007121D9 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD33F1C2CCBC8007121D9 /* BaiduMapAPI_Base.framework */; };
 		8E9BD3471C2CCBC8007121D9 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3401C2CCBC8007121D9 /* BaiduMapAPI_Cloud.framework */; };
@@ -95,7 +96,6 @@
 		F0820C7D1C31FA03009D299D /* GanbuZoufangCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0820C7B1C31FA03009D299D /* GanbuZoufangCell.xib */; };
 		F084677C1C107E4300BE1020 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F084677B1C107E4300BE1020 /* LoginVC.m */; };
 		F088E8BC1C3D616D008CCC66 /* LogConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E8BB1C3D616D008CCC66 /* LogConfirmView.m */; };
-		F08A0AB01C3BD5380094C70F /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F08A0AAF1C3BD5380094C70F /* mapapi.bundle */; };
 		F08A0AB31C3C00D50094C70F /* ReDianVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08A0AB21C3C00D50094C70F /* ReDianVC.m */; };
 		F08A0AB91C3C0EDE0094C70F /* HelperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F08A0AB81C3C0EDE0094C70F /* HelperVC.m */; };
 		F08A0ABE1C3C13AA0094C70F /* Help-1.htm in Resources */ = {isa = PBXBuildFile; fileRef = F08A0ABA1C3C13AA0094C70F /* Help-1.htm */; };
@@ -211,6 +211,7 @@
 /* Begin PBXFileReference section */
 		3BBED7DC9802B13D42CCD37A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB0B69A50406DD9FB2DD692 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8E1ED7911C3E558100A6B4E2 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = JSMQZX/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		8E414FCE1C227CA20001AA13 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		8E414FCF1C227CA20001AA13 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		8E9BD33F1C2CCBC8007121D9 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = JSMQZX/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
@@ -368,7 +369,6 @@
 		F084677B1C107E4300BE1020 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		F088E8BA1C3D616D008CCC66 /* LogConfirmView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogConfirmView.h; sourceTree = "<group>"; };
 		F088E8BB1C3D616D008CCC66 /* LogConfirmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogConfirmView.m; sourceTree = "<group>"; };
-		F08A0AAF1C3BD5380094C70F /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		F08A0AB11C3C00D50094C70F /* ReDianVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReDianVC.h; sourceTree = "<group>"; };
 		F08A0AB21C3C00D50094C70F /* ReDianVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReDianVC.m; sourceTree = "<group>"; };
 		F08A0AB71C3C0EDE0094C70F /* HelperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperVC.h; sourceTree = "<group>"; };
@@ -886,7 +886,7 @@
 		F07D72881C10756200C695CB = {
 			isa = PBXGroup;
 			children = (
-				F08A0AAF1C3BD5380094C70F /* mapapi.bundle */,
+				8E1ED7911C3E558100A6B4E2 /* mapapi.bundle */,
 				F07D72931C10756200C695CB /* JSMQZX */,
 				F07D72AD1C10756200C695CB /* JSMQZXTests */,
 				F07D72921C10756200C695CB /* Products */,
@@ -1282,8 +1282,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E1ED7921C3E558100A6B4E2 /* mapapi.bundle in Resources */,
 				F08A0B1D1C3C17570094C70F /* b5m.js in Resources */,
-				F08A0AB01C3BD5380094C70F /* mapapi.bundle in Resources */,
 				F08A0B111C3C17570094C70F /* 219fc8ca8e1d2f78d14c304d1ef19068-sz_71146.png in Resources */,
 				F08A0B081C3C17570094C70F /* 10b053fbb494dfd88432e6b72dd57006-sz_17353.png in Resources */,
 				F08A0AFE1C3C17570094C70F /* 3c5f21a1b35271747c197c8b1d18bf0c-sz_27249.png in Resources */,
