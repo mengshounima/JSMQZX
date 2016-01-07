@@ -157,7 +157,7 @@ static id _instace;
 - (void)requestOperaionManageWithURl:(NSString *)urlStr
                           httpMethod:(NSInteger)method
                           parameters:(id)parameters
-                            bodyData:(NSArray *)bodyData
+                            bodyData:(NSData *)bodyData
                           DataNumber:(NSInteger)number
                              success:(void (^)(AFHTTPRequestOperation*, id))success
                              failure:(void (^)(AFHTTPRequestOperation*, NSError *))failure
@@ -173,14 +173,14 @@ static id _instace;
             self.opManager.requestSerializer = [AFHTTPRequestSerializer serializer];
             self.opManager.responseSerializer = [AFHTTPResponseSerializer serializer];
             [self.opManager POST:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                for (int i =0 ; i<number; i++) {
+                /*for (int i =0 ; i<number; i++) {
                     NSString *fileName = [parameters objectForKey:@"filename"][i];
                     [formData appendPartWithFileData:bodyData[i] name:@"file" fileName:fileName mimeType:@"image/jpg"];
-                }
-                
-                /*if (bodyData) {
-                    [formData appendPartWithFileData:bodyData name:@"file" fileName:@".png" mimeType:@"image/png"];
                 }*/
+                
+                if (bodyData) {
+                    [formData appendPartWithFileData:bodyData name:@"file" fileName:[parameters objectForKey:@"filename"] mimeType:@"image/jpg"];
+                }
             } success:success failure:failure];
         }
         default:

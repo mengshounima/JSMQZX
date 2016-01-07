@@ -68,8 +68,11 @@
     if (tableView == _ZJDTable) {
         return _ZJDArr.count+1;
     }
-    else {
+    else  if (tableView == _CUNTable){
         return _CUNArr.count +1;
+    }
+    else{
+        return LogArr.count;
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -223,10 +226,9 @@
     }
     [paramTongji setObject:[NSNumber numberWithInteger:rowscount] forKey:@"rowscount"];//统计表类型
     [paramTongji setObject:[NSNumber numberWithInteger:page] forKey:@"page"];//统计表类型
+    
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisInfo" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
         [MBProgressHUD hideHUD];
-        
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *middleArr = (NSArray *)[jsonData objectFromJSONData];
         if (middleArr.count<rowscount) {

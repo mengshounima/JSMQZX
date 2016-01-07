@@ -47,7 +47,7 @@ typedef void(^PrepareExecuteBlock)(void);
 - (void)requestOperaionManageWithURl:(NSString *)urlStr
                           httpMethod:(NSInteger)method
                           parameters:(id)parameters
-                            bodyData:(NSArray *)bodyData
+                            bodyData:(NSData *)bodyData
                           DataNumber:(NSInteger)number
                              success:(void (^)(AFHTTPRequestOperation *operation, id response))success
                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

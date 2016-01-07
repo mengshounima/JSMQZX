@@ -31,7 +31,7 @@
     BMKLocationService *_locService;
     BMKUserLocation *_userLocation;
     NSMutableArray *imageNameArr;
-    BOOL flaghttp;
+    int flaghttp;
 }
 // 蒙版
 @property (strong, nonatomic) UIView *backView;
@@ -551,12 +551,13 @@ errorCode:(BMKSearchErrorCode)error{
         NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         if (![resultID isEqualToString:@"-1"]) {
             MyLog(@"创建的日志id:%@",resultID);
+            
             //若有照片则传照片
             if (_hasImage) {
                 [self uploadImages1:resultID];
             }else{
                 [MBProgressHUD hideHUD];
-                [MBProgressHUD showSuccess:@"提交成功"];
+                [MBProgressHUD showSuccess:@"日志提交成功"];
                 //跳出该控制器
                 [self.navigationController popViewControllerAnimated:YES];
                 
@@ -636,8 +637,28 @@ errorCode:(BMKSearchErrorCode)error{
     }];*/
     
 }
+/*
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://gowalla.com/friendships/request?user_id=1699"]];
+[request setHTTPMethod:@"POST"];
+
+NSDictionary *headers = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Token token=\"%@\"", kOAuthToken] forKey:@"Authorization"];
+[request setAllHTTPHeaderFields:headers];
+
+AFHTTPRequestOperation *operation = [AFHTTPRequestOperation operationWithRequest:request completion:^(NSURLRequest *request, NSHTTPURLResponse *response, NSData *data, NSError *error) {
+    BOOL HTTPStatusCodeIsAcceptable = [[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)] containsIndex:[response statusCode]];
+    if (HTTPStatusCodeIsAcceptable) {
+        NSLog(@"Friend Request Sent");
+    } else {
+        NSLog(@"[Error]: (%@ %@) %@", [request HTTPMethod], [[request URL] relativePath], error);
+    }
+}];
+
+NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+[queue addOperation:operation];*/
+
+
 -(void)uploadImages1:(NSString *)RiZiID{
-     flaghttp = true;
+    flaghttp = 0;
     for (int i = 0; i<self.ImageDataArr.count; i++) {
         //传文件名，得到picID
         MyLog(@"------------------------------i:%d",i);
@@ -657,8 +678,7 @@ errorCode:(BMKSearchErrorCode)error{
 
         [paramPic setObject:date forKey:@"takeDate"];
         [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (flaghttp) {
-                flaghttp =false;
+            flaghttp ++;
                 NSData* jsonData = [self XMLString:responseObject];
                 NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                 
@@ -666,8 +686,8 @@ errorCode:(BMKSearchErrorCode)error{
                 MyLog(@"/////////////////////////////self.ImageDataArr.count:%lu",(unsigned long)self.ImageDataArr.count);
                 if (![PicID isEqualToString:@"-1"]) {
                     [imageNameArr addObject:PicID];
-                    flaghttp = true;
-                    if (i==self.ImageDataArr.count-1)  {
+                    
+                    if (flaghttp==self.ImageDataArr.count)  {
                         //开始上传图片数据
                         NSArray *imageName = [imageNameArr copy];
                         MyLog(@"最后一次添加后imageNameArr.count%d",imageName.count);
@@ -676,54 +696,58 @@ errorCode:(BMKSearchErrorCode)error{
                 }
                 else{
                     [MBProgressHUD hideHUD];
-                    [MBProgressHUD showError:@"日志提交失败，请重试2"];
+                    [MBProgressHUD showError:@"图片上传失败，请重试2"];
                     return ;//退出循环
                 }
 
-            }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [MBProgressHUD hideHUD];
             [MBProgressHUD showError:@"请求失败"];
              return ;//退出循环
         }];
         
-
     }
-    
-    
-    
   }
 -(void)uploadImages2:(NSArray *)imageNameARR
 {
     NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
     //此param不传到服务器，但传入函数作为图片指定名称
-    [param setObject:imageNameARR forKey:@"filename"];//传入多张图片名数组
+    
      MyLog(@"/////////////////////////////创建的图片名称:%@",imageNameARR);
     
     NSInteger count = self.ImageDataArr.count;
-    //多张图片上传
-    [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
-        NSInteger resultStatusCode = [operation.response statusCode];
-         MyLog(@"result-----------------------------:%d",resultStatusCode);
-        if (resultStatusCode==200) {
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showSuccess:@"提交成功"];
-            //跳出该控制器
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else{
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showError:@"日志提交失败，请重试3"];
-        }
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        MyLog(@"错误i*/*******%@",error);
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:@"请求失败"];
-    }];
-    
+    flaghttp = 0;
+    for (int i = 0; i<count; i++) {
+        [param setObject:imageNameARR[i] forKey:@"filename"];//传入多张图片名数组
+        //多张图片上传
+        [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr[i] DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
+            flaghttp++;
+            NSInteger resultStatusCode = [operation.response statusCode];
+            MyLog(@"result-----------------------------:%d",resultStatusCode);
+            if (resultStatusCode==200) {
+                if (flaghttp==count) {
+                    //所有图片都已上传
+                    [MBProgressHUD hideHUD];
+                    [MBProgressHUD showSuccess:@"提交成功"];
+                    //跳出该控制器
+                    [self.navigationController popViewControllerAnimated:YES];
 
+                }
+            }
+            else{
+                [MBProgressHUD hideHUD];
+                [MBProgressHUD showError:@"图片上传失败，请重试3"];
+            }
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            MyLog(@"错误i*/*******%@",error);
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"请求失败"];
+        }];
+
+    }
+    
 }
 
 - (IBAction)clickPicBtn:(id)sender {
@@ -775,8 +799,11 @@ errorCode:(BMKSearchErrorCode)error{
     _btn3.selected = NO;
     _btn4.selected = YES;
 }
+
+//1.已办理 2.未办理，3.提交上一级 4.无诉求
 - (IBAction)clickbutton1:(id)sender {
-    flagChuli = [NSNumber numberWithInt:1];
+    //无诉求
+    flagChuli = [NSNumber numberWithInt:4];
     _button1.selected = YES;
     _button2.selected = NO;
     _button3.selected = NO;
@@ -784,27 +811,31 @@ errorCode:(BMKSearchErrorCode)error{
 }
 
 - (IBAction)clickbutton2:(id)sender {
-    flagChuli = [NSNumber numberWithInt:2];
+    //当场办结
+    flagChuli = [NSNumber numberWithInt:1];
     _button1.selected = NO;
     _button2.selected = YES;
     _button3.selected = NO;
     _button4.selected = NO;
 }
-- (IBAction)clickbutton4:(id)sender {
-    flagChuli = [NSNumber numberWithInt:4];
-    _button1.selected = NO;
-    _button2.selected = NO;
-    _button3.selected = NO;
-    _button4.selected = YES;
-}
+
 
 - (IBAction)clickbutton3:(id)sender {
-    flagChuli = [NSNumber numberWithInt:3];
+    //正在办理
+    flagChuli = [NSNumber numberWithInt:2];
     _button1.selected = NO;
     _button2.selected = NO;
     _button3.selected = YES;
     _button4.selected = NO;
 }
-
+//
+- (IBAction)clickbutton4:(id)sender {
+    // 提交上一级
+    flagChuli = [NSNumber numberWithInt:3];
+    _button1.selected = NO;
+    _button2.selected = NO;
+    _button3.selected = NO;
+    _button4.selected = YES;
+}
 
 @end

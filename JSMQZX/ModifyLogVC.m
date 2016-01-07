@@ -33,6 +33,7 @@
     BMKLocationService *_locService;
     BMKUserLocation *_userLocation;
      NSMutableArray *imageNameArr;
+    int flaghttp;
 }
 @property (nonatomic,strong) NSMutableArray *ImageDataArr;
 
@@ -312,6 +313,7 @@
         f1 = 1;
         if (f1==1&&f2==1&&f3==1&f4==1) {
             [MBProgressHUD hideHUD];
+            
         }
         NSData* jsonData = [self XMLString:responseObject];
         commomArr = (NSArray *)[jsonData objectFromJSONData];
@@ -326,6 +328,7 @@
         f2 = 1;
         if (f1==1&&f2==1&&f3==1&f4==1) {
             [MBProgressHUD hideHUD];
+        
         }
         
         NSData* jsonData = [self XMLString:responseObject];
@@ -342,6 +345,7 @@
         f3=1;
         if (f1==1&&f2==1&&f3==1&f4==1) {
             [MBProgressHUD hideHUD];
+           
         }
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *arr = (NSArray *)[jsonData objectFromJSONData];
@@ -360,9 +364,7 @@
     
     [[HttpClient httpClient] requestWithPath:@"/GetMQPhotosRzID" method:TBHttpRequestPost parameters:paramDetail prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         f4=1;
-        if (f1==1&&f2==1&&f3==1&f4==1) {
-            [MBProgressHUD hideHUD];
-        }
+        
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *resultArr = (NSArray *)[jsonData objectFromJSONData];
         if (resultArr.count>0) {
@@ -383,7 +385,27 @@
                 NSURL *URL = [NSURL URLWithString:allURL];
                 MyLog(@"--------%@",allURL);
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                //***
                 [manager downloadImageWithURL:URL options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                    
+                    NSLog(@"显示当前进度");
+                } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                    
+                    if (!ISNULL(image)) {
+                        [middleArr addObject:image];
+                        if (!ISNULL(middleArr)) {
+                            imageArr = [middleArr mutableCopy];
+                            
+                        }
+                    }
+                    
+                    NSLog(@"下载完成");
+                    
+                }];
+
+                ///**
+                
+               /* [manager downloadImageWithURL:URL options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                     
                 NSLog(@"显示当前进度");
                 } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -394,7 +416,7 @@
                     
                     NSLog(@"下载完成");
                     
-                }];
+                }];*/
                 
             }
             if (!ISNULL(middleArr)) {
@@ -409,14 +431,21 @@
                 self.ImageDataArr = [imageArrMut copy];
                 
             }
-            
-
+            //有图
+            if (f1==1&&f2==1&&f3==1&f4==1) {
+                [MBProgressHUD hideHUD];
+               
+            }
             
         }
         else{
+            //无图
             _hasImage = NO;
+            if (f1==1&&f2==1&&f3==1&f4==1) {
+                [MBProgressHUD hideHUD];
+            }
         }
-        //MyLog(@"%@",imageArr);//图片集合
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求失败"];
@@ -561,6 +590,7 @@
 }
 
 -(void)uploadImages1:(NSString *)RiZiID{
+     flaghttp = 0;
     for (int i = 0; i<self.ImageDataArr.count; i++) {
         //传文件名，得到picID
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -573,25 +603,26 @@
         [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
         [paramPic setObject:RiZiID forKey:@"rz_id"];
         
-        [paramPic setObject:[NSString stringWithFormat:@"%ld-%d",(long)timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i
-        [paramPic setObject:date forKey:@"takeDate"];
+        [paramPic setObject:[NSString stringWithFormat:@"%lld-%d",(long long)timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i        [paramPic setObject:date forKey:@"takeDate"];
         [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            MyLog(@"%@",responseObject);
+            flaghttp ++;
+           
             NSData* jsonData = [self XMLString:responseObject];
             NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
             MyLog(@"创建的图片id:%@",PicID);
-            if (![PicID isEqualToString:@"-1"]&&i==self.ImageDataArr.count-1)  {
-                //开始上传图片数据
+            if (![PicID isEqualToString:@"-1"]) {
                 [imageNameArr addObject:PicID];
-                NSArray *imageName = [imageNameArr copy];
-                [self uploadImages2:imageName];
+                
+                if (flaghttp==self.ImageDataArr.count)  {
+                    //开始上传图片数据
+                    NSArray *imageName = [imageNameArr copy];
+                    MyLog(@"最后一次添加后imageNameArr.count%d",imageName.count);
+                    [self uploadImages2:imageName];//传图片id
+                }
             }
-            if (![PicID isEqualToString:@"-1"]&&i<self.ImageDataArr.count-1) {
-                [imageNameArr addObject:PicID];
-            }
-            else if([PicID isEqualToString:@"-1"]){
+            else{
                 [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"日志提交失败，请重试2"];
+                [MBProgressHUD showError:@"图片上传失败，请重试2"];
                 return ;//退出循环
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -610,31 +641,41 @@
 {
     NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
     //此param不传到服务器，但传入函数作为图片指定名称
-    [param setObject:imageNameARR forKey:@"filename"];//传入多张图片名数组
-    //[MBProgressHUD showMessage:@"上传中"];
-    NSInteger count = self.ImageDataArr.count;
-    //多张图片上传
-    [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
-        NSInteger resultStatusCode = [operation.response statusCode];
-        MyLog(@"result-----------------------------:%d",resultStatusCode);
-        if (resultStatusCode==200) {
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showSuccess:@"提交成功"];
-            //跳出该控制器
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else{
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showError:@"日志提交失败，请重试3"];
-        }
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        MyLog(@"错误i*/*******%@",error);
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:@"请求失败"];
-    }];
     
+    MyLog(@"/////////////////////////////创建的图片名称:%@",imageNameARR);
+    
+    NSInteger count = self.ImageDataArr.count;
+    flaghttp = 0;
+    for (int i = 0; i<count; i++) {
+        [param setObject:imageNameARR[i] forKey:@"filename"];//传入多张图片名数组
+        //多张图片上传
+        [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr[i] DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
+            flaghttp++;
+            NSInteger resultStatusCode = [operation.response statusCode];
+            MyLog(@"result-----------------------------:%d",resultStatusCode);
+            if (resultStatusCode==200) {
+                if (flaghttp==count) {
+                    //所有图片都已上传
+                    [MBProgressHUD hideHUD];
+                    [MBProgressHUD showSuccess:@"提交成功"];
+                    //跳出该控制器
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }
+            }
+            else{
+                [MBProgressHUD hideHUD];
+                [MBProgressHUD showError:@"图片上传失败，请重试3"];
+            }
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            MyLog(@"错误i*/*******%@",error);
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"请求失败"];
+        }];
+        
+    }
     
 }
 

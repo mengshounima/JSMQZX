@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2104C122E74782FB5C3F127A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBED7DC9802B13D42CCD37A /* libPods.a */; };
-		8E1ED7921C3E558100A6B4E2 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E1ED7911C3E558100A6B4E2 /* mapapi.bundle */; };
 		8E414FD01C227CA20001AA13 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E414FCF1C227CA20001AA13 /* XMLDictionary.m */; };
 		8E9BD3461C2CCBC8007121D9 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD33F1C2CCBC8007121D9 /* BaiduMapAPI_Base.framework */; };
 		8E9BD3471C2CCBC8007121D9 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9BD3401C2CCBC8007121D9 /* BaiduMapAPI_Cloud.framework */; };
@@ -44,6 +43,7 @@
 		F004D4771C39964B006B7DA6 /* GanbuMingshiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D4751C39964B006B7DA6 /* GanbuMingshiCell.m */; };
 		F004D4781C39964B006B7DA6 /* GanbuMingshiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F004D4761C39964B006B7DA6 /* GanbuMingshiCell.xib */; };
 		F004D47E1C399C69006B7DA6 /* GuanliLogTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D47D1C399C69006B7DA6 /* GuanliLogTableVC.m */; };
+		F0083EEE1C3E76B400660024 /* mapapi.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = F0083EED1C3E76B400660024 /* mapapi.bundle */; };
 		F019E77B1C355B4F00A16BD9 /* GanbuLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F019E77A1C355B4F00A16BD9 /* GanbuLocationVC.m */; };
 		F020D9711C186FB5001B78E4 /* FarmersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F020D9701C186FB5001B78E4 /* FarmersVC.m */; };
 		F03009F21C12FAB600389829 /* UserTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F03009F11C12FAB600389829 /* UserTypeView.m */; };
@@ -211,7 +211,6 @@
 /* Begin PBXFileReference section */
 		3BBED7DC9802B13D42CCD37A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB0B69A50406DD9FB2DD692 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8E1ED7911C3E558100A6B4E2 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = JSMQZX/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		8E414FCE1C227CA20001AA13 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		8E414FCF1C227CA20001AA13 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		8E9BD33F1C2CCBC8007121D9 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = JSMQZX/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
@@ -273,6 +272,7 @@
 		F004D4761C39964B006B7DA6 /* GanbuMingshiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GanbuMingshiCell.xib; sourceTree = "<group>"; };
 		F004D47C1C399C69006B7DA6 /* GuanliLogTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuanliLogTableVC.h; sourceTree = "<group>"; };
 		F004D47D1C399C69006B7DA6 /* GuanliLogTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuanliLogTableVC.m; sourceTree = "<group>"; };
+		F0083EED1C3E76B400660024 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		F019E7791C355B4F00A16BD9 /* GanbuLocationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuLocationVC.h; sourceTree = "<group>"; };
 		F019E77A1C355B4F00A16BD9 /* GanbuLocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuLocationVC.m; sourceTree = "<group>"; };
 		F020D96F1C186FB5001B78E4 /* FarmersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FarmersVC.h; sourceTree = "<group>"; };
@@ -509,6 +509,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0083EEE1C3E76B400660024 /* mapapi.bundle in Frameworks */,
 				8E9BD3461C2CCBC8007121D9 /* BaiduMapAPI_Base.framework in Frameworks */,
 				8E9BD3471C2CCBC8007121D9 /* BaiduMapAPI_Cloud.framework in Frameworks */,
 				8E9BD3481C2CCBC8007121D9 /* BaiduMapAPI_Location.framework in Frameworks */,
@@ -552,6 +553,7 @@
 		76C34D3A50D276A8FF8B0B8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F0083EED1C3E76B400660024 /* mapapi.bundle */,
 				8E9BD33F1C2CCBC8007121D9 /* BaiduMapAPI_Base.framework */,
 				8E9BD3401C2CCBC8007121D9 /* BaiduMapAPI_Cloud.framework */,
 				8E9BD3411C2CCBC8007121D9 /* BaiduMapAPI_Location.framework */,
@@ -886,7 +888,6 @@
 		F07D72881C10756200C695CB = {
 			isa = PBXGroup;
 			children = (
-				8E1ED7911C3E558100A6B4E2 /* mapapi.bundle */,
 				F07D72931C10756200C695CB /* JSMQZX */,
 				F07D72AD1C10756200C695CB /* JSMQZXTests */,
 				F07D72921C10756200C695CB /* Products */,
@@ -1282,7 +1283,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E1ED7921C3E558100A6B4E2 /* mapapi.bundle in Resources */,
 				F08A0B1D1C3C17570094C70F /* b5m.js in Resources */,
 				F08A0B111C3C17570094C70F /* 219fc8ca8e1d2f78d14c304d1ef19068-sz_71146.png in Resources */,
 				F08A0B081C3C17570094C70F /* 10b053fbb494dfd88432e6b72dd57006-sz_17353.png in Resources */,
@@ -1670,7 +1670,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JiaShan.MinQinZX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d7037236-d423-4168-8b34-dc1399c537f8";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1722,7 +1722,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JiaShan.MinQinZX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d7037236-d423-4168-8b34-dc1399c537f8";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

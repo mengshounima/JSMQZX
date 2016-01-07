@@ -44,37 +44,39 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"随机走访";
-    }
-    else if (indexPath.row == 1){
         cell.textLabel.text = @"联系结对农户";
     }
-    else if (indexPath.row == 2){
+    else if (indexPath.row == 1){
         cell.textLabel.text = @"未走访农户";
     }
-    else{
+    else if (indexPath.row == 2){
         cell.textLabel.text = @"已走访农户";
+    }
+    else{
+        cell.textLabel.text = @"随机走访";
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//箭头
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        //添加走访日志
-        [self performSegueWithIdentifier:@"MinQinRiZhiToAddVisitLog" sender:nil];
-    }
-    else if (indexPath.row == 1){
         //联系结对农户 1
         [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:[NSNumber numberWithInteger:1]];
+       
     }
-    else if (indexPath.row == 2){
+    else if (indexPath.row == 1){
         //未走访 3
         [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:[NSNumber numberWithInteger:3]];
     }
-    else{
+    else if (indexPath.row == 2){
         //已走访 2
         [self performSegueWithIdentifier:@"MinQinRiZhiToSelectFarmer" sender:[NSNumber numberWithInteger:2]];
+
     }
+    else{
+        //添加走访日志
+        [self performSegueWithIdentifier:@"MinQinRiZhiToAddVisitLog" sender:nil];
+            }
 }
 
 

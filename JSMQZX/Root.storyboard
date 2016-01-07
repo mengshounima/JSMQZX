@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qM6-AL-sZY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qM6-AL-sZY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -1344,78 +1344,6 @@
                                     <constraint firstItem="xqV-0a-jST" firstAttribute="width" secondItem="hxt-Oi-wpf" secondAttribute="width" id="rHd-Bj-YCQ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLU-AQ-I80" userLabel="DownBack">
-                                <rect key="frame" x="0.0" y="181" width="320" height="387"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79A-Vt-81H">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAn-kV-nca" userLabel="left1">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="116"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ri-vG-jHG" customClass="HMTitleButton">
-                                                        <rect key="frame" x="60" y="23" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                        <state key="normal" title="民情日志" image="民情日志">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="clickminqingrizhi:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="aFQ-vj-vK0"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="2Ri-vG-jHG" secondAttribute="trailing" constant="30" id="Ez9-EO-J7G"/>
-                                                    <constraint firstItem="2Ri-vG-jHG" firstAttribute="centerY" secondItem="DAn-kV-nca" secondAttribute="centerY" id="PgB-s3-dsn"/>
-                                                    <constraint firstItem="2Ri-vG-jHG" firstAttribute="height" secondItem="DAn-kV-nca" secondAttribute="width" constant="-90" id="aoc-aA-LeZ"/>
-                                                    <constraint firstItem="2Ri-vG-jHG" firstAttribute="leading" secondItem="DAn-kV-nca" secondAttribute="leading" constant="60" id="kip-rl-S8q"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTy-17-Pjh" userLabel="right1">
-                                                <rect key="frame" x="160" y="0.0" width="160" height="116"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRD-i0-F79" customClass="HMTitleButton">
-                                                        <rect key="frame" x="30" y="23" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="日志办理" image="日志办理">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="clickrizhibanli:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="hUt-sg-MrY"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="bRD-i0-F79" firstAttribute="height" secondItem="kTy-17-Pjh" secondAttribute="width" constant="-90" id="gGF-dO-v1c"/>
-                                                    <constraint firstItem="bRD-i0-F79" firstAttribute="leading" secondItem="kTy-17-Pjh" secondAttribute="leading" constant="30" id="gjF-xK-X2d"/>
-                                                    <constraint firstAttribute="trailing" secondItem="bRD-i0-F79" secondAttribute="trailing" constant="60" id="nTo-ww-xpv"/>
-                                                    <constraint firstItem="bRD-i0-F79" firstAttribute="centerY" secondItem="kTy-17-Pjh" secondAttribute="centerY" id="wmc-PM-eD7"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="kTy-17-Pjh" firstAttribute="width" secondItem="DAn-kV-nca" secondAttribute="width" id="3Xx-S6-hHc"/>
-                                            <constraint firstItem="DAn-kV-nca" firstAttribute="top" secondItem="79A-Vt-81H" secondAttribute="top" id="4ck-fD-ivO"/>
-                                            <constraint firstItem="kTy-17-Pjh" firstAttribute="leading" secondItem="DAn-kV-nca" secondAttribute="trailing" id="UMv-uB-pnf"/>
-                                            <constraint firstAttribute="bottom" secondItem="kTy-17-Pjh" secondAttribute="bottom" id="fvs-ln-lbi"/>
-                                            <constraint firstItem="kTy-17-Pjh" firstAttribute="top" secondItem="79A-Vt-81H" secondAttribute="top" id="ha8-ZS-99K"/>
-                                            <constraint firstAttribute="trailing" secondItem="kTy-17-Pjh" secondAttribute="trailing" id="mEh-Pc-PB1"/>
-                                            <constraint firstItem="DAn-kV-nca" firstAttribute="leading" secondItem="79A-Vt-81H" secondAttribute="leading" id="ow4-iy-vWU"/>
-                                            <constraint firstAttribute="bottom" secondItem="DAn-kV-nca" secondAttribute="bottom" id="yvq-H3-U36"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="79A-Vt-81H" secondAttribute="trailing" id="cYH-FX-n1d"/>
-                                    <constraint firstItem="79A-Vt-81H" firstAttribute="height" secondItem="QLU-AQ-I80" secondAttribute="height" multiplier="0.3" id="eTk-b2-Bcf"/>
-                                    <constraint firstItem="79A-Vt-81H" firstAttribute="top" secondItem="QLU-AQ-I80" secondAttribute="top" id="kkb-VS-ZEL"/>
-                                    <constraint firstItem="79A-Vt-81H" firstAttribute="leading" secondItem="QLU-AQ-I80" secondAttribute="leading" id="t0M-8e-jeU"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A84-SN-aD5" userLabel="GuanliyuanV">
                                 <rect key="frame" x="0.0" y="181" width="320" height="387"/>
                                 <subviews>
@@ -1666,6 +1594,78 @@
                                     <constraint firstItem="vAA-5O-KU2" firstAttribute="height" secondItem="Kcz-Au-XU4" secondAttribute="height" id="uDx-qY-ezA"/>
                                     <constraint firstItem="FWA-ba-qvy" firstAttribute="top" secondItem="A84-SN-aD5" secondAttribute="top" id="uKJ-mk-Omo"/>
                                     <constraint firstItem="39F-A9-psd" firstAttribute="height" secondItem="FWA-ba-qvy" secondAttribute="height" id="xJn-sO-aeE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLU-AQ-I80" userLabel="DownBack">
+                                <rect key="frame" x="0.0" y="181" width="320" height="387"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79A-Vt-81H">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAn-kV-nca" userLabel="left1">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="116"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ri-vG-jHG" customClass="HMTitleButton">
+                                                        <rect key="frame" x="60" y="23" width="70" height="70"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                        <state key="normal" title="添加日志" image="民情日志">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clickminqingrizhi:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="aFQ-vj-vK0"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="2Ri-vG-jHG" secondAttribute="trailing" constant="30" id="Ez9-EO-J7G"/>
+                                                    <constraint firstItem="2Ri-vG-jHG" firstAttribute="centerY" secondItem="DAn-kV-nca" secondAttribute="centerY" id="PgB-s3-dsn"/>
+                                                    <constraint firstItem="2Ri-vG-jHG" firstAttribute="height" secondItem="DAn-kV-nca" secondAttribute="width" constant="-90" id="aoc-aA-LeZ"/>
+                                                    <constraint firstItem="2Ri-vG-jHG" firstAttribute="leading" secondItem="DAn-kV-nca" secondAttribute="leading" constant="60" id="kip-rl-S8q"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTy-17-Pjh" userLabel="right1">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="116"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRD-i0-F79" customClass="HMTitleButton">
+                                                        <rect key="frame" x="30" y="23" width="70" height="70"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <state key="normal" title="日志办理" image="日志办理">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clickrizhibanli:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="hUt-sg-MrY"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="bRD-i0-F79" firstAttribute="height" secondItem="kTy-17-Pjh" secondAttribute="width" constant="-90" id="gGF-dO-v1c"/>
+                                                    <constraint firstItem="bRD-i0-F79" firstAttribute="leading" secondItem="kTy-17-Pjh" secondAttribute="leading" constant="30" id="gjF-xK-X2d"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bRD-i0-F79" secondAttribute="trailing" constant="60" id="nTo-ww-xpv"/>
+                                                    <constraint firstItem="bRD-i0-F79" firstAttribute="centerY" secondItem="kTy-17-Pjh" secondAttribute="centerY" id="wmc-PM-eD7"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="kTy-17-Pjh" firstAttribute="width" secondItem="DAn-kV-nca" secondAttribute="width" id="3Xx-S6-hHc"/>
+                                            <constraint firstItem="DAn-kV-nca" firstAttribute="top" secondItem="79A-Vt-81H" secondAttribute="top" id="4ck-fD-ivO"/>
+                                            <constraint firstItem="kTy-17-Pjh" firstAttribute="leading" secondItem="DAn-kV-nca" secondAttribute="trailing" id="UMv-uB-pnf"/>
+                                            <constraint firstAttribute="bottom" secondItem="kTy-17-Pjh" secondAttribute="bottom" id="fvs-ln-lbi"/>
+                                            <constraint firstItem="kTy-17-Pjh" firstAttribute="top" secondItem="79A-Vt-81H" secondAttribute="top" id="ha8-ZS-99K"/>
+                                            <constraint firstAttribute="trailing" secondItem="kTy-17-Pjh" secondAttribute="trailing" id="mEh-Pc-PB1"/>
+                                            <constraint firstItem="DAn-kV-nca" firstAttribute="leading" secondItem="79A-Vt-81H" secondAttribute="leading" id="ow4-iy-vWU"/>
+                                            <constraint firstAttribute="bottom" secondItem="DAn-kV-nca" secondAttribute="bottom" id="yvq-H3-U36"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="79A-Vt-81H" secondAttribute="trailing" id="cYH-FX-n1d"/>
+                                    <constraint firstItem="79A-Vt-81H" firstAttribute="height" secondItem="QLU-AQ-I80" secondAttribute="height" multiplier="0.3" id="eTk-b2-Bcf"/>
+                                    <constraint firstItem="79A-Vt-81H" firstAttribute="top" secondItem="QLU-AQ-I80" secondAttribute="top" id="kkb-VS-ZEL"/>
+                                    <constraint firstItem="79A-Vt-81H" firstAttribute="leading" secondItem="QLU-AQ-I80" secondAttribute="leading" id="t0M-8e-jeU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -3880,9 +3880,9 @@
         <image name="阴天-选中" width="47" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xCO-Hq-o13"/>
         <segue reference="1Xb-gz-uZJ"/>
-        <segue reference="LLz-j9-6aK"/>
+        <segue reference="xCO-Hq-o13"/>
+        <segue reference="Bzt-VP-OEW"/>
         <segue reference="Yvx-EM-C67"/>
         <segue reference="FAg-9X-8fj"/>
     </inferredMetricsTieBreakers>
