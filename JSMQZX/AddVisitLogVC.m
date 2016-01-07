@@ -9,8 +9,9 @@
 #import "AddVisitLogVC.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
 #import "LogConfirmView.h"
-@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextViewDelegate,BMKLocationServiceDelegate,LogConfirmDelegate>
+@interface AddVisitLogVC ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextViewDelegate,BMKLocationServiceDelegate,LogConfirmDelegate,BMKGeoCodeSearchDelegate>
 {
     UIDatePicker *datePicker;
     UITableView *_CommonTable;
@@ -31,6 +32,10 @@
     BMKUserLocation *_userLocation;
     NSMutableArray *imageNameArr;
 }
+// 蒙版
+@property (strong, nonatomic) UIView *backView;
+@property (strong, nonatomic) LogConfirmView *conFirmView;
+@property (nonatomic,strong) BMKGeoCodeSearch *searcher;
 @end
 
 @implementation AddVisitLogVC
@@ -69,6 +74,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self initData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PicAddMethod:) name:@"AddPicFinished" object:nil];
     [self getViewNetData];
@@ -82,6 +88,9 @@
     f1 = 0;
     f2 = 0;
     _hasImage = false;
+    //初始化检索对象
+    _searcher =[[BMKGeoCodeSearch alloc]init];
+    _searcher.delegate = self;
 }
 -(void)getViewNetData{
     //获取共性问题list
@@ -212,8 +221,31 @@
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     _userLocation = userLocation;
+    //发起反向地理编码检索
+    BMKReverseGeoCodeOption *reverseGeoCodeSearchOption =[[BMKReverseGeoCodeOption alloc]init];
+    reverseGeoCodeSearchOption.reverseGeoPoint = _userLocation.location.coordinate;
+    BOOL flag = [_searcher reverseGeoCode:reverseGeoCodeSearchOption];
+    
+    if(flag)
+    {
+      NSLog(@"反geo检索发送成功");
+    }
+    else
+    {
+      NSLog(@"反geo检索发送失败");
+    }
 }
-
+//接收反向地理编码结果
+-(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:
+(BMKReverseGeoCodeResult *)result
+errorCode:(BMKSearchErrorCode)error{
+  if (error == BMK_SEARCH_NO_ERROR) {
+      //在此处理正常结果
+  }
+  else {
+      NSLog(@"抱歉，未找到结果");
+  }
+}
 -(void)changeContentViewPosition:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -381,22 +413,8 @@
         farmers.FlagSuiji = sender;
     }
 }
-
-//提交日志
-- (IBAction)clickSendBtn:(id)sender {
-    if (ISNULL(_userLocation)) {
-        [MBProgressHUD showError:@"尚未定位成功，请稍后再试"];
-        return;
-    }
-    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||ISNULL(flagGaiKuang)||ISNULL(flagChuli)) {
-        [MBProgressHUD showError:@"内容未填写完整"];
-        return;
-    }
-    //弹框，确认提交日志
-    
-    
-    
-    
+//代理提交方法
+-(void)clickSend{
     
     [MBProgressHUD showMessage:@"提交中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
@@ -404,7 +422,7 @@
     [param setObject:idStr forKey:@"userId"];
     [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期***必填
     [param setObject:flagNongHuID forKey:@"rz_zfnh"];//农户id***必填
-
+    
     [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234***必填
     
     if (ISNULL(flagLeiBie)) {
@@ -416,14 +434,14 @@
     
     
     if (ISNULLSTR(_needTextView.text)) {
-         [param setObject:@"" forKey:@"rz_msxq"];//需求，文本*
+        [param setObject:@"" forKey:@"rz_msxq"];//需求，文本*
     }
     else{
-         [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本*****非必填
+        [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本*****非必填
     }
     
     [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
-
+    
     //随机走访，非固定
     [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
     if (ISNULL(flagGongXin)) {
@@ -455,7 +473,7 @@
                 [MBProgressHUD showSuccess:@"提交成功"];
                 //跳出该控制器
                 [self.navigationController popViewControllerAnimated:YES];
-
+                
             }
         }
         else{
@@ -468,6 +486,87 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求失败"];
+    }];
+
+    
+}
+//代理取消方法
+-(void)clickCanceled{
+    [UIView animateWithDuration:0.2 animations:^{
+        _backView.backgroundColor = [UIColor colorWithRed:238 green:238 blue:238 alpha:0];
+        
+    } completion:^(BOOL finished) {
+        [_backView removeFromSuperview];
+    }];
+
+}
+//提交日志
+- (IBAction)clickSendBtn:(id)sender {
+    if (ISNULL(_userLocation)) {
+        [MBProgressHUD showError:@"尚未定位成功，请稍后再试"];
+        return;
+    }
+    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||ISNULL(flagGaiKuang)||ISNULL(flagChuli)) {
+        [MBProgressHUD showError:@"内容未填写完整"];
+        return;
+    }
+    //弹框，确认提交日志
+    if (_backView == nil) {
+        _backView = [[UIView alloc] init];
+        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0];
+        _backView.frame = [UIScreen mainScreen].bounds;
+    }
+    
+    if (_conFirmView == nil) {
+        _conFirmView = [[LogConfirmView alloc] init];
+        
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:_farmerF.text forKey:@"zfnh_name"];
+        if (flagGaiKuang.integerValue==1) {
+            [dic setObject: @"晴天"forKey:@"mqgk"];
+        }
+        else if (flagGaiKuang.integerValue==2) {
+            [dic setObject: @"多云" forKey:@"mqgk"];
+        }
+        else if (flagGaiKuang.integerValue==3) {
+            [dic setObject:@"阴天" forKey:@"mqgk"];
+        }
+        else {
+            [dic setObject:@"下雨" forKey:@"mqgk"];
+        }
+        
+        [dic setObject:_commonF.text forKey:@"sfgx"];
+        [dic setObject:_typeF.text forKey:@"leibie"];
+        [dic setObject:_needTextView.text forKey:@"need"];
+        
+        if (flagChuli.integerValue==1) {
+            [dic setObject: @"无诉求"forKey:@"ztxx"];
+        }
+        else if (flagChuli.integerValue==2) {
+            [dic setObject: @"当场办结（答复）" forKey:@"ztxx"];
+        }
+        else if (flagChuli.integerValue==3) {
+            [dic setObject:@"正在办理" forKey:@"ztxx"];
+        }
+        else {
+            [dic setObject:@"提交上一级党委政府研究" forKey:@"ztxx"];
+        }
+        [dic setObject:[[DataCenter sharedInstance] ReadData].UserInfo.name forKey:@"zfr"];
+        [dic setObject:[NSNumber numberWithInt:self.ImageArr.count] forKey:@"picsNumber"];
+
+        [dic setObject:[NSNumber numberWithInt:self.ImageArr.count] forKey:@"Location"];
+        
+        _conFirmView updateView:<#(NSDictionary *)#>
+        _conFirmView.delegate = self;
+        _conFirmView.frame = CGRectMake(0, SCREEN_HEIGHT, 0, 0);
+    }
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:_backView];//加上第一个蒙版
+    [window addSubview:_conFirmView];
+    [UIView animateWithDuration:0.2 animations:^{
+        _conFirmView.frame = CGRectMake(0, 0, 0, 0);
+        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
+    } completion:^(BOOL finished) {
     }];
     
 }

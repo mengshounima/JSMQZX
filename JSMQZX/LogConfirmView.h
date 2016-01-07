@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol LogConfirmDelegate
+@protocol LogConfirmDelegate <NSObject>
     -(void)clickSend;
-    -(void)clickCancel;
+    -(void)clickCanceled;
 @end
 
 
 @interface LogConfirmView : UIView
 //+(instancetype)initConfirmView;
+-(void)updateView:(NSDictionary *)infoDic;
 @property (nonatomic,weak) id <LogConfirmDelegate> delegate;
 @end

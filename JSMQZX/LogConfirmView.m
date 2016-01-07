@@ -14,8 +14,11 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    float Width = rect.size.width;
-    float Height = rect.size.height;
+   }
+
+-(void)updateView:(NSDictionary *)infoDic{
+    float Width = self.frame.size.width;
+    float Height = self.frame.size.height;
     //tite
     UILabel *IDL = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, Width-16, 40)];
     IDL.text = [NSString stringWithFormat:@"提交民情日志信息"];
@@ -28,7 +31,7 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, Y, Width, 1)];
     line.backgroundColor =  choiceColor(16, 86, 148);
     [self addSubview:line];
-
+    
     //scrollView显示日志信息
     UIScrollView *myScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, Y+1, Width, Height-70)];
     [self addSubview:myScroll];
@@ -61,63 +64,46 @@
     cancelBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [cancelBtn addTarget:self action:@selector(CancelConfirm:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:cancelBtn];
-}
+    
+    
+    /*
+     NSString *titleStr = [NSString stringWithFormat:@"信件主题:%@",[_infoDic objectForKey:@"mail_title"]];
+     CGSize titleRect = [self sizeWithText:titleStr font:mailFont maxSize:CGSizeMake(SCREEN_WIDTH-36, MAXFLOAT)];
+     _titleL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, titleRect.height)];
+     _titleL.font = mailFont;
+     _titleL.numberOfLines = 0;
+     _titleL.text = titleStr;
+     [backView addSubview:_titleL];
+     
+     */
 
+}
 //点击提交
 -(void)SendConfirm:(UIButton *)button{
+    [self dismisself];
     [self.delegate clickSend];
 }
 //点击取消
 -(void)CancelConfirm:(UIButton *)button{
-    [self.delegate clickCancel];
+     [self dismisself];
 }
+
+- (void)dismisself
+{
+    if ([self.delegate respondsToSelector:@selector(clickCanceled)]) {
+        [self.delegate clickCanceled];
+    }
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.frame = CGRectMake(0, self.height, 0, 0);
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
 /*
 +(instancetype)initConfirmView{
     
-
-     //addSubview:myScroll];
-    //党员基本信息
-    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(10, 20, SCREEN_WIDTH-20, 150)];
-    view1.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    view1.layer.borderWidth = 1;
-    view1.layer.cornerRadius = 5;
-    [myScroll addSubview:view1];
-    //tite
-    UILabel *IDL = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, SCREEN_WIDTH-36, 40)];
-    IDL.text = [NSString stringWithFormat:@"党员基本信息"];
-    IDL.textColor = choiceColor(16, 86, 148);
-    IDL.font = [UIFont systemFontOfSize:16];
-    IDL.textAlignment = NSTextAlignmentCenter;
-    [view1 addSubview:IDL];
-    
-    float Y = CGRectGetMaxY(IDL.frame);
-    //线
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    [view1 addSubview:line];
-    
-    //所属村/社区
-        //
-    UILabel *fuwushequL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, 20)];
-    fuwushequL.text = [NSString stringWithFormat:@"所属党委：%@",[_infoDic objectForKey:@"dw_name"]];
-    fuwushequL.font = fuwuFont;
-    [view1 addSubview:fuwushequL];
-    
-    Y = CGRectGetMaxY(fuwushequL.frame);
-    //line
-    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH-20, 1)];
-    line2.backgroundColor = [UIColor lightGrayColor];
-    [view1 addSubview:line2];
-    
-    
-    NSString *titleStr = [NSString stringWithFormat:@"信件主题:%@",[_infoDic objectForKey:@"mail_title"]];
-    CGSize titleRect = [self sizeWithText:titleStr font:mailFont maxSize:CGSizeMake(SCREEN_WIDTH-36, MAXFLOAT)];
-    _titleL = [[UILabel alloc] initWithFrame:CGRectMake(8, Y+1, SCREEN_WIDTH-36, titleRect.height)];
-    _titleL.font = mailFont;
-    _titleL.numberOfLines = 0;
-    _titleL.text = titleStr;
-    [backView addSubview:_titleL];
-
     return self;
 }*/
 @end
