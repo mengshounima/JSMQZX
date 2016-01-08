@@ -11,13 +11,18 @@
 #import "LogBanliGanbuTable.h"
 #import "HMTitleButton.h"
 #import "HongyunVC.h"
-@interface RootVC : UIViewController
+@interface RootVC : UIViewController<SetViewDelegate>
+// 蒙版
+@property (strong, nonatomic) UIView *backView;
+@property (strong, nonatomic) SetView *setView;
+
 - (IBAction)clickminqingrizhi:(id)sender;
 - (IBAction)clickrizhibanli:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *ganbuView;
 @property (weak, nonatomic) IBOutlet UIView *yonghuView;
 @property (weak, nonatomic) IBOutlet UIView *guanliyuanView;
 
+- (IBAction)clickRightBar:(id)sender;
 
 - (IBAction)clickGanbuZaizhidangyuan:(id)sender;
 - (IBAction)clickGanbuRizhibanli:(id)sender;

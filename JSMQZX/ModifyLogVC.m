@@ -123,6 +123,9 @@
     [TypeBtn addTarget:self action:@selector(clickType) forControlEvents:UIControlEventTouchUpInside];
     [_TypeView addSubview:TypeBtn];
     _needTextView.delegate = self;
+    _needTextView.layer.cornerRadius = 5;
+    _needTextView.layer.borderColor = [UIColor orangeColor].CGColor;
+    _needTextView.layer.borderWidth=1;
     _needTextView.returnKeyType = UIReturnKeyDone;
     //添加键盘监听
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -469,21 +472,35 @@
     else{
         _btn4.selected = YES;
     }
-    NSNumber *sfgx = [LogDic objectForKey:@"rz_sfgx"];
-    for (NSDictionary *dic in commomArr) {
-        NSNumber *rdwt_id = [dic objectForKey:@"rdwt_id"];
-        if (sfgx.integerValue == rdwt_id.integerValue) {
-            _commonF.text = [dic objectForKey:@"rdwt_name"];
+    NSString *sfgx = [LogDic objectForKey:@"rz_sfgx"];
+    if (!ISNULLSTR(sfgx)) {
+        for (NSDictionary *dic in commomArr) {
+            NSNumber *rdwt_id = [dic objectForKey:@"rdwt_id"];
+            if (sfgx.integerValue == rdwt_id.integerValue) {
+                _commonF.text = [dic objectForKey:@"rdwt_name"];
+            }
         }
+
     }
-    NSNumber *mqlb = [LogDic objectForKey:@"rz_mqlb"];
-    for (NSDictionary *dic in typeArr) {
-        NSNumber *mqlb_id = [dic objectForKey:@"mqlb_id"];
-        if (mqlb.integerValue == mqlb_id.integerValue) {
-            _typeF.text = [dic objectForKey:@"mqlb_name"];
+    else{
+         _commonF.text = @"不是共性问题";
+    }
+    NSString *mqlb = [LogDic objectForKey:@"rz_mqlb"];
+    if (!ISNULLSTR(mqlb)) {
+        for (NSDictionary *dic in typeArr) {
+            NSNumber *mqlb_id = [dic objectForKey:@"mqlb_id"];
+            if (mqlb.integerValue == mqlb_id.integerValue) {
+                _typeF.text = [dic objectForKey:@"mqlb_name"];
+            }
         }
+
     }
-    _needTextView.text = [LogDic objectForKey:@"rz_msxq"];
+    else{
+        _typeF.text = @"未选择";
+
+    }
+    
+        _needTextView.text = [LogDic objectForKey:@"rz_msxq"];
     NSNumber *ztxx = [LogDic objectForKey:@"rz_ztxx"];
     if (ztxx.integerValue == 1) {
         _button3.selected = YES;
@@ -590,26 +607,32 @@
 }
 
 -(void)uploadImages1:(NSString *)RiZiID{
-     flaghttp = 0;
+    flaghttp = 0;
     for (int i = 0; i<self.ImageDataArr.count; i++) {
         //传文件名，得到picID
+        MyLog(@"------------------------------i:%d",i);
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
         NSString *date = [formatter stringFromDate:[NSDate date] ];
+        
         NSDate *nowDate = [NSDate date] ;
-        NSTimeInterval timeStamp= [nowDate timeIntervalSince1970];//当前日期转化为毫秒数
+        NSTimeInterval timeStamp= [nowDate timeIntervalSince1970];//当前日期转化为毫秒数,用作图片名称
         NSTimeInterval timeStampIN = timeStamp*1000000;
         NSMutableDictionary *paramPic = [[NSMutableDictionary alloc] init];
         [paramPic setObject:[[DataCenter sharedInstance] ReadData ].UserInfo.useID  forKey:@"userId"];
         [paramPic setObject:RiZiID forKey:@"rz_id"];
         
-        [paramPic setObject:[NSString stringWithFormat:@"%lld-%d",(long long)timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i        [paramPic setObject:date forKey:@"takeDate"];
+        [paramPic setObject:[NSString stringWithFormat:@"%lld-%d",(long long)timeStampIN,i] forKey:@"photoCode"];//为了唯一性，毫秒数添加i
+        
+        [paramPic setObject:date forKey:@"takeDate"];
         [[HttpClient httpClient] requestWithPath:@"/CreateMQPhoto" method:TBHttpRequestPost parameters:paramPic prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             flaghttp ++;
-           
             NSData* jsonData = [self XMLString:responseObject];
             NSString *PicID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            MyLog(@"创建的图片id:%@",PicID);
+            
+            MyLog(@"/////////////////////////////PicID:%@",PicID);
+            MyLog(@"/////////////////////////////self.ImageDataArr.count:%lu",(unsigned long)self.ImageDataArr.count);
             if (![PicID isEqualToString:@"-1"]) {
                 [imageNameArr addObject:PicID];
                 
@@ -625,18 +648,16 @@
                 [MBProgressHUD showError:@"图片上传失败，请重试2"];
                 return ;//退出循环
             }
+            
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [MBProgressHUD hideHUD];
             [MBProgressHUD showError:@"请求失败"];
             return ;//退出循环
         }];
         
-        
     }
-    
-    
-    
 }
+
 -(void)uploadImages2:(NSArray *)imageNameARR
 {
     NSMutableDictionary *param =[[NSMutableDictionary alloc] init];

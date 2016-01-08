@@ -28,7 +28,6 @@
     if (isLogin) {
         [self autoLogin];
     }
-    
     [self initView];
 }
 //自动登录
@@ -45,11 +44,22 @@
     [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.usePassword forKey:@"Password"];
     [[HttpClient httpClient] requestWithPath:@"/CheckLogin" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];
-        //创建导航栏
-        HMNavigationController *rootNav;
-        UIStoryboard *schoolStoryBoard=[UIStoryboard storyboardWithName:@"Root" bundle:nil];
-        rootNav = [schoolStoryBoard instantiateInitialViewController];
-        [self presentViewController:rootNav animated:YES completion:nil];
+        NSData* jsonData = [self XMLString:responseObject];
+        NSDictionary *resultDic = [jsonData objectFromJSONData];
+        MyLog(@"------------------%@",resultDic);
+        if (ISNULL(resultDic)) {
+       
+            [MBProgressHUD showError:@"账号密码不匹配"];
+            _loginBtn.enabled = YES;
+        }
+        else{
+            //创建导航栏
+            HMNavigationController *rootNav;
+            UIStoryboard *schoolStoryBoard=[UIStoryboard storyboardWithName:@"Root" bundle:nil];
+            rootNav = [schoolStoryBoard instantiateInitialViewController];
+            [self presentViewController:rootNav animated:YES completion:nil];
+        }
+
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 
@@ -220,7 +230,6 @@
         NSDictionary *resultDic = [jsonData objectFromJSONData];
         MyLog(@"------------------%@",resultDic);
         if (ISNULL(resultDic)) {
-            [MBProgressHUD hideHUD];
             [MBProgressHUD showError:@"账号密码不匹配"];
         }
         else{

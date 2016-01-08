@@ -18,11 +18,12 @@
 @property (weak,nonatomic) NSString *loginName;//登录编号
 @property (weak,nonatomic) NSString *name;//真实姓名
 @property (weak,nonatomic) NSString *phone;//联系方式
-@property (weak,nonatomic) NSString *administerName;
+@property (weak,nonatomic) NSString *administerName;//镇，社区
 @property (weak,nonatomic) NSString *sex;
 @property (weak,nonatomic) NSString *ismember;//是否党员
 @property (weak,nonatomic) NSString *lastLoginTime;
-@property (weak,nonatomic) NSString *departmentName;//镇，社区
+@property (weak,nonatomic) NSString *departmentName;
+@property (weak,nonatomic) NSString *post;
 
 
 //单例模式

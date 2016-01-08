@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "modifyPasswordView.h"
 
-@interface UserInfoTableVC : UITableViewController
+@interface UserInfoTableVC : UITableViewController<modifyPasswordViewDelegate>
+// 蒙版
+@property (strong, nonatomic) UIView *backView;
+@property (strong, nonatomic) modifyPasswordView *modifyView;
+
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "UserInfoTableVC.h"
-
+#import "GDataXMLNode.h"
 @interface UserInfoTableVC ()
 
 @end
@@ -17,12 +17,92 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"用户信息";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    MyLog(@"%@",[[DataCenter sharedInstance] ReadData].UserInfo);
 }
+#pragma mark
+- (void)PasswordViewCancel
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        _backView.backgroundColor = [UIColor colorWithRed:238 green:238 blue:238 alpha:0];
+        
+    } completion:^(BOOL finished) {
+        [_backView removeFromSuperview];
+    }];
+}
+-(void)modify:(UIButton *)button
+{
+    if (_backView == nil) {
+        _backView = [[UIView alloc] init];
+        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0];
+        _backView.frame = [UIScreen mainScreen].bounds;
+    }
+    
+    if (_modifyView == nil) {
+        _modifyView = [modifyPasswordView modifyPasswordViewMethod];
+        _modifyView.delegate = self;
+        _modifyView.frame = CGRectMake(0, SCREEN_HEIGHT, 0, 0);
+    }
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:_backView];//加上第一个蒙版
+    [window addSubview:_modifyView];
+    [UIView animateWithDuration:0.3 animations:^{
+        _modifyView.frame = CGRectMake(0, 0, 0, 0);
+        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
+    } completion:^(BOOL finished) {
+    }];
+    
+}
+- (void)resureAleterPasswordWithOldPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+{
+    [self editPasswordWith:oldPassword new:newPassword];
+}
+
+//修改密码
+- (void)editPasswordWith:(NSString *)old new:(NSString *)new
+{
+    NSMutableDictionary *param =[[NSMutableDictionary alloc] init];
+
+    [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useID forKey:@"userId"];
+    [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"Type"];//Type
+    [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.loginName forKey:@"LoginName"];//LoginName
+    [param setObject:old forKey:@"Password"];//旧密码
+    [param setObject:new forKey:@"newPassword"];//新密码
+    [MBProgressHUD showMessage:@"修改中"];
+    
+    [[HttpClient httpClient] requestWithPath:@"/ChangePassword" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [MBProgressHUD hideHUD];
+        NSData* jsonData = [self XMLString:responseObject];
+        NSDictionary *resultDic = [jsonData objectFromJSONData];
+        [MBProgressHUD hideHUD];
+        MyLog(@"------------------%@",resultDic);
+        if (ISNULL(resultDic)) {
+            
+            [MBProgressHUD showError:@"操作失败"];
+        }
+        else{
+            [MBProgressHUD showSuccess:@"修改成功"];
+            [[DataCenter sharedInstance] writeData:resultDic];
+            }
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        MyLog(@"%@",error);
+        [MBProgressHUD hideHUD];
+    }];
+}
+
+-(NSData *)XMLString:(NSData *)data
+{
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data  options:0 error:nil];
+    //获取根节点（Users）
+    GDataXMLElement *rootElement = [doc rootElement];
+    NSArray *users = [rootElement children];
+    GDataXMLNode  *contentNode = users[0];
+    NSString *str =  contentNode.XMLString;
+    NSData* jsonData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    return  jsonData;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -35,7 +115,24 @@
 #warning Incomplete implementation, return the number of rows
     return 7;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 30;
+}
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *footerView = [[UIView alloc] init];
+    UIButton *modifyBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.25, 0, SCREEN_WIDTH*0.5, 30)];
+    modifyBtn.layer.cornerRadius = 6;
+    [modifyBtn setTitle:@"修改密码" forState:UIControlStateNormal];
+    
+    [modifyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [modifyBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [modifyBtn setBackgroundColor:[UIColor orangeColor]];
+    [modifyBtn addTarget:self action:@selector(modify:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:modifyBtn];
+    
+    return footerView;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"UaerInfoCell";
@@ -54,13 +151,13 @@
     }
     else if (indexPath.row ==2)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"镇、社区:%@",[[DataCenter sharedInstance] ReadData].UserInfo.departmentName];
+        cell.textLabel.text = [NSString stringWithFormat:@"镇、社区:%@",[[DataCenter sharedInstance] ReadData].UserInfo.administerName];
         ;
         
     }
     else if (indexPath.row ==3)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"职务:%@",[[DataCenter sharedInstance] ReadData].UserInfo.administerName];
+        cell.textLabel.text = [NSString stringWithFormat:@"职务:%@",[[DataCenter sharedInstance] ReadData].UserInfo.post];
         ;
         
     }

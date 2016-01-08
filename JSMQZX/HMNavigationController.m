@@ -28,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+       // self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"设置" highImageName:@"设置-灰" target:self action:@selector(Setting)];
+
     
 }
 
@@ -89,6 +91,8 @@
     
     // 技巧: 为了让某个按钮的背景消失, 可以设置一张完全透明的背景图片
     [appearance setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];*/
+    
+    
 }
 
 /**

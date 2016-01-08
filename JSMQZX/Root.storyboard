@@ -10,8 +10,9 @@
         <!--用户信息-->
         <scene sceneID="mXA-9P-eMb">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Fl-Da-QSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="9AU-bJ-a45" customClass="UserInfoTableVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gIj-8v-YLJ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="44" id="gIj-8v-YLJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -22,7 +23,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="用户信息" id="0D9-s3-h8q"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Fl-Da-QSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-713" y="-901"/>
         </scene>
@@ -1693,7 +1693,14 @@
                             <constraint firstAttribute="trailing" secondItem="A84-SN-aD5" secondAttribute="trailing" id="mXY-gE-CLL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="民情在线(干部版)" id="8O0-iI-A3R"/>
+                    <navigationItem key="navigationItem" title="民情在线(干部版)" id="8O0-iI-A3R">
+                        <barButtonItem key="rightBarButtonItem" image="设置" id="pT1-yY-iEU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="clickRightBar:" destination="6Tn-gA-uNW" id="xSS-CS-DvB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="ganbuView" destination="L3p-Nr-Da4" id="3y9-1N-bap"/>
                         <outlet property="ganbufenxiyanpan" destination="Q9t-GW-bDZ" id="rHt-1z-MSf"/>
@@ -1727,7 +1734,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA2-WS-ewd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17" y="-334"/>
+            <point key="canvasLocation" x="-486" y="-466"/>
         </scene>
         <!--党代表接待日-->
         <scene sceneID="uKE-6e-eGZ">
@@ -2007,11 +2014,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4xu-Fu-xhM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Q9m-gh-R1A">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca8-2Y-WHS" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -2336,10 +2343,10 @@
                                                         </constraints>
                                                     </view>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wb1-1m-1ZH">
-                                                        <rect key="frame" x="8" y="240" width="382" height="150"/>
+                                                        <rect key="frame" x="8" y="240" width="382" height="145"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="150" id="tZA-LB-Gcj"/>
+                                                            <constraint firstAttribute="height" constant="145" id="tZA-LB-Gcj"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2381,11 +2388,11 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJE-jR-lhA" userLabel="btn2View">
-                                                                <rect key="frame" x="80" y="0.0" width="288" height="100"/>
+                                                                <rect key="frame" x="80" y="0.0" width="308" height="100"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8B-DR-qCw" userLabel="Button1">
-                                                                        <rect key="frame" x="8" y="0.0" width="272" height="25"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <rect key="frame" x="8" y="0.0" width="292" height="25"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <state key="normal" title="当场办结（答复）" image="勾选-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
@@ -2395,8 +2402,8 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlQ-m6-YDL" userLabel="Button2">
-                                                                        <rect key="frame" x="8" y="25" width="272" height="25"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <rect key="frame" x="8" y="25" width="292" height="25"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <state key="normal" title="正在办理" image="勾选-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
@@ -2406,8 +2413,8 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZD-bd-SaI" userLabel="Button3">
-                                                                        <rect key="frame" x="8" y="50" width="272" height="25"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <rect key="frame" x="8" y="50" width="292" height="25"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <state key="normal" title="已办理（非当场办结）" image="勾选-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
@@ -2417,8 +2424,8 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTA-5A-f0W" userLabel="Button4">
-                                                                        <rect key="frame" x="8" y="75" width="272" height="25"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <rect key="frame" x="8" y="75" width="292" height="25"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <state key="normal" title="提交上一级党委政府研究" image="勾选-未选中">
                                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
@@ -2457,7 +2464,7 @@
                                                             <constraint firstItem="TJE-jR-lhA" firstAttribute="top" secondItem="jJX-Wj-8K3" secondAttribute="top" id="RTR-E5-Gvb"/>
                                                             <constraint firstAttribute="bottom" secondItem="TJE-jR-lhA" secondAttribute="bottom" id="XEf-e3-czZ"/>
                                                             <constraint firstItem="k3I-uj-mdl" firstAttribute="top" secondItem="jJX-Wj-8K3" secondAttribute="top" constant="39" id="Xtx-iC-1S2"/>
-                                                            <constraint firstAttribute="trailing" secondItem="TJE-jR-lhA" secondAttribute="trailing" constant="30" id="quH-AV-uQ2"/>
+                                                            <constraint firstAttribute="trailing" secondItem="TJE-jR-lhA" secondAttribute="trailing" constant="10" id="quH-AV-uQ2"/>
                                                             <constraint firstAttribute="bottom" secondItem="k3I-uj-mdl" secondAttribute="bottom" constant="40" id="xat-FJ-8TX"/>
                                                         </constraints>
                                                     </view>
@@ -2538,7 +2545,7 @@
                                                     <constraint firstItem="n8F-0b-1sh" firstAttribute="leading" secondItem="91U-KC-lQ3" secondAttribute="leading" id="o8N-O5-p9M"/>
                                                     <constraint firstItem="JK1-z5-YAS" firstAttribute="top" secondItem="wYw-a8-Js6" secondAttribute="bottom" id="q2P-h5-Wjp"/>
                                                     <constraint firstItem="Wb1-1m-1ZH" firstAttribute="leading" secondItem="91U-KC-lQ3" secondAttribute="leading" constant="8" id="rRZ-WQ-RcH"/>
-                                                    <constraint firstItem="Acg-kF-4OZ" firstAttribute="top" secondItem="Wb1-1m-1ZH" secondAttribute="bottom" id="trZ-hZ-jsU"/>
+                                                    <constraint firstItem="Acg-kF-4OZ" firstAttribute="top" secondItem="Wb1-1m-1ZH" secondAttribute="bottom" constant="5" id="trZ-hZ-jsU"/>
                                                     <constraint firstItem="wYw-a8-Js6" firstAttribute="leading" secondItem="91U-KC-lQ3" secondAttribute="leading" id="vS3-Ca-iVf"/>
                                                     <constraint firstItem="Wb1-1m-1ZH" firstAttribute="top" secondItem="soD-0v-0BQ" secondAttribute="bottom" id="vsr-Zk-XZ2"/>
                                                     <constraint firstAttribute="trailing" secondItem="bUx-2A-v9d" secondAttribute="trailing" id="x1W-cD-w54"/>
@@ -2622,7 +2629,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4p-9P-FbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="643" y="-1569"/>
+            <point key="canvasLocation" x="617" y="-1649"/>
         </scene>
         <!--农户信息-->
         <scene sceneID="AQo-wN-ohc">
@@ -3227,7 +3234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbE-6d-BTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="637" y="-685"/>
+            <point key="canvasLocation" x="660" y="-567"/>
         </scene>
         <!--日志照片添加-->
         <scene sceneID="Z2x-J1-S3t">
@@ -3876,13 +3883,14 @@
         <image name="民情日志" width="57" height="57"/>
         <image name="民生动态" width="57" height="57"/>
         <image name="相机蓝色" width="48" height="49"/>
+        <image name="设置" width="26" height="26"/>
         <image name="阴天-未选中" width="47" height="23"/>
         <image name="阴天-选中" width="47" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1Xb-gz-uZJ"/>
-        <segue reference="xCO-Hq-o13"/>
-        <segue reference="Bzt-VP-OEW"/>
+        <segue reference="v81-6d-mO3"/>
+        <segue reference="LLz-j9-6aK"/>
         <segue reference="Yvx-EM-C67"/>
         <segue reference="FAg-9X-8fj"/>
     </inferredMetricsTieBreakers>
