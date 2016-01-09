@@ -32,6 +32,7 @@
     BMKUserLocation *_userLocation;
     NSMutableArray *imageNameArr;
     int flaghttp;
+    NSString *locationStr;
 }
 // 蒙版
 @property (strong, nonatomic) UIView *backView;
@@ -228,10 +229,25 @@
 }
 //接收反向地理编码结果
 -(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:
-(BMKReverseGeoCodeResult *)result
-errorCode:(BMKSearchErrorCode)error{
+(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
   if (error == BMK_SEARCH_NO_ERROR) {
       //在此处理正常结果
+      NSString *addressStr =result.address;
+      NSString *name;
+      if ([result.poiList count]>0) {
+          BMKPoiInfo *poiInfo = result.poiList[0];
+          name = poiInfo.name;
+      }
+      else{
+          name = result.addressDetail.streetName;
+      }
+      if (!ISNULLSTR(name)) {
+          locationStr = [NSString stringWithFormat:@"%@%@",addressStr,name];
+      }
+      else{
+          locationStr = addressStr;
+      }
+      
   }
   else {
       NSLog(@"抱歉，未找到结果");
@@ -456,101 +472,6 @@ errorCode:(BMKSearchErrorCode)error{
         NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         if (![resultID isEqualToString:@"-1"]) {
             MyLog(@"创建的日志id:%@",resultID);
-            //若有照片则传照片
-            if (_hasImage) {
-                [self uploadImages1:resultID];
-            }else{
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showSuccess:@"提交成功"];
-                //跳出该控制器
-                [self.navigationController popViewControllerAnimated:YES];
-                
-            }
-        }
-        else{
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showError:@"日志提交失败，请重试1"];
-        }
-        
-        
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:@"请求失败"];
-    }];
-
-    
-}
-//代理取消方法
--(void)clickCanceled{
-    [UIView animateWithDuration:0.2 animations:^{
-        _backView.backgroundColor = [UIColor colorWithRed:238 green:238 blue:238 alpha:0];
-        
-    } completion:^(BOOL finished) {
-        [_backView removeFromSuperview];
-    }];
-
-}
-//提交日志
-- (IBAction)clickSendBtn:(id)sender {
-    if (ISNULL(_userLocation)) {
-        [MBProgressHUD showError:@"尚未定位成功，请稍后再试"];
-        return;
-    }
-    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||ISNULL(flagGaiKuang)||ISNULL(flagChuli)) {
-        [MBProgressHUD showError:@"内容未填写完整"];
-        return;
-    }
-    
-    [MBProgressHUD showMessage:@"提交中"];
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;
-    [param setObject:idStr forKey:@"userId"];
-    [param setObject:_dateF.text forKey:@"rz_zfrq"];//日期***必填
-    [param setObject:flagNongHuID forKey:@"rz_zfnh"];//农户id***必填
-    
-    [param setObject:flagGaiKuang forKey:@"rz_mqgk"];//民情概况int1234***必填
-    
-    if (ISNULL(flagLeiBie)) {
-        [param setObject: @"" forKey:@"rz_mqlb"];//类别id
-    }
-    else{
-        [param setObject:flagLeiBie forKey:@"rz_mqlb"];//类别id***
-    }
-    
-    
-    if (ISNULLSTR(_needTextView.text)) {
-        [param setObject:@"" forKey:@"rz_msxq"];//需求，文本*
-    }
-    else{
-        [param setObject:_needTextView.text forKey:@"rz_msxq"];//需求，文本*****非必填
-    }
-    
-    [param setObject:flagChuli forKey:@"rz_ztxx"];//状态信息（处理结果）****非必填有初始化
-    
-    //随机走访，非固定
-    [param setObject:@"2" forKey:@"rz_xxlb"];//日志信息类别 1为固定走访的，2为非固定走访的
-    if (ISNULL(flagGongXin)) {
-        [param setObject:@"" forKey:@"rz_sfgx"];//共性问题类别id****非必填
-    }
-    else{
-        [param setObject:flagGongXin forKey:@"rz_sfgx"];//共性问题类别id****非必填
-    }
-    
-    //最近办理时间，添加日志时。填现在时间
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
-    NSString *currentStr = [formatter stringFromDate:[NSDate date]];
-    
-    [param setObject:currentStr forKey:@"rz_zjblsj"];//日志最终办理结果的时间
-    [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.longitude] forKey:@"placeLongitude"];//经纬度
-    [param setObject:[NSNumber numberWithDouble:_userLocation.location.coordinate.latitude] forKey:@"placeLatitude"];
-    [[HttpClient httpClient] requestWithPath:@"/CreateMQLogRecord" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        //[MBProgressHUD hideHUD];
-        NSData* jsonData = [self XMLString:responseObject];
-        NSString *resultID  =[[ NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        if (![resultID isEqualToString:@"-1"]) {
-            MyLog(@"创建的日志id:%@",resultID);
             
             //若有照片则传照片
             if (_hasImage) {
@@ -574,22 +495,45 @@ errorCode:(BMKSearchErrorCode)error{
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求失败"];
     }];
+    
+    
+}
+//代理取消方法
+-(void)clickCanceled{
+    [UIView animateWithDuration:0.2 animations:^{
+        _backView.backgroundColor = [UIColor colorWithRed:238 green:238 blue:238 alpha:0];
+        
+    } completion:^(BOOL finished) {
+        [_backView removeFromSuperview];
+    }];
 
+}
+//提交日志
+- (IBAction)clickSendBtn:(id)sender {
+    if (ISNULL(_userLocation)) {
+        [MBProgressHUD showError:@"尚未定位成功，请稍后再试"];
+        return;
+    }
+    if (ISNULLSTR(_dateF.text)||ISNULLSTR(_farmerF.text)||ISNULL(flagGaiKuang)||ISNULL(flagChuli)) {
+        [MBProgressHUD showError:@"内容未填写完整"];
+        return;
+    }
+    
     
     
     //弹框，确认提交日志
-   /* if (_backView == nil) {
+    if (_backView == nil) {
         _backView = [[UIView alloc] init];
-        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0];
         _backView.frame = [UIScreen mainScreen].bounds;
     }
-    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (_conFirmView == nil) {
         _conFirmView = [[LogConfirmView alloc] init];
         
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setObject:_farmerF.text forKey:@"zfnh_name"];
-        if (flagGaiKuang.integerValue==1) {
+       
+        [dic setObject:_dateF.text forKey:@"date"]; //走访日期
+        [dic setObject:_farmerF.text forKey:@"zfnh_name"];//走访农户
+        if (flagGaiKuang.integerValue==1) {//概况
             [dic setObject: @"晴天"forKey:@"mqgk"];
         }
         else if (flagGaiKuang.integerValue==2) {
@@ -602,11 +546,11 @@ errorCode:(BMKSearchErrorCode)error{
             [dic setObject:@"下雨" forKey:@"mqgk"];
         }
         
-        [dic setObject:_commonF.text forKey:@"sfgx"];
-        [dic setObject:_typeF.text forKey:@"leibie"];
-        [dic setObject:_needTextView.text forKey:@"need"];
+        [dic setObject:_commonF.text forKey:@"sfgx"];//共性
+        [dic setObject:_typeF.text forKey:@"leibie"];//类别
+        [dic setObject:_needTextView.text forKey:@"need"];//需求
         
-        if (flagChuli.integerValue==1) {
+        if (flagChuli.integerValue==1) {//结果
             [dic setObject: @"无诉求"forKey:@"ztxx"];
         }
         else if (flagChuli.integerValue==2) {
@@ -618,44 +562,24 @@ errorCode:(BMKSearchErrorCode)error{
         else {
             [dic setObject:@"提交上一级党委政府研究" forKey:@"ztxx"];
         }
-        [dic setObject:[[DataCenter sharedInstance] ReadData].UserInfo.name forKey:@"zfr"];
-        [dic setObject:[NSNumber numberWithInt:self.ImageArr.count] forKey:@"picsNumber"];
+        [dic setObject:[[DataCenter sharedInstance] ReadData].UserInfo.name forKey:@"zfr"];//走访人
+        [dic setObject:[NSNumber numberWithInt:self.ImageArr.count] forKey:@"picsNumber"];//照片
 
-        [dic setObject:[NSNumber numberWithInt:self.ImageArr.count] forKey:@"Location"];
+        [dic setObject:locationStr forKey:@"Location"];//地址
         
-        [_conFirmView updateView:dic];
+       
         _conFirmView.delegate = self;
-        _conFirmView.frame = CGRectMake(0, SCREEN_HEIGHT, 0, 0);
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [window addSubview:_backView];//加上第一个蒙版
+        [window addSubview:_conFirmView];
+            _conFirmView.frame = CGRectMake(20, 60, SCREEN_WIDTH-40, SCREEN_HEIGHT-120);//size设定
+            [_conFirmView updateView:dic];
+            _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
+   
+
     }
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:_backView];//加上第一个蒙版
-    [window addSubview:_conFirmView];
-    [UIView animateWithDuration:0.2 animations:^{
-        _conFirmView.frame = CGRectMake(0, 0, 0, 0);
-        _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
-    } completion:^(BOOL finished) {
-    }];*/
     
 }
-/*
-NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://gowalla.com/friendships/request?user_id=1699"]];
-[request setHTTPMethod:@"POST"];
-
-NSDictionary *headers = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Token token=\"%@\"", kOAuthToken] forKey:@"Authorization"];
-[request setAllHTTPHeaderFields:headers];
-
-AFHTTPRequestOperation *operation = [AFHTTPRequestOperation operationWithRequest:request completion:^(NSURLRequest *request, NSHTTPURLResponse *response, NSData *data, NSError *error) {
-    BOOL HTTPStatusCodeIsAcceptable = [[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)] containsIndex:[response statusCode]];
-    if (HTTPStatusCodeIsAcceptable) {
-        NSLog(@"Friend Request Sent");
-    } else {
-        NSLog(@"[Error]: (%@ %@) %@", [request HTTPMethod], [[request URL] relativePath], error);
-    }
-}];
-
-NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
-[queue addOperation:operation];*/
-
 
 -(void)uploadImages1:(NSString *)RiZiID{
     flaghttp = 0;

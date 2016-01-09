@@ -83,7 +83,7 @@
 }
 
 -(void)initData{
-  
+    imageNameArr = [[NSMutableArray alloc] init];
     f1 = 0;
     f2 = 0;
     f3 = 0;
@@ -187,6 +187,7 @@
         //有图片
         MyPicVC *mypicVC = [[MyPicVC alloc] init];
         mypicVC.RZ_imageArr = imageArr;
+        MyLog(@"传入浏览照片照片数目%lu",(unsigned long)imageArr.count);
         [self.navigationController pushViewController:mypicVC animated:YES];
     }
     else{
@@ -533,6 +534,9 @@
 }
 //修改日志
 - (IBAction)clickSendBtn:(id)sender{
+    /*if (<#condition#>) {
+        <#statements#>
+    }*/
     [MBProgressHUD showMessage:@"修改中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;
@@ -608,9 +612,10 @@
 
 -(void)uploadImages1:(NSString *)RiZiID{
     flaghttp = 0;
+     MyLog(@"------------------------------self.ImageDataArr.count:%d",self.ImageDataArr.count);
     for (int i = 0; i<self.ImageDataArr.count; i++) {
         //传文件名，得到picID
-        MyLog(@"------------------------------i:%d",i);
+       
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
@@ -705,7 +710,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Navigation
 
 - (IBAction)clickLocationBtn:(id)sender {
@@ -746,7 +750,11 @@
     _btn3.selected = NO;
     _btn4.selected = YES;
 }
+
+
+//1.已办理 2.未办理，3.提交上一级 4.无诉求
 - (IBAction)clickbutton1:(id)sender {
+    //当场办结（答复）
     flagChuli = [NSNumber numberWithInt:1];
     _button1.selected = YES;
     _button2.selected = NO;
@@ -755,26 +763,31 @@
 }
 
 - (IBAction)clickbutton2:(id)sender {
+    //正在办理
     flagChuli = [NSNumber numberWithInt:2];
     _button1.selected = NO;
     _button2.selected = YES;
     _button3.selected = NO;
     _button4.selected = NO;
 }
-- (IBAction)clickbutton4:(id)sender {
-    flagChuli = [NSNumber numberWithInt:4];
-    _button1.selected = NO;
-    _button2.selected = NO;
-    _button3.selected = NO;
-    _button4.selected = YES;
-}
+
 
 - (IBAction)clickbutton3:(id)sender {
-    flagChuli = [NSNumber numberWithInt:3];
+    //已办理 //需填写是否共性和民生类别
+    flagChuli = [NSNumber numberWithInt:1];
     _button1.selected = NO;
     _button2.selected = NO;
     _button3.selected = YES;
     _button4.selected = NO;
+}
+//
+- (IBAction)clickbutton4:(id)sender {
+    // 提交上一级
+    flagChuli = [NSNumber numberWithInt:3];
+    _button1.selected = NO;
+    _button2.selected = NO;
+    _button3.selected = NO;
+    _button4.selected = YES;
 }
 
 

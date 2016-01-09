@@ -49,7 +49,7 @@
         UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i+SCREEN_WIDTH*0.4, 10, SCREEN_WIDTH*0.2, 20)];
         numberLabel.text = [NSString stringWithFormat:@"%d/%lu",i+1,(unsigned long)self.pictureArr.count];
         numberLabel.textAlignment = NSTextAlignmentCenter;
-        numberLabel.tag = _pictureArr.count+100;
+        numberLabel.tag = i+1+100;
         MyLog(@"tag = %d",numberLabel.tag);
         [self.picScroll addSubview:numberLabel];
         
@@ -96,8 +96,8 @@
         UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i+SCREEN_WIDTH*0.4, 10, SCREEN_WIDTH*0.2, 20)];
         numberLabel.text = [NSString stringWithFormat:@"%d/%lu",i+1,(unsigned long)self.pictureArr.count];
         numberLabel.textAlignment = NSTextAlignmentCenter;
-        numberLabel.tag = _pictureArr.count+100;
-        MyLog(@"tag = %d",numberLabel.tag);
+        numberLabel.tag = i+1+100;
+        MyLog(@"删除tag = %d",numberLabel.tag);
         [self.picScroll addSubview:numberLabel];
         
         UIImageView  *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i+SCREEN_WIDTH*0.1, 30, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7-30)];
@@ -250,10 +250,11 @@
             imageV.image = [_pictureArr objectAtIndex:_pictureArr.count-1];
             [self.picScroll addSubview:imageV];
              [_picScroll setContentOffset:CGPointMake(SCREEN_WIDTH*(self.pictureArr.count-1), _picScroll.contentOffset.y) animated:NO]; //设置scrollview的显示为当前滑动到的页面
-             MyLog(@"contentOffset.x%f",_picScroll.contentOffset.x);
+    
     //遍历title
     int i = 1;
     for (UILabel *subLabel in _picScroll.subviews) {
+         MyLog(@"subLabel.tag%ld",(long)subLabel.tag);
         if (subLabel.tag==i+100) {
             subLabel.text = [NSString stringWithFormat:@"%d/%lu",i,(unsigned long)self.pictureArr.count];
             i++;

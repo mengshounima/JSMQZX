@@ -59,6 +59,8 @@
     [tempDic setObject:[resultdic objectForKey:@"id"] forKey:@"id"];
     [tempDic setObject:[resultdic objectForKey:@"name"] forKey:@"name"];
     [tempDic setObject:[resultdic objectForKey:@"loginName"] forKey:@"loginName"];
+    [tempDic setObject:[resultdic objectForKey:@"showName"] forKey:@"showName"];//显示用登录名
+    
     [tempDic setObject:[resultdic objectForKey:@"departmentName"] forKey:@"departmentName"];
     [tempDic setObject:[resultdic objectForKey:@"phone"] forKey:@"phone"];
     [tempDic setObject:[resultdic objectForKey:@"lastLoginTime"] forKey:@"lastLoginTime"];
@@ -87,9 +89,8 @@
     info.usePassword = [[valueData objectForKey:@"password"] copy];
     info.ismember =  [valueData objectForKey:@"ismember"];
     info.post =  [valueData objectForKey:@"post"];
+    info.showName = [valueData objectForKey:@"showName"];
     self.UserInfo = info;
-     MyLog(@"%@",[valueData objectForKey:@"password"]);
-    MyLog(@"%@",self.UserInfo.usePassword);
     return self;
 }
 

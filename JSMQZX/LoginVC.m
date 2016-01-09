@@ -36,7 +36,7 @@
     [MBProgressHUD showMessage:@"自动登录中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     _typeF.text = [[DataCenter sharedInstance] ReadData].UserInfo.administerName;
-    _userIDF.text = [[DataCenter sharedInstance] ReadData].UserInfo.loginName;
+    _userIDF.text = [[DataCenter sharedInstance] ReadData].UserInfo.showName;
     _passwordF.text = [[DataCenter sharedInstance] ReadData].UserInfo.usePassword;
     //调试
     [param setObject:[[DataCenter sharedInstance] ReadData].UserInfo.useType forKey:@"UserType"];
@@ -64,6 +64,8 @@
     }];
 
 }
+
+
 -(void)getUserData{
     [MBProgressHUD showMessage:@"更新镇、街道列表"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
@@ -164,21 +166,6 @@
     alert.contentView =  _TypeTable;
     [alert addButtonWithTitle:@"取消"];
     [alert show];
-    //当前页添加蒙板
-   /* _backView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    _backView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];//透明黑色背景
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBackView:)];//点击背景取消
-    [_backView addGestureRecognizer:tapGes];
-    [self.view addSubview:_backView];
-    
-     _TypeView = [[UserTypeView alloc] init];
-    _TypeView.typeARR = _typeArr;
-    _TypeView.delegate = self;
-    _TypeView.frame = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 0, 0);
-    [self.view addSubview:_TypeView];
-    [UIView animateWithDuration:0.3 animations:^{
-        _TypeView.frame = CGRectMake(20, 80, SCREEN_WIDTH-40, SCREEN_HEIGHT-160);
-    }];*/
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -229,10 +216,33 @@
         NSData* jsonData = [self XMLString:responseObject];
         NSDictionary *resultDic = [jsonData objectFromJSONData];
         MyLog(@"------------------%@",resultDic);
+        /*
+         Type = 6;
+         administerCode = 6;
+         administerName = "\U897f\U5858\U9547";
+         departmentId = "";
+         departmentName = "";
+         id = 1996;
+         ismember = "\U662f";
+         lastLoginTime = "2016/1/9 0:00:20";
+         loginName = xt1008;
+         name = "\U6d4b\U8bd5\Uff08\U6751\Uff09";
+         password = 888888;
+         phone = "";
+         post = "\U6d4b\U8bd5\U8d26\U53f7\Uff08\U6751\Uff09";
+         power = 6;
+         sex = 1;
+
+         */
         if (ISNULL(resultDic)) {
             [MBProgressHUD showError:@"账号密码不匹配"];
         }
         else{
+            //添加自动登录时显示的用户名
+            NSMutableDictionary *middledic = [NSMutableDictionary dictionaryWithDictionary:resultDic];
+            [middledic setObject:_userIDF.text forKey:@"showName"];
+            resultDic = [middledic copy];
+            
             [[DataCenter sharedInstance] writeData:resultDic];
             //保存是否记住密码
             if (_rememberBtn.selected) {

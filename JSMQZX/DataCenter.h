@@ -16,6 +16,7 @@
 @property (strong,nonatomic) NSString *usePassword;
 @property (weak,nonatomic) NSNumber *power;//权限
 @property (weak,nonatomic) NSString *loginName;//登录编号
+@property (weak,nonatomic) NSString *showName;//显示用登录名
 @property (weak,nonatomic) NSString *name;//真实姓名
 @property (weak,nonatomic) NSString *phone;//联系方式
 @property (weak,nonatomic) NSString *administerName;//镇，社区
