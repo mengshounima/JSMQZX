@@ -518,9 +518,7 @@
         [MBProgressHUD showError:@"内容未填写完整"];
         return;
     }
-    
-    
-    
+
     //弹框，确认提交日志
     if (_backView == nil) {
         _backView = [[UIView alloc] init];
@@ -574,7 +572,7 @@
         [window addSubview:_conFirmView];
             _conFirmView.frame = CGRectMake(20, 60, SCREEN_WIDTH-40, SCREEN_HEIGHT-120);//size设定
             [_conFirmView updateView:dic];
-            _backView.backgroundColor = [UIColor colorWithRed:100 green:100 blue:100 alpha:0.5];
+            _backView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
    
 
     }

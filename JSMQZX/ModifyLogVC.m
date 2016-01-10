@@ -534,9 +534,17 @@
 }
 //修改日志
 - (IBAction)clickSendBtn:(id)sender{
-    /*if (<#condition#>) {
-        <#statements#>
-    }*/
+    //若处理结果选择的是已办理， //需填写是否共性和民生类别
+    if (_button3.selected) {
+        if (ISNULL(flagGongXin)) {
+            [MBProgressHUD showError:@"共性问题不能为空"];
+            return;
+        }
+        
+        if (ISNULL(flagLeiBie)) {
+           [MBProgressHUD showError:@"民生类别不能为空"];
+        }
+    }
     [MBProgressHUD showMessage:@"修改中"];
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     NSString *idStr = [[DataCenter sharedInstance] ReadData].UserInfo.useID;

@@ -22,21 +22,33 @@
 -(void)UpdateWithInfoDic:(NSDictionary *)infoDic{
     _titleL.text = [infoDic objectForKey:@"title"];
     NSNumber *ZJDpercent = [infoDic objectForKey:@"ZJDpercent"];
-    float ZJDpercentF = ZJDpercent.floatValue*100;
+    double ZJDpercentF = ZJDpercent.doubleValue*100;
     
     NSNumber *CJDpercent = [infoDic objectForKey:@"CJDpercent"];
-    float CJDpercentF = CJDpercent.floatValue*100;
+    double CJDpercentF = CJDpercent.doubleValue*100;
     
     _dataZGB.text = [NSString stringWithFormat:@"%.2f%%(户数%@)",ZJDpercentF,[infoDic objectForKey:@"ZJDZS"]];
     _dataCGB.text = [NSString stringWithFormat:@"%.2f%%(户数%@)",CJDpercentF,[infoDic objectForKey:@"CJDZS"]];
     //画图
-    UIView *zgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _zgbBackView.frame.size.width*ZJDpercentF/100, _zgbBackView.frame.size.height)];
+    UIView *zgbV;
+    if (!isnan(ZJDpercentF)) {
+        zgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _zgbBackView.frame.size.width*ZJDpercentF/100, _zgbBackView.frame.size.height)];
+    }
+    else{
+        zgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, _zgbBackView.frame.size.height)];
+    }
     zgbV.backgroundColor = [UIColor purpleColor];
     [_zgbBackView addSubview:zgbV];
     [_zgbBackView addSubview:_dataZGB];
     
     
-    UIView *cgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _cgbBackView.frame.size.width*CJDpercentF/100, _cgbBackView.frame.size.height)];
+    UIView *cgbV;
+    if (!isnan(CJDpercentF)) {
+        cgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _cgbBackView.frame.size.width*CJDpercentF/100, _cgbBackView.frame.size.height)];
+    }else{
+        cgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0,0, _cgbBackView.frame.size.height)];
+    }
+
     cgbV.backgroundColor = [UIColor orangeColor];
     [_cgbBackView addSubview:cgbV];
     [_cgbBackView addSubview:_dataCGB];

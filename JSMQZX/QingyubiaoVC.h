@@ -7,17 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EColumnChart.h"
+#import "TWRChart.h"
+/*#import "TWRChartView.h"
+#import "TWRDataSet.h"*/
 #import "GDataXMLNode.h"
 #import "JKAlertDialog.h"
 @interface QingyubiaoVC : UIViewController
+@property(strong, nonatomic) TWRChartView *chartView;
 
-@property (strong, nonatomic) IBOutlet EColumnChart *eColumnChart;
 @property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
-
+@property (weak, nonatomic) IBOutlet UIView *ChartContainerV;
 
 - (IBAction)clickZJDBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;

@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PieChartView.h"
+
 #import "JKAlertDialog.h"
 #import "GDataXMLNode.h"
-#define PIE_HEIGHT 300
-@interface NonghuZoufangVC : UIViewController<PieChartDelegate>
+#import "PCPieChart.h"
+
+@interface NonghuZoufangVC : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (strong, nonatomic) IBOutlet PCPieChart *pieChart;
+@property (weak, nonatomic) IBOutlet UIView *ChatContianerV;
 
 - (IBAction)clickZJDBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;

@@ -14,8 +14,7 @@
     UITableView *_CUNTable;
     JKAlertDialog *alert;
 }
-@property (strong, nonatomic) IBOutlet PieChartView *pieChartView;
-@property (nonatomic,strong) UIView *pieContainer;
+
 @property (nonatomic,strong) NSArray *ZJDArr;
 @property (nonatomic,strong) NSArray *CUNArr;
 @property (nonatomic,strong) NSString *ZJDFlag;
@@ -52,6 +51,14 @@
     
     
     _SearchBtn.layer.cornerRadius = 4;
+    //表格标题
+    NSDate *currentdate = [NSDate date];
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    dateformatter.dateFormat = @"yyyy-mm-dd";
+    NSString *nowDateStr = [dateformatter stringFromDate:currentdate];
+    NSString *yearStr = [nowDateStr substringToIndex:4];
+
+     _titleLabel.text = [NSString stringWithFormat:@"%@年度民情统计",yearStr];
 }
 
 -(void)getUserDataByZJD{
@@ -85,70 +92,101 @@
         
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *resultArr = [jsonData objectFromJSONData];
-        NSMutableArray *dataMut = [[NSMutableArray alloc] init];
-        NSMutableArray *titleMut = [[NSMutableArray alloc] init];
+        NSMutableArray *coms = [[NSMutableArray alloc] init];
+
         for (int i=0;i<resultArr.count;i++) {
             NSNumber *value = [resultArr[i] objectForKey:@"Value"];
-            [dataMut addObject:value];
             NSString *label = [resultArr[i] objectForKey:@"Label"];
-            [titleMut addObject:label];
+            //NSNumber *Ratio = [resultArr[i] objectForKey:@"Ratio"];
+            NSDictionary *dic = @{@"title":[NSString stringWithFormat:@"%@\n%@",label,value],@"value":value};
+            [coms addObject:dic];
         }
         
-        _dataArr = [dataMut mutableCopy];
-        _titleArr = [titleMut mutableCopy];
-        self.valueArray = [NSMutableArray arrayWithArray:dataMut];
-        self.colorArray  = [[NSMutableArray alloc] init];
-        for (int i = 0; i<self.valueArray.count; i++) {
-            UIColor *col = [UIColor colorWithHue:((i/20)%20)/20.0+0.02 saturation:(i%20+3)/10.0 brightness:91/100.0 alpha:1];
-            [self.colorArray addObject:col];
+        int height = _ChatContianerV.size.height; 
+        int width = _ChatContianerV.size.width;
+        _pieChart = [[PCPieChart alloc] initWithFrame:CGRectMake(0,0,width,height)];
+        [_pieChart setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];
+        [_ChatContianerV addSubview:_pieChart];
+        [_pieChart setDiameter:width/2];
+        
+        [_pieChart setSameColorLabel:YES];
+        if ([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPad)
+        {
+            _pieChart.titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:30];
+            _pieChart.percentageFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:50];
+        }
+        
+        NSMutableArray *components = [NSMutableArray array];
+        MyLog(@"---**--%@",coms);
+        for (int i=0; i<resultArr.count; i++)
+        {
+            NSDictionary *item = coms[i];
+            PCPieComponent *component = [PCPieComponent pieComponentWithTitle:[item objectForKey:@"title"] value:[[item objectForKey:@"value"] floatValue]];//传入number
+            [components addObject:component];
             
+            if (i==0)
+            {
+                [component setColour:PCColorYellow];
+            }
+            else if (i==1)
+            {
+                [component setColour:PCColorGreen];
+            }
+            else if (i==2)
+            {
+                [component setColour:PCColorOrange];
+            }
+            else if (i==3)
+            {
+                [component setColour:PCColorRed];
+            }
+            else if (i==4)
+            {
+                [component setColour:PCColorBlue];
+            }
+            else if (i==5)
+            {
+                [component setColour:[UIColor purpleColor]];
+            }
+            else if (i==6)
+            {
+                [component setColour:[UIColor darkGrayColor]];
+            }
+
+            else if (i==7)
+            {
+                [component setColour:[UIColor cyanColor]];
+            }
+
+            else if (i==8)
+            {
+                [component setColour:[UIColor brownColor]];
+            }
+
+
         }
-        
-        [self.pieContainer removeFromSuperview];
-        //add shadow img
-        CGRect pieFrame = CGRectMake((SCREEN_WIDTH - PIE_HEIGHT) / 2, 120, PIE_HEIGHT, PIE_HEIGHT);
-        
-        UIImage *shadowImg = [UIImage imageNamed:@"shadow.png"];
-        UIImageView *shadowImgView = [[UIImageView alloc]initWithImage:shadowImg];
-        shadowImgView.frame = CGRectMake(0, pieFrame.origin.y + PIE_HEIGHT*0.92, shadowImg.size.width/2, shadowImg.size.height/2);
-        [self.view addSubview:shadowImgView];
-        
-        self.pieContainer = [[UIView alloc]initWithFrame:pieFrame];
-        self.pieChartView = [[PieChartView alloc]initWithFrame:self.pieContainer.bounds withValue:self.valueArray withColor:self.colorArray];
-        self.pieChartView.delegate = self;
-        [self.pieContainer addSubview:self.pieChartView];
-        //[self.pieChartView setAmountText:@"内部"];
-        [self.view addSubview:self.pieContainer];
-        
-        [self.selLabel removeFromSuperview];
-        self.selLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(self.pieContainer.frame)+30, SCREEN_WIDTH-20, 21)];
-        self.selLabel.backgroundColor = [UIColor clearColor];
-        self.selLabel.textAlignment = NSTextAlignmentCenter;
-        self.selLabel.font = [UIFont systemFontOfSize:17];
-        self.selLabel.textColor = [UIColor whiteColor];
-        [self.view addSubview:self.selLabel];
-        
-        self.view.backgroundColor = [UIColor lightGrayColor];
-        [self.pieChartView reloadChart];
-        
-        
-        
+        [_pieChart setComponents:components];
         //表格标题
         NSDate *currentdate = [NSDate date];
         NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
         dateformatter.dateFormat = @"yyyy-mm-dd";
         NSString *nowDateStr = [dateformatter stringFromDate:currentdate];
         NSString *yearStr = [nowDateStr substringToIndex:4];
-        /*if (flagZJD == [[DataCenter sharedInstance] ReadData].UserInfo.useType) {
-         //此刻未选择
-         [self.pieChartView setTitleText:[NSString stringWithFormat:@"%@年度民情统计",yearStr]];
-         }
-         else
-         {
-         [self.pieChartView setTitleText:[NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_searchField.text]];
-         ;
-         }*/
-        
+        if (ISNULLSTR(_ZJDFlag)&&ISNULLSTR(_CUNFlag)) {
+            //此刻未选择
+            _titleLabel.text = [NSString stringWithFormat:@"%@年度民情统计",yearStr];
+        }
+        else if (!ISNULLSTR(_ZJDFlag)&&ISNULLSTR(_CUNFlag))
+        {
+            _titleLabel.text = [NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_ZJDBtn.titleLabel.text];
+        }
+        else if (ISNULLSTR(_ZJDFlag)&&!ISNULLSTR(_CUNFlag))
+        {
+            _titleLabel.text = [NSString stringWithFormat:@"%@年度%@民情统计",yearStr,_CUNBtn.titleLabel.text];
+        }
+        else{
+            _titleLabel.text = [NSString stringWithFormat:@"%@年度%@%@民情统计",yearStr,_ZJDBtn.titleLabel.text,_CUNBtn.titleLabel.text];
+        }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
@@ -279,38 +317,6 @@
     [alert addButtonWithTitle:@"取消"];
     
     [alert show];
-}
-- (void)selectedFinish:(PieChartView *)pieChartView index:(NSInteger)index percent:(float)per
-{
-    if (index ==0) {
-        self.selLabel.text = [NSString stringWithFormat:@"%@ %2.2f%@",_titleArr[index],per*100,@"%"];
-    }
-    else
-    {
-        self.selLabel.text = [NSString stringWithFormat:@"%@ %2.2f%@",_titleArr[index],per*100,@"%"];
-    }
-    
-    // self.selLabel.text = [NSString stringWithFormat:@"%2.2f%@",per*100,@"%"];
-}
-
-- (void)onCenterClick:(PieChartView *)pieChartView
-{
-    /* self.inOut = !self.inOut;
-     self.pieChartView.delegate = nil;
-     [self.pieChartView removeFromSuperview];
-     self.pieChartView = [[PieChartView alloc]initWithFrame:self.pieContainer.bounds withValue:self.inOut?self.valueArray:self.valueArray2 withColor:self.inOut?self.colorArray:self.colorArray2];
-     self.pieChartView.delegate = self;
-     [self.pieContainer addSubview:self.pieChartView];
-     [self.pieChartView reloadChart];
-     
-     if (self.inOut) {
-     [self.pieChartView setTitleText:@"支出总计"];
-     [self.pieChartView setAmountText:@"-2456.0"];
-     
-     }else{
-     [self.pieChartView setTitleText:@"收入总计"];
-     [self.pieChartView setAmountText:@"+567.23"];
-     }*/
 }
 
 - (void)didReceiveMemoryWarning {

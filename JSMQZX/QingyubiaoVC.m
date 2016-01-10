@@ -7,12 +7,8 @@
 //
 
 #import "QingyubiaoVC.h"
-#import "EColumnDataModel.h"
-#import "EColumnChartLabel.h"
-#import "EFloatBox.h"
-#import "EColor.h"
-#include <stdlib.h>
-@interface QingyubiaoVC ()<UITableViewDataSource,UITableViewDelegate,EColumnChartDelegate, EColumnChartDataSource>
+
+@interface QingyubiaoVC ()<UITableViewDataSource,UITableViewDelegate>
 {
    JKAlertDialog *alert;
     UITableView *_ZJDTable;
@@ -26,9 +22,7 @@
 @property (nonatomic,strong) NSString *CUNFlag;
 @property (nonatomic,weak) NSArray *dicArr;
 @property (nonatomic, strong) NSArray *data;
-@property (nonatomic, strong) EFloatBox *eFloatBox;
 
-@property (nonatomic, strong) EColumn *eColumnSelected;
 @property (nonatomic, strong) UIColor *tempColor;
 
 @end
@@ -43,7 +37,6 @@
 }
 -(void)initData{
        _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
-    chatRect = _eColumnChart.frame;
 }
 -(void)initView{
     _CUNBtn.enabled = NO;
@@ -69,8 +62,17 @@
     
     _titleLabel.text = [NSString stringWithFormat:@"%@年度民情统计",yearStr];
     
+    int height = _ChartContainerV.size.height;
+    int width = _ChartContainerV.size.width;
+    // Chart View
+    _chartView = [[TWRChartView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    _chartView.backgroundColor = [UIColor clearColor];
+    
+    [_ChartContainerV addSubview:_chartView];
     
 }
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _ZJDTable) {
         [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
@@ -145,111 +147,6 @@
     
 }
 
-#pragma -mark- EColumnChartDataSource
-
-- (NSInteger)numberOfColumnsInEColumnChart:(EColumnChart *)eColumnChart
-{
-    return [_data count];
-    MyLog(@"*************%lu",(unsigned long)[_data count]);
-}
-
-- (NSInteger)numberOfColumnsPresentedEveryTime:(EColumnChart *)eColumnChart
-{
-    return [_data count];
-}
-
-- (EColumnDataModel *)highestValueEColumnChart:(EColumnChart *)eColumnChart
-{
-    EColumnDataModel *maxDataModel = nil;
-    float maxValue = -FLT_MIN;
-    for (EColumnDataModel *dataModel in _data)
-    {
-        if (dataModel.value > maxValue)
-        {
-            maxValue = dataModel.value;
-            maxDataModel = dataModel;
-        }
-    }
-    return maxDataModel;
-}
-
-- (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index
-{
-    if (index >= [_data count] || index < 0) return nil;
-    return [_data objectAtIndex:index];
-}
-
-#pragma -mark- EColumnChartDelegate
-- (void)eColumnChart:(EColumnChart *)eColumnChart
-     didSelectColumn:(EColumn *)eColumn
-{
-    NSLog(@"Index: %ld  Value: %f", (long)eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
-    
-    if (_eColumnSelected)
-    {
-        _eColumnSelected.barColor = _tempColor;
-    }
-    _eColumnSelected = eColumn;
-    _tempColor = eColumn.barColor;
-    eColumn.barColor = [UIColor blackColor];
-    
-    //_valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
-}
-- (void)eColumnChart:(EColumnChart *)eColumnChart
-fingerDidEnterColumn:(EColumn *)eColumn
-{
-    /**The EFloatBox here, is just to show an example of
-     taking adventage of the event handling system of the Echart.
-     You can do even better effects here, according to your needs.*/
-    NSLog(@"Finger did enter %d", eColumn.eColumnDataModel.index);
-    CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
-    CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);
-    if (_eFloatBox)
-    {
-        [_eFloatBox removeFromSuperview];
-        _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
-        [_eFloatBox setValue:eColumn.eColumnDataModel.value];
-        [eColumnChart addSubview:_eFloatBox];
-    }
-    else
-    {
-        _eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
-        _eFloatBox.alpha = 0.0;
-        [eColumnChart addSubview:_eFloatBox];
-        
-    }
-    eFloatBoxY -= (_eFloatBox.frame.size.height + eColumn.frame.size.width * 0.25);
-    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-        _eFloatBox.alpha = 1.0;
-        
-    } completion:^(BOOL finished) {
-    }];
-    
-}
-
-- (void)eColumnChart:(EColumnChart *)eColumnChart
-fingerDidLeaveColumn:(EColumn *)eColumn
-{
-    NSLog(@"Finger did leave %d", eColumn.eColumnDataModel.index);
-    
-}
-
-- (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
-{
-    if (_eFloatBox)
-    {
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-            _eFloatBox.alpha = 0.0;
-            _eFloatBox.frame = CGRectMake(_eFloatBox.frame.origin.x, _eFloatBox.frame.origin.y + _eFloatBox.frame.size.height, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
-        } completion:^(BOOL finished) {
-            [_eFloatBox removeFromSuperview];
-            _eFloatBox = nil;
-        }];
-        
-    }
-    
-}
 
 -(NSData *)XMLString:(NSData *)data
 {
@@ -351,31 +248,27 @@ fingerDidLeaveColumn:(EColumn *)eColumn
         
         NSData* jsonData = [self XMLString:responseObject];
         _dicArr = [jsonData objectFromJSONData];
-        //挑选数据
-       /* NSMutableArray *tempMut = [NSMutableArray array];
-        for (NSDictionary *dic  in _dicArr) {
-            NSString *LabelStr = [dic objectForKey:@"Label"];
-            if (!ISNULLSTR(LabelStr)) {
-                [tempMut addObject:dic];
-            }
-        }*/
-        
-        NSMutableArray *temp = [NSMutableArray array];
-        for (int i = 0; i < _dicArr.count; i++)
-        {
-            NSNumber *value = [_dicArr[i] objectForKey:@"Value"];
-            EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:[NSString stringWithFormat:@"%d", i] value:value.floatValue index:i unit:@"kws"];
-            [temp addObject:eColumnDataModel];
-        }
-        _data = [temp mutableCopy];
-        [_eColumnChart removeFromSuperview];
-        _eColumnChart = nil;
-        
-        _eColumnChart = [[EColumnChart alloc] initWithFrame:chatRect];
-        [self.view addSubview:_eColumnChart];
-        [_eColumnChart setColumnsIndexStartFromLeft:YES];
-        [_eColumnChart setDelegate:self];
-        [_eColumnChart setDataSource:self];
+           
+           NSMutableArray *titleMut = [[NSMutableArray alloc] init];
+           NSMutableArray *valueMut = [[NSMutableArray alloc] init];
+           NSMutableArray *percentMut = [[NSMutableArray alloc] init];
+           for (int i=0;i<_dicArr.count;i++) {
+               NSNumber *value = [_dicArr[i] objectForKey:@"Value"];
+               [valueMut addObject:value];
+               NSString *label = [_dicArr[i] objectForKey:@"Label"];
+               [titleMut addObject:label];
+               NSNumber *Ratio = [_dicArr[i] objectForKey:@"Ratio"];
+               [percentMut addObject:Ratio];
+           }
+           
+            TWRDataSet *dataSet1 = [[TWRDataSet alloc] initWithDataPoints:valueMut                                                               fillColor:[[UIColor orangeColor] colorWithAlphaComponent:0.5]
+                                                             strokeColor:[UIColor orangeColor]];           NSArray *labels = (NSArray *)titleMut;
+          
+           TWRBarChart *bar = [[TWRBarChart alloc] initWithLabels:labels
+                                                         dataSets:@[dataSet1]
+                                                         animated:YES];
+           [_chartView loadBarChart:bar];
+
         //表格标题
         NSDate *currentdate = [NSDate date];
         NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -398,8 +291,6 @@ fingerDidLeaveColumn:(EColumn *)eColumn
             _titleLabel.text = [NSString stringWithFormat:@"%@年度%@%@民情统计",yearStr,_ZJDBtn.titleLabel.text,_CUNBtn.titleLabel.text];
         }
 
-       
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);

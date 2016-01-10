@@ -24,9 +24,6 @@
 		F0040F451C282507004DC329 /* ELineChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F3D1C282507004DC329 /* ELineChartDataModel.m */; };
 		F0040F461C282507004DC329 /* ELine.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F3F1C282507004DC329 /* ELine.m */; };
 		F0040F491C282511004DC329 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F481C282511004DC329 /* UICountingLabel.m */; };
-		F0040F4C1C2828C7004DC329 /* QingyubiaoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */; };
-		F0040F541C284660004DC329 /* RenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F4F1C284660004DC329 /* RenderView.m */; };
-		F0040F561C284660004DC329 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F531C284660004DC329 /* PieChartView.m */; };
 		F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0040F581C284693004DC329 /* NonghuZoufangVC.m */; };
 		F004D4681C39715B006B7DA6 /* BanJieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D4671C39715B006B7DA6 /* BanJieVC.m */; };
 		F004D46C1C39960D006B7DA6 /* JifenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F004D46A1C39960D006B7DA6 /* JifenCell.m */; };
@@ -182,6 +179,18 @@
 		F0BEA0681C2ECC2A00FE5E36 /* FuwuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0BEA0661C2ECC2A00FE5E36 /* FuwuCell.m */; };
 		F0BEA0691C2ECC2A00FE5E36 /* FuwuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0BEA0671C2ECC2A00FE5E36 /* FuwuCell.xib */; };
 		F0BEA06D1C2ED20D00FE5E36 /* MJStatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = F0BEA06C1C2ED20D00FE5E36 /* MJStatusFrame.m */; };
+		F0C366911C4273A2000397D3 /* PCPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366901C4273A2000397D3 /* PCPieChart.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0C366BF1C42A9E5000397D3 /* chart.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F0C366AC1C42A9E5000397D3 /* chart.min.js */; };
+		F0C366C01C42A9E5000397D3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = F0C366AD1C42A9E5000397D3 /* index.html */; };
+		F0C366C11C42A9E5000397D3 /* TWRBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366AF1C42A9E5000397D3 /* TWRBarChart.m */; };
+		F0C366C21C42A9E5000397D3 /* TWRChartBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366B21C42A9E5000397D3 /* TWRChartBuilder.m */; };
+		F0C366C31C42A9E5000397D3 /* TWRChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366B41C42A9E5000397D3 /* TWRChartView.m */; };
+		F0C366C41C42A9E5000397D3 /* TWRCircularChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366B61C42A9E5000397D3 /* TWRCircularChart.m */; };
+		F0C366C51C42A9E5000397D3 /* TWRDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366B81C42A9E5000397D3 /* TWRDataSet.m */; };
+		F0C366C61C42A9E5000397D3 /* TWRDataSet+Strings.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366BA1C42A9E5000397D3 /* TWRDataSet+Strings.m */; };
+		F0C366C71C42A9E5000397D3 /* TWRLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366BC1C42A9E5000397D3 /* TWRLineChart.m */; };
+		F0C366C81C42A9E5000397D3 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366BE1C42A9E5000397D3 /* UIColor+HexString.m */; };
+		F0C366CA1C42AA2E000397D3 /* QingyubiaoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C366C91C42AA2E000397D3 /* QingyubiaoVC.m */; };
 		F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C5B5F41C230A1F00092FDB /* ZaizhiDangyuanVC.m */; };
 		F0C9AA981C252A6B00CFA498 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C9AA971C252A6B00CFA498 /* CoreLocation.framework */; };
 		F0C9AA9A1C252A7800CFA498 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C9AA991C252A7800CFA498 /* QuartzCore.framework */; };
@@ -193,7 +202,6 @@
 		F0C9AAA61C252B2900CFA498 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C9AAA51C252B2900CFA498 /* CoreTelephony.framework */; };
 		F0C9AAA81C252B3D00CFA498 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C9AAA71C252B3D00CFA498 /* libstdc++.6.0.9.tbd */; };
 		F0D03D0B1C296C3C00D2BAF2 /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D03D0A1C296C3C00D2BAF2 /* DataCenter.m */; };
-		F0D03D0E1C2976D200D2BAF2 /* RotatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D03D0D1C2976D200D2BAF2 /* RotatedView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */; };
 		F0D255A71C171634005BD1F4 /* AddVisitLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D255A61C171634005BD1F4 /* AddVisitLogVC.m */; };
 		F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E78DAB1C148A8800DDE8D8 /* GDataXMLNode.m */; };
@@ -254,11 +262,6 @@
 		F0040F471C282510004DC329 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		F0040F481C282511004DC329 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		F0040F4A1C2828C7004DC329 /* QingyubiaoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingyubiaoVC.h; sourceTree = "<group>"; };
-		F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingyubiaoVC.m; sourceTree = "<group>"; };
-		F0040F4E1C284660004DC329 /* RenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderView.h; sourceTree = "<group>"; };
-		F0040F4F1C284660004DC329 /* RenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderView.m; sourceTree = "<group>"; };
-		F0040F521C284660004DC329 /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
-		F0040F531C284660004DC329 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		F0040F571C284693004DC329 /* NonghuZoufangVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonghuZoufangVC.h; sourceTree = "<group>"; };
 		F0040F581C284693004DC329 /* NonghuZoufangVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonghuZoufangVC.m; sourceTree = "<group>"; };
 		F004D4661C39715B006B7DA6 /* BanJieVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BanJieVC.h; sourceTree = "<group>"; };
@@ -478,6 +481,28 @@
 		F0BEA0671C2ECC2A00FE5E36 /* FuwuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FuwuCell.xib; sourceTree = "<group>"; };
 		F0BEA06B1C2ED20D00FE5E36 /* MJStatusFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJStatusFrame.h; sourceTree = "<group>"; };
 		F0BEA06C1C2ED20D00FE5E36 /* MJStatusFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJStatusFrame.m; sourceTree = "<group>"; };
+		F0C3668F1C4273A2000397D3 /* PCPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCPieChart.h; sourceTree = "<group>"; };
+		F0C366901C4273A2000397D3 /* PCPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCPieChart.m; sourceTree = "<group>"; };
+		F0C366AC1C42A9E5000397D3 /* chart.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = chart.min.js; sourceTree = "<group>"; };
+		F0C366AD1C42A9E5000397D3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		F0C366AE1C42A9E5000397D3 /* TWRBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRBarChart.h; sourceTree = "<group>"; };
+		F0C366AF1C42A9E5000397D3 /* TWRBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRBarChart.m; sourceTree = "<group>"; };
+		F0C366B01C42A9E5000397D3 /* TWRChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRChart.h; sourceTree = "<group>"; };
+		F0C366B11C42A9E5000397D3 /* TWRChartBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRChartBuilder.h; sourceTree = "<group>"; };
+		F0C366B21C42A9E5000397D3 /* TWRChartBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRChartBuilder.m; sourceTree = "<group>"; };
+		F0C366B31C42A9E5000397D3 /* TWRChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRChartView.h; sourceTree = "<group>"; };
+		F0C366B41C42A9E5000397D3 /* TWRChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRChartView.m; sourceTree = "<group>"; };
+		F0C366B51C42A9E5000397D3 /* TWRCircularChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRCircularChart.h; sourceTree = "<group>"; };
+		F0C366B61C42A9E5000397D3 /* TWRCircularChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRCircularChart.m; sourceTree = "<group>"; };
+		F0C366B71C42A9E5000397D3 /* TWRDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRDataSet.h; sourceTree = "<group>"; };
+		F0C366B81C42A9E5000397D3 /* TWRDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRDataSet.m; sourceTree = "<group>"; };
+		F0C366B91C42A9E5000397D3 /* TWRDataSet+Strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TWRDataSet+Strings.h"; sourceTree = "<group>"; };
+		F0C366BA1C42A9E5000397D3 /* TWRDataSet+Strings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TWRDataSet+Strings.m"; sourceTree = "<group>"; };
+		F0C366BB1C42A9E5000397D3 /* TWRLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRLineChart.h; sourceTree = "<group>"; };
+		F0C366BC1C42A9E5000397D3 /* TWRLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRLineChart.m; sourceTree = "<group>"; };
+		F0C366BD1C42A9E5000397D3 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		F0C366BE1C42A9E5000397D3 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
+		F0C366C91C42AA2E000397D3 /* QingyubiaoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QingyubiaoVC.m; sourceTree = "<group>"; };
 		F0C5B5F31C230A1F00092FDB /* ZaizhiDangyuanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZaizhiDangyuanVC.h; sourceTree = "<group>"; };
 		F0C5B5F41C230A1F00092FDB /* ZaizhiDangyuanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZaizhiDangyuanVC.m; sourceTree = "<group>"; };
 		F0C9AA891C2528D600CFA498 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = BaiduMapAPI/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
@@ -498,8 +523,6 @@
 		F0C9AAA71C252B3D00CFA498 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		F0D03D091C296C3C00D2BAF2 /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
 		F0D03D0A1C296C3C00D2BAF2 /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
-		F0D03D0C1C2976D200D2BAF2 /* RotatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatedView.h; sourceTree = "<group>"; };
-		F0D03D0D1C2976D200D2BAF2 /* RotatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatedView.m; sourceTree = "<group>"; };
 		F0D255A11C170D17005BD1F4 /* MinQinRiZhiTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinQinRiZhiTableVC.h; sourceTree = "<group>"; };
 		F0D255A21C170D17005BD1F4 /* MinQinRiZhiTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinQinRiZhiTableVC.m; sourceTree = "<group>"; };
 		F0D255A51C171634005BD1F4 /* AddVisitLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddVisitLogVC.h; sourceTree = "<group>"; };
@@ -635,7 +658,7 @@
 				F0040F1F1C281E4B004DC329 /* FenxiTableVC.h */,
 				F0040F201C281E4B004DC329 /* FenxiTableVC.m */,
 				F0040F4A1C2828C7004DC329 /* QingyubiaoVC.h */,
-				F0040F4B1C2828C7004DC329 /* QingyubiaoVC.m */,
+				F0C366C91C42AA2E000397D3 /* QingyubiaoVC.m */,
 				F0040F571C284693004DC329 /* NonghuZoufangVC.h */,
 				F0040F581C284693004DC329 /* NonghuZoufangVC.m */,
 				F03889E31C2AF32A00FD190B /* MinshengXvqiuVC.h */,
@@ -708,12 +731,27 @@
 		F0040F4D1C284648004DC329 /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
-				F0D03D0C1C2976D200D2BAF2 /* RotatedView.h */,
-				F0D03D0D1C2976D200D2BAF2 /* RotatedView.m */,
-				F0040F4E1C284660004DC329 /* RenderView.h */,
-				F0040F4F1C284660004DC329 /* RenderView.m */,
-				F0040F521C284660004DC329 /* PieChartView.h */,
-				F0040F531C284660004DC329 /* PieChartView.m */,
+				F0C3668F1C4273A2000397D3 /* PCPieChart.h */,
+				F0C366901C4273A2000397D3 /* PCPieChart.m */,
+				F0C366AC1C42A9E5000397D3 /* chart.min.js */,
+				F0C366AD1C42A9E5000397D3 /* index.html */,
+				F0C366AE1C42A9E5000397D3 /* TWRBarChart.h */,
+				F0C366AF1C42A9E5000397D3 /* TWRBarChart.m */,
+				F0C366B01C42A9E5000397D3 /* TWRChart.h */,
+				F0C366B11C42A9E5000397D3 /* TWRChartBuilder.h */,
+				F0C366B21C42A9E5000397D3 /* TWRChartBuilder.m */,
+				F0C366B31C42A9E5000397D3 /* TWRChartView.h */,
+				F0C366B41C42A9E5000397D3 /* TWRChartView.m */,
+				F0C366B51C42A9E5000397D3 /* TWRCircularChart.h */,
+				F0C366B61C42A9E5000397D3 /* TWRCircularChart.m */,
+				F0C366B71C42A9E5000397D3 /* TWRDataSet.h */,
+				F0C366B81C42A9E5000397D3 /* TWRDataSet.m */,
+				F0C366B91C42A9E5000397D3 /* TWRDataSet+Strings.h */,
+				F0C366BA1C42A9E5000397D3 /* TWRDataSet+Strings.m */,
+				F0C366BB1C42A9E5000397D3 /* TWRLineChart.h */,
+				F0C366BC1C42A9E5000397D3 /* TWRLineChart.m */,
+				F0C366BD1C42A9E5000397D3 /* UIColor+HexString.h */,
+				F0C366BE1C42A9E5000397D3 /* UIColor+HexString.m */,
 			);
 			name = ChartView;
 			sourceTree = "<group>";
@@ -1186,8 +1224,8 @@
 				F0B4E1E71C19C1E600EAAC10 /* SelectFarmerVC.h */,
 				F0B4E1E81C19C1E600EAAC10 /* SelectFarmerVC.m */,
 				F0B4E1F21C19E48B00EAAC10 /* FarmerInfoTableVC.h */,
-				F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */,
 				F079A7B91C3801DA00628399 /* MyPicVC.h */,
+				F0B4E1F31C19E48B00EAAC10 /* FarmerInfoTableVC.m */,
 				F079A7BA1C3801DA00628399 /* MyPicVC.m */,
 			);
 			name = MinQinRiZhi;
@@ -1296,6 +1334,7 @@
 			files = (
 				F017E0DF1C400EA400CADA54 /* mapapi.bundle in Resources */,
 				F08A0B1D1C3C17570094C70F /* b5m.js in Resources */,
+				F0C366BF1C42A9E5000397D3 /* chart.min.js in Resources */,
 				F08A0B111C3C17570094C70F /* 219fc8ca8e1d2f78d14c304d1ef19068-sz_71146.png in Resources */,
 				F08A0B081C3C17570094C70F /* 10b053fbb494dfd88432e6b72dd57006-sz_17353.png in Resources */,
 				F08A0AFE1C3C17570094C70F /* 3c5f21a1b35271747c197c8b1d18bf0c-sz_27249.png in Resources */,
@@ -1374,6 +1413,7 @@
 				F08A0B301C3C17570094C70F /* hm.js in Resources */,
 				F08A0B0A1C3C17570094C70F /* 28e742939821dc516cc3e6e235c16916-sz_28886.png in Resources */,
 				F08A0B1C1C3C17570094C70F /* angular.js in Resources */,
+				F0C366C01C42A9E5000397D3 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1424,6 +1464,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C366C71C42A9E5000397D3 /* TWRLineChart.m in Sources */,
+				F0C366C81C42A9E5000397D3 /* UIColor+HexString.m in Sources */,
 				F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */,
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
 				F03889F31C2B0AEA00FD190B /* EvaluateCell.m in Sources */,
@@ -1448,26 +1490,28 @@
 				F0300A121C133D8600389829 /* UIImage+SJ.m in Sources */,
 				F0040F2F1C2824F6004DC329 /* ELineChart.m in Sources */,
 				F0040F211C281E4B004DC329 /* FenxiTableVC.m in Sources */,
+				F0C366C21C42A9E5000397D3 /* TWRChartBuilder.m in Sources */,
 				F0800E911C1DBD3B004C2B6A /* RiZhiBanLiTableVC.m in Sources */,
-				F0D03D0E1C2976D200D2BAF2 /* RotatedView.m in Sources */,
 				F0BEA05A1C2E9EB300FE5E36 /* dangdaibiaoVC.m in Sources */,
 				F0040F401C282507004DC329 /* EColumn.m in Sources */,
 				F004D4681C39715B006B7DA6 /* BanJieVC.m in Sources */,
 				F03009FD1C132F3300389829 /* RTJSONResponseSerializerWithData.m in Sources */,
+				F0C366911C4273A2000397D3 /* PCPieChart.m in Sources */,
 				F0B4E1F41C19E48B00EAAC10 /* FarmerInfoTableVC.m in Sources */,
 				F0800E941C1DBF2E004C2B6A /* ModifyLogVC.m in Sources */,
 				F0040F421C282507004DC329 /* EColumnDataModel.m in Sources */,
 				F017E0D31C4009C500CADA54 /* modifyPasswordView.m in Sources */,
 				F03009FC1C132F3300389829 /* HttpClient.m in Sources */,
+				F0C366CA1C42AA2E000397D3 /* QingyubiaoVC.m in Sources */,
 				F0040F431C282507004DC329 /* EColumnChartLabel.m in Sources */,
 				F06D95421C1EF05D00FDE859 /* LogCell.m in Sources */,
+				F0C366C61C42A9E5000397D3 /* TWRDataSet+Strings.m in Sources */,
 				F0B733E81C208215000DA6F3 /* LogListGanbuVC.m in Sources */,
 				F0040F491C282511004DC329 /* UICountingLabel.m in Sources */,
 				F0B7252F1C25A6FA0027B1F1 /* mailInfoVC.m in Sources */,
 				F07D729D1C10756200C695CB /* ViewController.m in Sources */,
 				F0BEA0601C2EB6D200FE5E36 /* ZhiyuanFuwuVC.m in Sources */,
 				F060B3A31C145D5D007F472F /* MBProgressHUD+MJ.m in Sources */,
-				F0040F561C284660004DC329 /* PieChartView.m in Sources */,
 				F03889E51C2AF32A00FD190B /* MinshengXvqiuVC.m in Sources */,
 				F0B4E1F01C19DA1100EAAC10 /* SelectFarmerCell.m in Sources */,
 				F0300A0F1C133D8600389829 /* UIBarButtonItem+Extension.m in Sources */,
@@ -1476,11 +1520,13 @@
 				F03889EC1C2AFE5E00FD190B /* GanBuZouFangVC.m in Sources */,
 				F0300A111C133D8600389829 /* UIView+Extension.m in Sources */,
 				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,
+				F0C366C51C42A9E5000397D3 /* TWRDataSet.m in Sources */,
 				F004D46C1C39960D006B7DA6 /* JifenCell.m in Sources */,
 				F0040F411C282507004DC329 /* EColor.m in Sources */,
 				F0BEA0631C2EC8EB00FE5E36 /* WeixinyuanVC.m in Sources */,
 				8ED91E871C33C96A0027807E /* ganbuLogCell.m in Sources */,
 				F004D4701C39962A006B7DA6 /* JifenVC.m in Sources */,
+				F0C366C11C42A9E5000397D3 /* TWRBarChart.m in Sources */,
 				F047615F1C21A5BF002A9EF6 /* PhotoStackView.m in Sources */,
 				F0820C7C1C31FA03009D299D /* GanbuZoufangCell.m in Sources */,
 				F03618811C2FE2B700E83500 /* XinyuanInfoVC.m in Sources */,
@@ -1493,7 +1539,6 @@
 				F03618761C2FB13C00E83500 /* FuwuInfoVC.m in Sources */,
 				F0C5B5F51C230A1F00092FDB /* ZaizhiDangyuanVC.m in Sources */,
 				F0B725241C258E7F0027B1F1 /* MessageBoardTableVC.m in Sources */,
-				F0040F541C284660004DC329 /* RenderView.m in Sources */,
 				F03889E91C2AFE1F00FD190B /* JXBarChartView.m in Sources */,
 				F088E8BC1C3D616D008CCC66 /* LogConfirmView.m in Sources */,
 				F07D729A1C10756200C695CB /* AppDelegate.mm in Sources */,
@@ -1501,6 +1546,7 @@
 				F004D4731C39963C006B7DA6 /* GanbuMingshiVC.m in Sources */,
 				F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */,
 				F084677C1C107E4300BE1020 /* LoginVC.m in Sources */,
+				F0C366C41C42A9E5000397D3 /* TWRCircularChart.m in Sources */,
 				F0040F591C284693004DC329 /* NonghuZoufangVC.m in Sources */,
 				F07D72971C10756200C695CB /* main.m in Sources */,
 				F0300A101C133D8600389829 /* UIImage+Extension.m in Sources */,
@@ -1510,12 +1556,12 @@
 				F03618841C2FEBAF00E83500 /* BaodaoInfoVC.m in Sources */,
 				F0040F451C282507004DC329 /* ELineChartDataModel.m in Sources */,
 				F08A0AB31C3C00D50094C70F /* ReDianVC.m in Sources */,
-				F0040F4C1C2828C7004DC329 /* QingyubiaoVC.m in Sources */,
 				F0040F301C2824F6004DC329 /* EPieChart.m in Sources */,
 				F004D47E1C399C69006B7DA6 /* GuanliLogTableVC.m in Sources */,
 				F060B3A51C145D5D007F472F /* MBProgressHUD.m in Sources */,
 				F0B4E1F71C19FBD500EAAC10 /* JKAlertDialog.m in Sources */,
 				F0800E8B1C1DA231004C2B6A /* SetView.m in Sources */,
+				F0C366C31C42A9E5000397D3 /* TWRChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
