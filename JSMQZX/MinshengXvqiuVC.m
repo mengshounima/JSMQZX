@@ -102,7 +102,7 @@
             [coms addObject:dic];
         }
         
-        int height = _ChatContianerV.size.height; 
+        int height = _ChatContianerV.size.height*0.7;
         int width = _ChatContianerV.size.width;
         _pieChart = [[PCPieChart alloc] initWithFrame:CGRectMake(0,0,width,height)];
         [_pieChart setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];

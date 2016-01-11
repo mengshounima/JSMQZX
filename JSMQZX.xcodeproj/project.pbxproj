@@ -207,6 +207,10 @@
 		F0E78DAC1C148A8800DDE8D8 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E78DAB1C148A8800DDE8D8 /* GDataXMLNode.m */; };
 		F0E78DAF1C148D6A00DDE8D8 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F0E78DAD1C148B0800DDE8D8 /* libxml2.tbd */; };
 		F0E78DB31C14946200DDE8D8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E78DB21C14946200DDE8D8 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0FCE1301C43E9EC00862C14 /* GanbuZFInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FCE12E1C43E9EC00862C14 /* GanbuZFInfoCell.m */; };
+		F0FCE1311C43E9EC00862C14 /* GanbuZFInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FCE12F1C43E9EC00862C14 /* GanbuZFInfoCell.xib */; };
+		F0FCE1351C44023B00862C14 /* MingshiBanliInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FCE1331C44023B00862C14 /* MingshiBanliInfoCell.m */; };
+		F0FCE1361C44023B00862C14 /* MingshiBanliInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FCE1341C44023B00862C14 /* MingshiBanliInfoCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -532,6 +536,12 @@
 		F0E78DAD1C148B0800DDE8D8 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		F0E78DB11C14946200DDE8D8 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		F0E78DB21C14946200DDE8D8 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		F0FCE12D1C43E9EC00862C14 /* GanbuZFInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GanbuZFInfoCell.h; sourceTree = "<group>"; };
+		F0FCE12E1C43E9EC00862C14 /* GanbuZFInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GanbuZFInfoCell.m; sourceTree = "<group>"; };
+		F0FCE12F1C43E9EC00862C14 /* GanbuZFInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GanbuZFInfoCell.xib; sourceTree = "<group>"; };
+		F0FCE1321C44023B00862C14 /* MingshiBanliInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MingshiBanliInfoCell.h; sourceTree = "<group>"; };
+		F0FCE1331C44023B00862C14 /* MingshiBanliInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MingshiBanliInfoCell.m; sourceTree = "<group>"; };
+		F0FCE1341C44023B00862C14 /* MingshiBanliInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MingshiBanliInfoCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -651,8 +661,6 @@
 		F0040F1E1C281E20004DC329 /* FenxiYanpan */ = {
 			isa = PBXGroup;
 			children = (
-				F004D4711C39963C006B7DA6 /* GanbuMingshiVC.h */,
-				F004D4721C39963C006B7DA6 /* GanbuMingshiVC.m */,
 				F004D46E1C39962A006B7DA6 /* JifenVC.h */,
 				F004D46F1C39962A006B7DA6 /* JifenVC.m */,
 				F0040F1F1C281E4B004DC329 /* FenxiTableVC.h */,
@@ -663,6 +671,8 @@
 				F0040F581C284693004DC329 /* NonghuZoufangVC.m */,
 				F03889E31C2AF32A00FD190B /* MinshengXvqiuVC.h */,
 				F03889E41C2AF32A00FD190B /* MinshengXvqiuVC.m */,
+				F004D4711C39963C006B7DA6 /* GanbuMingshiVC.h */,
+				F004D4721C39963C006B7DA6 /* GanbuMingshiVC.m */,
 				F03889EA1C2AFE5E00FD190B /* GanBuZouFangVC.h */,
 				F03889EB1C2AFE5E00FD190B /* GanBuZouFangVC.m */,
 				F03889ED1C2B04CD00FD190B /* GanBuFuWuVC.h */,
@@ -866,6 +876,12 @@
 				8ED91E841C33C96A0027807E /* ganbuLogCell.h */,
 				8ED91E851C33C96A0027807E /* ganbuLogCell.m */,
 				8ED91E861C33C96A0027807E /* ganbuLogCell.xib */,
+				F0FCE12D1C43E9EC00862C14 /* GanbuZFInfoCell.h */,
+				F0FCE12E1C43E9EC00862C14 /* GanbuZFInfoCell.m */,
+				F0FCE12F1C43E9EC00862C14 /* GanbuZFInfoCell.xib */,
+				F0FCE1321C44023B00862C14 /* MingshiBanliInfoCell.h */,
+				F0FCE1331C44023B00862C14 /* MingshiBanliInfoCell.m */,
+				F0FCE1341C44023B00862C14 /* MingshiBanliInfoCell.xib */,
 			);
 			name = GanBuUser;
 			sourceTree = "<group>";
@@ -1382,6 +1398,7 @@
 				F08A0B071C3C17570094C70F /* 8a803a8b10f82ca9df089c92bdc8569f-sz_29277.png in Resources */,
 				F0BEA0691C2ECC2A00FE5E36 /* FuwuCell.xib in Resources */,
 				F08A0B121C3C17570094C70F /* 504a05dfb6705065fdfd450add2bfe2a-sz_83837.png in Resources */,
+				F0FCE1311C43E9EC00862C14 /* GanbuZFInfoCell.xib in Resources */,
 				F08A0B131C3C17570094C70F /* 683f1e1cbd79a46a2f2381f89d53225e-sz_63822.png in Resources */,
 				F08A0B181C3C17570094C70F /* 947334a842bc71c047be252a4d4dc08b-sz_24175.png in Resources */,
 				F08A0ABE1C3C13AA0094C70F /* Help-1.htm in Resources */,
@@ -1405,6 +1422,7 @@
 				F08A0B101C3C17570094C70F /* 98c2cb05a9947a34894ce5d723ee6a0e-sz_72255.png in Resources */,
 				F08A0B0E1C3C17570094C70F /* 57e98139e35706ce993a04d7be2cb934-sz_41137.png in Resources */,
 				F08A0B151C3C17570094C70F /* 3514a58df0d1b609caafe7df9ff9f050-sz_23473.png in Resources */,
+				F0FCE1361C44023B00862C14 /* MingshiBanliInfoCell.xib in Resources */,
 				F08A0B2B1C3C17570094C70F /* dc530f828b967af56a49f126318be888-sz_19717.png in Resources */,
 				F08A0B231C3C17570094C70F /* c0e3ab.css in Resources */,
 				F08A0B321C3C17570094C70F /* jquery.js in Resources */,
@@ -1466,6 +1484,7 @@
 			files = (
 				F0C366C71C42A9E5000397D3 /* TWRLineChart.m in Sources */,
 				F0C366C81C42A9E5000397D3 /* UIColor+HexString.m in Sources */,
+				F0FCE1301C43E9EC00862C14 /* GanbuZFInfoCell.m in Sources */,
 				F0B7252B1C2599020027B1F1 /* mailCell.m in Sources */,
 				F060B39B1C14557C007F472F /* RootVC.m in Sources */,
 				F03889F31C2B0AEA00FD190B /* EvaluateCell.m in Sources */,
@@ -1517,6 +1536,7 @@
 				F0300A0F1C133D8600389829 /* UIBarButtonItem+Extension.m in Sources */,
 				F0D255A31C170D17005BD1F4 /* MinQinRiZhiTableVC.m in Sources */,
 				F03009F21C12FAB600389829 /* UserTypeView.m in Sources */,
+				F0FCE1351C44023B00862C14 /* MingshiBanliInfoCell.m in Sources */,
 				F03889EC1C2AFE5E00FD190B /* GanBuZouFangVC.m in Sources */,
 				F0300A111C133D8600389829 /* UIView+Extension.m in Sources */,
 				F0B4E1E91C19C1E600EAAC10 /* SelectFarmerVC.m in Sources */,

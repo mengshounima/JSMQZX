@@ -261,10 +261,12 @@
                [percentMut addObject:Ratio];
            }
            
-            TWRDataSet *dataSet1 = [[TWRDataSet alloc] initWithDataPoints:valueMut                                                               fillColor:[[UIColor orangeColor] colorWithAlphaComponent:0.5]
-                                                             strokeColor:[UIColor orangeColor]];           NSArray *labels = (NSArray *)titleMut;
-          
-           TWRBarChart *bar = [[TWRBarChart alloc] initWithLabels:labels
+          NSArray *values = [valueMut mutableCopy];
+            TWRDataSet *dataSet1 = [[TWRDataSet alloc] initWithDataPoints:values                                                               fillColor:[[UIColor greenColor] colorWithAlphaComponent:0.5]
+                                                             strokeColor:[UIColor greenColor]];
+           NSArray *labels =[titleMut mutableCopy];
+           
+          TWRBarChart *bar = [[TWRBarChart alloc] initWithLabels:labels
                                                          dataSets:@[dataSet1]
                                                          animated:YES];
            [_chartView loadBarChart:bar];

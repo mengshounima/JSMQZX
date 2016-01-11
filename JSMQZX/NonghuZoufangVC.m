@@ -85,17 +85,15 @@
     [paramTongji setObject:@"1" forKey:@"page"];//统计表类型
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisInfo" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        
         [MBProgressHUD hideHUD];
         
         NSData* jsonData = [self XMLString:responseObject];
         NSArray *resultArr = [jsonData objectFromJSONData];
+        if (_pieChart) {
+            [_pieChart removeFromSuperview];
+        }
         
-        NSNumber *beiZoufangI = [resultArr[0] objectForKey:@"Value"];//数量
-        NSNumber *weiZoufangI = [resultArr[1] objectForKey:@"Value"];//
-        
-        
-        int height = _ChatContianerV.size.height; // 220;
+        int height = _ChatContianerV.size.height*0.7; // 220;
         int width = _ChatContianerV.size.width; //320;
         _pieChart = [[PCPieChart alloc] initWithFrame:CGRectMake(0,0,width,height)];
         [_pieChart setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];

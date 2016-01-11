@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "JKAlertDialog.h"
+#import "GanbuZFInfoCell.h"
 #import "GDataXMLNode.h"
 @interface GanBuZouFangVC : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *searchField;
-@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
+@property (weak, nonatomic) IBOutlet UIButton *SearchBtn;
+
+- (IBAction)clickZJDBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *ZJDBtn;
+@property (weak, nonatomic) IBOutlet UIButton *CUNBtn;
+- (IBAction)clickCUNBtn:(id)sender;
 - (IBAction)clickSearchBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *InfoTableView;
+
 @property (strong, nonatomic) IBOutlet UIView *lineV;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @end

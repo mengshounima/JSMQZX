@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dataZGB;
 
 @property (weak, nonatomic) IBOutlet UILabel *dataCGB;
-
+@property (weak, nonatomic) IBOutlet UILabel *tZGBLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tCGBLabel;
 -(void)UpdateWithInfoDic:(NSDictionary *)infoDic;
 @end

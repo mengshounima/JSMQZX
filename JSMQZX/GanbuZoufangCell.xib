@@ -14,12 +14,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1W-R9-J6M">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1W-R9-J6M">
                         <rect key="frame" x="8" y="0.0" width="64" height="43"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="9Xd-xq-6bm"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -29,21 +29,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nv7-Co-UMm" userLabel="ViewDown">
                                 <rect key="frame" x="0.0" y="26" width="240" height="13"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="村干部" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQW-VD-21U">
-                                        <rect key="frame" x="198" y="0.0" width="42" height="13"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="村干部" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQW-VD-21U">
+                                        <rect key="frame" x="205" y="0.0" width="35" height="13"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="Avx-hP-WPl"/>
+                                            <constraint firstAttribute="width" constant="35" id="Avx-hP-WPl"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6m-dg-b3P">
-                                        <rect key="frame" x="0.0" y="0.0" width="78" height="13"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="13"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="78" id="Dnr-5t-Rck"/>
+                                            <constraint firstAttribute="width" constant="150" id="Dnr-5t-Rck"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -61,21 +61,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zi6-92-atU" userLabel="ViewUp">
                                 <rect key="frame" x="0.0" y="4" width="240" height="14"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="镇干部" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nV8-N3-QAR">
-                                        <rect key="frame" x="198" y="0.0" width="42" height="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="镇干部" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nV8-N3-QAR">
+                                        <rect key="frame" x="205" y="0.0" width="35" height="14"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="8zw-e7-2HG"/>
+                                            <constraint firstAttribute="width" constant="35" id="8zw-e7-2HG"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFR-6j-HDe">
-                                        <rect key="frame" x="0.0" y="0.0" width="78" height="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFR-6j-HDe">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="14"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="78" id="BUJ-e7-5ce"/>
+                                            <constraint firstAttribute="width" constant="150" id="BUJ-e7-5ce"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -118,6 +118,8 @@
                 <outlet property="cgbBackView" destination="Nv7-Co-UMm" id="zdI-FH-TOB"/>
                 <outlet property="dataCGB" destination="l6m-dg-b3P" id="ese-fZ-d6o"/>
                 <outlet property="dataZGB" destination="FFR-6j-HDe" id="Igi-ke-pGC"/>
+                <outlet property="tCGBLabel" destination="qQW-VD-21U" id="dnz-sM-K1g"/>
+                <outlet property="tZGBLabel" destination="nV8-N3-QAR" id="sdd-4M-WtI"/>
                 <outlet property="titleL" destination="U1W-R9-J6M" id="gBO-gK-1b1"/>
                 <outlet property="zgbBackView" destination="zi6-92-atU" id="kM1-d4-kPu"/>
             </connections>

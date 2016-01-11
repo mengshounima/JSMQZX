@@ -27,7 +27,8 @@
 #define MyLog(...)
 #endif
 //服务器地址
-#define BaseURL @"http://122.225.44.14:802/webapi.asmx"
+//#define BaseURL @"http://221.131.230.119:802/webapi.asmx"
+#define BaseURL @"http://122.225.44.14:802/webapi.asmx"//正式服务器
 #define choiceColor(x,y,z)  ([UIColor colorWithRed:x/255.0 green:y/255.0  blue:z/255.0  alpha:1])
 #define ISNULL(obj) (obj == nil || (NSObject *)obj == [NSNull null])
 #define ISNULLSTR(str) (str == nil || (NSObject *)str == [NSNull null] || str.length == 0 )

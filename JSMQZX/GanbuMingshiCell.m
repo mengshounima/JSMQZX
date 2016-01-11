@@ -34,12 +34,14 @@
     zgbV.backgroundColor = [UIColor purpleColor];
     [_zgbBackView addSubview:zgbV];
     [_zgbBackView addSubview:_dataZGB];
+    [_zgbBackView addSubview:_tZGBLabel];
     
     
     UIView *cgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _cgbBackView.frame.size.width*CJDpercentF/100, _cgbBackView.frame.size.height)];
     cgbV.backgroundColor = [UIColor orangeColor];
     [_cgbBackView addSubview:cgbV];
     [_cgbBackView addSubview:_dataCGB];
+    [_cgbBackView addSubview:_tCGBLabel];
     
 }
 

@@ -24,6 +24,8 @@
 @property (nonatomic,strong) NSString *ZJDFlag;
 @property (nonatomic,strong) NSString *CUNFlag;
 @property (nonatomic,strong) NSArray *resultArr;
+
+
 @end
 
 @implementation GanBuFuWuVC
