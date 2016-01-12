@@ -1336,130 +1336,6 @@
                                     <constraint firstAttribute="height" constant="4" id="ffG-PF-9yg"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3p-Nr-Da4" userLabel="GanBuV">
-                                <rect key="frame" x="0.0" y="181" width="320" height="387"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qup-a7-I0x" userLabel="View2">
-                                        <rect key="frame" x="0.0" y="129" width="320" height="129"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqV-0a-jST" userLabel="民生动态" customClass="HMTitleButton">
-                                                <rect key="frame" x="125" y="30" width="70" height="70"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="民生动态" image="民生动态">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="clickGanbuMinshendongtai:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="sxF-0y-NxH"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="xqV-0a-jST" firstAttribute="centerX" secondItem="Qup-a7-I0x" secondAttribute="centerX" id="hRC-PK-GG6"/>
-                                            <constraint firstItem="xqV-0a-jST" firstAttribute="centerY" secondItem="Qup-a7-I0x" secondAttribute="centerY" id="zDF-Bs-qQJ"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCU-mq-ofY" userLabel="View3">
-                                        <rect key="frame" x="0.0" y="258" width="320" height="129"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-GW-bDZ" userLabel="分析研判" customClass="HMTitleButton">
-                                                <rect key="frame" x="125" y="30" width="70" height="70"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="分析研判" image="分析研判">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="clickGanbuFenxiyanpan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="rra-Gv-93x"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="Q9t-GW-bDZ" firstAttribute="centerY" secondItem="lCU-mq-ofY" secondAttribute="centerY" id="ijP-VG-kdx"/>
-                                            <constraint firstItem="Q9t-GW-bDZ" firstAttribute="centerX" secondItem="lCU-mq-ofY" secondAttribute="centerX" id="zsZ-yM-fhc"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5co-CW-99G" userLabel="View1">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Usc-wb-m9v" userLabel="left2">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="129"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxt-Oi-wpf" userLabel="日志办理" customClass="HMTitleButton">
-                                                        <rect key="frame" x="60" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="日志办理" image="日志办理">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="clickGanbuRizhibanli:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="1vG-69-CkG"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="hxt-Oi-wpf" secondAttribute="trailing" constant="30" id="HRZ-G0-eqP"/>
-                                                    <constraint firstItem="hxt-Oi-wpf" firstAttribute="leading" secondItem="Usc-wb-m9v" secondAttribute="leading" constant="60" id="Icn-vu-xlZ"/>
-                                                    <constraint firstItem="hxt-Oi-wpf" firstAttribute="height" secondItem="Usc-wb-m9v" secondAttribute="width" constant="-90" id="Qja-f9-wzt"/>
-                                                    <constraint firstItem="hxt-Oi-wpf" firstAttribute="centerY" secondItem="Usc-wb-m9v" secondAttribute="centerY" id="esO-zP-1iJ"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qu0-OJ-QU4" userLabel="right2">
-                                                <rect key="frame" x="160" y="0.0" width="160" height="129"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-UI-DdQ" userLabel="在职党员" customClass="HMTitleButton">
-                                                        <rect key="frame" x="30" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="在职党员" image="在职党员">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="clickGanbuZaizhidangyuan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="t2S-Bf-iUS"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="eJi-UI-DdQ" firstAttribute="centerY" secondItem="qu0-OJ-QU4" secondAttribute="centerY" id="7hs-wT-jH6"/>
-                                                    <constraint firstItem="eJi-UI-DdQ" firstAttribute="leading" secondItem="qu0-OJ-QU4" secondAttribute="leading" constant="30" id="FkX-n7-bFZ"/>
-                                                    <constraint firstItem="eJi-UI-DdQ" firstAttribute="height" secondItem="qu0-OJ-QU4" secondAttribute="width" constant="-90" id="PwS-Gx-QPg"/>
-                                                    <constraint firstAttribute="trailing" secondItem="eJi-UI-DdQ" secondAttribute="trailing" constant="60" id="xZV-n5-44K"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="qu0-OJ-QU4" firstAttribute="leading" secondItem="Usc-wb-m9v" secondAttribute="trailing" id="0gS-Ji-HrD"/>
-                                            <constraint firstItem="Usc-wb-m9v" firstAttribute="leading" secondItem="5co-CW-99G" secondAttribute="leading" id="0qD-99-Lbg"/>
-                                            <constraint firstItem="qu0-OJ-QU4" firstAttribute="width" secondItem="Usc-wb-m9v" secondAttribute="width" id="8T3-Qw-VBT"/>
-                                            <constraint firstItem="Usc-wb-m9v" firstAttribute="top" secondItem="5co-CW-99G" secondAttribute="top" id="Ari-hF-fgA"/>
-                                            <constraint firstItem="qu0-OJ-QU4" firstAttribute="top" secondItem="5co-CW-99G" secondAttribute="top" id="FT4-7X-yJ8"/>
-                                            <constraint firstAttribute="bottom" secondItem="qu0-OJ-QU4" secondAttribute="bottom" id="O78-xi-hzR"/>
-                                            <constraint firstAttribute="trailing" secondItem="qu0-OJ-QU4" secondAttribute="trailing" id="WDF-IW-eA2"/>
-                                            <constraint firstAttribute="bottom" secondItem="Usc-wb-m9v" secondAttribute="bottom" id="tpo-7V-p0W"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="5co-CW-99G" secondAttribute="trailing" id="3Uf-ne-868"/>
-                                    <constraint firstItem="5co-CW-99G" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="7Pe-Xc-YgI"/>
-                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="height" secondItem="5co-CW-99G" secondAttribute="height" id="7hd-y2-1cS"/>
-                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="D9i-37-hcA"/>
-                                    <constraint firstAttribute="bottom" secondItem="lCU-mq-ofY" secondAttribute="bottom" id="Fik-2r-ZUv"/>
-                                    <constraint firstItem="5co-CW-99G" firstAttribute="top" secondItem="L3p-Nr-Da4" secondAttribute="top" id="FkH-AT-XFe"/>
-                                    <constraint firstItem="Q9t-GW-bDZ" firstAttribute="width" secondItem="hxt-Oi-wpf" secondAttribute="width" id="ISO-Nb-sdt"/>
-                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="SzJ-sX-A9Z"/>
-                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="height" secondItem="5co-CW-99G" secondAttribute="height" id="TOo-9w-GLn"/>
-                                    <constraint firstItem="xqV-0a-jST" firstAttribute="height" secondItem="hxt-Oi-wpf" secondAttribute="height" id="W5o-Af-QfS"/>
-                                    <constraint firstItem="Q9t-GW-bDZ" firstAttribute="height" secondItem="hxt-Oi-wpf" secondAttribute="height" id="cSa-Vr-KsQ"/>
-                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="top" secondItem="5co-CW-99G" secondAttribute="bottom" id="dqj-6w-WkK"/>
-                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="top" secondItem="Qup-a7-I0x" secondAttribute="bottom" id="lfw-8R-qZD"/>
-                                    <constraint firstAttribute="trailing" secondItem="lCU-mq-ofY" secondAttribute="trailing" id="omW-Zo-SYh"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qup-a7-I0x" secondAttribute="trailing" id="qWT-vJ-MwX"/>
-                                    <constraint firstItem="xqV-0a-jST" firstAttribute="width" secondItem="hxt-Oi-wpf" secondAttribute="width" id="rHd-Bj-YCQ"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A84-SN-aD5" userLabel="GuanliyuanV">
                                 <rect key="frame" x="0.0" y="181" width="320" height="387"/>
                                 <subviews>
@@ -1471,7 +1347,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kcz-Au-XU4" customClass="HMTitleButton">
                                                         <rect key="frame" x="60" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="日志办理" image="日志办理">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1493,7 +1369,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiW-sD-AOY" customClass="HMTitleButton">
                                                         <rect key="frame" x="30" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="在职党员" image="在职党员">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1551,7 +1427,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-Os-ARL" customClass="HMTitleButton">
                                                         <rect key="frame" x="18" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="分析研判" image="分析研判">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1571,7 +1447,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP5-to-QvU" customClass="HMTitleButton">
                                                         <rect key="frame" x="19" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="党建红云" image="党建红云">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1611,7 +1487,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAh-sy-sNv" customClass="HMTitleButton">
                                                         <rect key="frame" x="18" y="29" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="民生动态" image="民生动态">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1631,7 +1507,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAA-5O-KU2" customClass="HMTitleButton">
                                                         <rect key="frame" x="18" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="志愿服务" image="志愿服务">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1651,7 +1527,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyI-gV-3Qa" customClass="HMTitleButton">
                                                         <rect key="frame" x="19" y="30" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="微心愿认领" image="微心愿认领">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1723,7 +1599,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ri-vG-jHG" customClass="HMTitleButton">
                                                         <rect key="frame" x="60" y="23" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                                         <state key="normal" title="添加日志" image="民情日志">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1745,7 +1621,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRD-i0-F79" customClass="HMTitleButton">
                                                         <rect key="frame" x="30" y="23" width="70" height="70"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="日志办理" image="日志办理">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -1782,6 +1658,130 @@
                                     <constraint firstItem="79A-Vt-81H" firstAttribute="height" secondItem="QLU-AQ-I80" secondAttribute="height" multiplier="0.3" id="eTk-b2-Bcf"/>
                                     <constraint firstItem="79A-Vt-81H" firstAttribute="top" secondItem="QLU-AQ-I80" secondAttribute="top" id="kkb-VS-ZEL"/>
                                     <constraint firstItem="79A-Vt-81H" firstAttribute="leading" secondItem="QLU-AQ-I80" secondAttribute="leading" id="t0M-8e-jeU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3p-Nr-Da4" userLabel="GanBuV">
+                                <rect key="frame" x="0.0" y="181" width="320" height="387"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qup-a7-I0x" userLabel="View2">
+                                        <rect key="frame" x="0.0" y="129" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqV-0a-jST" userLabel="民生动态" customClass="HMTitleButton">
+                                                <rect key="frame" x="125" y="30" width="70" height="70"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <state key="normal" title="民生动态" image="民生动态">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clickGanbuMinshendongtai:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="sxF-0y-NxH"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="xqV-0a-jST" firstAttribute="centerX" secondItem="Qup-a7-I0x" secondAttribute="centerX" id="hRC-PK-GG6"/>
+                                            <constraint firstItem="xqV-0a-jST" firstAttribute="centerY" secondItem="Qup-a7-I0x" secondAttribute="centerY" id="zDF-Bs-qQJ"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCU-mq-ofY" userLabel="View3">
+                                        <rect key="frame" x="0.0" y="258" width="320" height="129"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9t-GW-bDZ" userLabel="分析研判" customClass="HMTitleButton">
+                                                <rect key="frame" x="125" y="30" width="70" height="70"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <state key="normal" title="分析研判" image="分析研判">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clickGanbuFenxiyanpan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="rra-Gv-93x"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Q9t-GW-bDZ" firstAttribute="centerY" secondItem="lCU-mq-ofY" secondAttribute="centerY" id="ijP-VG-kdx"/>
+                                            <constraint firstItem="Q9t-GW-bDZ" firstAttribute="centerX" secondItem="lCU-mq-ofY" secondAttribute="centerX" id="zsZ-yM-fhc"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5co-CW-99G" userLabel="View1">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Usc-wb-m9v" userLabel="left2">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="129"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxt-Oi-wpf" userLabel="日志办理" customClass="HMTitleButton">
+                                                        <rect key="frame" x="60" y="30" width="70" height="70"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <state key="normal" title="日志办理" image="日志办理">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clickGanbuRizhibanli:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="1vG-69-CkG"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="hxt-Oi-wpf" secondAttribute="trailing" constant="30" id="HRZ-G0-eqP"/>
+                                                    <constraint firstItem="hxt-Oi-wpf" firstAttribute="leading" secondItem="Usc-wb-m9v" secondAttribute="leading" constant="60" id="Icn-vu-xlZ"/>
+                                                    <constraint firstItem="hxt-Oi-wpf" firstAttribute="height" secondItem="Usc-wb-m9v" secondAttribute="width" constant="-90" id="Qja-f9-wzt"/>
+                                                    <constraint firstItem="hxt-Oi-wpf" firstAttribute="centerY" secondItem="Usc-wb-m9v" secondAttribute="centerY" id="esO-zP-1iJ"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qu0-OJ-QU4" userLabel="right2">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="129"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-UI-DdQ" userLabel="在职党员" customClass="HMTitleButton">
+                                                        <rect key="frame" x="30" y="30" width="70" height="70"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <state key="normal" title="在职党员" image="在职党员">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clickGanbuZaizhidangyuan:" destination="6Tn-gA-uNW" eventType="touchUpInside" id="t2S-Bf-iUS"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="eJi-UI-DdQ" firstAttribute="centerY" secondItem="qu0-OJ-QU4" secondAttribute="centerY" id="7hs-wT-jH6"/>
+                                                    <constraint firstItem="eJi-UI-DdQ" firstAttribute="leading" secondItem="qu0-OJ-QU4" secondAttribute="leading" constant="30" id="FkX-n7-bFZ"/>
+                                                    <constraint firstItem="eJi-UI-DdQ" firstAttribute="height" secondItem="qu0-OJ-QU4" secondAttribute="width" constant="-90" id="PwS-Gx-QPg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="eJi-UI-DdQ" secondAttribute="trailing" constant="60" id="xZV-n5-44K"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="qu0-OJ-QU4" firstAttribute="leading" secondItem="Usc-wb-m9v" secondAttribute="trailing" id="0gS-Ji-HrD"/>
+                                            <constraint firstItem="Usc-wb-m9v" firstAttribute="leading" secondItem="5co-CW-99G" secondAttribute="leading" id="0qD-99-Lbg"/>
+                                            <constraint firstItem="qu0-OJ-QU4" firstAttribute="width" secondItem="Usc-wb-m9v" secondAttribute="width" id="8T3-Qw-VBT"/>
+                                            <constraint firstItem="Usc-wb-m9v" firstAttribute="top" secondItem="5co-CW-99G" secondAttribute="top" id="Ari-hF-fgA"/>
+                                            <constraint firstItem="qu0-OJ-QU4" firstAttribute="top" secondItem="5co-CW-99G" secondAttribute="top" id="FT4-7X-yJ8"/>
+                                            <constraint firstAttribute="bottom" secondItem="qu0-OJ-QU4" secondAttribute="bottom" id="O78-xi-hzR"/>
+                                            <constraint firstAttribute="trailing" secondItem="qu0-OJ-QU4" secondAttribute="trailing" id="WDF-IW-eA2"/>
+                                            <constraint firstAttribute="bottom" secondItem="Usc-wb-m9v" secondAttribute="bottom" id="tpo-7V-p0W"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5co-CW-99G" secondAttribute="trailing" id="3Uf-ne-868"/>
+                                    <constraint firstItem="5co-CW-99G" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="7Pe-Xc-YgI"/>
+                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="height" secondItem="5co-CW-99G" secondAttribute="height" id="7hd-y2-1cS"/>
+                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="D9i-37-hcA"/>
+                                    <constraint firstAttribute="bottom" secondItem="lCU-mq-ofY" secondAttribute="bottom" id="Fik-2r-ZUv"/>
+                                    <constraint firstItem="5co-CW-99G" firstAttribute="top" secondItem="L3p-Nr-Da4" secondAttribute="top" id="FkH-AT-XFe"/>
+                                    <constraint firstItem="Q9t-GW-bDZ" firstAttribute="width" secondItem="hxt-Oi-wpf" secondAttribute="width" id="ISO-Nb-sdt"/>
+                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="leading" secondItem="L3p-Nr-Da4" secondAttribute="leading" id="SzJ-sX-A9Z"/>
+                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="height" secondItem="5co-CW-99G" secondAttribute="height" id="TOo-9w-GLn"/>
+                                    <constraint firstItem="xqV-0a-jST" firstAttribute="height" secondItem="hxt-Oi-wpf" secondAttribute="height" id="W5o-Af-QfS"/>
+                                    <constraint firstItem="Q9t-GW-bDZ" firstAttribute="height" secondItem="hxt-Oi-wpf" secondAttribute="height" id="cSa-Vr-KsQ"/>
+                                    <constraint firstItem="Qup-a7-I0x" firstAttribute="top" secondItem="5co-CW-99G" secondAttribute="bottom" id="dqj-6w-WkK"/>
+                                    <constraint firstItem="lCU-mq-ofY" firstAttribute="top" secondItem="Qup-a7-I0x" secondAttribute="bottom" id="lfw-8R-qZD"/>
+                                    <constraint firstAttribute="trailing" secondItem="lCU-mq-ofY" secondAttribute="trailing" id="omW-Zo-SYh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qup-a7-I0x" secondAttribute="trailing" id="qWT-vJ-MwX"/>
+                                    <constraint firstItem="xqV-0a-jST" firstAttribute="width" secondItem="hxt-Oi-wpf" secondAttribute="width" id="rHd-Bj-YCQ"/>
                                 </constraints>
                             </view>
                         </subviews>

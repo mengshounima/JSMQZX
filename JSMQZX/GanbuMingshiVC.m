@@ -34,6 +34,11 @@
 @property (nonatomic,strong) NSArray *gl_mssjfArr;
 @property (nonatomic,strong) NSArray *gl_mssjblhjArr;
 
+@property (nonatomic,strong) NSArray *zjd_cgb_zfnhsArr;
+@property (nonatomic,strong) NSArray *zjd_cgb_zfrzsArr;
+
+@property (nonatomic,strong) NSArray *cunNameArr;
+
 @end
 
 @implementation GanbuMingshiVC
@@ -129,25 +134,18 @@
 
         }
         else{
-            /*NSMutableArray *zgbMut = [[NSMutableArray alloc] init];
-             NSMutableArray *zgbZSMut = [[NSMutableArray alloc] init];
-             NSMutableArray *cgbMut = [[NSMutableArray alloc] init];
-             NSMutableArray *cgbZSMut = [[NSMutableArray alloc] init];*/
             NSMutableArray *gl_bjlMut = [[NSMutableArray alloc] init];
             NSMutableArray *nameMut = [[NSMutableArray alloc] init];//姓名
             NSMutableArray *gl_msbljfMut = [[NSMutableArray alloc] init];
-            NSMutableArray *gl_mssjfMut = [[NSMutableArray alloc] init];         NSMutableArray *gl_mssjblhjMut = [[NSMutableArray alloc] init];            for (int i=0;i<resultArr.count;i++) {
-                /*NSNumber *value1 = [resultArr[i] objectForKey:@"zjd_zgb_zfnhs"];
-                 [zgbMut addObject:value1];
-                 NSNumber *value2 = [resultArr[i] objectForKey:@"zjd_zgb_zfrzs"];//总数，显示
-                 [zgbZSMut addObject:value2];
-                 NSNumber *value3 = [resultArr[i] objectForKey:@"zjd_cgb_zfnhs"];
-                 [cgbMut addObject:value3];
-                 NSNumber *value4 = [resultArr[i] objectForKey:@"zjd_cgb_zfrzs"];
-                 [cgbZSMut addObject:value4];*/
+            NSMutableArray *gl_mssjfMut = [[NSMutableArray alloc] init];        NSMutableArray *gl_mssjblhjMut = [[NSMutableArray alloc] init];
+            NSMutableArray *zjd_cgb_zfnhsMut = [[NSMutableArray alloc] init];//应走
+            NSMutableArray *zjd_cgb_zfrzsMut = [[NSMutableArray alloc] init];//实走
+            
+            NSMutableArray *cun_nameMut = [[NSMutableArray alloc] init];
+            
+            for (int i=0;i<resultArr.count;i++) {
                 
-                
-                NSNumber *gl_bjl = [resultArr[i] objectForKey:@"gl_bjl"];
+                NSNumber *gl_bjl = [resultArr[i] objectForKey:@"gl_zfl"];
                 [gl_bjlMut addObject:gl_bjl];//办结率
                 
                 NSString *nameStr = [resultArr[i] objectForKey:@"gl_zsxm"];
@@ -162,6 +160,13 @@
                 NSNumber *gl_mssjblhj = [resultArr[i] objectForKey:@"gl_mssjblhj"];
                 [gl_mssjblhjMut addObject:gl_mssjblhj];//gl_mssjblhj办理积分合计
                 
+                NSNumber *zjd_cgb_zfnhs = [resultArr[i] objectForKey:@"zjd_cgb_zfnhs"];
+                [zjd_cgb_zfnhsMut addObject:zjd_cgb_zfnhs];//zjd_cgb_zfnhs应走
+                
+                NSNumber *zjd_cgb_zfrzs = [resultArr[i] objectForKey:@"zjd_cgb_zfrzs"];
+                [zjd_cgb_zfrzsMut addObject:zjd_cgb_zfrzs];//zjd_cgb_zfrzs实走
+                NSNumber *cun_name = [resultArr[i] objectForKey:@"cun_name"];
+                [cun_nameMut addObject:cun_name];//cun_name
                 
                 
             }
@@ -170,12 +175,11 @@
             _gl_msbljfArr = [gl_msbljfMut mutableCopy];
             _gl_mssjfArr = [gl_mssjfMut mutableCopy];
             _gl_mssjblhjArr = [gl_mssjblhjMut mutableCopy];
-            /*_zgbDataArr = [zgbMut mutableCopy];
-             _zgbZSArr= [zgbZSMut mutableCopy];
-             _cgbDataArr = [cgbMut mutableCopy];
-             _cgbZSArr = [cgbZSMut mutableCopy];
-             
-             _titleArr = [titleMut mutableCopy];*/
+            _zjd_cgb_zfnhsArr = [zjd_cgb_zfnhsMut mutableCopy];
+            _zjd_cgb_zfrzsArr = [zjd_cgb_zfrzsMut mutableCopy];
+            _cunNameArr = [cun_nameMut mutableCopy];
+            
+          
             
             [_InfoTableView reloadData];
             _InfoTableView.hidden =NO;
@@ -345,7 +349,7 @@
          _gl_mssjfArr = [gl_mssjfMut mutableCopy];
          _gl_mssjblhjArr = [gl_mssjblhjMut mutableCopy];*/
         
-        NSDictionary *paramDic =  @{@"name":_gl_zsxmArr[indexPath.row],@"gl_zfl":_gl_bjlArr[indexPath.row],@"gl_zfjcf":_gl_msbljfArr[indexPath.row],@"gl_zffjf":_gl_mssjfArr[indexPath.row],@"gl_zfhj":_gl_mssjblhjArr[indexPath.row]};
+        NSDictionary *paramDic =  @{@"name":_gl_zsxmArr[indexPath.row],@"gl_zfl":_gl_bjlArr[indexPath.row],@"gl_zfjcf":_gl_msbljfArr[indexPath.row],@"gl_zffjf":_gl_mssjfArr[indexPath.row],@"gl_zfhj":_gl_mssjblhjArr[indexPath.row],@"zjd_cgb_zfnhs":_zjd_cgb_zfnhsArr[indexPath.row],@"zjd_cgb_zfrzs":_zjd_cgb_zfrzsArr[indexPath.row],@"cun_name":_cunNameArr[indexPath.row]};
         [cell updateCellWithInfoDic:paramDic];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         

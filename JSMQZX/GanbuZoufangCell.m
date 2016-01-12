@@ -31,24 +31,15 @@
     _dataCGB.text = [NSString stringWithFormat:@"%.2f%%(户数%@)",CJDpercentF,[infoDic objectForKey:@"CJDZS"]];
     //画图
     UIView *zgbV;
-   // if (!isnan(ZJDpercentF)) {
         zgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _zgbBackView.frame.size.width*ZJDpercentF/100, _zgbBackView.frame.size.height)];
-   // }
-    //else{
-     //   zgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, _zgbBackView.frame.size.height)];
-   // }
-    zgbV.backgroundColor = [UIColor purpleColor];
+     zgbV.backgroundColor = [UIColor purpleColor];
     [_zgbBackView addSubview:zgbV];
     [_zgbBackView addSubview:_dataZGB];
     [_zgbBackView addSubview:_tZGBLabel];
     
     UIView *cgbV;
-   // if (!isnan(CJDpercentF)) {
         cgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _cgbBackView.frame.size.width*CJDpercentF/100, _cgbBackView.frame.size.height)];
-   // }else{
-       // cgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0,0, _cgbBackView.frame.size.height)];
-    //}
-
+  
     cgbV.backgroundColor = [UIColor orangeColor];
     [_cgbBackView addSubview:cgbV];
     [_cgbBackView addSubview:_dataCGB];

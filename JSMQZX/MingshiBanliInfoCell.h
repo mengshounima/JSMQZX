@@ -11,9 +11,10 @@
 @interface MingshiBanliInfoCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameL;
 @property (weak, nonatomic) IBOutlet UILabel *zongpinjiaL;
-
+@property (weak, nonatomic) IBOutlet UILabel *tCUNNameL;
 @property (weak, nonatomic) IBOutlet UILabel *ZouFangLvL;
 @property (weak, nonatomic) IBOutlet UILabel *BanJieLv;
 @property (weak, nonatomic) IBOutlet UILabel *ManYiDuL;
 -(void)updateCellWithInfoDic:(NSDictionary *)infoDic;
+@property (weak, nonatomic) IBOutlet UIView *UpBackView;
 @end

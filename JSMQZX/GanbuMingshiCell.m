@@ -27,8 +27,10 @@
     NSNumber *CJDpercent = [infoDic objectForKey:@"CJDpercent"];
     float CJDpercentF = CJDpercent.floatValue*100;
     
-    _dataZGB.text = [NSString stringWithFormat:@"%.2f%%(户数%@)",ZJDpercentF,[infoDic objectForKey:@"ZJDZS"]];
-    _dataCGB.text = [NSString stringWithFormat:@"%.2f%%(户数%@)",CJDpercentF,[infoDic objectForKey:@"CJDZS"]];
+    _dataZGB.text = [NSString stringWithFormat:@"%.2f%%",ZJDpercentF];
+    _dataCGB.text = [NSString stringWithFormat:@"%.2f%%",CJDpercentF];
+    //_dataZGB.text = [NSString stringWithFormat:@"%.2f%%(户数%@)",ZJDpercentF,[infoDic objectForKey:@"ZJDZS"]];
+    //_dataCGB.text = [NSString stringWithFormat:@"%.2f%%(户数%@)",CJDpercentF,[infoDic objectForKey:@"CJDZS"]];
     //画图
     UIView *zgbV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _zgbBackView.frame.size.width*ZJDpercentF/100, _zgbBackView.frame.size.height)];
     zgbV.backgroundColor = [UIColor purpleColor];

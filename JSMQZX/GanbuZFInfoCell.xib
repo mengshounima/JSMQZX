@@ -18,28 +18,40 @@
                         <rect key="frame" x="8" y="0.0" width="309" height="22"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王大锤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01f-BR-17S">
-                                <rect key="frame" x="0.0" y="0.0" width="70" height="22"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="22"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="014-vc-4OY"/>
+                                    <constraint firstAttribute="width" constant="50" id="014-vc-4OY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总评价:100.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsc-dB-UUt">
-                                <rect key="frame" x="75" y="2" width="234" height="18"/>
-                                <color key="backgroundColor" red="0.80784313730000001" green="0.81960784310000001" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="50" y="2" width="259" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCa-RQ-uGg">
+                                <rect key="frame" x="259" y="2" width="50" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="fct-RT-sFz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.80784313730000001" green="0.81960784310000001" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="01f-BR-17S" firstAttribute="leading" secondItem="k9n-BW-z86" secondAttribute="leading" id="1ax-s5-CaC"/>
-                            <constraint firstItem="Hsc-dB-UUt" firstAttribute="leading" secondItem="01f-BR-17S" secondAttribute="trailing" constant="5" id="Gd9-TP-Q4M"/>
+                            <constraint firstAttribute="bottom" secondItem="xCa-RQ-uGg" secondAttribute="bottom" constant="2" id="Cji-s0-Yf2"/>
+                            <constraint firstItem="Hsc-dB-UUt" firstAttribute="leading" secondItem="01f-BR-17S" secondAttribute="trailing" id="Gd9-TP-Q4M"/>
                             <constraint firstAttribute="trailing" secondItem="Hsc-dB-UUt" secondAttribute="trailing" id="HIM-wU-yWS"/>
                             <constraint firstItem="01f-BR-17S" firstAttribute="top" secondItem="k9n-BW-z86" secondAttribute="top" id="Ptt-Vl-M0a"/>
+                            <constraint firstItem="xCa-RQ-uGg" firstAttribute="top" secondItem="k9n-BW-z86" secondAttribute="top" constant="2" id="Sni-vM-K3a"/>
+                            <constraint firstAttribute="trailing" secondItem="xCa-RQ-uGg" secondAttribute="trailing" id="URB-5e-5lM"/>
                             <constraint firstItem="Hsc-dB-UUt" firstAttribute="top" secondItem="k9n-BW-z86" secondAttribute="top" constant="2" id="gIe-dr-hMi"/>
                             <constraint firstAttribute="bottom" secondItem="Hsc-dB-UUt" secondAttribute="bottom" constant="2" id="iZ7-uD-6cH"/>
                             <constraint firstAttribute="bottom" secondItem="01f-BR-17S" secondAttribute="bottom" id="if3-u6-CAl"/>
@@ -66,7 +78,7 @@
                                 <color key="textColor" red="1" green="0.29702970760000003" blue="0.63122570779999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(基础走访分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tq-dm-dJh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基础走访分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tq-dm-dJh">
                                 <rect key="frame" x="90" y="0.0" width="60" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="xCP-Zc-fdB"/>
@@ -140,8 +152,10 @@
             <connections>
                 <outlet property="BanJieLv" destination="HPg-G1-NzR" id="32O-gI-Cpa"/>
                 <outlet property="ManYiDuL" destination="ojj-cL-1Me" id="NMa-4w-MMK"/>
+                <outlet property="UpBackView" destination="k9n-BW-z86" id="Tid-Ld-t3r"/>
                 <outlet property="ZouFangLvL" destination="oaa-Qo-4fL" id="OAU-zX-hpp"/>
                 <outlet property="nameL" destination="01f-BR-17S" id="Xbi-xy-bKs"/>
+                <outlet property="tCUNNameL" destination="xCa-RQ-uGg" id="F9c-EJ-oiC"/>
                 <outlet property="zongpinjiaL" destination="Hsc-dB-UUt" id="PKl-9y-Mlt"/>
             </connections>
             <point key="canvasLocation" x="318.5" y="422.5"/>

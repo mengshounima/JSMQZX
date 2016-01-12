@@ -33,6 +33,11 @@
 @property (nonatomic,strong) NSArray *gl_zffjfArr;
 @property (nonatomic,strong) NSArray *gl_zfhjArr;
 
+@property (nonatomic,strong) NSArray *zjd_cgb_zfnhsArr;
+@property (nonatomic,strong) NSArray *zjd_cgb_zfrzsArr;
+
+@property (nonatomic,strong) NSArray *cunNameArr;
+
 @end
 
 @implementation GanBuZouFangVC
@@ -131,25 +136,18 @@
             _InfoTableView.hidden =YES;
         }
         else{
-            /*NSMutableArray *zgbMut = [[NSMutableArray alloc] init];
-            NSMutableArray *zgbZSMut = [[NSMutableArray alloc] init];
-            NSMutableArray *cgbMut = [[NSMutableArray alloc] init];
-            NSMutableArray *cgbZSMut = [[NSMutableArray alloc] init];*/
             NSMutableArray *gl_zflMut = [[NSMutableArray alloc] init];//走访率
             NSMutableArray *nameMut = [[NSMutableArray alloc] init];//姓名
             NSMutableArray *gl_zfjcfMut = [[NSMutableArray alloc] init];//gl_zfjcf基础分
             NSMutableArray *gl_zffjfMut = [[NSMutableArray alloc] init];//gl_zffjf附加分
             NSMutableArray *gl_zfhjMut = [[NSMutableArray alloc] init];//gl_zfhj走访积分合计
+            
+            NSMutableArray *zjd_cgb_zfnhsMut = [[NSMutableArray alloc] init];//应走
+            NSMutableArray *zjd_cgb_zfrzsMut = [[NSMutableArray alloc] init];//实走
+           
+            NSMutableArray *cun_nameMut = [[NSMutableArray alloc] init];
+            
             for (int i=0;i<resultArr.count;i++) {
-                /*NSNumber *value1 = [resultArr[i] objectForKey:@"zjd_zgb_zfnhs"];
-                [zgbMut addObject:value1];
-                NSNumber *value2 = [resultArr[i] objectForKey:@"zjd_zgb_zfrzs"];//总数，显示
-                [zgbZSMut addObject:value2];
-                NSNumber *value3 = [resultArr[i] objectForKey:@"zjd_cgb_zfnhs"];
-                [cgbMut addObject:value3];
-                NSNumber *value4 = [resultArr[i] objectForKey:@"zjd_cgb_zfrzs"];
-                [cgbZSMut addObject:value4];*/
-                
                 
                 NSNumber *gl_zfl = [resultArr[i] objectForKey:@"gl_zfl"];
                 [gl_zflMut addObject:gl_zfl];//走访率
@@ -166,6 +164,13 @@
                 NSNumber *gl_zfhj = [resultArr[i] objectForKey:@"gl_zfhj"];
                 [gl_zfhjMut addObject:gl_zfhj];//gl_zfhj走访积分合计
                 
+                NSNumber *zjd_cgb_zfnhs = [resultArr[i] objectForKey:@"zjd_cgb_zfnhs"];
+                [zjd_cgb_zfnhsMut addObject:zjd_cgb_zfnhs];//zjd_cgb_zfnhs应走
+                
+                NSNumber *zjd_cgb_zfrzs = [resultArr[i] objectForKey:@"zjd_cgb_zfrzs"];
+                [zjd_cgb_zfrzsMut addObject:zjd_cgb_zfrzs];//zjd_cgb_zfrzs实走
+                NSNumber *cun_name = [resultArr[i] objectForKey:@"cun_name"];
+                [cun_nameMut addObject:cun_name];//cun_name
                 
                 
             }
@@ -174,13 +179,10 @@
             _gl_zfjcfArr = [gl_zfjcfMut mutableCopy];
             _gl_zffjfArr = [gl_zffjfMut mutableCopy];
             _gl_zfhjArr = [gl_zfhjMut mutableCopy];
-            /*_zgbDataArr = [zgbMut mutableCopy];
-            _zgbZSArr= [zgbZSMut mutableCopy];
-            _cgbDataArr = [cgbMut mutableCopy];
-            _cgbZSArr = [cgbZSMut mutableCopy];
+            _zjd_cgb_zfnhsArr = [zjd_cgb_zfnhsMut mutableCopy];
+            _zjd_cgb_zfrzsArr = [zjd_cgb_zfrzsMut mutableCopy];
+            _cunNameArr = [cun_nameMut mutableCopy];
             
-            _titleArr = [titleMut mutableCopy];*/
-
             [_InfoTableView reloadData];
             _InfoTableView.hidden =NO;
             _myTableView.hidden = YES;
@@ -351,9 +353,11 @@
         _gl_zsxmArr = [nameMut mutableCopy];
         _gl_zfjcfArr = [gl_zfjcfMut mutableCopy];
         _gl_zffjfArr = [gl_zffjfMut mutableCopy];
-        _gl_zfhjArr = [gl_zfhjMut mutableCopy];*/
+        _gl_zfhjArr = [gl_zfhjMut mutableCopy];
+         _zjd_cgb_zfnhsArr = [zjd_cgb_zfnhsMut mutableCopy];
+         _zjd_cgb_zfrzsArr = [zjd_cgb_zfrzsMut mutableCopy];*/
         
-        NSDictionary *paramDic =  @{@"name":_gl_zsxmArr[indexPath.row],@"gl_zfl":_gl_zflArr[indexPath.row],@"gl_zfjcf":_gl_zfjcfArr[indexPath.row],@"gl_zffjf":_gl_zffjfArr[indexPath.row],@"gl_zfhj":_gl_zfhjArr[indexPath.row]};
+        NSDictionary *paramDic =  @{@"name":_gl_zsxmArr[indexPath.row],@"gl_zfl":_gl_zflArr[indexPath.row],@"gl_zfjcf":_gl_zfjcfArr[indexPath.row],@"gl_zffjf":_gl_zffjfArr[indexPath.row],@"gl_zfhj":_gl_zfhjArr[indexPath.row],@"zjd_cgb_zfnhs":_zjd_cgb_zfnhsArr[indexPath.row],@"zjd_cgb_zfrzs":_zjd_cgb_zfrzsArr[indexPath.row],@"cun_name":_cunNameArr[indexPath.row]};
         [cell updateCellWithInfoDic:paramDic];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
