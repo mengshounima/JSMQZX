@@ -39,13 +39,13 @@
     _BanJieLv.text = [NSString stringWithFormat:@"%.2f",bjl.floatValue];
     
     NSNumber *myl =  [infoDic objectForKey:@"gl_zffjf"];
-    _ManYiDuL.text = [NSString stringWithFormat:@"%.2f)",myl.floatValue];
+    _ManYiDuL.text = [NSString stringWithFormat:@"%.2f",myl.floatValue];
     
     //画条形图
     UIView *cgbV;
     cgbV = [[UIView alloc] initWithFrame:CGRectMake(_zongpinjiaL.frame.origin.x,_zongpinjiaL.frame.origin.y,_zongpinjiaL.frame.size.width*pingjia.floatValue, _zongpinjiaL.frame.size.height)];
-    
-    cgbV.backgroundColor = [UIColor greenColor];
+     MyLog(@"X:%f   Y:%f  width = %f",cgbV.frame.origin.x,cgbV.frame.origin.y,cgbV.frame.size.width);
+    cgbV.backgroundColor = choiceColor(30, 95, 21);
     [_UpBackView addSubview:cgbV];
     [_UpBackView addSubview:_zongpinjiaL];
     _tCUNNameL.text = [infoDic objectForKey:@"cun_name"];

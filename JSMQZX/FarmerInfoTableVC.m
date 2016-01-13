@@ -126,13 +126,12 @@
     }
     else if (indexPath.row ==9)
     {
-       // cell.textLabel.text = [NSString stringWithFormat:@"三户合一情况:%@",[farmerDic objectForKey:@""]];
-        cell.textLabel.text =@"三户合一情况:";
+        cell.textLabel.text = [NSString stringWithFormat:@"三户合一情况:%@",[farmerDic objectForKey:@"user_shyqk"]];
         
     }
     else if (indexPath.row ==10)
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"联系党员%@",[farmerDic objectForKey:@"user_lxdy_name"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"联系党员:%@",[farmerDic objectForKey:@"user_lxdy_name"]];
         
     }
     else if (indexPath.row ==11)
@@ -157,14 +156,28 @@
     }
     else if (indexPath.row ==15)
     {
-        //cell.textLabel.text = [NSString stringWithFormat:@"重点户类型:%@",[farmerDic objectForKey:@""]];
-        cell.textLabel.text = @"重点户类型:";
+        cell.textLabel.text = [NSString stringWithFormat:@"重点户类型:%@",[farmerDic objectForKey:@"lx_name"]];
+      
         
     }
     else if (indexPath.row ==16)
     {
-        //cell.textLabel.text = [NSString stringWithFormat:@"是否重点走访重点户:%@",[farmerDic objectForKey:@""]];
-        cell.textLabel.text = @"是否重点走访重点户:";
+        NSString *user_sfzf = [farmerDic objectForKey:@"user_sfzf"];
+        if (!ISNULLSTR(user_sfzf)) {
+            if ([user_sfzf isEqualToString:@"1"]) {
+                cell.textLabel.text = @"是否重点走访重点户:是";
+            }
+            else{
+                cell.textLabel.text = @"是否重点走访重点户:否";
+            }
+            
+            
+        }
+        else{
+            cell.textLabel.text = @"是否重点走访重点户:";
+
+        }
+        
 
         
     }

@@ -109,7 +109,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     }
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
+    cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.text = [SearchShowArr[indexPath.row] objectForKey:@"Title"];
     NSString *timeStr = [SearchShowArr[indexPath.row] objectForKey:@"AddDate"];
     /*NSDateFormatter *dateFor = [[NSDateFormatter alloc] init];
@@ -119,7 +119,7 @@
     NSArray *MM = [SS[0] componentsSeparatedByString:@"/"];
     NSString *month = MM[1];
     NSString *day= MM[2];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
 
     cell.detailTextLabel.text =[NSString stringWithFormat:@"%@月%@日",month ,day];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

@@ -23,13 +23,13 @@
     _sszL.text =  [NSString stringWithFormat:@"所属社区：%@",[infoDic objectForKey:@"zjd_name"]];
     
     NSNumber *zfl =  [infoDic objectForKey:@"gl_zfl"];
-    _ZouFangLvL.text = [NSString stringWithFormat:@"%.2f%%",zfl.floatValue];
+    _ZouFangLvL.text = [NSString stringWithFormat:@"%.2f%%",zfl.floatValue*100];
     
     NSNumber *bjl =  [infoDic objectForKey:@"gl_bjl"];
-    _BanJieLv.text = [NSString stringWithFormat:@"%.2f%%",bjl.floatValue];
+    _BanJieLv.text = [NSString stringWithFormat:@"%.2f%%",bjl.floatValue*100];
     
     NSNumber *myl =  [infoDic objectForKey:@"gl_zfmyl"];
-    _ManYiDuL.text = [NSString stringWithFormat:@"%.2f%%",myl.floatValue];
+    _ManYiDuL.text = [NSString stringWithFormat:@"%.2f%%",myl.floatValue*100];
     
     
     

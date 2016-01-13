@@ -33,14 +33,29 @@
     [self initView];
 }
 -(void)initData{
+    
+    NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
+    
+    if([powerStr isEqualToString:@"3"]){
+        MyLog(@"镇干部");
+        _ZJDBtn.enabled = NO;
+        [_ZJDBtn setTitle:[[DataCenter sharedInstance] ReadData].UserInfo.administerName forState:UIControlStateNormal];
+        _ZJDFlag = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.useType];
+        [self getCunData:_ZJDFlag];
+    }
+    else
+    {
+        _CUNBtn.enabled = NO;
+        _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+        
+    }
+
     rowscount = 20;
     page = 1;
-    _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
     LogArr = [[NSMutableArray alloc] init];
    
 }
 -(void)initView{
-    _CUNBtn.enabled = NO;
     _ZJDBtn.layer.cornerRadius = 4;
     _CUNBtn.layer.cornerRadius = 4;
     _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
@@ -160,12 +175,12 @@
 }
 
 -(void)getCunData:(NSString *)ZJD_ID{
-    [MBProgressHUD showMessage:@"获取该镇的村列表"];
+    //[MBProgressHUD showMessage:@"获取该镇的村列表"];
     //获取下属单位
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:ZJD_ID forKey:@"zjd_id"];
     [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+        //[MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         _CUNArr = (NSArray *)[jsonData objectFromJSONData];
         
@@ -173,7 +188,7 @@
         _CUNBtn.enabled = YES;//可选
         MyLog(@"村%@",_CUNArr);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
+        //[MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
     }];
 }
@@ -196,6 +211,7 @@
     [alert show];
 }
 - (IBAction)clickSearchBtn:(id)sender{
+    page = 1;
     [self getUserDataByZJD];
     
     

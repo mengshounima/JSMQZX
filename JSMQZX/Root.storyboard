@@ -1075,8 +1075,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IN9-S6-Fez">
-                                <rect key="frame" x="8" y="138" width="304" height="371"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IN9-S6-Fez" customClass="BarChartView">
+                                <rect key="frame" x="8" y="164" width="304" height="360"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPb-cN-5m2">
                                 <rect key="frame" x="0.0" y="104" width="320" height="1"/>
@@ -1169,7 +1169,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LTH-73-bdP" firstAttribute="leading" secondItem="7Yh-2B-z2L" secondAttribute="leading" id="0dJ-9e-HVi"/>
-                            <constraint firstItem="IN9-S6-Fez" firstAttribute="top" secondItem="xnU-YE-I45" secondAttribute="bottom" constant="4" id="2ar-pP-g3V"/>
+                            <constraint firstItem="IN9-S6-Fez" firstAttribute="top" secondItem="xnU-YE-I45" secondAttribute="bottom" constant="30" id="2ar-pP-g3V"/>
                             <constraint firstItem="LTH-73-bdP" firstAttribute="top" secondItem="hbE-9x-51m" secondAttribute="bottom" id="7XI-Vj-6mU"/>
                             <constraint firstItem="IWg-we-F45" firstAttribute="leading" secondItem="7Yh-2B-z2L" secondAttribute="leading" constant="20" id="9gT-ep-KEP"/>
                             <constraint firstAttribute="trailing" secondItem="IN9-S6-Fez" secondAttribute="trailing" constant="8" id="Jys-SD-aoB"/>
@@ -1179,7 +1179,7 @@
                             <constraint firstAttribute="trailing" secondItem="IWg-we-F45" secondAttribute="trailing" constant="20" id="cG6-4o-5D2"/>
                             <constraint firstItem="xnU-YE-I45" firstAttribute="leading" secondItem="7Yh-2B-z2L" secondAttribute="leading" constant="20" id="eJc-OY-jqc"/>
                             <constraint firstAttribute="trailing" secondItem="xnU-YE-I45" secondAttribute="trailing" constant="20" id="huy-jZ-CH3"/>
-                            <constraint firstItem="IWg-we-F45" firstAttribute="top" secondItem="IN9-S6-Fez" secondAttribute="bottom" constant="30" id="ieI-O2-xtV"/>
+                            <constraint firstItem="IWg-we-F45" firstAttribute="top" secondItem="IN9-S6-Fez" secondAttribute="bottom" constant="15" id="ieI-O2-xtV"/>
                             <constraint firstAttribute="trailing" secondItem="LTH-73-bdP" secondAttribute="trailing" id="lVi-nn-AhP"/>
                             <constraint firstItem="IN9-S6-Fez" firstAttribute="leading" secondItem="7Yh-2B-z2L" secondAttribute="leading" constant="8" id="oAR-iw-utC"/>
                             <constraint firstItem="xnU-YE-I45" firstAttribute="top" secondItem="cPb-cN-5m2" secondAttribute="bottom" constant="7" id="sVw-4Q-X74"/>
@@ -1189,8 +1189,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="民情晴雨表" id="KgW-Pg-9hS"/>
                     <connections>
+                        <outlet property="BarChat" destination="IN9-S6-Fez" id="oH4-Dn-LuJ"/>
                         <outlet property="CUNBtn" destination="dJd-yY-GVS" id="azH-00-rmU"/>
-                        <outlet property="ChartContainerV" destination="IN9-S6-Fez" id="seP-T6-Rhs"/>
                         <outlet property="SearchBtn" destination="tDY-F1-Xrc" id="Z2C-4f-AC7"/>
                         <outlet property="ZJDBtn" destination="B91-0G-ZWT" id="rFW-q2-iVa"/>
                         <outlet property="titleLabel" destination="xnU-YE-I45" id="cOP-qa-zKP"/>
@@ -1917,7 +1917,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="UGn-0y-Dcb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -3465,7 +3465,7 @@
                                     <outlet property="delegate" destination="NxH-ey-yyZ" id="wvL-ho-BsZ"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="农户姓名搜索" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-PR-fLc">
+                            <searchBar contentMode="redraw" placeholder="姓名搜索" translatesAutoresizingMaskIntoConstraints="NO" id="vNe-PR-fLc">
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="6bu-yo-XVF"/>

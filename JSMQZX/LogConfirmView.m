@@ -233,11 +233,9 @@
         [self.delegate clickCanceled];
     }
     
-    [UIView animateWithDuration:0.2 animations:^{
-        self.frame = CGRectMake(0, self.height, 0, 0);
-    } completion:^(BOOL finished) {
+   
+        //self.frame = CGRectMake(0, self.height, 0, 0);
         [self removeFromSuperview];
-    }];
 }
 
 /*

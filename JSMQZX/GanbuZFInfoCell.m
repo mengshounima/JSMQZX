@@ -28,7 +28,7 @@
     
     
     _zongpinjiaL.text = [NSString stringWithFormat:@"走访率：%.2f%%  应走%@户，实走%@户",pingjia.floatValue*100,zjd_cgb_zfnhs,zjd_cgb_zfrzs];
-    
+    _zongpinjiaL.backgroundColor = [UIColor clearColor];
     
     NSNumber *zfl =  [infoDic objectForKey:@"gl_zfhj"];
     _ZouFangLvL.text = [NSString stringWithFormat:@"%.2f",zfl.floatValue];
@@ -40,11 +40,13 @@
     _ManYiDuL.text = [NSString stringWithFormat:@"%.2f",myl.floatValue];
     //画条形图
     UIView *cgbV;
-    cgbV = [[UIView alloc] initWithFrame:CGRectMake(_zongpinjiaL.frame.origin.x,_zongpinjiaL.frame.origin.y, _zongpinjiaL.frame.size.width*pingjia.floatValue/100, _zongpinjiaL.frame.size.height)];
+    cgbV = [[UIView alloc] initWithFrame:CGRectMake(_zongpinjiaL.frame.origin.x,_zongpinjiaL.frame.origin.y, _zongpinjiaL.frame.size.width*pingjia.floatValue, _zongpinjiaL.frame.size.height)];
     
-    cgbV.backgroundColor = [UIColor greenColor];
+   
+    
+    cgbV.backgroundColor = choiceColor(30, 95, 21);
     [_UpBackView addSubview:cgbV];
-    [_UpBackView addSubview:_zongpinjiaL];
+    [_UpBackView addSubview:_zongpinjiaL];//添加透明背景的文本
     _tCUNNameL.text = [infoDic objectForKey:@"cun_name"];
     [_UpBackView addSubview:_tCUNNameL];
     

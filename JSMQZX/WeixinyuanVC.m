@@ -239,9 +239,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _ZJDTable) {
         [alert dismiss];
+        [_CUNBtn setTitle:@"选择村(社区)" forState: UIControlStateNormal ];
+        _CUNFlag = @"";
         if (indexPath.row == 0) {
             _ZJDFlag = @"";
             [_ZJDBtn setTitle:@"选择镇(街道)" forState: UIControlStateNormal ];
+            _CUNBtn.enabled = NO;
         }
         else{
             _ZJDFlag = [NSString stringWithFormat:@"%@",[_ZJDArr[indexPath.row-1] objectForKey:@"zjd_id"]];//用于提交接口参数

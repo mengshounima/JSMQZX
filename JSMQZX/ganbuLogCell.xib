@@ -34,13 +34,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-1l-Vy7" userLabel="时间">
-                                <rect key="frame" x="141" y="0.0" width="71" height="15"/>
+                                <rect key="frame" x="152" y="0.0" width="83" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46F-Rb-HgL" userLabel="预期">
-                                <rect key="frame" x="220" y="0.0" width="40" height="15"/>
+                                <rect key="frame" x="243" y="0.0" width="40" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="dUC-qM-IAc"/>
                                 </constraints>
@@ -49,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5S-AO-RLY" userLabel="人">
-                                <rect key="frame" x="61" y="0.0" width="72" height="15"/>
+                                <rect key="frame" x="61" y="0.0" width="83" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -69,7 +69,7 @@
                             <constraint firstAttribute="bottom" secondItem="S5S-AO-RLY" secondAttribute="bottom" id="l9v-0g-ygd"/>
                             <constraint firstAttribute="bottom" secondItem="CBy-9J-Jfz" secondAttribute="bottom" id="ocz-zb-SDV"/>
                             <constraint firstItem="CBy-9J-Jfz" firstAttribute="leading" secondItem="0VU-Dw-nYS" secondAttribute="leading" constant="8" id="odg-f5-RNc"/>
-                            <constraint firstAttribute="trailing" secondItem="46F-Rb-HgL" secondAttribute="trailing" constant="28" id="rCn-cf-RvO"/>
+                            <constraint firstAttribute="trailing" secondItem="46F-Rb-HgL" secondAttribute="trailing" constant="5" id="rCn-cf-RvO"/>
                             <constraint firstItem="rCW-1l-Vy7" firstAttribute="leading" secondItem="S5S-AO-RLY" secondAttribute="trailing" constant="8" id="th9-eN-VfS"/>
                         </constraints>
                     </view>
@@ -86,9 +86,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKu-uY-4TE" userLabel="需求">
-                                <rect key="frame" x="116" y="0.0" width="100" height="14"/>
+                                <rect key="frame" x="116" y="0.0" width="150" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="AXK-Xa-Xwp"/>
+                                    <constraint firstAttribute="width" constant="150" id="AXK-Xa-Xwp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,9 +109,9 @@
                         <rect key="frame" x="24" y="29" width="288" height="15"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iG1-Xd-sso" userLabel="镇">
-                                <rect key="frame" x="166" y="0.0" width="63" height="15"/>
+                                <rect key="frame" x="166" y="0.0" width="95" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="63" id="1gZ-l0-DnH"/>
+                                    <constraint firstAttribute="width" constant="95" id="1gZ-l0-DnH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

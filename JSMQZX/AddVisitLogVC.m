@@ -500,13 +500,7 @@
 }
 //代理取消方法
 -(void)clickCanceled{
-    [UIView animateWithDuration:0.2 animations:^{
-        _backView.backgroundColor = [UIColor colorWithRed:238 green:238 blue:238 alpha:0];
-        
-    } completion:^(BOOL finished) {
         [_backView removeFromSuperview];
-    }];
-
 }
 //提交日志
 - (IBAction)clickSendBtn:(id)sender {
@@ -525,7 +519,7 @@
         _backView.frame = [UIScreen mainScreen].bounds;
     }
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    if (_conFirmView == nil) {
+    //if (_conFirmView == nil) {
         _conFirmView = [[LogConfirmView alloc] init];
         
        
@@ -549,16 +543,16 @@
         [dic setObject:_needTextView.text forKey:@"need"];//需求
         
         if (flagChuli.integerValue==1) {//结果
-            [dic setObject: @"无诉求"forKey:@"ztxx"];
+            [dic setObject: @"当场办结（答复）"forKey:@"ztxx"];
         }
         else if (flagChuli.integerValue==2) {
-            [dic setObject: @"当场办结（答复）" forKey:@"ztxx"];
+            [dic setObject: @"正在办理" forKey:@"ztxx"];
         }
         else if (flagChuli.integerValue==3) {
-            [dic setObject:@"正在办理" forKey:@"ztxx"];
+            [dic setObject:@"提交上一级党委政府研究" forKey:@"ztxx"];
         }
         else {
-            [dic setObject:@"提交上一级党委政府研究" forKey:@"ztxx"];
+            [dic setObject:@"无诉求" forKey:@"ztxx"];
         }
         [dic setObject:[[DataCenter sharedInstance] ReadData].UserInfo.name forKey:@"zfr"];//走访人
         [dic setObject:[NSNumber numberWithInt:self.ImageArr.count] forKey:@"picsNumber"];//照片
@@ -575,7 +569,7 @@
             _backView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
    
 
-    }
+   // }
     
 }
 

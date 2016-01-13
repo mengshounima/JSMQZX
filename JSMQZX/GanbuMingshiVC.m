@@ -50,10 +50,24 @@
     
 }
 -(void)initData{
-    _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+    NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
+    
+    if([powerStr isEqualToString:@"3"]){
+        MyLog(@"镇干部");
+        _ZJDBtn.enabled = NO;
+        [_ZJDBtn setTitle:[[DataCenter sharedInstance] ReadData].UserInfo.administerName forState:UIControlStateNormal];
+        _ZJDFlag = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.useType];
+        [self getCunData:_ZJDFlag];
+    }
+    else
+    {
+        _CUNBtn.enabled = NO;
+        _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+        
+    }
+
 }
 -(void)initView{
-    _CUNBtn.enabled = NO;
     _ZJDBtn.layer.cornerRadius = 4;
     _CUNBtn.layer.cornerRadius = 4;
     _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
@@ -151,13 +165,13 @@
                 NSString *nameStr = [resultArr[i] objectForKey:@"gl_zsxm"];
                 [nameMut addObject:nameStr];//姓名
                 
-                NSNumber *gl_msbljf = [resultArr[i] objectForKey:@"gl_msbljf"];
+                NSNumber *gl_msbljf = [resultArr[i] objectForKey:@"gl_zfjcf"];
                 [gl_msbljfMut addObject:gl_msbljf];//gl_msbljf办理积分
                 
-                NSNumber *gl_mssjf = [resultArr[i] objectForKey:@"gl_mssjf"];
+                NSNumber *gl_mssjf = [resultArr[i] objectForKey:@"gl_zffjf"];
                 [gl_mssjfMut addObject:gl_mssjf];//gl_mssjf收集积分
                 
-                NSNumber *gl_mssjblhj = [resultArr[i] objectForKey:@"gl_mssjblhj"];
+                NSNumber *gl_mssjblhj = [resultArr[i] objectForKey:@"gl_zfhj"];
                 [gl_mssjblhjMut addObject:gl_mssjblhj];//gl_mssjblhj办理积分合计
                 
                 NSNumber *zjd_cgb_zfnhs = [resultArr[i] objectForKey:@"zjd_cgb_zfnhs"];
@@ -240,12 +254,12 @@
     }
 }
 -(void)getCunData:(NSString *)ZJD_ID{
-    [MBProgressHUD showMessage:@"获取该镇的村列表"];
+    //[MBProgressHUD showMessage:@"获取该镇的村列表"];
     //获取下属单位
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:ZJD_ID forKey:@"zjd_id"];
     [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+       // [MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         _CUNArr = (NSArray *)[jsonData objectFromJSONData];
         
@@ -253,7 +267,7 @@
         _CUNBtn.enabled = YES;//可选
         MyLog(@"村%@",_CUNArr);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
+       // [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
     }];
 }

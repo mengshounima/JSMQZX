@@ -15,6 +15,7 @@
     UITableView *_CUNTable;
     CGRect chatRect;
     
+    
 }
 @property (nonatomic,strong) NSArray *ZJDArr;
 @property (nonatomic,strong) NSArray *CUNArr;
@@ -36,10 +37,26 @@
     
 }
 -(void)initData{
-       _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+    NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
+    
+    if([powerStr isEqualToString:@"3"]){
+        MyLog(@"镇干部");
+        _ZJDBtn.enabled = NO;
+        [_ZJDBtn setTitle:[[DataCenter sharedInstance] ReadData].UserInfo.administerName forState:UIControlStateNormal];
+        _ZJDFlag = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.useType];
+        [self getCunData:_ZJDFlag];
+        }
+    else
+    {
+        _CUNBtn.enabled = NO;
+        _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+       
+    }
+
+    
 }
 -(void)initView{
-    _CUNBtn.enabled = NO;
+    
     _ZJDBtn.layer.cornerRadius = 4;
     _CUNBtn.layer.cornerRadius = 4;
     _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
@@ -61,15 +78,9 @@
     NSString *yearStr = [nowDateStr substringToIndex:4];
     
     _titleLabel.text = [NSString stringWithFormat:@"%@年度民情统计",yearStr];
+    chatRect = _BarChat.frame;
     
-    int height = _ChartContainerV.size.height;
-    int width = _ChartContainerV.size.width;
-    // Chart View
-    _chartView = [[TWRChartView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-    _chartView.backgroundColor = [UIColor clearColor];
-    
-    [_ChartContainerV addSubview:_chartView];
-    
+       
 }
 
 
@@ -106,12 +117,12 @@
 }
 
 -(void)getCunData:(NSString *)ZJD_ID{
-    [MBProgressHUD showMessage:@"获取该镇的村列表"];
+    //[MBProgressHUD showMessage:@"获取该镇的村列表"];
     //获取下属单位
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:ZJD_ID forKey:@"zjd_id"];
     [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+        //[MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         _CUNArr = (NSArray *)[jsonData objectFromJSONData];
         
@@ -119,7 +130,7 @@
         _CUNBtn.enabled = YES;//可选
         MyLog(@"村%@",_CUNArr);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
+       // [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
     }];
 }
@@ -249,28 +260,70 @@
         NSData* jsonData = [self XMLString:responseObject];
         _dicArr = [jsonData objectFromJSONData];
            
+           [_BarChat removeFromSuperview];
+           _BarChat = [[BarChartView alloc] initWithFrame:chatRect];
+           //Set the Shape of the Bars (Rounded or Squared) - Rounded is default
+           [_BarChat setupBarViewShape:BarShapeRounded];
+           
+           //Set the Style of the Bars (Glossy, Matte, or Flat) - Glossy is default
+           [_BarChat setupBarViewStyle:BarStyleGlossy];
+           
+           //Set the Drop Shadow of the Bars (Light, Heavy, or None) - Light is default
+           [_BarChat setupBarViewShadow:BarShadowLight];
+
+           
+           [self.view addSubview:_BarChat];
            NSMutableArray *titleMut = [[NSMutableArray alloc] init];
            NSMutableArray *valueMut = [[NSMutableArray alloc] init];
+           NSMutableArray *colorsMut = [[NSMutableArray alloc] init];
+           NSMutableArray *labelColorsMut = [[NSMutableArray alloc] init];
+           
            NSMutableArray *percentMut = [[NSMutableArray alloc] init];
            for (int i=0;i<_dicArr.count;i++) {
                NSNumber *value = [_dicArr[i] objectForKey:@"Value"];
                [valueMut addObject:value];
                NSString *label = [_dicArr[i] objectForKey:@"Label"];
-               [titleMut addObject:label];
+               if ([label isEqualToString:@"1"]) {
+                   [titleMut addObject: @"☀️"];
+                   [colorsMut addObject:@"87E317"];
+                   [labelColorsMut addObject:@"FFFFFF"];
+               }
+               if ([label isEqualToString:@"2"]) {
+                   [titleMut addObject: @"⛅️"];
+                   [colorsMut addObject:@"17A9E3"];
+                   [labelColorsMut addObject:@"FFFFFF"];
+               }
+               if ([label isEqualToString:@"3"]) {
+                   [titleMut addObject: @"☁️"];
+                   [colorsMut addObject:@"E32F17"];
+                   [labelColorsMut addObject:@"FFFFFF"];
+               }
+               if ([label isEqualToString:@"4"]) {
+                   [titleMut addObject:@"☔️"];
+                   [colorsMut addObject:@"FFE53D"];
+                   [labelColorsMut addObject:@"FFFFFF"];
+               }
+               
                NSNumber *Ratio = [_dicArr[i] objectForKey:@"Ratio"];
                [percentMut addObject:Ratio];
            }
            
           NSArray *values = [valueMut mutableCopy];
-            TWRDataSet *dataSet1 = [[TWRDataSet alloc] initWithDataPoints:values                                                               fillColor:[[UIColor greenColor] colorWithAlphaComponent:0.5]
-                                                             strokeColor:[UIColor greenColor]];
-           NSArray *labels =[titleMut mutableCopy];
+          NSArray *titleArr = [titleMut mutableCopy];
+          NSArray *colors = [colorsMut mutableCopy];
+          NSArray *labelColorsArr = [labelColorsMut mutableCopy];
            
-          TWRBarChart *bar = [[TWRBarChart alloc] initWithLabels:labels
-                                                         dataSets:@[dataSet1]
-                                                         animated:YES];
-           [_chartView loadBarChart:bar];
-
+           NSArray *array = [_BarChat createChartDataWithTitles:titleArr
+                                                         values:values
+                                                         colors:colors
+                                                    labelColors:labelColorsArr];
+           
+           
+           //Generate the bar chart using the formatted data
+        [_BarChat setDataWithArray:array
+                             showAxis:DisplayBothAxes
+                            withColor:[UIColor darkGrayColor]
+              shouldPlotVerticalLines:YES];
         //表格标题
         NSDate *currentdate = [NSDate date];
         NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];

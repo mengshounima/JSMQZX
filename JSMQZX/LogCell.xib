@@ -32,13 +32,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ER-Px-df3">
-                        <rect key="frame" x="76" y="0.0" width="69" height="23"/>
+                        <rect key="frame" x="76" y="0.0" width="75" height="23"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-ih-oq4">
-                        <rect key="frame" x="149" y="0.0" width="68" height="23"/>
+                        <rect key="frame" x="155" y="0.0" width="76" height="23"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Nn3-NP-HYg"/>
                         </constraints>
@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5D-J2-hpi">
-                        <rect key="frame" x="221" y="0.0" width="69" height="23"/>
+                        <rect key="frame" x="235" y="0.0" width="75" height="23"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="T4q-Se-vyd"/>
                         </constraints>
@@ -95,7 +95,7 @@
                     <constraint firstItem="Oe8-Q8-D8C" firstAttribute="top" secondItem="9ER-Px-df3" secondAttribute="bottom" id="gKE-ok-bry"/>
                     <constraint firstAttribute="bottom" secondItem="Oe8-Q8-D8C" secondAttribute="bottom" id="gZc-AI-kJa"/>
                     <constraint firstItem="qGS-ih-oq4" firstAttribute="leading" secondItem="9ER-Px-df3" secondAttribute="trailing" constant="4" id="okH-nL-IG1"/>
-                    <constraint firstAttribute="trailing" secondItem="y5D-J2-hpi" secondAttribute="trailing" constant="30" id="uzE-I3-YVM"/>
+                    <constraint firstAttribute="trailing" secondItem="y5D-J2-hpi" secondAttribute="trailing" constant="10" id="uzE-I3-YVM"/>
                     <constraint firstItem="H1e-mF-voK" firstAttribute="leading" secondItem="Oe8-Q8-D8C" secondAttribute="trailing" constant="13" id="xFM-3p-uwV"/>
                     <constraint firstItem="qGS-ih-oq4" firstAttribute="width" secondItem="9ER-Px-df3" secondAttribute="width" id="y6a-qt-bxk"/>
                 </constraints>

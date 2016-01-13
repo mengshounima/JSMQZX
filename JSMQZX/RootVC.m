@@ -42,13 +42,7 @@
     
     NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
    
-   // NSString *administerNameStr = [UserInfo sharedInstance].administerName;
-    /*if ([administerNameStr isEqualToString:@"管理员"]) {
-        //两个按钮
-        MyLog(@"管理员");
-        
-    }*/
-    if ([powerStr isEqualToString:@"6"]) {
+      if ([powerStr isEqualToString:@"6"]) {
         //两个按钮
         MyLog(@"一般用户");
         _yonghuView.hidden = NO;

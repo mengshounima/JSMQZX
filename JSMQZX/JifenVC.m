@@ -16,14 +16,13 @@
     JKAlertDialog *alert;
     NSInteger rowscount;
     NSInteger page;
-    NSInteger Index;
     
 }
 @property (nonatomic,strong) NSArray *ZJDArr;
 @property (nonatomic,strong) NSArray *CUNArr;
 @property (nonatomic,strong) NSString *ZJDFlag;
 @property (nonatomic,strong) NSString *CUNFlag;
-@property (nonatomic,strong) NSArray *resultArr;
+@property (nonatomic,strong) NSMutableArray *resultArr;
 
 @end
 
@@ -36,13 +35,28 @@
     [self getUserDataByZJD];
 }
 -(void)initData{
+    NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
+    
+    if([powerStr isEqualToString:@"3"]){
+        MyLog(@"镇干部");
+        _ZJDBtn.enabled = NO;
+        [_ZJDBtn setTitle:[[DataCenter sharedInstance] ReadData].UserInfo.administerName forState:UIControlStateNormal];
+        _ZJDFlag = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.useType];
+        [self getCunData:_ZJDFlag];
+    }
+    else
+    {
+        _CUNBtn.enabled = NO;
+        _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
+        
+    }
+
+    _resultArr = [[NSMutableArray alloc] init];
     rowscount = 20;
     page = 1;
-    _ZJDArr = [[DataCenter sharedInstance] ReadZJDData].zjdArr;
-    Index = 1;
+   
 }
 -(void)initView{
-    _CUNBtn.enabled = NO;
     _ZJDBtn.layer.cornerRadius = 4;
     _CUNBtn.layer.cornerRadius = 4;
     _ZJDTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH*0.8, SCREEN_HEIGHT*0.7) style:UITableViewStylePlain];
@@ -93,14 +107,14 @@
     [[HttpClient httpClient] requestWithPath:@"/GetAnalysisInfo" method:TBHttpRequestPost parameters:paramTongji prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSData* jsonData = [self XMLString:responseObject];
-        _resultArr = [jsonData objectFromJSONData];
-        if (_resultArr.count<rowscount) {
+        NSArray *middleArr = [jsonData objectFromJSONData];
+        if (middleArr.count<rowscount) {
             [self.evaluateTableView.footer endRefreshingWithNoMoreData];
         }
         else{
             [self.evaluateTableView.footer endRefreshing];
         }
-        //MyLog(@"---**--%@",_resultArr);
+         [_resultArr addObjectsFromArray:middleArr];
         [_evaluateTableView reloadData];
         page++;
         
@@ -157,12 +171,12 @@
 
 }
 -(void)getCunData:(NSString *)ZJD_ID{
-    [MBProgressHUD showMessage:@"获取该镇的村列表"];
+    //[MBProgressHUD showMessage:@"获取该镇的村列表"];
     //获取下属单位
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:ZJD_ID forKey:@"zjd_id"];
     [[HttpClient httpClient] requestWithPath:@"/GetCUNIndexByID" method:TBHttpRequestPost parameters:param prepareExecute:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+        //[MBProgressHUD hideHUD];
         NSData* jsonData = [self XMLString:responseObject];
         _CUNArr = (NSArray *)[jsonData objectFromJSONData];
         
@@ -170,7 +184,7 @@
         _CUNBtn.enabled = YES;//可选
         MyLog(@"村%@",_CUNArr);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
+       // [MBProgressHUD hideHUD];
         MyLog(@"***%@",error);
     }];
 }
@@ -225,13 +239,8 @@
         JifenCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"JifenCell" owner:nil options:nil] lastObject];
-            Index++;
+           
         }
-        /*NSNumber *numberIndex = [NSNumber numberWithInteger:Index];
-         NSMutableDictionary *middle = [NSMutableDictionary dictionaryWithDictionary:_resultArr[indexPath.row]];
-         [ middle setObject:numberIndex forKey:@"index"];*/
-        
-        //[cell updateCellWithInfoDic:_resultArr[indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell updateCell:_resultArr[indexPath.row]];
         return  cell;
@@ -259,6 +268,8 @@
 }
 
 - (IBAction)clickSearchBtn:(id)sender {
+    page = 1;
+    [_resultArr removeAllObjects];
     [self getUserDataByZJD];
     
 }
