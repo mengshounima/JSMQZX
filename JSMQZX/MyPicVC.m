@@ -143,7 +143,7 @@
     [self.view addSubview:_picScroll];
     
     float Y = CGRectGetMaxY(_picScroll.frame);
-    UIButton *AddPicBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.4, Y+SCREEN_HEIGHT*0.1, SCREEN_WIDTH*0.2, SCREEN_HEIGHT*0.1)];
+    UIButton *AddPicBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.2, Y+SCREEN_HEIGHT*0.1, SCREEN_WIDTH*0.2, SCREEN_HEIGHT*0.1)];
     AddPicBtn.layer.cornerRadius = 6;
     AddPicBtn.backgroundColor = [UIColor orangeColor];
     [AddPicBtn setTitle:@"添加" forState:UIControlStateNormal];
@@ -151,6 +151,19 @@
     [AddPicBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
     [AddPicBtn addTarget:self action:@selector(ClickAddBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:AddPicBtn];
+    //添加确定按钮
+    UIButton *DoneBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.6, Y+SCREEN_HEIGHT*0.1, SCREEN_WIDTH*0.2, SCREEN_HEIGHT*0.1)];
+    DoneBtn.layer.cornerRadius = 6;
+    DoneBtn.backgroundColor = [UIColor orangeColor];
+    [DoneBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [DoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [DoneBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [DoneBtn addTarget:self action:@selector(ClickDoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:DoneBtn];
+
+}
+-(void)ClickDoneBtn:(UIButton *)button{
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 -(void)ClickAddBtn:(UIButton *)button{

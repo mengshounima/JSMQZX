@@ -56,7 +56,7 @@
             NSMutableArray *middleArr = [[NSMutableArray alloc] init];
             for (NSDictionary *dic  in resultArr) {
                 NSString *urlStr = [dic objectForKey:@"photoUrl"];
-                NSString *allURL = [NSString stringWithFormat:@"http://122.225.44.14:802/ClientPhoto/%@",urlStr];
+                NSString *allURL = [NSString stringWithFormat:@"http://183.249.188.78:802/ClientPhoto/%@",urlStr];
                 
                 NSURL *URL = [NSURL URLWithString:allURL];
                 MyLog(@"--------%@",allURL);

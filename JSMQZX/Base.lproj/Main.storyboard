@@ -177,9 +177,23 @@
                                                     <action selector="clickLoginBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pgD-P2-1DI"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Za-oL-CaG">
+                                                <rect key="frame" x="230" y="137" width="50" height="21"/>
+                                                <color key="backgroundColor" red="0.90658538509999997" green="0.17649941690000001" blue="0.12202322140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="ZvX-Xe-5yd"/>
+                                                </constraints>
+                                                <state key="normal" title="刷新">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clickRefreshBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xpd-FU-CRn"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="3Za-oL-CaG" firstAttribute="trailing" secondItem="wg9-u9-nRT" secondAttribute="trailing" id="2I4-ep-AKS"/>
                                             <constraint firstItem="a5l-xK-1cL" firstAttribute="height" secondItem="cSN-3R-hfo" secondAttribute="height" multiplier="0.16" id="5h0-Pc-DwO"/>
                                             <constraint firstItem="k8h-3c-VsC" firstAttribute="height" secondItem="cSN-3R-hfo" secondAttribute="height" multiplier="0.16" id="84A-sS-zLH"/>
                                             <constraint firstItem="a5l-xK-1cL" firstAttribute="top" secondItem="k8h-3c-VsC" secondAttribute="bottom" constant="5" id="G3w-wf-xsK"/>
@@ -188,6 +202,7 @@
                                             <constraint firstAttribute="trailing" secondItem="wg9-u9-nRT" secondAttribute="trailing" constant="40" id="J03-B1-56p"/>
                                             <constraint firstItem="wg9-u9-nRT" firstAttribute="height" secondItem="cSN-3R-hfo" secondAttribute="height" multiplier="0.15" id="Kb2-U7-80t"/>
                                             <constraint firstItem="LrH-Ec-PBa" firstAttribute="leading" secondItem="cSN-3R-hfo" secondAttribute="leading" constant="30" id="KgO-mU-Ar7"/>
+                                            <constraint firstItem="3Za-oL-CaG" firstAttribute="height" secondItem="isp-JT-4Po" secondAttribute="height" id="LCX-59-kOH"/>
                                             <constraint firstItem="isp-JT-4Po" firstAttribute="top" secondItem="a5l-xK-1cL" secondAttribute="bottom" constant="8" id="Luu-aZ-ggO"/>
                                             <constraint firstItem="isp-JT-4Po" firstAttribute="height" secondItem="cSN-3R-hfo" secondAttribute="height" multiplier="0.1" id="SBp-XW-sAb"/>
                                             <constraint firstItem="LrH-Ec-PBa" firstAttribute="height" secondItem="cSN-3R-hfo" secondAttribute="height" multiplier="0.16" id="UpM-9D-Oad"/>
@@ -198,6 +213,7 @@
                                             <constraint firstItem="isp-JT-4Po" firstAttribute="leading" secondItem="cSN-3R-hfo" secondAttribute="leading" constant="40" id="jDb-22-KTN"/>
                                             <constraint firstItem="wg9-u9-nRT" firstAttribute="leading" secondItem="cSN-3R-hfo" secondAttribute="leading" constant="40" id="nPD-6Q-7zi"/>
                                             <constraint firstAttribute="trailing" secondItem="k8h-3c-VsC" secondAttribute="trailing" constant="30" id="nlL-AM-dZH"/>
+                                            <constraint firstItem="3Za-oL-CaG" firstAttribute="bottom" secondItem="isp-JT-4Po" secondAttribute="bottom" id="ufC-xT-0Oq"/>
                                             <constraint firstItem="LrH-Ec-PBa" firstAttribute="top" secondItem="cSN-3R-hfo" secondAttribute="top" constant="20" id="wGW-u9-L2b"/>
                                         </constraints>
                                     </view>
@@ -239,6 +255,7 @@
                     <connections>
                         <outlet property="loginBtn" destination="wg9-u9-nRT" id="pRJ-HY-mNR"/>
                         <outlet property="passwordF" destination="wXh-QE-QF7" id="muS-OB-ieB"/>
+                        <outlet property="refreshBtn" destination="3Za-oL-CaG" id="oI9-3M-MCM"/>
                         <outlet property="rememberBtn" destination="isp-JT-4Po" id="4JD-26-x3F"/>
                         <outlet property="typeF" destination="85P-Ju-FVK" id="YCK-qe-p2b"/>
                         <outlet property="userIDF" destination="fW0-6G-4cm" id="0wY-MH-y5u"/>

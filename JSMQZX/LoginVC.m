@@ -101,6 +101,7 @@
     _loginBtn.layer.cornerRadius = 6;
     _rememberBtn.selected = YES;//默认选中记住密码
     _passwordF.secureTextEntry = YES;
+    _refreshBtn.layer.cornerRadius = 5;
     
     //添加键盘监听
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -264,4 +265,7 @@
 }
 
 
+- (IBAction)clickRefreshBtn:(id)sender {
+    [self getUserData];
+}
 @end

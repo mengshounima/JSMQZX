@@ -42,8 +42,8 @@ static id _instace;
             
             //响应结果序列化类型
             self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-            //self.manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-            
+        
+             self.manager.requestSerializer.timeoutInterval = 15;
             //设置相应内容类型
             self.manager.responseSerializer.acceptableContentTypes =
             [NSSet setWithObjects:@"application/json",@"charset=utf-8",@"image/jpeg",@"text/html",@"text/xml",nil];

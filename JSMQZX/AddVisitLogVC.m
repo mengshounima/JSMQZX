@@ -636,7 +636,7 @@
     for (int i = 0; i<count; i++) {
         [param setObject:imageNameARR[i] forKey:@"filename"];//传入多张图片名数组
         //多张图片上传
-        [[HttpClient httpClient] requestOperaionManageWithURl:@"http://122.225.44.14:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr[i] DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
+        [[HttpClient httpClient] requestOperaionManageWithURl:@"http://183.249.188.78:802/save.aspx" httpMethod:TBHttpRequestPost parameters:param bodyData:self.ImageDataArr[i] DataNumber:count success:^(AFHTTPRequestOperation *operation, id response) {
             flaghttp++;
             NSInteger resultStatusCode = [operation.response statusCode];
             MyLog(@"result-----------------------------:%d",resultStatusCode);
