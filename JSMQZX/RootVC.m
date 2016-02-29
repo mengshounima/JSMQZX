@@ -42,7 +42,7 @@
     
     NSString *powerStr = [NSString stringWithFormat:@"%@",[[DataCenter sharedInstance] ReadData].UserInfo.power];
    
-      if ([powerStr isEqualToString:@"6"]) {
+      if ([powerStr isEqualToString:@"6"]||[powerStr isEqualToString:@"4"]) {
         //两个按钮
         MyLog(@"一般用户");
         _yonghuView.hidden = NO;
